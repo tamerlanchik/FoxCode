@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     android.widget.SearchView mSearchView1;
     android.widget.SearchView mSearchView2;
+    MapImageView mMap;
     //SearchView mSearchView1;
     //SearchView mSearchView2;
     Button mSearchButton;
@@ -45,18 +46,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class Map extends android.support.v7.widget.AppCompatImageView{
+    /*private class Map extends android.support.v7.widget.AppCompatImageView{
+
 
         public Map(Context context) {
             super(context);
         }
-    }
-    //private class
+    }*/
+
+
+        //private class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager fm = getSupportFragmentManager();
+        /*FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if(fragment == null) {
             fragment = new MapFragment();
@@ -64,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, fragment)
                     .commit();
         }
-
+*/      //mMap = (Map)findViewById(R.id.map_image_view);
+        mMap = findViewById(R.id.map_custom_image_view);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +81,10 @@ public class MainActivity extends AppCompatActivity {
         mSearchView1 = findViewById(R.id.searchView1);
         mSearchView2 = findViewById(R.id.searchView2);
         mSearchButton = (Button) findViewById(R.id.search_button);
-        /*mSearchButton.setOnClickListener(new View.OnClickListener() {
+        mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mMap.DrawRoute();
                 Log.d(TAG, "Find route request");
                 String a = mSearchView1.getQuery().toString();
                 String b = mSearchView2.getQuery().toString();
@@ -88,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "Find route request");
                 }
             }
-        });*/
+        });
 
     }
     @Override

@@ -6,16 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="555dp"
-        android:layout_marginTop="8dp"
-        android:alpha="1"
-        app:layout_constraintTop_toBottomOf="@+id/searchView1"
-        tools:layout_editor_absoluteX="0dp">
+    <com.example.bomonsearch2.MapImageView
 
-    </FrameLayout>
+        android:id="@+id/map_custom_image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView1" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

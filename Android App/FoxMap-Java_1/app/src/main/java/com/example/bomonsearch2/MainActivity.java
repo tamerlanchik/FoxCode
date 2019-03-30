@@ -1,5 +1,6 @@
 package com.example.bomonsearch2;
 
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,9 +15,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     MenuItem mSearchItem;
     SearchView mSearchView;
+
+    private class PingServer extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try{
+                String result = new DataCollector()
+                        .getUrlString("https://www.bignerdranch.com");
+                Log.i(TAG, "Fetched contents of URL: " + result);
+            } catch (IOException ioe) {
+                Log.e(TAG, "Failed to fetch URL: ", ioe);
+            }
+            return null;
+        }
+    }
+    //private class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +70,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+
+                new PingServer().execute();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                Log.d("TAG", "onQueryTextChange");
                 return false;
             }
         });

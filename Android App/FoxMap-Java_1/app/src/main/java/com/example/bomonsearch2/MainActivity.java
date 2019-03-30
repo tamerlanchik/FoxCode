@@ -1,10 +1,10 @@
 package com.example.bomonsearch2;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -21,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     MenuItem mSearchItem;
     SearchView mSearchView;
+
+    android.widget.SearchView mSearchView1;
+    android.widget.SearchView mSearchView2;
+    //SearchView mSearchView1;
+    //SearchView mSearchView2;
+    Button mSearchButton;
 
     private class PingServer extends AsyncTask<Void,Void,Void>{
 
@@ -34,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Failed to fetch URL: ", ioe);
             }
             return null;
+        }
+    }
+
+    private class Map extends android.support.v7.widget.AppCompatImageView{
+
+        public Map(Context context) {
+            super(context);
         }
     }
     //private class
@@ -57,6 +72,23 @@ public class MainActivity extends AppCompatActivity {
                 mSearchView.setIconified(false);
             }
         });
+
+        mSearchView1 = findViewById(R.id.searchView1);
+        mSearchView2 = findViewById(R.id.searchView2);
+        mSearchButton = (Button) findViewById(R.id.search_button);
+        /*mSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Find route request");
+                String a = mSearchView1.getQuery().toString();
+                String b = mSearchView2.getQuery().toString();
+                if(b.length() == 0){
+                    Log.d(TAG, "Look for smth");
+                }else{
+                    Log.d(TAG, "Find route request");
+                }
+            }
+        });*/
 
     }
     @Override

@@ -2,9 +2,20 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_container"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="555dp"
+        android:layout_marginTop="8dp"
+        android:alpha="1"
+        app:layout_constraintTop_toBottomOf="@+id/searchView1"
+        tools:layout_editor_absoluteX="0dp">
+
+    </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -20,4 +31,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="40dp"
         app:useCompatPadding="false" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="Go"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchView2" />
+
+    <SearchView
+        android:id="@+id/searchView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:alpha="1"
+        android:background="@android:color/background_light"
+        android:elevation="5dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/searchView1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/searchView1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/searchView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="1"
+        android:elevation="5dp"
+        android:background="@android:color/background_light"
+        app:layout_constraintEnd_toStartOf="@+id/search_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+
 </android.support.constraint.ConstraintLayout>

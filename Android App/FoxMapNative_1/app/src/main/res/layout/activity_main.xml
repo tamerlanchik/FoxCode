@@ -11,66 +11,68 @@
         android:id="@+id/map_image_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/map"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
         android:src="@android:drawable/ic_menu_search"
-        app:backgroundTint="@color/design_default_color_primary_dark"
+        app:backgroundTint="@android:color/background_light"
+        app:borderWidth="5dp"
+        app:elevation="10px"
         app:fabSize="auto"
         app:hoveredFocusedTranslationZ="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="40dp"
         app:useCompatPadding="false" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:text="Go"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchView2" />
-
     <SearchView
         android:id="@+id/searchView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
         android:alpha="1"
         android:background="@android:color/background_light"
         android:elevation="5dp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/searchView1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/searchView1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <SearchView
         android:id="@+id/searchView1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:alpha="1"
-        android:elevation="5dp"
         android:background="@android:color/background_light"
-        app:layout_constraintEnd_toStartOf="@+id/search_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView2"
+        app:layout_constraintStart_toEndOf="@+id/searchView2"
+        app:layout_constraintTop_toTopOf="@+id/searchView2">
+
+    </SearchView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchView1"
+        app:layout_constraintTop_toTopOf="@+id/searchView1"
+        app:srcCompat="@drawable/reverse" />
 
 </android.support.constraint.ConstraintLayout>

@@ -10,3 +10,5 @@ native/ - код на плюсах.
 
 Диаграмма классов (очень приблизительная):
 https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Untitled%20Diagram.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Ftamerlanchik%2FFoxCode%2FAndreid%2FAndroid%2520App%2FUntitled%2520Diagram.drawio
+Её описание - в файле UML-Description.txt
+Предложения, претензии, конструктивная и не очень критика - принимается всё.

@@ -2,13 +2,14 @@ package com.example.foxmap_native_1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -17,10 +18,11 @@ public class MainActivity extends AppCompatActivity {
     MenuItem mUpdateDataItem;
     ProgressBar mProgressBar;
 
-    android.widget.SearchView mSearchView1;
-    android.widget.SearchView mSearchView2;
+    android.widget.SearchView mDestSearchView;
+    android.widget.SearchView mSourceSearchView;
     MapDrawer mMapDrawer;
     ImageView mMapImageView;
+    ImageButton mReverseRouteButton;
 
     /*private class PingServer extends AsyncTask<Void,Void,Void> {
 
@@ -57,16 +59,60 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        mSearchView1 = findViewById(R.id.to_search_view);
-        mSearchView2 = findViewById(R.id.from_search_view);
+        mSourceSearchView = findViewById(R.id.from_search_view);
+        mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(mDestSearchView.getQuery().length() > 0){
+                    displayRoute(query, mDestSearchView.getQuery().toString());
+                }else{
+                    searchOnMap(query);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        mDestSearchView = findViewById(R.id.to_search_view);
+        mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(mSourceSearchView.getQuery().length() > 0){
+                    displayRoute(mSourceSearchView.getQuery().toString(), query);
+                }else{
+                    searchOnMap(query);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        mReverseRouteButton = findViewById(R.id.reverse_route_button);
+        mReverseRouteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence temp = mDestSearchView.getQuery();
+                mDestSearchView.setQuery(mSourceSearchView.getQuery(), true);
+                mSourceSearchView.setQuery(temp,true);
+            }
+        });
+
         /*mSearchButton = (Button) findViewById(R.id.search_button);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMapDrawer.DrawRoute();
                 Log.d(TAG, "Find route request");
-                String a = mSearchView1.getQuery().toString();
-                String b = mSearchView2.getQuery().toString();
+                String a = mDestSearchView.getQuery().toString();
+                String b = mSourceSearchView.getQuery().toString();
                 if(b.length() == 0){
                     Log.d(TAG, "Look for smth");
                 }else{
@@ -126,6 +172,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    private void searchOnMap(String query){
+        Toast.makeText(getApplicationContext(), "Looking for " + query, Toast.LENGTH_SHORT).show();
+    }
+    private void displayRoute(String from, String to){
+        Toast.makeText(getApplicationContext(), "Generating a route...", Toast.LENGTH_SHORT).show();
     }
 }
 

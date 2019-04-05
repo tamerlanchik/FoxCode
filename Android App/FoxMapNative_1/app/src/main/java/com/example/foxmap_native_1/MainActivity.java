@@ -1,31 +1,26 @@
 package com.example.foxmap_native_1;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    MenuItem mSearchItem;
-    SearchView mSearchView;
+    MenuItem mUpdateDataItem;
+    ProgressBar mProgressBar;
 
     android.widget.SearchView mSearchView1;
     android.widget.SearchView mSearchView2;
     MapDrawer mMapDrawer;
     ImageView mMapImageView;
-    //SearchView mSearchView1;
-    //SearchView mSearchView2;
-    Button mSearchButton;
 
     /*private class PingServer extends AsyncTask<Void,Void,Void> {
 
@@ -55,16 +50,15 @@ public class MainActivity extends AppCompatActivity {
         mMapImageView = findViewById(R.id.map_image_view);
         mMapDrawer = new MapDrawer(getApplicationContext(), mMapImageView);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSearchView.setIconified(false);
             }
-        });
+        });*/
 
-        mSearchView1 = findViewById(R.id.searchView1);
-        mSearchView2 = findViewById(R.id.searchView2);
+        mSearchView1 = findViewById(R.id.to_search_view);
+        mSearchView2 = findViewById(R.id.from_search_view);
         /*mSearchButton = (Button) findViewById(R.id.search_button);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +75,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+        mProgressBar = findViewById(R.id.progressBar);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.search_toolbar, menu);
-        mSearchItem = menu.findItem(R.id.menu_item_search);
+        mUpdateDataItem = menu.findItem(R.id.menu_item_update);
+
+        mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                mProgressBar.setVisibility(View.VISIBLE);
+                //call NetworkMaster
+                boolean updateResult = false;
+                mProgressBar.setVisibility(View.INVISIBLE);
+                String resultMessage;
+                if(updateResult == true){
+                    resultMessage = getResources().getString(R.string.success_map_updated);
+                }else{
+                    resultMessage = getResources().getString(R.string.cannot_update_map);
+                }
+                Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
         /*mSearchView = (SearchView) mSearchItem.getActionView();
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

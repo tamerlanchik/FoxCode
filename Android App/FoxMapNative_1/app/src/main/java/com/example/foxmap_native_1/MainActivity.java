@@ -1,7 +1,9 @@
 package com.example.foxmap_native_1;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     android.widget.SearchView mSourceSearchView;
     MapDrawer mMapDrawer;
     ImageView mMapImageView;
+    ImageView mMapPlaceHolder;
     ImageButton mReverseRouteButton;
 
     /*private class PingServer extends AsyncTask<Void,Void,Void> {
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mMapImageView = findViewById(R.id.map_image_view);
+        mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
         mMapDrawer = new MapDrawer(getApplicationContext(), mMapImageView);
 
         /*fab.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        //https://github.com/googlesamples/android-ndk/tree/master/bitmap-plasma/app/src/main
+        //https://github.com/googlesamples/android-ndk/blob/master/sensor-graph/accelerometer/src/main/cpp/sensorgraph.cpp
         mDestSearchView = findViewById(R.id.to_search_view);
         mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -133,17 +138,31 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                mProgressBar.setVisibility(View.VISIBLE);
-                //call NetworkMaster
-                boolean updateResult = false;
-                mProgressBar.setVisibility(View.INVISIBLE);
-                String resultMessage;
-                if(updateResult == true){
-                    resultMessage = getResources().getString(R.string.success_map_updated);
-                }else{
-                    resultMessage = getResources().getString(R.string.cannot_update_map);
+                class Updater extends AsyncTask<Void,Void,Void> {
+
+                    @Override
+                    protected void onPreExecute() {
+                        startDataUpdate();
+                    }
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        super.onPostExecute(aVoid);
+                        endDataUpdate(false);
+                    }
                 }
-                Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
+
+                new Updater().execute();
                 return false;
             }
         });
@@ -179,6 +198,28 @@ public class MainActivity extends AppCompatActivity {
     }
     private void displayRoute(String from, String to){
         Toast.makeText(getApplicationContext(), "Generating a route...", Toast.LENGTH_SHORT).show();
+    }
+
+    private void startDataUpdate(){
+
+        mProgressBar.setVisibility(View.VISIBLE);
+        mMapPlaceHolder.setVisibility(View.VISIBLE);
+        mMapImageView.setVisibility(View.GONE);
+        Log.d(TAG, "startDataUpdate()");
+    }
+    private void endDataUpdate(boolean result){
+        Log.d(TAG, "endDataUpdate()");
+       mProgressBar.setVisibility(View.GONE);
+        mMapPlaceHolder.setVisibility(View.GONE);
+        mMapImageView.setVisibility(View.VISIBLE);
+        String resultMessage;
+        if(result == true){
+            resultMessage = getResources().getString(R.string.success_map_updated);
+        }else{
+            resultMessage = getResources().getString(R.string.cannot_update_map);
+        }
+        Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
+
     }
 }
 

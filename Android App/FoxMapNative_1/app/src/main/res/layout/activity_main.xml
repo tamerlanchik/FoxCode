@@ -7,6 +7,19 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/wait_placeholder_image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/darker_gray"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/telegraph" />
+
+    <ImageView
 
         android:id="@+id/map_image_view"
         android:layout_width="344dp"
@@ -17,6 +30,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/map"
         android:scaleType="fitXY"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/from_search_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -164,6 +178,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>

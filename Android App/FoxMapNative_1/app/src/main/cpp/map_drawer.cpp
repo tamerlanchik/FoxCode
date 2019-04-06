@@ -22,8 +22,6 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_init(
         JNIEnv *env, jclass type, jobject asset_manager){
     Log::debug(TAG, "init()");
 
-    std::string s("Hello");
-    Log::debug(TAG, s.c_str());
     AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
     map_drawer.Init(native_asset_manager);
 }
@@ -46,11 +44,11 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_drawFrame(JNIEnv *env, jclass ty
 
 JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_onResume(JNIEnv *env, jclass type){
-
+    Log::debug(TAG, "onResume()");
 }
 
 JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_onPause(JNIEnv *env, jclass type){
-
+    Log::debug(TAG, "onPause()");
 }
 }

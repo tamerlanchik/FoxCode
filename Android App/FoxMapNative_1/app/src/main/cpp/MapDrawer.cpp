@@ -13,12 +13,15 @@ void MapDrawer::Init(AAssetManager* asset_manager) {
 }
 
 void MapDrawer::Render() {
+    Log::debug(TAG, "Render()");
     glClear(GL_COLOR_BUFFER_BIT);
+    Log::debug(TAG, "Render() - 1");
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {
-    glViewport(0, 0, w, h);
     Log::debug(TAG, "SurfaceChanged()");
+    glViewport(0, 0, w, h);
+    Log::debug(TAG, "SurfaceChanged()-1");
 }
 
 void MapDrawer::SurfaceCreated() {

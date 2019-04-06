@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.VISIBLE);
         mMapPlaceHolder.setVisibility(View.VISIBLE);
-        mMapView.setVisibility(View.GONE);
+        //mMapView.setVisibility(View.INVISIBLE);
         Log.d(TAG, "startDataUpdate()");
     }
 

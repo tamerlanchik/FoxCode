@@ -10,9 +10,11 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GLMapView extends GLSurfaceView {
     private static final String TAG = "GLMapView";
+
     public GLMapView(Context context) {
         super(context);
     }
+
     public GLMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

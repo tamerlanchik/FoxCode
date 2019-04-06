@@ -1,5 +1,7 @@
 package com.example.foxmap_native_1;
 
+import android.app.ActivityManager;
+import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -21,52 +23,33 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    MenuItem mUpdateDataItem;
-    ProgressBar mProgressBar;
 
-    android.widget.SearchView mDestSearchView;
-    android.widget.SearchView mSourceSearchView;
-    MapDrawerJNI mMapDrawerJNI;
-    GLMapView mMapView;
-    ImageView mMapPlaceHolder;
-    ImageButton mReverseRouteButton;
+    private MenuItem mUpdateDataItem;
+    private ProgressBar mProgressBar;
+    private android.widget.SearchView mDestSearchView;
+    private android.widget.SearchView mSourceSearchView;
+    private ImageView mMapPlaceHolder;
+    private ImageButton mReverseRouteButton;
+    private GLMapView mMapView;
 
-    /*private class PingServer extends AsyncTask<Void,Void,Void> {
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try{
-                String result = new DataCollector()
-                        .getUrlString("https://www.bignerdranch.com");
-                Log.i(TAG, "Fetched contents of URL: " + result);
-            } catch (IOException ioe) {
-                Log.e(TAG, "Failed to fetch URL: ", ioe);
-            }
-            return null;
-        }
-    }
-*/
-    static {
-        //System.loadLibrary("native-lib");
-    }
-
-    //private class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Проверяем поддержку необходимой версии OpenGL ES (2)
+        if( !supportES2() ){
+            Toast.makeText(getApplicationContext(),
+                    "Необходима поддержка OpenGL ES минимум версии 2",
+                    Toast.LENGTH_LONG)
+                    .show();
+            finish();
+            return;
+        }
+
         mMapView = findViewById(R.id.map_view);
         mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
-        //mMapDrawer = new MapDrawer(getApplicationContext(), mMapView);
-
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSearchView.setIconified(false);
-            }
-        });*/
 
         mSourceSearchView = findViewById(R.id.from_search_view);
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -233,6 +216,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mMapView.onResume();
+    }
+
+    // Проверка подержки смартфоном версии OpenGL ES не меньше 2
+    private boolean supportES2() {
+        ActivityManager activityManager =
+                (ActivityManager) getSystemService(getApplicationContext().ACTIVITY_SERVICE);
+        ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+        return (configurationInfo.reqGlEsVersion >= 0x20000);
     }
 }
 

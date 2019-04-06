@@ -40,6 +40,11 @@ add_library(
         SHARED
         MapDrawer.cpp
 )
+add_library(
+        ShaderMaster
+        SHARED
+        ShaderMaster.cpp
+)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -79,6 +84,14 @@ target_link_libraries(
 )
 target_link_libraries(
         MapDrawer
+        ShaderMaster
+        android
+        Log
+        GLESv2
+)
+
+target_link_libraries(
+        ShaderMaster
         android
         Log
         GLESv2

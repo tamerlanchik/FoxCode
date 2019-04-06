@@ -44,7 +44,7 @@ public class GLMapView extends GLSurfaceView {
                 MapDrawerJNI.drawFrame();
             }
         });
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
 
         //Переданный Runnable будет запущен в GL-потоке
         //так как нативная основа MapDriverJNI работает в нём.

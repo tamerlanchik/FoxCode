@@ -12,29 +12,24 @@
 #include <android/asset_manager_jni.h>
 
 std::string ShaderMaster::GetShaderRaw(AAssetManager* asset_manager, const char* name) {
-    AAsset *fragment_shader_asset = AAssetManager_open(asset_manager, name,
+    AAsset *shader_asset = AAssetManager_open(asset_manager, name,
                                                        AASSET_MODE_BUFFER);
-    assert(fragment_shader_asset != NULL);
-
-    const void *fragment_shader_buf = AAsset_getBuffer(fragment_shader_asset);
-    assert(fragment_shader_buf != NULL);
-
-    off_t fragmentShaderLength = AAsset_getLength(fragment_shader_asset);
-    std::string res = std::string((const char*)fragment_shader_buf,
-                                  (size_t)fragmentShaderLength);
-    AAsset_close(fragment_shader_asset);
-}
-
-GLuint ShaderMaster::CreateProgram(const std::string& vertex_src, const std::string& fragment_src){
-    GLuint vertex_id = LoadShader(GL_VERTEX_SHADER, vertex_src);
-    GLuint fragment_id = LoadShader(GL_FRAGMENT_SHADER, fragment_src);
-    if(vertex_id != 0 && fragment_id != 0){
-        return 0;
+    if(!shader_asset){
+        Log::error(TAG, "Zero shader_assert");
+        return std::string();
     }
 
-    return CreateProgram(vertex_id, fragment_id);
-}
+    const void *shader_buf = AAsset_getBuffer(shader_asset);
+    if(!shader_buf){
+        return std::string();
+    }
 
+    off_t shader_length = AAsset_getLength(shader_asset);
+    std::string res = std::string((const char*)shader_buf,
+                                  (size_t)shader_length);
+    AAsset_close(shader_asset);
+    return res;
+}
 
 GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_raw){
     //Создаём пустой объект шейдера
@@ -66,6 +61,17 @@ GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_ra
 
 //  Два шейдера - вершинный и фрагментный - работают в паре
 //  и потому объединяются в общий объект - "программу"
+GLuint ShaderMaster::CreateProgram(const std::string& vertex_src,
+        const std::string& fragment_src){
+    GLuint vertex_id = LoadShader(GL_VERTEX_SHADER, vertex_src);
+    GLuint fragment_id = LoadShader(GL_FRAGMENT_SHADER, fragment_src);
+    if(vertex_id == 0 || fragment_id == 0){
+        return 0;
+    }
+
+    return CreateProgram(vertex_id, fragment_id);
+}
+
 GLuint ShaderMaster::CreateProgram(const GLuint vertex_shader_id,
                                 const GLuint fragment_shader_id){
     //  Создаём пустую программу

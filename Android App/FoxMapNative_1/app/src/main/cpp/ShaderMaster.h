@@ -18,8 +18,10 @@ public:
 
     static GLuint CreateProgram(const std::string& vertex_src, const std::string& fragment_src);
     static GLuint CreateProgram(const GLuint vertex_shader_id, const GLuint fragment_shader_id);
-
+private:
+    static const char TAG[];
 };
+const char ShaderMaster::TAG[] = "ShaderMaster";
 
 
 #endif //FOXMAPNATIVE_1_SHADERMASTER_H

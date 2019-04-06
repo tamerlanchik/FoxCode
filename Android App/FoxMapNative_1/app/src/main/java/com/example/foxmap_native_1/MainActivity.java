@@ -1,5 +1,6 @@
 package com.example.foxmap_native_1;
 
+import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     android.widget.SearchView mDestSearchView;
     android.widget.SearchView mSourceSearchView;
     MapDrawer mMapDrawer;
-    ImageView mMapImageView;
+    GLSurfaceView mMapView;
     ImageView mMapPlaceHolder;
     ImageButton mReverseRouteButton;
 
@@ -52,9 +56,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMapImageView = findViewById(R.id.map_image_view);
+        mMapView = findViewById(R.id.map_view);
+        mMapView.setEGLContextClientVersion(2);
+        mMapView.setRenderer(new GLSurfaceView.Renderer() {
+            @Override
+            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+                Log.d(TAG, "onSurfaceCreated()");
+            }
+
+            @Override
+            public void onSurfaceChanged(GL10 gl, int width, int height) {
+                Log.d(TAG, "onSurfaceChanged");
+            }
+
+            @Override
+            public void onDrawFrame(GL10 gl) {
+                Log.d(TAG, "onDrawFrame()");
+            }
+        });
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
-        mMapDrawer = new MapDrawer(getApplicationContext(), mMapImageView);
+        //mMapDrawer = new MapDrawer(getApplicationContext(), mMapView);
 
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,14 +225,14 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.VISIBLE);
         mMapPlaceHolder.setVisibility(View.VISIBLE);
-        mMapImageView.setVisibility(View.GONE);
+        mMapView.setVisibility(View.GONE);
         Log.d(TAG, "startDataUpdate()");
     }
     private void endDataUpdate(boolean result){
         Log.d(TAG, "endDataUpdate()");
        mProgressBar.setVisibility(View.GONE);
         mMapPlaceHolder.setVisibility(View.GONE);
-        mMapImageView.setVisibility(View.VISIBLE);
+        mMapView.setVisibility(View.VISIBLE);
         String resultMessage;
         if(result == true){
             resultMessage = getResources().getString(R.string.success_map_updated);

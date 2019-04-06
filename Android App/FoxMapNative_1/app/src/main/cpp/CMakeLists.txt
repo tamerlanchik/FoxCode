@@ -25,6 +25,17 @@ add_library(
         map_guide.cpp
 )
 
+add_library(
+        map_drawer
+        SHARED
+        map_drawer.cpp
+)
+add_library(
+        Log
+        SHARED
+        Log.cpp
+)
+
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -47,4 +58,16 @@ target_link_libraries( # Specifies the target library.
         native-lib
         # Links the target library to the log library
         # included in the NDK.
+        android
+        log
         ${log-lib})
+target_link_libraries(
+        map_drawer
+        Log
+        android
+        log)
+target_link_libraries(
+        Log
+        android
+        log
+)

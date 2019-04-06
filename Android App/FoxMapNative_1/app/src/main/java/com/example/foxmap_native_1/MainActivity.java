@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     android.widget.SearchView mDestSearchView;
     android.widget.SearchView mSourceSearchView;
-    MapDrawer mMapDrawer;
-    GLSurfaceView mMapView;
+    MapDrawerJNI mMapDrawerJNI;
+    GLMapView mMapView;
     ImageView mMapPlaceHolder;
     ImageButton mReverseRouteButton;
 
@@ -57,23 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mMapView = findViewById(R.id.map_view);
-        mMapView.setEGLContextClientVersion(2);
-        mMapView.setRenderer(new GLSurfaceView.Renderer() {
-            @Override
-            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                Log.d(TAG, "onSurfaceCreated()");
-            }
-
-            @Override
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-                Log.d(TAG, "onSurfaceChanged");
-            }
-
-            @Override
-            public void onDrawFrame(GL10 gl) {
-                Log.d(TAG, "onDrawFrame()");
-            }
-        });
+        mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
         //mMapDrawer = new MapDrawer(getApplicationContext(), mMapView);
 
@@ -131,25 +115,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*mSearchButton = (Button) findViewById(R.id.search_button);
-        mSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMapDrawer.DrawRoute();
-                Log.d(TAG, "Find route request");
-                String a = mDestSearchView.getQuery().toString();
-                String b = mSourceSearchView.getQuery().toString();
-                if(b.length() == 0){
-                    Log.d(TAG, "Look for smth");
-                }else{
-                    Log.d(TAG, "Find route request");
-                }
-            }
-        });*/
-
         mProgressBar = findViewById(R.id.progressBar);
 
     }
+
+    //Создаём кнопки в Тулбаре
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
@@ -209,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Обработка события активации кнопки Тулбара
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
@@ -220,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayRoute(String from, String to){
         Toast.makeText(getApplicationContext(), "Generating a route...", Toast.LENGTH_SHORT).show();
     }
-
+    //Графическая реакция на начало обновления карты
     private void startDataUpdate(){
 
         mProgressBar.setVisibility(View.VISIBLE);
@@ -228,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
         mMapView.setVisibility(View.GONE);
         Log.d(TAG, "startDataUpdate()");
     }
+
+    //Графическая реакция на окончание обновления карты
     private void endDataUpdate(boolean result){
         Log.d(TAG, "endDataUpdate()");
        mProgressBar.setVisibility(View.GONE);
@@ -241,6 +214,22 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
 
+    }
+
+    //  Вызывается автоматически при уходе Activity с первого плана
+    // (переворот, переключение приложения)
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    //  Вызывается автоматически при появлении Activity на переднем плане
+    // (переворот, запуск приложения)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMapView.onResume();
     }
 }
 

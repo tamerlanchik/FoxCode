@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/telegraph" />
 
-    <android.opengl.GLSurfaceView
+    <com.example.foxmap_native_1.GLMapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

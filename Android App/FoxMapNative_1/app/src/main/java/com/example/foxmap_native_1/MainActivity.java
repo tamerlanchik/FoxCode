@@ -111,7 +111,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CharSequence temp = mDestSearchView.getQuery();
                 mDestSearchView.setQuery(mSourceSearchView.getQuery(), true);
-                mSourceSearchView.setQuery(temp,true);
+                mSourceSearchView.setQuery(temp,false);
+                //Второй параметр у setQuery() отвечает, вызывать ли
+                //обработчик отправки запроса у этого SearchView (как если бы мы его нажали)
+                // Вызываем только у одного из них (что вполне логично - запрос-то лишь один)
             }
         });
 

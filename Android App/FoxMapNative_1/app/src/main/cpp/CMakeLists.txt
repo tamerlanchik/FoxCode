@@ -35,6 +35,11 @@ add_library(
         SHARED
         Log.cpp
 )
+add_library(
+        MapDrawer
+        SHARED
+        MapDrawer.cpp
+)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -65,9 +70,16 @@ target_link_libraries(
         map_drawer
         Log
         android
+        MapDrawer
         log)
 target_link_libraries(
         Log
         android
         log
+)
+target_link_libraries(
+        MapDrawer
+        android
+        Log
+        GLESv2
 )

@@ -51,7 +51,11 @@ public class GLMapView extends GLSurfaceView {
         queueEvent(new Runnable() {
             @Override
             public void run() {
-                MapDrawerJNI.init();
+                // assets - файлы ресурсов в папке res/assets/
+                // AssetManager предоставляет к ним доступ
+                // К остальным ресурсам из нативного кода обратиться сложно (нельзя?)
+                // Сейчас не нужен, но пригодится
+                MapDrawerJNI.init(getContext().getAssets());
             }
         });
     }

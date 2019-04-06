@@ -30,6 +30,8 @@ void MapDrawer::Init(AAssetManager* asset_manager) {
 void MapDrawer::Render() {
     Log::debug(TAG, "Render()");
     glClear(GL_COLOR_BUFFER_BIT);
+    //glUseProgram(triangle_program_id);
+
     //  рисуем TRIANLGE, значения берём с 0 индекса для 3 вершин
     glDrawArrays(GL_TRIANGLES, 0, 3);
     Log::debug(TAG, "Render() - 1");
@@ -52,6 +54,7 @@ void MapDrawer::SurfaceCreated() {
     glUseProgram(program_id);
 
     this->triangle_program_id = program_id;
+    this->BindData();
 
     Log::debug(TAG, "End SurfaceCreated()");
 }

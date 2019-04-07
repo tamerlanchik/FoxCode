@@ -5,4 +5,7 @@ public class TestMapItem extends MapItem {
     public void draw() {
 
     }
+    public int test(int k){
+        return k*2;
+    }
 }

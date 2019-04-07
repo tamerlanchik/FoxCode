@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // Проверяем поддержку необходимой версии OpenGL ES (2)
         if( !supportES2() ){
             Toast.makeText(getApplicationContext(),
-                    "Необходима поддержка OpenGL ES минимум версии 2",
+                    getResources().getString(R.string.toast_no_opengl_support),
                     Toast.LENGTH_LONG)
                     .show();
             finish();
@@ -123,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progressBar);
 
         mFloorNumberTextView = findViewById(R.id.storey_number_text_view);
-        mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+        mFloorNumberTextView.setText(
+                String.format(getResources().getString(R.string.storey_number_textview), mFloor));
         mSelectedObjTextView = findViewById(R.id.place_name_text_view);
 
         mGoUpButton = findViewById(R.id.storey_up_button);
@@ -132,9 +133,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( mFloor <  mStoreyRange[1] ){
                     mFloor++;
-                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+                    mFloorNumberTextView.setText(
+                            String.format(getResources().getString(R.string.storey_number_textview), mFloor));
                 }else{
-                    Toast.makeText(getApplicationContext(), "Небо не принимает :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            getResources().getString(R.string.toast_max_floor_reached), Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
@@ -144,9 +148,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if( mFloor > mStoreyRange[0] ){
                     mFloor--;
-                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
-                }else{
-                    Toast.makeText(getApplicationContext(), "Вы на дне", Toast.LENGTH_SHORT).show();
+                    mFloorNumberTextView.setText(
+                            String.format(getResources().getString(R.string.storey_number_textview), mFloor));
+                   }else{
+                    Toast.makeText(getApplicationContext(),
+                            getResources().getString(R.string.toast_min_floor_reached),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -226,10 +233,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void searchOnMap(String query){
-        Toast.makeText(getApplicationContext(), "Looking for " + query, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                String.format(getResources().getString(R.string.toast_object_on_map), query),
+                Toast.LENGTH_SHORT).show();
     }
     private void displayRoute(String from, String to){
-        Toast.makeText(getApplicationContext(), "Generating a route...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                getResources().getString(R.string.toast_path_on_map), Toast.LENGTH_SHORT).show();
     }
     //Графическая реакция на начало обновления карты
     private void startDataUpdate(){
@@ -248,9 +258,9 @@ public class MainActivity extends AppCompatActivity {
         mMapView.setVisibility(View.VISIBLE);
         String resultMessage;
         if(result == true){
-            resultMessage = getResources().getString(R.string.success_map_updated);
+            resultMessage = getResources().getString(R.string.toast_map_syncronized);
         }else{
-            resultMessage = getResources().getString(R.string.cannot_update_map);
+            resultMessage = getResources().getString(R.string.toast_failed_map_update);
         }
         Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
 
@@ -278,6 +288,14 @@ public class MainActivity extends AppCompatActivity {
                 (ActivityManager) getSystemService(getApplicationContext().ACTIVITY_SERVICE);
         ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
         return (configurationInfo.reqGlEsVersion >= 0x20000);
+    }
+
+    public void onButtonClicked() {
+
+    }
+
+    public int[] getStoreyRange(){
+        return mStoreyRange;
     }
 }
 

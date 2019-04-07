@@ -4,6 +4,8 @@ import android.app.ActivityManager;
 import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
+import android.os.PersistableBundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +17,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.Collections;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -23,6 +29,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String mCurrentStoreyKey = "STOREY_KEY";
+    private static final int mStoreyRange[] = {0, 6};
 
     private MenuItem mUpdateDataItem;
     private ProgressBar mProgressBar;
@@ -30,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private android.widget.SearchView mSourceSearchView;
     private ImageView mMapPlaceHolder;
     private ImageButton mReverseRouteButton;
+    private TextView mFloorNumberTextView;
+    private TextView mSelectedObjTextView;
+    private FloatingActionButton mGoUpButton;
+    private FloatingActionButton mGoDownButton;
     private GLMapView mMapView;
+
+    private int mFloor = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                     .show();
             finish();
             return;
+        }
+
+        if(savedInstanceState != null){
+            mFloor = savedInstanceState.getInt(mCurrentStoreyKey, 3);
         }
 
         mMapView = findViewById(R.id.map_view);
@@ -103,6 +122,41 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar = findViewById(R.id.progressBar);
 
+        mFloorNumberTextView = findViewById(R.id.storey_number_text_view);
+        mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+        mSelectedObjTextView = findViewById(R.id.place_name_text_view);
+
+        mGoUpButton = findViewById(R.id.storey_up_button);
+        mGoUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( mFloor <  mStoreyRange[1] ){
+                    mFloor++;
+                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Небо не принимает :(", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        mGoDownButton = findViewById(R.id.storey_down_button);
+        mGoDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( mFloor > mStoreyRange[0] ){
+                    mFloor--;
+                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Вы на дне", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(mCurrentStoreyKey, mFloor);
     }
 
     //Создаём кнопки в Тулбаре

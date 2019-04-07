@@ -56,7 +56,7 @@ public class GLMapView extends GLSurfaceView {
                 // assets - файлы ресурсов в папке res/assets/
                 // AssetManager предоставляет к ним доступ
                 // К остальным ресурсам из нативного кода обратиться сложно (нельзя?)
-                // Сейчас не нужен, но пригодится
+                // Используем для загрузки файлов шейдеров
                 MapDrawerJNI.init(getContext().getAssets());
             }
         });

@@ -62,14 +62,21 @@ public class MainActivityTest {
     }
 
 
-    //@Test
+    @Test
     //  Тестирование кнопки обновления карты (начало)
     public void clickUpdateMap(){
+        Resources resources = mActivityRule.getActivity().getResources();
         onView(withId(R.id.menu_item_update)).perform(click());
         onView(withId(R.id.wait_placeholder_image_view)).check(matches(anything()));
+        checkToast(resources.getString(R.string.toast_failed_map_update));
+        try {
+            Thread.sleep(mToastShortTimeout);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    //@Test
+    @Test
     //  Тестирование переключения этажей
     public void checkStoreyNavigationTextView() {
         Resources resources = mActivityRule.getActivity().getResources();
@@ -90,11 +97,12 @@ public class MainActivityTest {
         }
         //Проверка выхода за верхнюю границу
         onView(withId(R.id.storey_up_button)).perform(click());
-        onView(withText(resources.getString(R.string.toast_max_floor_reached))).
-                inRoot(withDecorView(
-                        not(is(mActivityRule.getActivity().
-                                getWindow().getDecorView())))).
-                check(matches(isDisplayed()));
+        checkToast(resources.getString(R.string.toast_max_floor_reached));
+        try {
+            Thread.sleep(mToastShortTimeout);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //  До нижней границы
         currentFloor--;
@@ -109,60 +117,16 @@ public class MainActivityTest {
 
         //Проверка выхода за верхнюю границу
         onView(withId(R.id.storey_down_button)).perform(click());
-        onView(withText(resources.getString(R.string.toast_min_floor_reached))).
-                inRoot(withDecorView(
-                        not(is(mActivityRule.getActivity().
-                                getWindow().getDecorView())))).
-                check(matches(isDisplayed()));
-    }
-
-    private class SearchViewSetQuery implements ViewAction{
-        String mText;
-        boolean mIsActivate;
-        SearchViewSetQuery(String text, boolean isActivate){
-            mText = text;
-            mIsActivate = isActivate;
-        }
-
-        @Override
-        public Matcher<View> getConstraints() {
-            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
-        }
-
-        @Override
-        public String getDescription() {
-            return "Change view text";
-        }
-
-        @Override
-        public void perform(UiController uiController, View view) {
-            //((SearchView)view).setIconified(false);
-            ((SearchView)view).setQuery(mText, mIsActivate);
-            //((SearchView)view).clearFocus();
+        checkToast(resources.getString(R.string.toast_min_floor_reached));
+        try {
+            Thread.sleep(mToastShortTimeout);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    private class SearchViewClear implements ViewAction{
 
-        @Override
-        public Matcher<View> getConstraints() {
-            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
-        }
-
-        @Override
-        public String getDescription() {
-            return "Change view text";
-        }
-
-        @Override
-        public void perform(UiController uiController, View view) {
-            ((SearchView)view).setQuery("", false);
-            //((SearchView)view).setIconified(true);
-            //((SearchView)view).clearFocus();
-        }
-    }
-
-    //@Test
+    @Test
     public void checkSearchViews(){
         String a = "503";
         String b = "Хавальня";
@@ -178,7 +142,7 @@ public class MainActivityTest {
         onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
         checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
         try {
-            Thread.sleep(2500);
+            Thread.sleep(mToastShortTimeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -190,7 +154,7 @@ public class MainActivityTest {
         onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, true));
         checkToast(resources.getString(R.string.toast_path_on_map));
         try {
-            Thread.sleep(2500);
+            Thread.sleep(mToastShortTimeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -204,7 +168,7 @@ public class MainActivityTest {
         checkToast(resources.getString(R.string.toast_path_on_map));
 
         try {
-            Thread.sleep(2500);
+            Thread.sleep(mToastShortTimeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -270,6 +234,7 @@ public class MainActivityTest {
             e.printStackTrace();
         }
     }
+
     public void checkToast(String message){
         onView(withText(message)).
                 inRoot(withDecorView(
@@ -279,4 +244,49 @@ public class MainActivityTest {
     }
 
 
+    private class SearchViewSetQuery implements ViewAction{
+        String mText;
+        boolean mIsActivate;
+        SearchViewSetQuery(String text, boolean isActivate){
+            mText = text;
+            mIsActivate = isActivate;
+        }
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
+        }
+
+        @Override
+        public String getDescription() {
+            return "Change view text";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            //((SearchView)view).setIconified(false);
+            ((SearchView)view).setQuery(mText, mIsActivate);
+            //((SearchView)view).clearFocus();
+        }
+    }
+
+    private class SearchViewClear implements ViewAction{
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
+        }
+
+        @Override
+        public String getDescription() {
+            return "Change view text";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            ((SearchView)view).setQuery("", false);
+            //((SearchView)view).setIconified(true);
+            //((SearchView)view).clearFocus();
+        }
+    }
 }

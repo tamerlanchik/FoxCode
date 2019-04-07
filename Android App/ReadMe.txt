@@ -17,3 +17,7 @@ https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&titl
 1) OpenGL ES:
 	*https://startandroid.ru/ru/uroki/vse-uroki-spiskom/398-urok-169-opengl-shejdery.html (на Java, шикарные пояснения)
 	*https://github.com/googlesamples/android-ndk/tree/master/sensor-graph	(Java + C++, голый код)
+	*http://clc.am/dvOLEw	Книжка по общим вопросам NDK (в том числе по OpenGL ES)
+2) Разработка под Android вообще:
+	*http://mirknig.su/knigi/programming/190298-android-programmirovanie-dlya-professionalov-3-e-izdanie.html
+		Книжка-самоучитель по общей разработке. Шыкарная.

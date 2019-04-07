@@ -53,6 +53,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
+    private static final int mToastShortTimeout = 2000;
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
@@ -135,9 +136,9 @@ public class MainActivityTest {
 
         @Override
         public void perform(UiController uiController, View view) {
-            ((SearchView)view).setIconified(false);
+            //((SearchView)view).setIconified(false);
             ((SearchView)view).setQuery(mText, mIsActivate);
-            ((SearchView)view).clearFocus();
+            //((SearchView)view).clearFocus();
         }
     }
 
@@ -156,8 +157,8 @@ public class MainActivityTest {
         @Override
         public void perform(UiController uiController, View view) {
             ((SearchView)view).setQuery("", false);
-            ((SearchView)view).setIconified(true);
-            ((SearchView)view).clearFocus();
+            //((SearchView)view).setIconified(true);
+            //((SearchView)view).clearFocus();
         }
     }
 
@@ -219,46 +220,52 @@ public class MainActivityTest {
         Resources resources = mActivityRule.getActivity().getResources();
         SearchView mFrom = mActivityRule.getActivity().findViewById(R.id.from_search_view);
         SearchView mTo = mActivityRule.getActivity().findViewById(R.id.to_search_view);
+        try{
+        //  Реверс без ввода
+            onView(withId(R.id.reverse_route_button)).perform(click());
+            assert(mFrom.getQuery() == "" && mTo.getQuery() == "");
 
         //  Ввод в левое поле, потом реверс
-        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
+            onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
 
-        onView(withId(R.id.reverse_route_button)).perform(click());
+            checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
 
-        assert(mTo.getQuery().toString() == a);
+            Thread.sleep(mToastShortTimeout);
+            onView(withId(R.id.reverse_route_button)).perform(click());
+            assert(mTo.getQuery().toString() == a);
 
-        checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
+            Thread.sleep(mToastShortTimeout);
+
 
         //  Ввод в правое поле, потом реверс
-        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(a, true));
+            onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, true));
 
-        onView(withId(R.id.reverse_route_button)).perform(click());
+            checkToast(String.format(resources.getString(R.string.toast_object_on_map), b));
+            Thread.sleep(mToastShortTimeout);
 
-        assert(mFrom.getQuery().toString() == a);
+            onView(withId(R.id.reverse_route_button)).perform(click());
 
-        checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            assert(mFrom.getQuery().toString() == b);
+
+            checkToast(String.format(resources.getString(R.string.toast_object_on_map), b));
+            Thread.sleep(mToastShortTimeout);
+
 
         //  Ввод в два поля, потом реверс
-        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, false));
-        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, false));
+            onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
+            checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
+            Thread.sleep(mToastShortTimeout);
+            onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, true));
+            checkToast(resources.getString(R.string.toast_path_on_map));
+            Thread.sleep(mToastShortTimeout);
 
-        onView(withId(R.id.reverse_route_button)).perform(click());
+            onView(withId(R.id.reverse_route_button)).perform(click());
 
-        assert(mTo.getQuery().toString() == a && mFrom.getQuery() == b);
+            assert(mTo.getQuery().toString() == a && mFrom.getQuery() == b);
 
-        checkToast(resources.getString(R.string.toast_path_on_map));
-        try {
-            Thread.sleep(4000);
+            checkToast(resources.getString(R.string.toast_path_on_map));
+            Thread.sleep(mToastShortTimeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

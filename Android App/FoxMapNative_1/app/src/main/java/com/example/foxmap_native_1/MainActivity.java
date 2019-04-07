@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //mSourceSearchView.setQuery(query, false);
+                String dest = mDestSearchView.getQuery().toString();
+                Log.d(TAG, "source: " + query + " " + dest);
                 if(query.length() > 0 && mDestSearchView.getQuery().length() > 0){
                     displayRoute(query, mDestSearchView.getQuery().toString());
                 }else{
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //mDestSearchView.setQuery(query, false);
+                String source = mSourceSearchView.getQuery().toString();
+                Log.d(TAG, "dest: " + query + " " + source);
                 if(query.length() > 0 && mSourceSearchView.getQuery().length() > 0){
                     displayRoute(mSourceSearchView.getQuery().toString(), query);
                 }else{
@@ -111,16 +117,23 @@ public class MainActivity extends AppCompatActivity {
         mReverseRouteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence temp = mDestSearchView.getQuery();
-                mDestSearchView.setQuery(mSourceSearchView.getQuery(), true);
-                mDestSearchView.setIconified(false);
-                mSourceSearchView.setQuery(temp,false);
-                mSourceSearchView.setIconified(false);
-                mSourceSearchView.clearFocus();
-                mDestSearchView.setSelected(true);
-                //Второй параметр у setQuery() отвечает, вызывать ли
-                //обработчик отправки запроса у этого SearchView (как если бы мы его нажали)
-                // Вызываем только у одного из них (что вполне логично - запрос-то лишь один)
+                String from = mSourceSearchView.getQuery().toString();
+                String to = mDestSearchView.getQuery().toString();
+                if(to.length() > 0){
+                    mDestSearchView.setQuery(from, false);
+                    mSourceSearchView.setQuery(to,true);
+                    mSourceSearchView.requestFocus();
+                }
+                else if(from.length() > 0 && to.length() == 0){
+                    mSourceSearchView.setQuery(to,false);
+                    mDestSearchView.setQuery(from, true);
+                    mDestSearchView.requestFocus();
+                }
+                else{
+
+                }
+                //mSourceSearchView.clearFocus();
+                //mDestSearchView.clearFocus();
             }
         });
 

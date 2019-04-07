@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(mDestSearchView.getQuery().length() > 0){
+                if(query.length() > 0 && mDestSearchView.getQuery().length() > 0){
                     displayRoute(query, mDestSearchView.getQuery().toString());
                 }else{
                     searchOnMap(query);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(mSourceSearchView.getQuery().length() > 0){
+                if(query.length() > 0 && mSourceSearchView.getQuery().length() > 0){
                     displayRoute(mSourceSearchView.getQuery().toString(), query);
                 }else{
                     searchOnMap(query);
@@ -113,7 +113,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CharSequence temp = mDestSearchView.getQuery();
                 mDestSearchView.setQuery(mSourceSearchView.getQuery(), true);
+                mDestSearchView.setIconified(false);
                 mSourceSearchView.setQuery(temp,false);
+                mSourceSearchView.setIconified(false);
+                mSourceSearchView.clearFocus();
+                mDestSearchView.setSelected(true);
                 //Второй параметр у setQuery() отвечает, вызывать ли
                 //обработчик отправки запроса у этого SearchView (как если бы мы его нажали)
                 // Вызываем только у одного из них (что вполне логично - запрос-то лишь один)

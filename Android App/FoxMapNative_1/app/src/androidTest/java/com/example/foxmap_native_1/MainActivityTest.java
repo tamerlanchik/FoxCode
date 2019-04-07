@@ -137,6 +137,7 @@ public class MainActivityTest {
         public void perform(UiController uiController, View view) {
             ((SearchView)view).setIconified(false);
             ((SearchView)view).setQuery(mText, mIsActivate);
+            ((SearchView)view).clearFocus();
         }
     }
 
@@ -156,14 +157,21 @@ public class MainActivityTest {
         public void perform(UiController uiController, View view) {
             ((SearchView)view).setQuery("", false);
             ((SearchView)view).setIconified(true);
+            ((SearchView)view).clearFocus();
         }
     }
 
-    @Test
-    public void checkToast(){
+    //@Test
+    public void checkSearchViews(){
         String a = "503";
         String b = "Хавальня";
         Resources resources = mActivityRule.getActivity().getResources();
+
+        /*
+        Алгоритм:
+            заполняем один или два SearchView запросом, отправляем его, регистрируем Toast,
+            ждем время, пока сообщение не исчезнет, и очищаем SearchView
+         */
 
         //  Тестируем отправку одной строки
         onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
@@ -203,6 +211,58 @@ public class MainActivityTest {
         onView(withId(R.id.from_search_view)).perform(new SearchViewClear());
         onView(withId(R.id.to_search_view)).perform(new SearchViewClear());
     }
+
+    @Test
+    public void checkReverseButton() {
+        String a = "503";
+        String b = "Хавальня";
+        Resources resources = mActivityRule.getActivity().getResources();
+        SearchView mFrom = mActivityRule.getActivity().findViewById(R.id.from_search_view);
+        SearchView mTo = mActivityRule.getActivity().findViewById(R.id.to_search_view);
+
+        //  Ввод в левое поле, потом реверс
+        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
+
+        onView(withId(R.id.reverse_route_button)).perform(click());
+
+        assert(mTo.getQuery().toString() == a);
+
+        checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //  Ввод в правое поле, потом реверс
+        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(a, true));
+
+        onView(withId(R.id.reverse_route_button)).perform(click());
+
+        assert(mFrom.getQuery().toString() == a);
+
+        checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //  Ввод в два поля, потом реверс
+        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, false));
+        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, false));
+
+        onView(withId(R.id.reverse_route_button)).perform(click());
+
+        assert(mTo.getQuery().toString() == a && mFrom.getQuery() == b);
+
+        checkToast(resources.getString(R.string.toast_path_on_map));
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     public void checkToast(String message){
         onView(withText(message)).
                 inRoot(withDecorView(
@@ -210,4 +270,6 @@ public class MainActivityTest {
                                 getWindow().getDecorView())))).
                 check(matches(isDisplayed()));
     }
+
+
 }

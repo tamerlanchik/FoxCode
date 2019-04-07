@@ -1,15 +1,22 @@
 package com.example.foxmap_native_1;
 
 import android.content.res.Resources;
+import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,12 +32,15 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasToString;
@@ -38,6 +48,7 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.AnyOf.anyOf;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
@@ -51,12 +62,14 @@ public class MainActivityTest {
 
 
     //@Test
+    //  Тестирование кнопки обновления карты (начало)
     public void clickUpdateMap(){
         onView(withId(R.id.menu_item_update)).perform(click());
         onView(withId(R.id.wait_placeholder_image_view)).check(matches(anything()));
     }
 
-    @Test
+    //@Test
+    //  Тестирование переключения этажей
     public void checkStoreyNavigationTextView() {
         Resources resources = mActivityRule.getActivity().getResources();
         TextView mTextView = mActivityRule.getActivity().findViewById(R.id.storey_number_text_view);
@@ -102,38 +115,99 @@ public class MainActivityTest {
                 check(matches(isDisplayed()));
     }
 
-    //@Test
-    public void checkToast(){
-        onView(allOf(withId(R.id.from_search_view),
-                withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))).perform(
-                click());
-        //onView(withId(R.id.from_search_view)).perform(click());
-        double a = 5435;
-        for(int i = 0; i < 10000; i++){
-            for(int j = 0; j < 100000; j++){
-                a /= 3;
-            }
+    private class SearchViewSetQuery implements ViewAction{
+        String mText;
+        boolean mIsActivate;
+        SearchViewSetQuery(String text, boolean isActivate){
+            mText = text;
+            mIsActivate = isActivate;
         }
-        onView(withId(android.support.design.R.id.search_button)).perform(typeText("sd"), pressImeActionButton());
-        /*double a = 5435;
-        for(int i = 0; i < 10000; i++){
-            for(int j = 0; j < 100000; j++){
-                a /= 3;
-            }
-        }
-        onView(withId(R.id.from_search_view))
-                .perform(typeText("1"), ViewActions.closeSoftKeyboard());
-        a = 5435;
-        for(int i = 0; i < 10000; i++){
-            for(int j = 0; j < 1000; j++){
-                a /= 3;
-            }
-        }
-        onView(withText("Looking for " + "1")).
-        inRoot(withDecorView(
-                not(is(mActivityRule.getActivity().
-                        getWindow().getDecorView())))).
-                check(matches(isDisplayed()));*/
 
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
+        }
+
+        @Override
+        public String getDescription() {
+            return "Change view text";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            ((SearchView)view).setIconified(false);
+            ((SearchView)view).setQuery(mText, mIsActivate);
+        }
+    }
+
+    private class SearchViewClear implements ViewAction{
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
+        }
+
+        @Override
+        public String getDescription() {
+            return "Change view text";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            ((SearchView)view).setQuery("", false);
+            ((SearchView)view).setIconified(true);
+        }
+    }
+
+    @Test
+    public void checkToast(){
+        String a = "503";
+        String b = "Хавальня";
+        Resources resources = mActivityRule.getActivity().getResources();
+
+        //  Тестируем отправку одной строки
+        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, true));
+        checkToast(String.format(resources.getString(R.string.toast_object_on_map), a));
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        onView(withId(R.id.from_search_view)).perform(new SearchViewClear());
+        onView(withId(R.id.to_search_view)).perform(new SearchViewClear());
+
+        // Тестируем отправку двух строк в порядке: от From до To. Вызывает To
+        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(a, false));
+        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(b, true));
+        checkToast(resources.getString(R.string.toast_path_on_map));
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withId(R.id.from_search_view)).perform(new SearchViewClear());
+        onView(withId(R.id.to_search_view)).perform(new SearchViewClear());
+
+        // Тестируем отправку двух строк в порядке: от To до From. Вызывает From
+        onView(withId(R.id.to_search_view)).perform(new SearchViewSetQuery(a, false));
+        onView(withId(R.id.from_search_view)).perform(new SearchViewSetQuery(b, true));
+        checkToast(resources.getString(R.string.toast_path_on_map));
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withId(R.id.from_search_view)).perform(new SearchViewClear());
+        onView(withId(R.id.to_search_view)).perform(new SearchViewClear());
+    }
+    public void checkToast(String message){
+        onView(withText(message)).
+                inRoot(withDecorView(
+                        not(is(mActivityRule.getActivity().
+                                getWindow().getDecorView())))).
+                check(matches(isDisplayed()));
     }
 }

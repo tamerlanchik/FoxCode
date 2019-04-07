@@ -46,7 +46,7 @@ void MapDrawer::SurfaceChanged(int w, int h) {
 
 void MapDrawer::SurfaceCreated() {
     Log::debug(TAG, "Start SurfaceCreated()");
-    glClearColor(0.8f, 0.8f, 0.8f, 1.f);
+    glClearColor(0.698f, 0.843f, 0.784f, 1.f);
     GLuint program_id = ShaderMaster::CreateProgram(
             this->triangle_vert_sh_src_, this->triangle_frag_sh_src_);
     assert(program_id != 0);

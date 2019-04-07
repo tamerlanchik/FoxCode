@@ -1,5 +1,6 @@
 package com.example.foxmap_native_1;
 
+import android.content.res.Resources;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -57,6 +58,7 @@ public class MainActivityTest {
 
     @Test
     public void checkStoreyNavigationTextView() {
+        Resources resources = mActivityRule.getActivity().getResources();
         TextView mTextView = mActivityRule.getActivity().findViewById(R.id.storey_number_text_view);
         String tw_cargo[] = mTextView.getText().toString().split(" ");
         int currentFloor = -1;
@@ -64,19 +66,43 @@ public class MainActivityTest {
         int storeyRange[] = mActivityRule.getActivity().getStoreyRange();
 
         //  До верхней границы
-        for(int i = currentFloor; i <= storeyRange[1]; i++){
+        for(; ++currentFloor <= storeyRange[1];){
             onView(withId(R.id.storey_up_button)).perform(click());
-            onView(withText(Integer.toString(currentFloor+i) + " Этаж")).check(matches(anything()));
+            onView(withText(
+                    String.format(
+                            resources.getString(R.string.storey_number_textview),
+                            currentFloor)))
+                    .check(matches(anything()));
         }
+        //Проверка выхода за верхнюю границу
         onView(withId(R.id.storey_up_button)).perform(click());
-        /*onView(withText()).
+        onView(withText(resources.getString(R.string.toast_max_floor_reached))).
                 inRoot(withDecorView(
                         not(is(mActivityRule.getActivity().
                                 getWindow().getDecorView())))).
-                check(matches(isDisplayed()));*/
+                check(matches(isDisplayed()));
+
+        //  До нижней границы
+        currentFloor--;
+        for(; --currentFloor >= storeyRange[0];){
+            onView(withId(R.id.storey_down_button)).perform(click());
+            onView(withText(
+                    String.format(
+                            resources.getString(R.string.storey_number_textview),
+                            currentFloor)))
+                    .check(matches(anything()));
+        }
+
+        //Проверка выхода за верхнюю границу
+        onView(withId(R.id.storey_down_button)).perform(click());
+        onView(withText(resources.getString(R.string.toast_min_floor_reached))).
+                inRoot(withDecorView(
+                        not(is(mActivityRule.getActivity().
+                                getWindow().getDecorView())))).
+                check(matches(isDisplayed()));
     }
 
-    @Test
+    //@Test
     public void checkToast(){
         onView(allOf(withId(R.id.from_search_view),
                 withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))).perform(

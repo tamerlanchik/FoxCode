@@ -1,6 +1,11 @@
 package com.example.foxmap_native_1;
 
+import android.app.ActivityManager;
+import android.content.pm.ConfigurationInfo;
+import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
+import android.os.PersistableBundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,56 +17,58 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.Collections;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    MenuItem mUpdateDataItem;
-    ProgressBar mProgressBar;
+    private static final String mCurrentStoreyKey = "STOREY_KEY";
+    private static final int mStoreyRange[] = {0, 6};
 
-    android.widget.SearchView mDestSearchView;
-    android.widget.SearchView mSourceSearchView;
-    MapDrawer mMapDrawer;
-    ImageView mMapImageView;
-    ImageView mMapPlaceHolder;
-    ImageButton mReverseRouteButton;
+    private MenuItem mUpdateDataItem;
+    private ProgressBar mProgressBar;
+    private android.widget.SearchView mDestSearchView;
+    private android.widget.SearchView mSourceSearchView;
+    private ImageView mMapPlaceHolder;
+    private ImageButton mReverseRouteButton;
+    private TextView mFloorNumberTextView;
+    private TextView mSelectedObjTextView;
+    private FloatingActionButton mGoUpButton;
+    private FloatingActionButton mGoDownButton;
+    private GLMapView mMapView;
 
-    /*private class PingServer extends AsyncTask<Void,Void,Void> {
+    private int mFloor = 3;
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            try{
-                String result = new DataCollector()
-                        .getUrlString("https://www.bignerdranch.com");
-                Log.i(TAG, "Fetched contents of URL: " + result);
-            } catch (IOException ioe) {
-                Log.e(TAG, "Failed to fetch URL: ", ioe);
-            }
-            return null;
-        }
-    }
-*/
-    static {
-        //System.loadLibrary("native-lib");
-    }
 
-    //private class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMapImageView = findViewById(R.id.map_image_view);
-        mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
-        mMapDrawer = new MapDrawer(getApplicationContext(), mMapImageView);
+        // Проверяем поддержку необходимой версии OpenGL ES (2)
+        if( !supportES2() ){
+            Toast.makeText(getApplicationContext(),
+                    "Необходима поддержка OpenGL ES минимум версии 2",
+                    Toast.LENGTH_LONG)
+                    .show();
+            finish();
+            return;
+        }
 
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSearchView.setIconified(false);
-            }
-        });*/
+        if(savedInstanceState != null){
+            mFloor = savedInstanceState.getInt(mCurrentStoreyKey, 3);
+        }
+
+        mMapView = findViewById(R.id.map_view);
+        mMapView.init();
+        mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
 
         mSourceSearchView = findViewById(R.id.from_search_view);
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -106,29 +113,53 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CharSequence temp = mDestSearchView.getQuery();
                 mDestSearchView.setQuery(mSourceSearchView.getQuery(), true);
-                mSourceSearchView.setQuery(temp,true);
+                mSourceSearchView.setQuery(temp,false);
+                //Второй параметр у setQuery() отвечает, вызывать ли
+                //обработчик отправки запроса у этого SearchView (как если бы мы его нажали)
+                // Вызываем только у одного из них (что вполне логично - запрос-то лишь один)
             }
         });
 
-        /*mSearchButton = (Button) findViewById(R.id.search_button);
-        mSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMapDrawer.DrawRoute();
-                Log.d(TAG, "Find route request");
-                String a = mDestSearchView.getQuery().toString();
-                String b = mSourceSearchView.getQuery().toString();
-                if(b.length() == 0){
-                    Log.d(TAG, "Look for smth");
-                }else{
-                    Log.d(TAG, "Find route request");
-                }
-            }
-        });*/
-
         mProgressBar = findViewById(R.id.progressBar);
 
+        mFloorNumberTextView = findViewById(R.id.storey_number_text_view);
+        mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+        mSelectedObjTextView = findViewById(R.id.place_name_text_view);
+
+        mGoUpButton = findViewById(R.id.storey_up_button);
+        mGoUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( mFloor <  mStoreyRange[1] ){
+                    mFloor++;
+                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Небо не принимает :(", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        mGoDownButton = findViewById(R.id.storey_down_button);
+        mGoDownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if( mFloor > mStoreyRange[0] ){
+                    mFloor--;
+                    mFloorNumberTextView.setText(Integer.toString(mFloor) + " Этаж");
+                }else{
+                    Toast.makeText(getApplicationContext(), "Вы на дне", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(mCurrentStoreyKey, mFloor);
+    }
+
+    //Создаём кнопки в Тулбаре
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
@@ -188,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Обработка события активации кнопки Тулбара
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
@@ -199,19 +231,21 @@ public class MainActivity extends AppCompatActivity {
     private void displayRoute(String from, String to){
         Toast.makeText(getApplicationContext(), "Generating a route...", Toast.LENGTH_SHORT).show();
     }
-
+    //Графическая реакция на начало обновления карты
     private void startDataUpdate(){
 
         mProgressBar.setVisibility(View.VISIBLE);
         mMapPlaceHolder.setVisibility(View.VISIBLE);
-        mMapImageView.setVisibility(View.GONE);
+        //mMapView.setVisibility(View.INVISIBLE);
         Log.d(TAG, "startDataUpdate()");
     }
+
+    //Графическая реакция на окончание обновления карты
     private void endDataUpdate(boolean result){
         Log.d(TAG, "endDataUpdate()");
        mProgressBar.setVisibility(View.GONE);
         mMapPlaceHolder.setVisibility(View.GONE);
-        mMapImageView.setVisibility(View.VISIBLE);
+        mMapView.setVisibility(View.VISIBLE);
         String resultMessage;
         if(result == true){
             resultMessage = getResources().getString(R.string.success_map_updated);
@@ -220,6 +254,30 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
 
+    }
+
+    //  Вызывается автоматически при уходе Activity с первого плана
+    // (переворот, переключение приложения)
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    //  Вызывается автоматически при появлении Activity на переднем плане
+    // (переворот, запуск приложения)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    // Проверка подержки смартфоном версии OpenGL ES не меньше 2
+    private boolean supportES2() {
+        ActivityManager activityManager =
+                (ActivityManager) getSystemService(getApplicationContext().ACTIVITY_SERVICE);
+        ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
+        return (configurationInfo.reqGlEsVersion >= 0x20000);
     }
 }
 

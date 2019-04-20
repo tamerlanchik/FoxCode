@@ -12,9 +12,11 @@
 #include <string>
 #include <GLES2/gl2.h>
 
+#include "Visitor.h"
 
 
-class MapDrawer{
+
+class MapDrawer : public Visitor{
 public:
     MapDrawer() {};
     void Init( AAssetManager* );
@@ -31,6 +33,16 @@ private:
     const GLfloat vertex_data_ [6]= {-0.5, -0.2, 0.0, 0.2, 0.5, -0.2};
 
     void BindData();
+
+    void visit(const Room& r) override {
+
+    }
+    void visit(const Passage& r) override{
+
+    }
+    void visit(const Steps& r) override{
+
+    }
 
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];

@@ -11,6 +11,9 @@
 #include <assert.h>
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
+MapDrawer::MapDrawer() {
+    map_items_ = MapItemStorage::Get();
+}
 
 void MapDrawer::Init(AAssetManager* asset_manager) {
     Log::debug(TAG, "Init()");

@@ -8,6 +8,10 @@
 
 class MapItem {
 private:
+    float vertices_[4];  //from top-left corner clockwise
+    float color_[4];     //RGBA
+    bool is_active_;
+    bool is_clickable;
 public:
     virtual void Accept(Visitor&) = 0;
 };

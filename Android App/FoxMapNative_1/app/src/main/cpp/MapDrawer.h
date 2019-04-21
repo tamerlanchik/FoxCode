@@ -13,12 +13,12 @@
 #include <GLES2/gl2.h>
 
 #include "Visitor.h"
-
+#include "MapItemsStorage.h"
 
 
 class MapDrawer : public Visitor{
 public:
-    MapDrawer() {};
+    MapDrawer();
     void Init( AAssetManager* );
     void Render();
     void SurfaceChanged(int w, int h);
@@ -31,6 +31,9 @@ private:
     GLuint triangle_program_id;
     //  Координаты поля OpenGL — от -1 до 1
     const GLfloat vertex_data_ [6]= {-0.5, -0.2, 0.0, 0.2, 0.5, -0.2};
+
+    MapItemStorage* map_items_;
+
 
     void BindData();
 

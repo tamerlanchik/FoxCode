@@ -1,0 +1,5 @@
+﻿  MapDrawer.cpp
+  main.cpp
+c:\users\andrey\downloads\rubbish\project1\project1\main.cpp(121): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  Generating Code...
+  Project1.vcxproj -> C:\Users\Andrey\Downloads\Rubbish\Project1\Debug\Project1.exe

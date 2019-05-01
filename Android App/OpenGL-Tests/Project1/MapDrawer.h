@@ -28,10 +28,10 @@ private:
     GLuint a_position_location_;
     GLuint triangle_program_id;
     //  Координаты поля OpenGL — от -1 до 1
-    const GLfloat vertex_data_ [9]= {-1, -1, 0,-1, 1,0, 2, 0,0};
 
     MapItemStorage* map_items_;
 	GLuint VBO;
+	GLuint VAO;
 
 
     void BindData();

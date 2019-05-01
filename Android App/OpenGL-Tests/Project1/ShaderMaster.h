@@ -26,6 +26,7 @@ public:
 private:
     static const char TAG[];
 	static std::string readFile(const char* file_name);
+	static void printError(GLuint item, const char* tag);
 };
 
 

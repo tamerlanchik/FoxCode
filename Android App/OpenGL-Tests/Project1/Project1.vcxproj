@@ -131,11 +131,14 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapDrawer.cpp" />
+    <ClCompile Include="MapItem.cpp" />
     <ClCompile Include="ShaderMaster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log.h" />
     <ClInclude Include="MapDrawer.h" />
+    <ClInclude Include="MapItem.h" />
+    <ClInclude Include="MapItemsStorage.h" />
     <ClInclude Include="ShaderMaster.h" />
     <ClInclude Include="shaders.h" />
   </ItemGroup>

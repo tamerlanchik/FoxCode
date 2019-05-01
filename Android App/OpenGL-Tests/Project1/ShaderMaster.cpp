@@ -30,6 +30,7 @@ GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_ra
     glGetShaderiv(shader_id, GL_COMPILE_STATUS, &shader_compile_status);
 
     if( shader_compile_status == 0 ){
+		printError(shader_compile_status, "Shader compile");
         glDeleteShader(shader_id);
         shader_id = 0;
     }
@@ -68,6 +69,7 @@ GLuint ShaderMaster::CreateProgram(const GLuint vertex_shader_id,
     int link_status = 0;
     glGetProgramiv(program_id, GL_LINK_STATUS, &link_status);
     if(link_status == 0){
+		printError(program_id, "Program compilaton");
         glDeleteProgram(program_id);
         program_id = 0;
     }
@@ -87,4 +89,12 @@ std::string ShaderMaster::readFile(const char* name) {
 	file.read(&s[0], size);
 	file.close();
 	return s;
+}
+
+void ShaderMaster::printError(GLuint item, const char* tag) {
+	const size_t MESSAGE_MAX_LEN = 512;
+	GLchar* infoLog = new GLchar[MESSAGE_MAX_LEN];
+	glGetProgramInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
+	//glGetProgramInfoLog(...);
+	std::cout << "ERROR: " << tag << " failed\n" << infoLog << std::endl;
 }

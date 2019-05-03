@@ -6,6 +6,7 @@
 #include "ShaderMaster.h"
 #include "Log.h"
 #include <assert.h>
+#include "DataBase.h"
 
 const char MapDrawer::TAG[] = "MapDrawer";
 const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
@@ -18,6 +19,10 @@ MapDrawer::MapDrawer() {
 
 void MapDrawer::Init() {
     Log::debug(TAG, "Init()");
+
+	DataBase* database = new DataBase();
+	map_items_->SetDatabase(database);
+	map_items_->InflateStorage();
 
     //  Получаем вершинный шейдер
     this->triangle_vert_sh_src_ = ShaderMaster::GetShaderRaw(triangle_vertex_shader_name_);

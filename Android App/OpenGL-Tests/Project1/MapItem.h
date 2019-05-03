@@ -6,16 +6,15 @@
 #define FOXMAPNATIVE_1_MAPITEM_H
 #include "Visitor.h"
 #include <string.h>
+#include <vector>
+#include <string>
 
 class MapItem {
 protected:
-    //float vertices_[2*6];  //from top-left corner clockwise
-    //float color_[4];     //RGBA
-	float* vertices_;
-	float color_[4];
+	std::vector<float> vertices_;
 	size_t vertices_count_;
-    bool is_active_;
-    bool is_clickable;
+
+public:
 	class Point {
 		float x_;
 		float y_;
@@ -34,16 +33,22 @@ protected:
 		void GetY(float y) { y_ = y; }
 		void SetX(float x) { x_ = x; }
 	};
-
-public:
 	MapItem() {};
-	MapItem(float* verts, size_t len) {
-		for (int i = 0; i < (len < 12 ? len : 12); i++) {
-			vertices_[i] = verts[i];
-		}
+	MapItem(const std::vector<float>& verts) {
+		vertices_.reserve(verts.size());
+		std::copy(verts.begin(), verts.end(), std::back_inserter(vertices_));
+		vertices_count_ = verts.size()/2;
 	}
-	virtual void Accept(Visitor&) {}
-	float* GetVertices() {
+	MapItem(Point& top_left, Point& bottom_right) {
+		vertices_.reserve(8);
+		vertices_.push_back(top_left.GetX())
+	}
+	virtual void Accept(Visitor&) = 0;
+
+	const float* GetVerticesArray() {
+		return &vertices_[0];
+	}
+	const std::vector<float>& GetVertices() {
 		return vertices_;
 	}
 	size_t GetSize() {
@@ -53,23 +58,31 @@ public:
 
 class Room : public MapItem {
 public:
-	Room(const float* vertices);
+	Room(const std::vector<float>& verts) : MapItem(verts) {};
     void Accept(Visitor& v) override {
         v.visit(*this);
     }
 	static size_t GetLength() {
 		return 12;
 	}
-private:
+protected:
+	std::string title_;
 };
 
 class Passage : public MapItem {
+public:
+	Passage() {};
+	Passage(std::vector<float>& vertices) : MapItem(vertices){}
     void Accept(Visitor& v) override {
         v.visit(*this);
     }
 };
 
 class Steps : public MapItem {
+public:
+	Steps(std::vector<float>& vertices) : MapItem(vertices) {
+		// добавление точек для сетки
+	}
     void Accept(Visitor& v) override {
         v.visit(*this);
     }

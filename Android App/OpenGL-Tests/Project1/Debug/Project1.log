@@ -1,13 +1,8 @@
 ﻿  MapDrawer.cpp
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitem.h(41): warning C4018: '<': signed/unsigned mismatch
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(39): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(49): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(47): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(48): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(52): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(53): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+  MapItem.cpp
   main.cpp
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitem.h(41): warning C4018: '<': signed/unsigned mismatch
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(39): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(49): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\main.cpp(121): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
   Generating Code...
   Project1.vcxproj -> C:\Users\Andrey\YandexDisk\Documents\TPark\CPP\Project\Git\FoxCode\Android App\OpenGL-Tests\Debug\Project1.exe

@@ -8,7 +8,7 @@
 #ifdef __ANDROID__
     #include <dlfcn.h>
     #include <jni.h>
-    #include <GLES3/gl3.h>
+    #include <GLES2/gl2.h>
 #include <EGL/egl.h>
 #else
     #define GLEW_STATIC

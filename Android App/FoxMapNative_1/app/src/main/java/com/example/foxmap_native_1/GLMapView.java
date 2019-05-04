@@ -13,7 +13,7 @@ public class GLMapView extends GLSurfaceView {
 
     public GLMapView(Context context) {
         super(context);
-        setEGLContextClientVersion(3);
+        //setEGLContextClientVersion(2);
         //setRenderer(new Renderer());
     }
 
@@ -23,7 +23,10 @@ public class GLMapView extends GLSurfaceView {
 
 
     public void init(){
-        //setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
+        // Если не вызвать функцию ниже, будет ошибка
+        // "glDrawArrays is called with VERTEX_ARRAY client state disabled!"
+        // Thanks to Chineese friends of ours!
+        setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
         setRenderer(new Renderer());
         /*setRenderer(new GLSurfaceView.Renderer() {
             @Override

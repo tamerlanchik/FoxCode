@@ -1,7 +1,7 @@
 #pragma once
 #ifdef __ANDROID__
 	#include <dlfcn.h>
-	#include <GLES3/gl3.h>
+	#include <GLES2/gl2.h>
 #else
 #define GLEW_STATIC
     #include <GL/glew.h>

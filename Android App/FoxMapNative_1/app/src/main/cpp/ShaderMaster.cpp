@@ -116,7 +116,7 @@ std::string ShaderMaster::readFile(const char* name) {
 void ShaderMaster::printError(GLuint item, const char* tag) {
 	const size_t MESSAGE_MAX_LEN = 512;
 	GLchar* infoLog = new GLchar[MESSAGE_MAX_LEN];
-	glGetProgramInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
+	glGetShaderInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
 	//glGetProgramInfoLog(...);
 	std::cout << "ERROR: " << tag << " failed\n" << infoLog << std::endl;
 }

@@ -112,7 +112,7 @@ target_link_libraries(
         ShaderMaster
         android
         Log
-        GLESv3
+        GLESv2
         ShaderProgram
         OpenGLStorage
         EGL
@@ -122,21 +122,21 @@ target_link_libraries(
         ShaderMaster
         android
         Log
-        GLESv3
+        GLESv2
 )
 
 target_link_libraries(
         ShaderProgram
         android
         Log
-        GLESv3
+        GLESv2
         ShaderMaster
 )
 target_link_libraries(
         OpenGLStorage
         MapItemsStorage
         DataBase
-        GLESv3
+        GLESv2
 )
 target_link_libraries(
         MapItemsStorage

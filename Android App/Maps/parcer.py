@@ -49,6 +49,9 @@ mapp = data.split("<g")
 map_objects = parseMapObject(mapp)
 
 out = open('test_map_decoded.txt', 'w')
+w = 1000
+h = 1000
+out.write(str(w)+" " + str(h) + "\n")
 for key in map_objects:
     out.write(key + " ")
     obj = map_objects[key]

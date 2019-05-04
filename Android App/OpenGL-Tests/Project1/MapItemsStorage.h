@@ -12,19 +12,13 @@
 #include <iterator>
 #include <algorithm>
 #include "DataBase.h"
+#include "Point.h"
 using std::vector;
 using std::cerr;
 using std::cout;
 
-class DataBaseMaster{
-public:
-    struct MapItem{
-
-    };
-};
-
 class MapItemStorage {
-private:
+protected:
     vector<MapItem*> storage_;
 	vector<float> buffer_;
 	vector<Room*> room_storage_;
@@ -32,12 +26,9 @@ private:
 
     //static MapItemStorage* instance_;
 
-    MapItemStorage() {
-        cout << "MapItemStorage created\n";
-		std::cout << sizeof(MapItem) << "\n";
-    };
+	MapItemStorage();
 public:
-    class Point {
+    /*class Point {
         float x_;
         float y_;
     public:
@@ -54,20 +45,11 @@ public:
 
         void GetY(float y) { y_ = y; }
         void SetX(float x) { x_ = x; }
-    };
+    };*/
 
-    static MapItemStorage* Get() {
-        static MapItemStorage instance_;
-        /*if (instance_ == NULL) {
-            cerr << "instance is NULL\n";
-            instance_ = new MapItemStorage();
-        }*/
-        return &instance_;
-    }
+	static MapItemStorage* Get();
 
-	void SetDatabase(DataBase* database) {
-		database_ = database;
-	}
+	void SetDatabase(DataBase*);
 
     MapItem* GetItem(UUID id) const { return NULL; }
 
@@ -75,52 +57,18 @@ public:
 
     size_t Size() { return storage_.size(); }
 
-	bool InflateStorage() {
-		if (!database_)
-			return 0;
-		std::vector<DataBase::RoomParcel> data = database_->GetRooms();
-		for (DataBase::RoomParcel c : data) {
-			Room* room = new Room(c.lines);
-			room_storage_.push_back(room);
-		}
-		return 1;
-	}
+	virtual bool InflateStorage();
 
-	float* GetRectangles() {
-		/*const size_t vertex_count = 6;
-		float vertex_data_[vertex_count] = { -1, -1, -1, 1, 0, 0 };
-		buffer_.reserve(vertex_count);
-		for (float i : vertex_data_)
-			buffer_.push_back(i);*/
-		/*buffer_.reserve(storage_.size() * (2*4));
-		for (MapItem* i : storage_) {
-			float* verts = i->GetVertices();
-			for (int j = 0; j < 8; j++)
-				buffer_.push_back(verts[j]);
-		}*/
-		float* v = &buffer_[0];
-		return v;
-	}
-	float* GetRooms() {
-		//size_t verts_len = Room::GetLength();
-		buffer_.reserve(Room::GetSize());
-		std::vector<float> verts;
-		for (Room* i : room_storage_) {
-			verts = i->GetVertices();
-			std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
-		}
-		for (int i = 0; i < buffer_.size(); i++) {
-			buffer_[i] /= 1000;
-		}
-		return &buffer_[0];
-	}
+	float* GetRectangles();
+
+	float* GetRooms();
 	const size_t GetBufferSize() const { return buffer_.size(); }
 
 private:
-    void inflateItem(UUID id);
-    vector<UUID> getIdList() const;
-    DataBaseMaster::MapItem getObjectData(UUID id) const;
-    vector<DataBaseMaster::MapItem> getAllObjectData() const;
+    //void inflateItem(UUID id);
+    //vector<UUID> getIdList() const;
+    //DataBaseMaster::MapItem getObjectData(UUID id) const;
+    //vector<DataBaseMaster::MapItem> getAllObjectData() const;
 };
 
 #endif //FOXMAPNATIVE_1_MAPITEMSSTORAGE_H

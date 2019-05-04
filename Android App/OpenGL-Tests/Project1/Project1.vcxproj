@@ -133,7 +133,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapDrawer.cpp" />
     <ClCompile Include="MapItem.cpp" />
+    <ClCompile Include="MapItemsStorage.cpp" />
+    <ClCompile Include="OpenGLStorage.cpp" />
     <ClCompile Include="ShaderMaster.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataBase.h" />
@@ -141,7 +144,10 @@
     <ClInclude Include="MapDrawer.h" />
     <ClInclude Include="MapItem.h" />
     <ClInclude Include="MapItemsStorage.h" />
+    <ClInclude Include="OpenGLStorage.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="ShaderMaster.h" />
+    <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="shaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

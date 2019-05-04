@@ -7,9 +7,18 @@ DataBase::DataBase()
 	std::ifstream f(filename_);
 	assert(f.is_open());
 
+	//------ReadHeader-----
+	f >> dimensions_.x >> dimensions_.y;
+	if (!dimensions_.x || !dimensions_.y) {
+		std::cout << "Cannot get dimensions\n";
+		f.close();
+		exit(1);
+	}
+
 	std::string type;
 	size_t size;
 	float data;
+
 	while (f >> type) {
 		if (type.find("ROOM")) {
 			std::cout << "\nRead room\n";
@@ -65,4 +74,8 @@ std::vector<DataBase::RoomParcel> DataBase::GetRooms() {
 std::vector<DataBase::PassageParcel> DataBase::GetPassages() {
 	std::vector<PassageParcel> parcels;
 	return parcels;
+}
+
+Point DataBase::GetMapDimensions() const {
+	return dimensions_;
 }

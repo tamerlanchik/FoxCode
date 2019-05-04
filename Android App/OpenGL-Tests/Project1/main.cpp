@@ -15,6 +15,8 @@ GLFWwindow* init();
 void DrawTriangle();
 int main()
 {
+
+
 	GLFWwindow* window = init();	
 	if (!window) {
 		std::cerr << "Null window\n";

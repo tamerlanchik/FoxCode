@@ -6,18 +6,17 @@
 #define FOXMAPNATIVE_1_MAPDRAWER_H
 
 #include "Visitor.h"
-#include "MapItemsStorage.h"
+#include "OpenGLStorage.h"
 #define GLEW_STATIC
 #include <GL/glew.h>
 // GLFW
 #include <GLFW/glfw3.h>
 // Матрицы
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-
-
+#define GLM_FORCE_MESSAGES
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "ShaderProgram.h"
 
 
 class MapDrawer : public Visitor{
@@ -33,9 +32,13 @@ private:
     GLuint u_color_location_;
     GLuint a_position_location_;
     GLuint triangle_program_id;
+	ShaderProgram program1_;
+
+
     //  Координаты поля OpenGL — от -1 до 1
 
-    MapItemStorage* map_items_;
+    //MapItemStorage* map_items_;
+	OpenGLStorage* storage_;
 	GLuint VBO;
 	GLuint VAO;
 

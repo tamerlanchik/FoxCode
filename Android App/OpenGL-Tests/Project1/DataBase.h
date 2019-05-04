@@ -5,6 +5,7 @@
 #include <fstream>
 #include <assert.h>
 #include <iostream>
+#include "Point.h"
 
 class DataBase
 {
@@ -14,7 +15,7 @@ public:
 	size_t GetRoomNumber();
 	size_t GetPassageNumber();
 	//enum ObjectTypes { ROOM, PASSAGE, STEPS };
-	struct Point {
+	/*struct Point {
 		float x;
 		float y;
 		Point() {};
@@ -22,7 +23,7 @@ public:
 			x = _x;
 			y = _y;
 		}
-	};
+	};*/
 	struct Parcel {
 		//Point top_left_;
 		//Point bottom_right;
@@ -41,9 +42,11 @@ public:
 
 	std::vector<RoomParcel> GetRooms();
 	std::vector<PassageParcel> GetPassages();
+	Point GetMapDimensions() const;
 private:
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
+	Point dimensions_;
 
 	static char filename_[];
 };

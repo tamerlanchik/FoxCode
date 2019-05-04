@@ -12,7 +12,6 @@ const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
 MapDrawer::MapDrawer() {
-   // map_items_ = MapItemStorage::Get();
 	storage_ = OpenGLStorage::Get();
 }
 
@@ -26,9 +25,10 @@ void MapDrawer::Init() {
 }
 
 void MapDrawer::Render() {
+	glClear(GL_COLOR_BUFFER_BIT);
 	program1_.Use();
 	glBindVertexArray(storage_->GetVao());
-	program1_.SetVertexColor(0, 1, 0);
+	program1_.SetVertexColor(0, 0, 0);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
 	glDrawArrays(GL_LINES, 0, 100);
 	glBindVertexArray(0);
@@ -43,9 +43,11 @@ void MapDrawer::SurfaceChanged(int w, int h) {
 
 void MapDrawer::SurfaceCreated() {
     Log::debug(TAG, "Start SurfaceCreated()");
-    glClearColor(0.698f, 0.843f, 0.784f, 1.f);
+    //glClearColor(0.698f, 0.843f, 0.784f, 1.f);
+	glClearColor(1, 1, 1, 1.f);
 	program1_.Generate();
     this->BindData();
+	glLineWidth(3);
 
     Log::debug(TAG, "End SurfaceCreated()");
 }

@@ -6,6 +6,8 @@
 #include <assert.h>
 #include <iostream>
 #include "Point.h"
+#include <sstream>
+
 
 class DataBase
 {
@@ -44,6 +46,7 @@ public:
 	std::vector<PassageParcel> GetPassages();
 	Point GetMapDimensions() const;
 private:
+	bool parseFile(std::stringstream&);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;

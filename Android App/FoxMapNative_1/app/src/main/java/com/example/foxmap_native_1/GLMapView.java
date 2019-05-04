@@ -13,6 +13,7 @@ public class GLMapView extends GLSurfaceView {
 
     public GLMapView(Context context) {
         super(context);
+        setEGLContextClientVersion(3);
     }
 
     public GLMapView(Context context, AttributeSet attrs) {
@@ -21,7 +22,7 @@ public class GLMapView extends GLSurfaceView {
 
 
     public void init(){
-        setEGLContextClientVersion(2);     //На данный момент актуальна 3 версия (?)
+        setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
         setRenderer(new GLSurfaceView.Renderer() {
             @Override
             //Вызывается при создании/пересоздании Surface

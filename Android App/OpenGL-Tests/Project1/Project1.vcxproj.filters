@@ -47,31 +47,31 @@
     <ClInclude Include="shaders.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="MapDrawer.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderMaster.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Log.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="MapItem.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="MapItemsStorage.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="DataBase.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="OpenGLStorage.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="ShaderProgram.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItemsStorage.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderMaster.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MapDrawer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

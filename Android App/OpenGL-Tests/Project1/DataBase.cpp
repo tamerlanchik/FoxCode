@@ -4,45 +4,17 @@ char DataBase::filename_[] = "map.txt";
 
 DataBase::DataBase()
 {
-	std::ifstream f(filename_);
-	assert(f.is_open());
+	std::ifstream file(filename_);
+	assert(file.is_open());
 
-	//------ReadHeader-----
-	f >> dimensions_.x >> dimensions_.y;
-	if (!dimensions_.x || !dimensions_.y) {
-		std::cout << "Cannot get dimensions\n";
-		f.close();
-		exit(1);
-	}
-
-	std::string type;
-	size_t size;
-	float data;
-
-	while (f >> type) {
-		if (type.find("ROOM")) {
-			std::cout << "\nRead room\n";
-		}
-		else if (type.find("Passage")) {
-
-		}
-		else {
-			std::cout << "Wrong object";
-			break;
-		}
-		f >> size;
-		std::cout << "\n" << type << "\n";
-		std::vector<float> coords;
-		coords.reserve(4 * size);
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < 4; j++) {
-				f >> data;
-				coords.push_back(data);
-			}
-		}
-		rooms_.push_back(coords);
-	}
-	f.close();
+	std::string s;
+	std::getline(file, s, '\0');
+	file.close();
+	std::stringstream f;
+	f << s;
+	file.close();
+	//https://stackoverflow.com/questions/132358/how-to-read-file-content-into-istringstream
+	assert(parseFile(f));
 }
 
 
@@ -78,4 +50,42 @@ std::vector<DataBase::PassageParcel> DataBase::GetPassages() {
 
 Point DataBase::GetMapDimensions() const {
 	return dimensions_;
+}
+
+bool DataBase::parseFile(std::stringstream& f) {
+	//------ReadHeader-----
+	f >> dimensions_.x >> dimensions_.y;
+	if (!dimensions_.x || !dimensions_.y) {
+		std::cout << "Cannot get dimensions\n";
+		return false;
+	}
+
+	std::string type;
+	size_t size;
+	float data;
+
+	while (f >> type) {
+		if (type.find("ROOM")) {
+			std::cout << "\nRead room\n";
+		}
+		else if (type.find("Passage")) {
+
+		}
+		else {
+			std::cout << "Wrong object";
+			return false;
+		}
+		f >> size;
+		std::cout << "\n" << type << "\n";
+		std::vector<float> coords;
+		coords.reserve(4 * size);
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < 4; j++) {
+				f >> data;
+				coords.push_back(data);
+			}
+		}
+		rooms_.push_back(coords);
+	}
+	return true;
 }

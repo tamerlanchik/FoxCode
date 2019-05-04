@@ -15,6 +15,7 @@ protected:
 	glm::mat4 moving_matrix_;
 	glm::mat4 scaling_matrix_;
 	glm::mat4 result_transform_matrix_;
+	size_t vbo_size_;
 	GLuint VBO, VAO;
 public:
 	static OpenGLStorage* Get();
@@ -22,6 +23,7 @@ public:
 	const glm::f32* GetTransformMatrix() const;
 	const GLuint GetVao() const;
 	const GLuint GetVbo() const;
+	size_t GetVboSize() const;
 private:
 	void updateTransformMatrix();
 };

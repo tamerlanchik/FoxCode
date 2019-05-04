@@ -23,30 +23,8 @@ protected:
 	vector<float> buffer_;
 	vector<Room*> room_storage_;
 	DataBase* database_;
-
-    //static MapItemStorage* instance_;
-
 	MapItemStorage();
 public:
-    /*class Point {
-        float x_;
-        float y_;
-    public:
-        Point() : x_(0.0), y_(0.0) {};
-        Point(float x, float y) : x_(x), y_(y) {};
-
-        float GetX() { return x_; }
-        float GetY() { return y_; }
-        float* GetXY() {
-            float* buf = new float[2];
-            buf[0] = x_; buf[1] = y_;
-            return buf;
-        }
-
-        void GetY(float y) { y_ = y; }
-        void SetX(float x) { x_ = x; }
-    };*/
-
 	static MapItemStorage* Get();
 
 	void SetDatabase(DataBase*);

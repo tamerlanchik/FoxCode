@@ -45,6 +45,31 @@ add_library(
         SHARED
         ShaderMaster.cpp
 )
+add_library(
+        OpenGLStorage
+        SHARED
+        OpenGLStorage.cpp
+)
+add_library(
+        MapItemsStorage
+        SHARED
+        MapItemsStorage.cpp
+)
+add_library(
+        ShaderProgram
+        SHARED
+        ShaderProgram.cpp
+)
+add_library(
+        DataBase
+        SHARED
+        DataBase.cpp
+)
+add_library(
+        MapItem
+        SHARED
+        MapItem.cpp
+)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -87,12 +112,38 @@ target_link_libraries(
         ShaderMaster
         android
         Log
-        GLESv2
+        GLESv3
+        ShaderProgram
+        OpenGLStorage
+        EGL
 )
 
 target_link_libraries(
         ShaderMaster
         android
         Log
-        GLESv2
+        GLESv3
+)
+
+target_link_libraries(
+        ShaderProgram
+        android
+        Log
+        GLESv3
+        ShaderMaster
+)
+target_link_libraries(
+        OpenGLStorage
+        MapItemsStorage
+        DataBase
+        GLESv3
+)
+target_link_libraries(
+        MapItemsStorage
+        DataBase
+        MapItem
+)
+target_link_libraries(
+        DataBase
+        android
 )

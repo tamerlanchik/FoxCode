@@ -3,17 +3,17 @@
 //
 
 #include "ShaderMaster.h"
-#include "Log.h"
-#include <dlfcn.h>
-#include <jni.h>
-#include <GLES2/gl2.h>
-#include <assert.h>
-#include <string>
-#include <android/asset_manager_jni.h>
 
+const char ShaderMaster::TAG[] = "ShaderMaster";
+
+std::string ShaderMaster::GetShaderRaw(const char* file_name) {
+    return readFile(file_name);
+}
+
+#ifdef __ANDROID__
 std::string ShaderMaster::GetShaderRaw(AAssetManager* asset_manager, const char* name) {
     AAsset *shader_asset = AAssetManager_open(asset_manager, name,
-                                                       AASSET_MODE_BUFFER);
+                                              AASSET_MODE_BUFFER);
     if(!shader_asset){
         Log::error(TAG, "Zero shader_assert");
         return std::string();
@@ -30,7 +30,7 @@ std::string ShaderMaster::GetShaderRaw(AAssetManager* asset_manager, const char*
     AAsset_close(shader_asset);
     return res;
 }
-
+#endif
 GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_raw){
     //Создаём пустой объект шейдера
     int shader_id = glCreateShader(shader_type);
@@ -52,6 +52,7 @@ GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_ra
     glGetShaderiv(shader_id, GL_COMPILE_STATUS, &shader_compile_status);
 
     if( shader_compile_status == 0 ){
+		printError(shader_compile_status, "Shader compile");
         glDeleteShader(shader_id);
         shader_id = 0;
     }
@@ -90,6 +91,7 @@ GLuint ShaderMaster::CreateProgram(const GLuint vertex_shader_id,
     int link_status = 0;
     glGetProgramiv(program_id, GL_LINK_STATUS, &link_status);
     if(link_status == 0){
+		printError(program_id, "Program compilaton");
         glDeleteProgram(program_id);
         program_id = 0;
     }
@@ -97,4 +99,24 @@ GLuint ShaderMaster::CreateProgram(const GLuint vertex_shader_id,
     glDeleteShader(fragment_shader_id);
 
     return program_id;
+}
+
+std::string ShaderMaster::readFile(const char* name) {
+	std::ifstream file(name, std::ios::binary);
+	assert(file.is_open());
+	file.seekg(0, std::ios::end);
+	size_t size = file.tellg();
+	std::string s(size, ' ');
+	file.seekg(0);
+	file.read(&s[0], size);
+	file.close();
+	return s;
+}
+
+void ShaderMaster::printError(GLuint item, const char* tag) {
+	const size_t MESSAGE_MAX_LEN = 512;
+	GLchar* infoLog = new GLchar[MESSAGE_MAX_LEN];
+	glGetProgramInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
+	//glGetProgramInfoLog(...);
+	std::cout << "ERROR: " << tag << " failed\n" << infoLog << std::endl;
 }

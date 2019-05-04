@@ -39,7 +39,8 @@ void MapDrawer::Render() {
 	glBindVertexArray(storage_->GetVao());
 	program1_.SetVertexColor(0, 0, 0);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
-	glDrawArrays(GL_LINES, 0, storage_->GetVboSize());
+	//glDrawArrays(GL_LINES, 0, storage_->GetVboSize());
+    glDrawArrays(GL_LINES, 0, 100);
 	glBindVertexArray(0);
 }
 

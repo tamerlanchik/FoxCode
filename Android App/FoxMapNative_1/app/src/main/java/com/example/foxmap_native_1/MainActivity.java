@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mMapView = findViewById(R.id.map_view);
+        //mMapView = new GLMapView(getApplicationContext());
         mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
 

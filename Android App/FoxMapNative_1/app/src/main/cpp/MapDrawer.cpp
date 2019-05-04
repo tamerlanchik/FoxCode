@@ -37,16 +37,16 @@ void MapDrawer::Render() {
 	Log::debug(TAG, "Render-start");
 	glClear(GL_COLOR_BUFFER_BIT);
 	//program1_.Use();
-	//glBindVertexArray(storage_->GetVao());
+	glBindVertexArray(storage_->GetVao());
 	program1_.SetVertexColor(0, 1, 0);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
 	//glDrawArrays(GL_LINES, 0, storage_->GetVboSize());
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+	/*glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 						  2*sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(0);*/
     //glEnableClientState(GL_VERTEX_ARRAY);
     glDrawArrays(GL_LINES, 0, 100);
-	//glBindVertexArray(0);
+	glBindVertexArray(0);
 	Log::debug(TAG, "Render-finish");
 }
 
@@ -70,7 +70,7 @@ void MapDrawer::SurfaceCreated() {
 }
 
 void MapDrawer::BindData() {
-	//glBindVertexArray(storage_->GetVao());
+	glBindVertexArray(storage_->GetVao());
 	glBindBuffer(GL_ARRAY_BUFFER, storage_->GetVbo());
 	float* buf = storage_->GetRooms();
 	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
@@ -81,5 +81,5 @@ void MapDrawer::BindData() {
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
 	glEnableVertexAttribArray(0);
-	//glBindVertexArray(0);	// отвязали VAO
+	glBindVertexArray(0);	// отвязали VAO
 }

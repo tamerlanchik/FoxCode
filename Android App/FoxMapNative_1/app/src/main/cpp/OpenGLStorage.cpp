@@ -30,7 +30,7 @@ bool OpenGLStorage::InflateStorage() {
 					glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
 
 	glGenBuffers(1, &VBO);
-	//glGenVertexArrays(1, &VAO);
+	glGenVertexArrays(1, &VAO);
 	return true;
 }
 

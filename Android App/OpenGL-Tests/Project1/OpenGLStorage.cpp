@@ -8,6 +8,10 @@ OpenGLStorage::OpenGLStorage()
 	moving_matrix_ = glm::mat4(1.0f);
 	scaling_matrix_ = glm::mat4(1.0f);
 	updateTransformMatrix();
+
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+
 	std::cout << "OpenGLStorage created!\n";
 }
 OpenGLStorage* OpenGLStorage::Get() {
@@ -33,6 +37,14 @@ bool OpenGLStorage::InflateStorage() {
 const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	//return glm::value_ptr(result_transform_matrix_);
 	return glm::value_ptr(normalizing_matrix_);
+}
+
+const GLuint OpenGLStorage::GetVao() const {
+	return VAO;
+}
+
+const GLuint OpenGLStorage::GetVbo() const {
+	return VBO;
 }
 
 //--------Private-----------

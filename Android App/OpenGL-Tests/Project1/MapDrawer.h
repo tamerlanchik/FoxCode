@@ -11,12 +11,10 @@
 #include <GL/glew.h>
 // GLFW
 #include <GLFW/glfw3.h>
-// Матрицы
-#define GLM_FORCE_MESSAGES
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
 #include "ShaderProgram.h"
+#include "Log.h"
+#include <assert.h>
+#include "DataBase.h"
 
 
 class MapDrawer : public Visitor{
@@ -27,21 +25,8 @@ public:
     void SurfaceChanged(int w, int h);
     void SurfaceCreated();
 private:
-    std::string triangle_vert_sh_src_;
-    std::string triangle_frag_sh_src_;
-    GLuint u_color_location_;
-    GLuint a_position_location_;
-    GLuint triangle_program_id;
 	ShaderProgram program1_;
-
-
-    //  Координаты поля OpenGL — от -1 до 1
-
-    //MapItemStorage* map_items_;
 	OpenGLStorage* storage_;
-	GLuint VBO;
-	GLuint VAO;
-
 
     void BindData();
 

@@ -2,8 +2,6 @@
 #include "MapItemsStorage.h"
 #define GLEW_STATIC
 #include <GL/glew.h>
-// GLFW
-#include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -17,10 +15,13 @@ protected:
 	glm::mat4 moving_matrix_;
 	glm::mat4 scaling_matrix_;
 	glm::mat4 result_transform_matrix_;
+	GLuint VBO, VAO;
 public:
 	static OpenGLStorage* Get();
 	virtual bool InflateStorage() override;
 	const glm::f32* GetTransformMatrix() const;
+	const GLuint GetVao() const;
+	const GLuint GetVbo() const;
 private:
 	void updateTransformMatrix();
 };

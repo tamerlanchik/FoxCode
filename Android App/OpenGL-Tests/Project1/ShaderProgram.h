@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 #include <GL/glew.h>
-// GLFW
-#include <GLFW/glfw3.h>
 #include "ShaderMaster.h"
 #include <assert.h>
 

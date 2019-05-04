@@ -56,8 +56,8 @@ void MapDrawer::Render() {
 	glUseProgram(triangle_program_id);
 	glBindVertexArray(VAO);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
-	glUniform3f(0, 0.0f, greenValue, 0.0f);
-	glDrawArrays(GL_LINES, 0, 8);
+	glUniform3f(0, 0.0f, 1, 0.0f);
+	glDrawArrays(GL_LINES, 0, 100);
 	//glDrawArrays(GL_LINE_STRIP, 6, 6);
 	//glDrawArrays(GL_LINE_LOOP, 4, 4);
 	glBindVertexArray(0);

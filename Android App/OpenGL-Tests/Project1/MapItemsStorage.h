@@ -109,6 +109,9 @@ public:
 			verts = i->GetVertices();
 			std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
 		}
+		for (int i = 0; i < buffer_.size(); i++) {
+			buffer_[i] /= 1000;
+		}
 		return &buffer_[0];
 	}
 	const size_t GetBufferSize() const { return buffer_.size(); }

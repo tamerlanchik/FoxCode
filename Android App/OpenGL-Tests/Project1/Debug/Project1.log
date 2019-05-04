@@ -1,4 +1,9 @@
 ﻿  MapDrawer.cpp
+c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(112): warning C4018: '<': signed/unsigned mismatch
 c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(52): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
 c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapdrawer.cpp(53): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+  main.cpp
+c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\mapitemsstorage.h(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\andrey\yandexdisk\documents\tpark\cpp\project\git\foxcode\android app\opengl-tests\project1\main.cpp(121): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  Generating Code...
   Project1.vcxproj -> C:\Users\Andrey\YandexDisk\Documents\TPark\CPP\Project\Git\FoxCode\Android App\OpenGL-Tests\Debug\Project1.exe

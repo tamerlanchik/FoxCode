@@ -10,6 +10,7 @@
 #include <string>
 
 class MapItem {
+private:
 protected:
 	std::vector<float> vertices_;
 	size_t vertices_count_;
@@ -41,7 +42,8 @@ public:
 	}
 	MapItem(Point& top_left, Point& bottom_right) {
 		vertices_.reserve(8);
-		vertices_.push_back(top_left.GetX())
+		vertices_.push_back(top_left.GetX());
+		vertices_.push_back(top_left.GetY());
 	}
 	virtual void Accept(Visitor&) = 0;
 
@@ -58,16 +60,24 @@ public:
 
 class Room : public MapItem {
 public:
-	Room(const std::vector<float>& verts) : MapItem(verts) {};
+	Room(const std::vector<float>& verts) : MapItem(verts) {
+		size += verts.size();
+	};
     void Accept(Visitor& v) override {
         v.visit(*this);
     }
-	static size_t GetLength() {
-		return 12;
+	size_t GetLength() {
+		return vertices_.size();
+	}
+	static size_t GetSize() {
+		return size;
 	}
 protected:
 	std::string title_;
+private:
+	static size_t size;
 };
+
 
 class Passage : public MapItem {
 public:

@@ -57,8 +57,8 @@ void MapDrawer::Render() {
 	glBindVertexArray(VAO);
 	//glDrawArrays(GL_TRIANGLES, 0, 6);
 	glUniform3f(0, 0.0f, greenValue, 0.0f);
-	glDrawArrays(GL_LINE_STRIP, 0, 6);
-	glDrawArrays(GL_LINE_STRIP, 6, 6);
+	glDrawArrays(GL_LINES, 0, 8);
+	//glDrawArrays(GL_LINE_STRIP, 6, 6);
 	//glDrawArrays(GL_LINE_LOOP, 4, 4);
 	glBindVertexArray(0);
     //Log::debug(TAG, "Render() - 1");
@@ -96,7 +96,7 @@ void MapDrawer::BindData() {
 	buf = nullptr;
 
 
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_TRUE,
 				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
 	glEnableVertexAttribArray(0);
 	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(float)));

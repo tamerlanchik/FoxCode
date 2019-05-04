@@ -24,8 +24,10 @@ public:
 		}
 	};
 	struct Parcel {
-		Point top_left_;
-		Point bottom_right;
+		//Point top_left_;
+		//Point bottom_right;
+		//std::vector<Point> lines;
+		std::vector<float> lines;
 		unsigned int id_;
 		Parcel() {};
 	};

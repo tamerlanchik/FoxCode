@@ -22,8 +22,13 @@ protected:
     vector<MapItem*> storage_;
 	vector<float> buffer_;
 	vector<Room*> room_storage_;
+	vector<Passage*> passage_storage_;
+	size_t rooms_buf_size_;
+	size_t passages_buf_size_;
 	DataBase* database_;
 	MapItemStorage();
+	float* getRooms();
+	float* getPassages();
 public:
 	static MapItemStorage* Get();
 
@@ -40,6 +45,10 @@ public:
 	float* GetRectangles();
 
 	float* GetRooms();
+	float* GetPassages();
+	float* GetObjects();
+	size_t GetRoomsBufSize() const { return rooms_buf_size_; }
+	size_t GetPassagesBufSize() const { return passages_buf_size_; }
 	const size_t GetBufferSize() const { return buffer_.size(); }
 
 private:

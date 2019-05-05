@@ -28,9 +28,10 @@ bool OpenGLStorage::InflateStorage() {
 	//	������� �� ��������� � ��������������� �������
 	normalizing_matrix_ = glm::scale(normalizing_matrix_,
 					glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
-
 	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
+	glGenVertexArrays(1, &VAO_passage_);
+	glGenVertexArrays(1, &VAO_room_);
+	assert(VBO&&VAO_passage_&&VAO_room_);
 	return true;
 }
 
@@ -39,8 +40,12 @@ const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(normalizing_matrix_);
 }
 
-const GLuint OpenGLStorage::GetVao() const {
-	return VAO;
+const GLuint OpenGLStorage::GetVaoRoom() const {
+	return VAO_room_;
+}
+
+const GLuint OpenGLStorage::GetVaoPassage() const {
+	return VAO_passage_;
 }
 
 const GLuint OpenGLStorage::GetVbo() const {

@@ -9,7 +9,8 @@
     #include <dlfcn.h>
     #include <jni.h>
     #include <GLES3/gl3.h>
-#include <EGL/egl.h>
+	#include <EGL/egl.h>
+	#include <android/asset_manager.h>
 #else
     #define GLEW_STATIC
     #include <GL/glew.h>
@@ -21,7 +22,6 @@
 #include "ShaderProgram.h"
 #include "Log.h"
 #include <assert.h>
-#include <android/asset_manager.h>
 #include "DataBase.h"
 
 

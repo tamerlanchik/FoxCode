@@ -8,16 +8,29 @@ DataBase::DataBase()
 	assert(file.is_open());
 
 	std::string s;
-	std::getline(file, s, '\0');
-	file.close();
-	std::stringstream f;
-	f << s;
+	char c = '\0';
+	std::getline(file, s, c);
 	file.close();
 	//https://stackoverflow.com/questions/132358/how-to-read-file-content-into-istringstream
-	assert(parseFile(f));
+	assert(parseFile(s));
 }
 
+#ifdef __ANDROID__
+DataBase::DataBase(AAssetManager* asset_manager){
+    AAsset *shader_asset = AAssetManager_open(asset_manager, filename_,
+                                              AASSET_MODE_BUFFER);
+    assert(shader_asset);
+    const void *shader_buf = AAsset_getBuffer(shader_asset);
+    assert(shader_buf);
+    off_t shader_length = AAsset_getLength(shader_asset);
+    std::string res = std::string((const char*)shader_buf,
+                                  (size_t)shader_length);
+    AAsset_close(shader_asset);
+    assert(res.size() > 0);
 
+    assert(parseFile(res));
+}
+#endif
 DataBase::~DataBase()
 {
 }
@@ -52,7 +65,9 @@ Point DataBase::GetMapDimensions() const {
 	return dimensions_;
 }
 
-bool DataBase::parseFile(std::stringstream& f) {
+bool DataBase::parseFile(std::string& s) {
+    std::stringstream f;
+    f << s;
 	//------ReadHeader-----
 	f >> dimensions_.x >> dimensions_.y;
 	if (!dimensions_.x || !dimensions_.y) {

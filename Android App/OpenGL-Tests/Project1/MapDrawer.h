@@ -5,12 +5,20 @@
 #ifndef FOXMAPNATIVE_1_MAPDRAWER_H
 #define FOXMAPNATIVE_1_MAPDRAWER_H
 
+#ifdef __ANDROID__
+    #include <dlfcn.h>
+    #include <jni.h>
+    #include <GLES3/gl3.h>
+	#include <EGL/egl.h>
+	#include <android/asset_manager.h>
+#else
+    #define GLEW_STATIC
+    #include <GL/glew.h>
+    #include <GLFW/glfw3.h>
+#endif
+
 #include "Visitor.h"
 #include "OpenGLStorage.h"
-#define GLEW_STATIC
-#include <GL/glew.h>
-// GLFW
-#include <GLFW/glfw3.h>
 #include "ShaderProgram.h"
 #include "Log.h"
 #include <assert.h>
@@ -21,6 +29,11 @@ class MapDrawer : public Visitor{
 public:
     MapDrawer();
     void Init();
+
+#ifdef __ANDROID__
+    void Init(AAssetManager*);
+#endif
+
     void Render();
     void SurfaceChanged(int w, int h);
     void SurfaceCreated();

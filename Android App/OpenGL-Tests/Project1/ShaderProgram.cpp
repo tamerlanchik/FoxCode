@@ -4,7 +4,7 @@ const char ShaderProgram::border_color_key[] = "u_color";
 const char ShaderProgram::transform_matrix_key[] = "transform";
 
 
-ShaderProgram::ShaderProgram(const char* vertex_shader_name, 
+ShaderProgram::ShaderProgram(const char* vertex_shader_name,
 							const char* fragment_shader_name)
 {
 	std::string vert_sh_src_ = ShaderMaster::GetShaderRaw(vertex_shader_name);
@@ -15,6 +15,20 @@ ShaderProgram::ShaderProgram(const char* vertex_shader_name,
 	assert(frag_sh_src_.size() > 0);
 	frag = frag_sh_src_;
 }
+
+#ifdef __ANDROID__
+ShaderProgram::ShaderProgram(AAssetManager* assert_manager, const char* vertex_shader_name,
+							 const char* fragment_shader_name)
+{
+	std::string vert_sh_src_ = ShaderMaster::GetShaderRaw(assert_manager, vertex_shader_name);
+	assert(vert_sh_src_.size() > 0);
+	vertex = vert_sh_src_;
+
+	std::string frag_sh_src_ = ShaderMaster::GetShaderRaw(assert_manager, fragment_shader_name);
+	assert(frag_sh_src_.size() > 0);
+	frag = frag_sh_src_;
+}
+#endif
 ShaderProgram::~ShaderProgram()
 {
 	glDeleteProgram(program_id_);

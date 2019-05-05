@@ -7,12 +7,20 @@
 #include <iostream>
 #include "Point.h"
 #include <sstream>
-
-
+#ifdef __ANDROID__
+    #include <android/asset_manager.h>
+	#include <dlfcn.h>
+	#include <jni.h>
+	#include <GLES3/gl3.h>
+#endif
 class DataBase
 {
 public:
 	DataBase();
+
+#ifdef __ANDROID__
+	DataBase(AAssetManager*);
+#endif
 	~DataBase();
 	size_t GetRoomNumber();
 	size_t GetPassageNumber();
@@ -46,7 +54,7 @@ public:
 	std::vector<PassageParcel> GetPassages();
 	Point GetMapDimensions() const;
 private:
-	bool parseFile(std::stringstream&);
+    bool parseFile(std::string&);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;

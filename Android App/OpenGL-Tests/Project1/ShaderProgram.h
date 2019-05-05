@@ -1,6 +1,13 @@
 #pragma once
+#ifdef __ANDROID__
+	#include <dlfcn.h>
+	#include <GLES3/gl3.h>
+#else
+#define GLEW_STATIC
+    #include <GL/glew.h>
+    #include <GLFW/glfw3.h>
+#endif
 #include <string>
-#include <GL/glew.h>
 #include "ShaderMaster.h"
 #include <assert.h>
 
@@ -16,6 +23,10 @@ private:
 public:
 	ShaderProgram() {};
 	ShaderProgram(const char* vertex_shader_name, const char* fragment_shader_name);
+
+#ifdef __ANDROID__
+	ShaderProgram(AAssetManager*, const char*, const char*);
+#endif
 	~ShaderProgram();
 	GLuint GetTransformParamLocation() const;
 	GLuint GetColorParamLocation() const;

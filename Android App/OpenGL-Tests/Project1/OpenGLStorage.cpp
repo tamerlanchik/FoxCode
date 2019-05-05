@@ -9,8 +9,6 @@ OpenGLStorage::OpenGLStorage()
 	scaling_matrix_ = glm::mat4(1.0f);
 	updateTransformMatrix();
 
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
 
 	std::cout << "OpenGLStorage created!\n";
 }
@@ -23,14 +21,16 @@ bool OpenGLStorage::InflateStorage() {
 	if (!MapItemStorage::InflateStorage())
 		return false;
 	map_dimensions_ = database_->GetMapDimensions();
-	// переворот оси Y
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Y
 	normalizing_matrix_ = glm::scale(normalizing_matrix_, glm::vec3(1, -1, 1));
-	// сдвиг в центр
+	// пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	normalizing_matrix_ = glm::translate(normalizing_matrix_, glm::vec3(-0.5, -0.5, 0));
-	//	перевод из исходного в нормализованный масштаб
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	normalizing_matrix_ = glm::scale(normalizing_matrix_,
 					glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
-	
+
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
 	return true;
 }
 
@@ -45,6 +45,12 @@ const GLuint OpenGLStorage::GetVao() const {
 
 const GLuint OpenGLStorage::GetVbo() const {
 	return VBO;
+}
+size_t OpenGLStorage::GetVboSize() const {
+	return vbo_size_;
+}
+void OpenGLStorage::SetVboSize(size_t size) {
+	vbo_size_ = size;
 }
 
 //--------Private-----------

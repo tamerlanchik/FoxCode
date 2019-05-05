@@ -3,12 +3,34 @@
 //
 
 #include "ShaderMaster.h"
-#include "Log.h"
-#include <assert.h>
-#include <string>
 
 const char ShaderMaster::TAG[] = "ShaderMaster";
 
+std::string ShaderMaster::GetShaderRaw(const char* file_name) {
+    return readFile(file_name);
+}
+
+#ifdef __ANDROID__
+std::string ShaderMaster::GetShaderRaw(AAssetManager* asset_manager, const char* name) {
+    AAsset *shader_asset = AAssetManager_open(asset_manager, name,
+                                              AASSET_MODE_BUFFER);
+    if(!shader_asset){
+        Log::error(TAG, "Zero shader_assert");
+        return std::string();
+    }
+
+    const void *shader_buf = AAsset_getBuffer(shader_asset);
+    if(!shader_buf){
+        return std::string();
+    }
+
+    off_t shader_length = AAsset_getLength(shader_asset);
+    std::string res = std::string((const char*)shader_buf,
+                                  (size_t)shader_length);
+    AAsset_close(shader_asset);
+    return res;
+}
+#endif
 GLuint ShaderMaster::LoadShader(GLenum shader_type, const std::string& shader_raw){
     //Создаём пустой объект шейдера
     int shader_id = glCreateShader(shader_type);
@@ -94,7 +116,7 @@ std::string ShaderMaster::readFile(const char* name) {
 void ShaderMaster::printError(GLuint item, const char* tag) {
 	const size_t MESSAGE_MAX_LEN = 512;
 	GLchar* infoLog = new GLchar[MESSAGE_MAX_LEN];
-	glGetProgramInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
+	glGetShaderInfoLog(item, MESSAGE_MAX_LEN, NULL, infoLog);
 	//glGetProgramInfoLog(...);
 	std::cout << "ERROR: " << tag << " failed\n" << infoLog << std::endl;
 }

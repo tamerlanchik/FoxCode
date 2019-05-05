@@ -2,7 +2,7 @@
 
 
 
-OpenGLStorage::OpenGLStorage()
+OpenGLStorage::OpenGLStorage() : screen_dimensions_(Point(0,0))
 {
 	normalizing_matrix_ = glm::mat4(1.0);
 	moving_matrix_ = glm::mat4(1.0f);
@@ -58,6 +58,11 @@ void OpenGLStorage::SetVboSize(size_t size) {
 	vbo_size_ = size;
 }
 
+void OpenGLStorage::UpdateScreenDimensions(size_t w, size_t h){
+    screen_dimensions_ = Point(w,h);
+    float screen_sides_ratio = ((float)w)/h;
+    normalizing_matrix_ = glm::scale(normalizing_matrix_, glm::vec3(1, screen_sides_ratio, 1));
+}
 //--------Private-----------
 void OpenGLStorage::updateTransformMatrix() {
 	//result_transform_matrix_ = scaling_matrix_ * moving_matrix_*normalizing_matrix_;

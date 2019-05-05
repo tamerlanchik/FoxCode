@@ -64,6 +64,8 @@ void MapDrawer::SurfaceChanged(int w, int h) {
     //  Устанавливаем границы обрабатываемой части предоставленной поверхности
     //  Левый верхний (X,Y) и правый нижний (X,Y) углы обьекта
     glViewport(0, 0, w, h);
+    assert(storage_);
+    storage_->UpdateScreenDimensions(w,h);
     Log::debug(TAG, "SurfaceChanged()");
 }
 

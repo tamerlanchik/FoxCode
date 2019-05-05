@@ -16,6 +16,7 @@ class OpenGLStorage : public MapItemStorage
 protected:
 	OpenGLStorage();
 	Point map_dimensions_;
+	Point screen_dimensions_;
 	glm::mat4 normalizing_matrix_;
 	glm::mat4 moving_matrix_;
 	glm::mat4 scaling_matrix_;
@@ -31,6 +32,7 @@ public:
 	const GLuint GetVbo() const;
 	size_t GetVboSize() const;
 	void SetVboSize(size_t);
+	void UpdateScreenDimensions(size_t w, size_t h);
 private:
 	void updateTransformMatrix();
 };

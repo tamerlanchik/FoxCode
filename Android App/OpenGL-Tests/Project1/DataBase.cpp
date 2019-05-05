@@ -58,6 +58,13 @@ std::vector<DataBase::RoomParcel> DataBase::GetRooms() {
 }
 std::vector<DataBase::PassageParcel> DataBase::GetPassages() {
 	std::vector<PassageParcel> parcels;
+	parcels.reserve(passages_.size());
+	for (auto room : passages_) {
+		PassageParcel parcel;
+		parcel.lines = room;
+		parcel.id_ = 1;
+		parcels.push_back(parcel);
+	}
 	return parcels;
 }
 
@@ -80,11 +87,17 @@ bool DataBase::parseFile(std::string& s) {
 	float data;
 
 	while (f >> type) {
-		if (type.find("ROOM")) {
+		char t = '0';
+		size_t data_len = 0;
+		int e = type.find("ROOM");
+		if (type.find("Room")!= std::string::npos) {
 			std::cout << "\nRead room\n";
+			t = 'r';
+			data_len = 6;
 		}
-		else if (type.find("Passage")) {
-
+		else if (type.find("Passage") != std::string::npos) {
+			t = 'p';
+			data_len = 4;
 		}
 		else {
 			std::cout << "Wrong object";
@@ -93,14 +106,23 @@ bool DataBase::parseFile(std::string& s) {
 		f >> size;
 		std::cout << "\n" << type << "\n";
 		std::vector<float> coords;
-		coords.reserve(4 * size);
+		coords.reserve(data_len * size);
 		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < 4; j++) {
+			for (int j = 0; j < data_len; j++) {
 				f >> data;
 				coords.push_back(data);
 			}
 		}
-		rooms_.push_back(coords);
+		switch (t) {
+		case 'r':
+			rooms_.push_back(coords);
+			break;
+		case 'p':
+			passages_.push_back(coords);
+			break;
+		default:
+			assert(false);
+		}
 	}
 	return true;
 }

@@ -37,16 +37,26 @@ void MapDrawer::Render() {
 	Log::debug(TAG, "Render-start");
 	glClear(GL_COLOR_BUFFER_BIT);
 	//program1_.Use();
-	glBindVertexArray(storage_->GetVao());
-	program1_.SetVertexColor(0, 1, 0);
+	glBindVertexArray(storage_->GetVaoPassage());
+	program1_.SetVertexColor(0, 0, 1);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
-	//glDrawArrays(GL_LINES, 0, storage_->GetVboSize());
+	glLineWidth(3);
+	glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize()/2);
+	glLineWidth(1);
+	program1_.SetVertexColor(0, 0, 0);
+	//program1_.SetVertexColor(0, 0, 1);
+	for (int i = storage_->GetPassagesBufSize()/2;
+		i < storage_->GetBufferSize(); i += 4) {
+
+		glDrawArrays(GL_LINE_LOOP, i, 4);
+	}
+	glBindVertexArray(0);
+
 	/*glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 						  2*sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);*/
     //glEnableClientState(GL_VERTEX_ARRAY);
-    glDrawArrays(GL_LINES, 0, 100);
-	glBindVertexArray(0);
+    //glDrawArrays(GL_LINES, 0, 100);
 	Log::debug(TAG, "Render-finish");
 }
 
@@ -64,22 +74,28 @@ void MapDrawer::SurfaceCreated() {
 	program1_.Generate();
 	program1_.Use();
     this->BindData();
-	glLineWidth(3);
 
     Log::debug(TAG, "End SurfaceCreated()");
 }
 
 void MapDrawer::BindData() {
-	glBindVertexArray(storage_->GetVao());
 	glBindBuffer(GL_ARRAY_BUFFER, storage_->GetVbo());
-	float* buf = storage_->GetRooms();
+	float* buf = storage_->GetObjects();
+	//float* buf = storage_->GetPassages();
 	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
 				buf, GL_STATIC_DRAW);	// загрузили данные в буфер
 	buf = nullptr;
 	storage_->SetVboSize(storage_->GetBufferSize());
 
+	glBindVertexArray(storage_->GetVaoPassage());
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
 	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);	// отвязали VAO
+
+	/*glBindVertexArray(storage_->GetVaoRoom());
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+		2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	glBindVertexArray(0);	// отвязали VAO*/
 }

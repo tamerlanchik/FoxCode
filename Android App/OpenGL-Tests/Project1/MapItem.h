@@ -8,6 +8,7 @@
 #include <string.h>
 #include <vector>
 #include <string>
+#include "Point.h"
 
 class MapItem {
 private:
@@ -16,7 +17,7 @@ protected:
 	size_t vertices_count_;
 
 public:
-	class Point {
+	/*class Point {
 		float x_;
 		float y_;
 	public:
@@ -33,7 +34,7 @@ public:
 
 		void GetY(float y) { y_ = y; }
 		void SetX(float x) { x_ = x; }
-	};
+	};*/
 	MapItem() {};
 	MapItem(const std::vector<float>& verts) {
 		vertices_.reserve(verts.size());
@@ -42,8 +43,8 @@ public:
 	}
 	MapItem(Point& top_left, Point& bottom_right) {
 		vertices_.reserve(8);
-		vertices_.push_back(top_left.GetX());
-		vertices_.push_back(top_left.GetY());
+		vertices_.push_back(top_left.x);
+		vertices_.push_back(top_left.y);
 	}
 	virtual void Accept(Visitor&) = 0;
 
@@ -62,6 +63,7 @@ class Room : public MapItem {
 public:
 	Room(const std::vector<float>& verts) : MapItem(verts) {
 		size += verts.size();
+		++count;
 	};
     void Accept(Visitor& v) override {
         v.visit(*this);
@@ -72,20 +74,32 @@ public:
 	static size_t GetSize() {
 		return size;
 	}
+	static size_t GetCount() {
+		return count;
+	}
 protected:
 	std::string title_;
 private:
 	static size_t size;
+	static size_t count;
 };
 
 
 class Passage : public MapItem {
 public:
 	Passage() {};
-	Passage(std::vector<float>& vertices) : MapItem(vertices){}
+	Passage(std::vector<float>& vertices) : MapItem(vertices){
+		size += vertices.size();
+	}
     void Accept(Visitor& v) override {
         v.visit(*this);
     }
+	static size_t GetSize() {
+		return size;
+	}
+private:
+	static size_t size;
+
 };
 
 class Steps : public MapItem {

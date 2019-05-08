@@ -1,9 +1,13 @@
-#version 300 es
+//  Шейдер точек треугольника
+//  Вызывается для каждой точки фигуры
+
+//  выставляем точность вычислений
+//  { lowp, mediump, highp }
 precision mediump float;
-out vec4 color;
-uniform vec3 u_color;
+//  вектор 4х значений [ R, G, B, A ] цвета точки
+//  uniform - значение одинаково для всех точек
+uniform vec4 u_Color;
 
 void main() {
-    //gl_FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
-    color = vec4(u_color, 1.0f);
+    gl_FragColor = u_Color;
 }

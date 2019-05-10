@@ -1,30 +1,24 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 
 struct Coordinate {
 	int x;
 	int y;
+	int z;
 };
 
 struct Hall {
 	int ID;
-	Coordinate TopLeft;
+	Coordinate LeftTop;
 	Coordinate RightBottom;
-	int Floor;
-	bool Status;
+	bool Status; //Работает или нет
 };
 
 struct Room :Hall {
-	Coordinate* Input;
-	int* Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
-	int InputNumber;
-	int* CorridorID;
-	int CorridorsNumber;
-	std::string Type;
-};
-
-struct MoveObject :Room {
-	int MinFloor;
-	int MaxFloor;
+	std::vector<Coordinate> Input;
+	std::vector<int> Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
+	std::vector<int> HallID;
+	std::string Type; //Аудитория, лифт, лестница, столовая и т. д.
 };

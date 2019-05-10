@@ -2,8 +2,7 @@
 #include "Entity.h"
 
 template<class T>
-class GraphConstructor
-{
+class GraphConstructor{
 public:
 	GraphConstructor(const struct Hall* halls, const int hallsNumber,
 		const struct Room* rooms, const int roomsNumber,

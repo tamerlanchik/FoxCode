@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dijkstra’s algorithm", "Dijkstra’s algorithm\Dijkstra’s algorithm.vcxproj", "{6F162EAD-D3EB-4389-AAEA-4EB0651A51AC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C15D04D8-6BC2-458C-AB16-475269581D03}"
+	ProjectSection(SolutionItems) = preProject
+		Dijkstra’s algorithm\sqlite_lib\shell.c = Dijkstra’s algorithm\sqlite_lib\shell.c
+		Dijkstra’s algorithm\sqlite_lib\sqlite3.c = Dijkstra’s algorithm\sqlite_lib\sqlite3.c
+		Dijkstra’s algorithm\sqlite_lib\sqlite3.h = Dijkstra’s algorithm\sqlite_lib\sqlite3.h
+		Dijkstra’s algorithm\sqlite_lib\sqlite3ext.h = Dijkstra’s algorithm\sqlite_lib\sqlite3ext.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

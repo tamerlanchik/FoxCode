@@ -1,0 +1,14 @@
+﻿  pch.cpp
+  DBMaster.cpp
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(121): error C2664: "int sqlite3_exec(sqlite3 *,const char *,int (__cdecl *)(void *,int,char **,char **),void *,char **)": невозможно преобразовать аргумент 3 из "int (__cdecl DBMaster::* )(void *,int,char **,char **)" в "int (__cdecl *)(void *,int,char **,char **)"
+  c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(121): note: Не существует контекста, в котором такое преобразование возможно
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(133): error C2664: "int sqlite3_exec(sqlite3 *,const char *,int (__cdecl *)(void *,int,char **,char **),void *,char **)": невозможно преобразовать аргумент 3 из "int (__cdecl DBMaster::* )(void *,int,char **,char **)" в "int (__cdecl *)(void *,int,char **,char **)"
+  c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(133): note: Не существует контекста, в котором такое преобразование возможно
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(139): error C2664: "int sqlite3_exec(sqlite3 *,const char *,int (__cdecl *)(void *,int,char **,char **),void *,char **)": невозможно преобразовать аргумент 3 из "int (__cdecl DBMaster::* )(void *,int,char **,char **)" в "int (__cdecl *)(void *,int,char **,char **)"
+  c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(139): note: Не существует контекста, в котором такое преобразование возможно
+  DijkstrasAlgorithm.cpp
+  GraphConstructor.cpp
+  main.cpp
+  RouteSearch.cpp
+  Компиляция...
+  Создание кода...

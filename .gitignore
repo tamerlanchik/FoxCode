@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs/FoxCode/v15/Browse.VC.opendb
+*.suo
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v15/Browse.VC.db
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v15/Browse.VC.opendb
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v15/ipch/8dc8f1c5f03c33fa.ipch
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v15/ipch/AutoPCH/6de3daa0201e9e7a/SHELL.ipch
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v15/ipch/AutoPCH/c5b8578af7a73bd5/SHELL.ipch
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v16/Browse.VC.db
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v16/Browse.VC.opendb
+/Dijkstra’s algorithm/.vs/Dijkstra’s algorithm/v16/ipch/bc8280c9029b262d.ipch

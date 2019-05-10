@@ -9,7 +9,7 @@ int main(){
 	int startRoom = 1;
 	int endRoom = 2;
 	int Matrix[2][2] = { 1,2,3,4 };
-	DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
+	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
     std::cout << "Hello World!\n"; 
 }
 

@@ -13,6 +13,7 @@
 #include <algorithm>
 #include "DataBase.h"
 #include "Point.h"
+#include "Log.h"
 using std::vector;
 using std::cerr;
 using std::cout;
@@ -27,35 +28,14 @@ protected:
 	size_t passages_buf_size_;
 	DataBase* database_;
 	MapItemStorage();
-	float* getRooms();
-	float* getPassages();
 public:
 	static MapItemStorage* Get();
 
 	void SetDatabase(DataBase*);
 
-    MapItem* GetItem(UUID id) const { return NULL; }
-
-    MapItem* GetItem(Point& point) const { return NULL; }
-
-    size_t Size() { return storage_.size(); }
-
 	virtual bool InflateStorage();
-
-	float* GetRectangles();
-
-	float* GetRooms();
-	float* GetPassages();
-	float* GetObjects();
-	size_t GetRoomsBufSize() const { return rooms_buf_size_; }
-	size_t GetPassagesBufSize() const { return passages_buf_size_; }
-	const size_t GetBufferSize() const { return buffer_.size(); }
-
 private:
-    //void inflateItem(UUID id);
-    //vector<UUID> getIdList() const;
-    //DataBaseMaster::MapItem getObjectData(UUID id) const;
-    //vector<DataBaseMaster::MapItem> getAllObjectData() const;
+	static const char TAG[];
 };
 
 #endif //FOXMAPNATIVE_1_MAPITEMSSTORAGE_H

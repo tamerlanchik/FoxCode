@@ -19,6 +19,10 @@ void MapDrawer::Init() {
     Log::debug(TAG, "Init()");
 
 	DataBase* database = new DataBase();
+	if (!storage_) {
+		Log::error(TAG, "Null storage_ pointer!");
+		storage_ = OpenGLStorage::Get();
+	}
 	storage_->SetDatabase(database);
 	storage_->InflateStorage();
 	program1_ = ShaderProgram(triangle_vertex_shader_name_, triangle_fragment_shader_name_);
@@ -34,30 +38,34 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 }
 #endif
 void MapDrawer::Render() {
-	Log::debug(TAG, "Render-start");
+	#ifdef __ANDROID__
+	Log::debug(TAG, "Render");
+	#endif
 	glClear(GL_COLOR_BUFFER_BIT);
-	//program1_.Use();
+
 	glBindVertexArray(storage_->GetVaoPassage());
 	program1_.SetVertexColor(0, 0, 1);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
+
+	drawPassages();
+	drawRooms();
+
+	glBindVertexArray(0);
+}
+
+void MapDrawer::drawPassages() {
 	glLineWidth(3);
-	glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize()/2);
+	glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize() / 2);
+}
+
+void MapDrawer::drawRooms() {
 	glLineWidth(1);
 	program1_.SetVertexColor(0, 0, 0);
-	//program1_.SetVertexColor(0, 0, 1);
-	for (int i = storage_->GetPassagesBufSize()/2;
+	for (int i = storage_->GetPassagesBufSize() / 2;
 		i < storage_->GetBufferSize(); i += 4) {
 
 		glDrawArrays(GL_LINE_LOOP, i, 4);
 	}
-	glBindVertexArray(0);
-
-	/*glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
-						  2*sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);*/
-    //glEnableClientState(GL_VERTEX_ARRAY);
-    //glDrawArrays(GL_LINES, 0, 100);
-	Log::debug(TAG, "Render-finish");
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {

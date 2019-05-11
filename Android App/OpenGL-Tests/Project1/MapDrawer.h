@@ -43,6 +43,10 @@ private:
 
     void BindData();
 
+	void drawPassages();
+
+	void drawRooms();
+
     void visit(const Room& r) override {
 
     }

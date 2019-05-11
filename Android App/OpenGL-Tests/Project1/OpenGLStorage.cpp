@@ -37,7 +37,8 @@ bool OpenGLStorage::InflateStorage() {
 void OpenGLStorage::UpdateScreenDimensions(size_t w, size_t h){
     screen_dimensions_ = Point(w,h);
     float screen_sides_ratio = ((float)w)/h;
-    normalizing_matrix_ = glm::scale(normalizing_matrix_, glm::vec3(1, screen_sides_ratio, 1));
+    scaling_matrix_ = glm::scale(glm::mat4(1.0f), glm::vec3(1, screen_sides_ratio, 1));
+	updateTransformMatrix();
 }
 
 float* OpenGLStorage::GetRooms() {
@@ -57,8 +58,8 @@ float* OpenGLStorage::GetObjects() {
 }
 
 const glm::f32* OpenGLStorage::GetTransformMatrix() const {
-	//return glm::value_ptr(result_transform_matrix_);
-	return glm::value_ptr(normalizing_matrix_);
+	return glm::value_ptr(result_transform_matrix_);
+	//return glm::value_ptr(normalizing_matrix_);
 }
 
 const GLuint OpenGLStorage::GetVaoRoom() const {
@@ -117,5 +118,5 @@ float* OpenGLStorage::getPassages() {
 }
 
 void OpenGLStorage::updateTransformMatrix() {
-	//result_transform_matrix_ = scaling_matrix_ * moving_matrix_*normalizing_matrix_;
+	result_transform_matrix_ = scaling_matrix_*moving_matrix_*normalizing_matrix_;
 }

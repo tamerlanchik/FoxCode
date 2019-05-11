@@ -24,16 +24,6 @@ public:
 	~DataBase();
 	size_t GetRoomNumber();
 	size_t GetPassageNumber();
-	//enum ObjectTypes { ROOM, PASSAGE, STEPS };
-	/*struct Point {
-		float x;
-		float y;
-		Point() {};
-		Point(float _x, float _y) {
-			x = _x;
-			y = _y;
-		}
-	};*/
 	struct Parcel {
 		//Point top_left_;
 		//Point bottom_right;

@@ -44,9 +44,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shaders.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="DataBase.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>

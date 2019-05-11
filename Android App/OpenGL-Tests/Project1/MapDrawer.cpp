@@ -5,7 +5,6 @@
 #include "MapDrawer.h"
 
 
-
 const char MapDrawer::TAG[] = "MapDrawer";
 const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
 const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";

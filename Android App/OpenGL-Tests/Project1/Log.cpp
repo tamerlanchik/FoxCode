@@ -8,11 +8,15 @@ void Log::error(const char *tag, const char *message, ...) {
 }
 
 void Log::debug(const char *tag, const char *message, ...) {
+#ifdef DEBUG
     Log::print(ANDROID_LOG_DEBUG, tag, message);
+#endif
 }
 
 void Log::info(const char *tag, const char *message, ...) {
+#ifdef DEBUG
     Log::print(ANDROID_LOG_INFO, tag, message);
+#endif
 }
 
 #ifdef __ANDROID__

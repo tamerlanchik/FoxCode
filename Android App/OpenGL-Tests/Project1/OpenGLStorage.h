@@ -43,6 +43,7 @@ public:
 	const size_t GetBufferSize() const { return buffer_.size(); }
 
 	void CommitMapMovement(int x, int y);
+	void CommitMapZoom(float delta);
 private:
 	void updateTransformMatrix();
 	static const char TAG[];

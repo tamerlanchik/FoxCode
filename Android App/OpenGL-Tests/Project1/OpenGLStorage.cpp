@@ -49,6 +49,13 @@ void OpenGLStorage::CommitMapMovement(int x, int y) {
 	updateTransformMatrix();
 }
 
+void OpenGLStorage::CommitMapZoom(float d_z) {
+	Log::debug(TAG, "Commit zoom");
+	std::cout << d_z << "\n";
+	scaling_matrix_ = glm::scale(scaling_matrix_, glm::vec3(d_z, d_z, 1));
+	updateTransformMatrix();
+}
+
 float* OpenGLStorage::GetRooms() {
 	buffer_.clear();
 	return getRooms();

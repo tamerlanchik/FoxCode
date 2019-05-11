@@ -41,6 +41,14 @@ void OpenGLStorage::UpdateScreenDimensions(size_t w, size_t h){
 	updateTransformMatrix();
 }
 
+void OpenGLStorage::CommitMapMovement(int x, int y) {
+	Point delta(x, -y);
+	delta = delta*2;
+	delta = delta/screen_dimensions_;
+	moving_matrix_ = glm::translate(moving_matrix_, glm::vec3(delta.x, delta.y, 0));
+	updateTransformMatrix();
+}
+
 float* OpenGLStorage::GetRooms() {
 	buffer_.clear();
 	return getRooms();
@@ -59,7 +67,6 @@ float* OpenGLStorage::GetObjects() {
 
 const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
-	//return glm::value_ptr(normalizing_matrix_);
 }
 
 const GLuint OpenGLStorage::GetVaoRoom() const {
@@ -118,5 +125,5 @@ float* OpenGLStorage::getPassages() {
 }
 
 void OpenGLStorage::updateTransformMatrix() {
-	result_transform_matrix_ = scaling_matrix_*moving_matrix_*normalizing_matrix_;
+	result_transform_matrix_ = moving_matrix_*scaling_matrix_*normalizing_matrix_;
 }

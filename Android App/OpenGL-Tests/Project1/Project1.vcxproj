@@ -136,6 +136,7 @@
     <ClCompile Include="MapItem.cpp" />
     <ClCompile Include="MapItemsStorage.cpp" />
     <ClCompile Include="OpenGLStorage.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="ShaderMaster.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
   </ItemGroup>

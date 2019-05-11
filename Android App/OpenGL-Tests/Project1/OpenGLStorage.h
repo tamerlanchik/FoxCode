@@ -41,6 +41,8 @@ public:
 	size_t GetRoomsBufSize() const { return rooms_buf_size_; }
 	size_t GetPassagesBufSize() const { return passages_buf_size_; }
 	const size_t GetBufferSize() const { return buffer_.size(); }
+
+	void CommitMapMovement(int x, int y);
 private:
 	void updateTransformMatrix();
 	static const char TAG[];

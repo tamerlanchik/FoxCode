@@ -16,7 +16,7 @@
 class DataBase
 {
 public:
-	DataBase();
+	DataBase() throw (std::system_error);
 
 #ifdef __ANDROID__
 	DataBase(AAssetManager*);
@@ -44,7 +44,7 @@ public:
 	std::vector<PassageParcel> GetPassages();
 	Point GetMapDimensions() const;
 private:
-    bool parseFile(std::string&);
+    bool parseFile(std::string&) throw(std::invalid_argument);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;

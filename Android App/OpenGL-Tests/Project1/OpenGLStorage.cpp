@@ -30,8 +30,7 @@ bool OpenGLStorage::InflateStorage() {
 	glGenBuffers(1, &VBO);
 	glGenVertexArrays(1, &VAO_passage_);
 	glGenVertexArrays(1, &VAO_room_);
-	assert(VBO&&VAO_passage_&&VAO_room_);
-	return true;
+	return VBO && VAO_passage_&&VAO_room_;
 }
 
 void OpenGLStorage::UpdateScreenDimensions(size_t w, size_t h){

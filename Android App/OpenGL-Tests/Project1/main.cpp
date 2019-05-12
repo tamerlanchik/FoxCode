@@ -59,7 +59,8 @@ int main()
 	glfwGetFramebufferSize(window, &width, &height);
 
 	//MapDrawer drawer;
-	drawer.Init();
+	if (!drawer.Init())
+		return 0;
 	drawer.SurfaceCreated();
 	drawer.SurfaceChanged(width, height);
 	view.OnSurfaceChanged(width, height);

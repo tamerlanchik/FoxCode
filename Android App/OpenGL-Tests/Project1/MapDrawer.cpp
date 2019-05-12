@@ -14,17 +14,29 @@ MapDrawer::MapDrawer() {
 	storage_ = OpenGLStorage::Get();
 }
 
-void MapDrawer::Init() {
+bool MapDrawer::Init() {
     Log::debug(TAG, "Init()");
+	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
+	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-	DataBase* database = new DataBase();
-	if (!storage_) {
-		Log::error(TAG, "Null storage_ pointer!");
-		storage_ = OpenGLStorage::Get();
+	try {
+		DataBase* database;
+		database = new DataBase();
+		if (!storage_)
+			throw std::runtime_error("Null pointer to storage");
+		storage_->SetDatabase(database);
+		storage_->InflateStorage();
+		program1_ = ShaderProgram(triangle_vertex_shader_name_, triangle_fragment_shader_name_);
 	}
-	storage_->SetDatabase(database);
-	storage_->InflateStorage();
-	program1_ = ShaderProgram(triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+	catch (const std::exception& e) {
+		Log::error(TAG, e.what());
+		return 0;
+	}
+	catch (...) {
+		Log::error(TAG, "Unknown error");
+		return 0;
+	}
+	return true;
 }
 #ifdef __ANDROID__
 void MapDrawer::Init(AAssetManager* asset_manager){
@@ -77,14 +89,12 @@ void MapDrawer::SurfaceChanged(int w, int h) {
 }
 
 void MapDrawer::SurfaceCreated() {
-    Log::debug(TAG, "Start SurfaceCreated()");
+    Log::debug(TAG, "SurfaceCreated()");
     //glClearColor(0.698f, 0.843f, 0.784f, 1.f);
 	glClearColor(1, 1, 1, 1.f);
 	program1_.Generate();
 	program1_.Use();
     this->BindData();
-
-    Log::debug(TAG, "End SurfaceCreated()");
 }
 
 void MapDrawer::BindData() {

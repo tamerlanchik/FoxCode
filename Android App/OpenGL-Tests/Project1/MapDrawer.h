@@ -26,7 +26,7 @@
 class MapDrawer : public Visitor{
 public:
     MapDrawer();
-    void Init();
+    bool Init();
 
 #ifdef __ANDROID__
     void Init(AAssetManager*);

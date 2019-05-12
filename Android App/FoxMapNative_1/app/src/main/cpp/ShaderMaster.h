@@ -5,7 +5,6 @@
 #ifndef FOXMAPNATIVE_1_SHADERMASTER_H
 #define FOXMAPNATIVE_1_SHADERMASTER_H
 #ifdef __ANDROID__
-	#include <dlfcn.h>
 	#include <GLES3/gl3.h>
     #include <android/asset_manager.h>
 #else

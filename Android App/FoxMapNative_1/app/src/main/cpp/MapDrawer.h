@@ -6,17 +6,12 @@
 #define FOXMAPNATIVE_1_MAPDRAWER_H
 
 #ifdef __ANDROID__
-    #include <dlfcn.h>
-    #include <jni.h>
     #include <GLES3/gl3.h>
-	#include <EGL/egl.h>
 	#include <android/asset_manager.h>
 #else
     #define GLEW_STATIC
     #include <GL/glew.h>
-    #include <GLFW/glfw3.h>
 #endif
-
 #include "Visitor.h"
 #include "OpenGLStorage.h"
 #include "ShaderProgram.h"
@@ -28,7 +23,7 @@
 class MapDrawer : public Visitor{
 public:
     MapDrawer();
-    void Init();
+    bool Init();
 
 #ifdef __ANDROID__
     void Init(AAssetManager*);
@@ -42,6 +37,10 @@ private:
 	OpenGLStorage* storage_;
 
     void BindData();
+
+	void drawPassages();
+
+	void drawRooms();
 
     void visit(const Room& r) override {
 

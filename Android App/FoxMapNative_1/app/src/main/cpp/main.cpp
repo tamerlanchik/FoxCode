@@ -7,16 +7,48 @@
 #include <string>
 #include <fstream>
 #include <assert.h>
+
 #include "MapDrawer.h"
+#include "OpenGLStorage.h"
 
+class GLMapView {
+public:
+	GLMapView() {}
+	static void WindowChangeSizeCallback(GLFWwindow*, int, int);
+	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+	static void MouseClickCallback(GLFWwindow* window, int button, int action, int mods);
+	static void MouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+	void OnSurfaceCreated() { drawer_.SurfaceCreated(); drawer_.Init();  }
+	void OnSurfaceChanged(int w, int h) {
+		screen_dimensions_ = Point(w, h);
+		//drawer_.SurfaceChanged(w, h);
+	}
+	void Init() {
+		drawer_.Init();
+	}
+	void Render() {
+		drawer_.Render();
+	}
+private:
+	static float prev_x_;
+	static float prev_y_;
+	static bool is_dragging_;
+	static MapDrawer drawer_;
+	static Point screen_dimensions_;
+};
+float GLMapView::prev_x_ = 0;
+float GLMapView::prev_y_ = 0;
+bool GLMapView::is_dragging_ = false;
+Point GLMapView::screen_dimensions_ = Point(0, 0);
 
-std::string ReadFile(const char* name);
-GLFWwindow* init();
-void DrawTriangle();
+GLMapView view;
+MapDrawer drawer;
+OpenGLStorage* storage;
+GLFWwindow* init(int w,int h);
 int main()
 {
 
-	GLFWwindow* window = init();	
+	GLFWwindow* window = init(800, 600);	
 	if (!window) {
 		std::cerr << "Null window\n";
 		glfwTerminate();
@@ -26,108 +58,34 @@ int main()
 
 	glfwGetFramebufferSize(window, &width, &height);
 
-	//glViewport(0, 0, width, height);
-
-	//DrawTriangle();
-	MapDrawer drawer;
-	drawer.Init();
+	//MapDrawer drawer;
+	if (!drawer.Init())
+		return 0;
 	drawer.SurfaceCreated();
 	drawer.SurfaceChanged(width, height);
+	view.OnSurfaceChanged(width, height);
+	//view.Init();
+	//view.OnSurfaceCreated();
+	//view.OnSurfaceChanged(width, height);
 
+	glfwSetWindowSizeCallback(window, GLMapView::WindowChangeSizeCallback);
+	glfwSetMouseButtonCallback(window, GLMapView::MouseClickCallback);
+	glfwSetCursorPosCallback(window, GLMapView::CursorPositionCallback);
+	glfwSetScrollCallback(window, GLMapView::MouseScrollCallback);
+
+	storage = OpenGLStorage::Get();
 
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-
-		//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		//glClear(GL_COLOR_BUFFER_BIT);
 		drawer.Render();
-
-
+		//view.Render();
 		glfwSwapBuffers(window);
 	}
-
-
 	return 0;
 }
 
-void DrawTriangle() {
-	GLfloat vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-	};
-	GLuint VBO;
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	std::string vertexShaderSourceString = ReadFile("vertex_shader.glsl");
-	const char* vertexShaderSource = vertexShaderSourceString.c_str();
-	GLuint vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-	GLint success;
-	GLchar infoLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-
-	std::string fragmentShaderSourceString = ReadFile("fragment_shader.glsl");
-	const char* fragmentShaderSource = fragmentShaderSourceString.c_str();
-	GLuint fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-	assert(success);
-
-	GLuint shaderProgram;
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-	if (!success) {
-		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	}
-	assert(success);
-
-	glUseProgram(shaderProgram);
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(0);
-
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	// 1. Затем установим указатели на вершинные атрибуты
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-	// 2. Используем нашу шейдерную программу
-	glUseProgram(shaderProgram);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-}
-
-std::string ReadFile(const char* name) {
-	std::ifstream file(name, std::ios::binary);
-	assert(file.is_open());
-	file.seekg(0, std::ios::end);
-	size_t size = file.tellg();
-	std::string s(size, ' ');
-	file.seekg(0);
-	file.read(&s[0], size);
-	file.close();
-	return s;
-}
-
-GLFWwindow* init() {
+GLFWwindow* init(int w, int h) {
 
 	//Инициализация GLFW
 	glfwInit();
@@ -140,9 +98,10 @@ GLFWwindow* init() {
 	//Установка профайла для которого создается контекст
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	//Выключение возможности изменения размера окна
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
+
+	GLFWwindow* window = glfwCreateWindow(w, h, "LearnOpenGL", nullptr, nullptr);
 	if (window == nullptr)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -158,4 +117,45 @@ GLFWwindow* init() {
 		return NULL;
 	}
 	return window;
+}
+
+void GLMapView::WindowChangeSizeCallback(GLFWwindow* window, int w, int h) {
+	drawer.SurfaceChanged(w, h);
+	view.OnSurfaceChanged(w, h);
+}
+
+void GLMapView::CursorPositionCallback(GLFWwindow* window, double x, double y)
+{
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+		if (storage)
+			storage->CommitMapMovement(x - prev_x_, y - prev_y_);
+		prev_x_ = x;
+		prev_y_ = y;
+	}
+}
+
+void GLMapView::MouseClickCallback(GLFWwindow* window, int button, int action, int mods) {
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+	if (button == GLFW_MOUSE_BUTTON_LEFT) {
+		if (GLFW_PRESS == action) {
+			if (!is_dragging_) {
+				is_dragging_ = true;
+				prev_x_ = (float) x;
+				prev_y_ = (float) y;
+				std::cout << "Start moving map\n";
+			}
+		}
+		else if (GLFW_RELEASE == action){
+			is_dragging_ = false;
+			std::cout << "Stop moving map\n";
+			}
+	}
+}
+
+void GLMapView::MouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
+	double speed = 5;
+	if (storage) {
+		storage->CommitMapZoom(1+speed*yoffset/screen_dimensions_.y);
+	}
 }

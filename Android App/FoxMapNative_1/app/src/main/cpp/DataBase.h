@@ -3,20 +3,17 @@
 #include <list>
 #include <vector>
 #include <fstream>
-#include <assert.h>
-#include <iostream>
 #include "Point.h"
 #include <sstream>
+#include <system_error>
+#include <exception>
 #ifdef __ANDROID__
     #include <android/asset_manager.h>
-	#include <dlfcn.h>
-	#include <jni.h>
-	#include <GLES3/gl3.h>
 #endif
 class DataBase
 {
 public:
-	DataBase();
+	DataBase() throw (std::system_error);
 
 #ifdef __ANDROID__
 	DataBase(AAssetManager*);
@@ -24,16 +21,6 @@ public:
 	~DataBase();
 	size_t GetRoomNumber();
 	size_t GetPassageNumber();
-	//enum ObjectTypes { ROOM, PASSAGE, STEPS };
-	/*struct Point {
-		float x;
-		float y;
-		Point() {};
-		Point(float _x, float _y) {
-			x = _x;
-			y = _y;
-		}
-	};*/
 	struct Parcel {
 		//Point top_left_;
 		//Point bottom_right;
@@ -54,7 +41,7 @@ public:
 	std::vector<PassageParcel> GetPassages();
 	Point GetMapDimensions() const;
 private:
-    bool parseFile(std::string&);
+    bool parseFile(std::string&) throw(std::logic_error);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;

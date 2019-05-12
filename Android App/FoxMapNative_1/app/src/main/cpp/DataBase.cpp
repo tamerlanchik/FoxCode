@@ -2,17 +2,25 @@
 
 char DataBase::filename_[] = "map.txt";
 
-DataBase::DataBase()
+DataBase::DataBase() throw(std::system_error)
 {
 	std::ifstream file(filename_);
-	assert(file.is_open());
+	if (!file.is_open())
+		throw(std::system_error(ENOENT, std::iostream_category()));
+	//assert(file.is_open());
 
 	std::string s;
 	char c = '\0';
 	std::getline(file, s, c);
 	file.close();
 	//https://stackoverflow.com/questions/132358/how-to-read-file-content-into-istringstream
-	assert(parseFile(s));
+	try {
+		parseFile(s);
+	}
+	catch (const std::logic_error& e) {
+		throw;
+	}
+	//assert(parseFile(s));
 }
 
 #ifdef __ANDROID__
@@ -72,13 +80,14 @@ Point DataBase::GetMapDimensions() const {
 	return dimensions_;
 }
 
-bool DataBase::parseFile(std::string& s) {
+bool DataBase::parseFile(std::string& s) throw(std::logic_error){
     std::stringstream f;
     f << s;
 	//------ReadHeader-----
 	f >> dimensions_.x >> dimensions_.y;
 	if (!dimensions_.x || !dimensions_.y) {
-		std::cout << "Cannot get dimensions\n";
+		//std::cout << "Cannot get dimensions\n";
+		throw(std::logic_error("Cannot read dimensions"));
 		return false;
 	}
 
@@ -91,7 +100,7 @@ bool DataBase::parseFile(std::string& s) {
 		size_t data_len = 0;
 		int e = type.find("ROOM");
 		if (type.find("Room")!= std::string::npos) {
-			std::cout << "\nRead room\n";
+			//std::cout << "\nRead room\n";
 			t = 'r';
 			data_len = 6;
 		}
@@ -100,11 +109,10 @@ bool DataBase::parseFile(std::string& s) {
 			data_len = 4;
 		}
 		else {
-			std::cout << "Wrong object";
+			throw std::logic_error("Wrong object type");
 			return false;
 		}
 		f >> size;
-		std::cout << "\n" << type << "\n";
 		std::vector<float> coords;
 		coords.reserve(data_len * size);
 		for (int i = 0; i < size; i++) {
@@ -120,8 +128,6 @@ bool DataBase::parseFile(std::string& s) {
 		case 'p':
 			passages_.push_back(coords);
 			break;
-		default:
-			assert(false);
 		}
 	}
 	return true;

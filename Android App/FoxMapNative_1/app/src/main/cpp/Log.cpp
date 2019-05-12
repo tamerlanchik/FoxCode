@@ -1,18 +1,22 @@
 //
 // Created by Andrey on 06.04.2019.
-//
+#define DEBUG
 #include "Log.h"
 
 void Log::error(const char *tag, const char *message, ...) {
     Log::print(ANDROID_LOG_ERROR, tag, message);
 }
 
-void Log::debug(const char *tag, const char *message, ...) {
+void Log::debug(const char *tag, const char *message ...) {
+#ifdef DEBUG
     Log::print(ANDROID_LOG_DEBUG, tag, message);
+#endif
 }
 
 void Log::info(const char *tag, const char *message, ...) {
+#ifdef DEBUG
     Log::print(ANDROID_LOG_INFO, tag, message);
+#endif
 }
 
 #ifdef __ANDROID__

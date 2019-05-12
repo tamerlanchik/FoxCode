@@ -21,7 +21,6 @@ public:
 	void OnSurfaceCreated() { drawer_.SurfaceCreated(); drawer_.Init();  }
 	void OnSurfaceChanged(int w, int h) {
 		screen_dimensions_ = Point(w, h);
-		//drawer_.SurfaceChanged(w, h);
 	}
 	void Init() {
 		drawer_.Init();
@@ -63,15 +62,12 @@ int main()
 		return 0;
 	drawer.SurfaceCreated();
 	drawer.SurfaceChanged(width, height);
-	view.OnSurfaceChanged(width, height);
-	//view.Init();
-	//view.OnSurfaceCreated();
 	//view.OnSurfaceChanged(width, height);
 
-	glfwSetWindowSizeCallback(window, GLMapView::WindowChangeSizeCallback);
+	/*glfwSetWindowSizeCallback(window, GLMapView::WindowChangeSizeCallback);
 	glfwSetMouseButtonCallback(window, GLMapView::MouseClickCallback);
 	glfwSetCursorPosCallback(window, GLMapView::CursorPositionCallback);
-	glfwSetScrollCallback(window, GLMapView::MouseScrollCallback);
+	glfwSetScrollCallback(window, GLMapView::MouseScrollCallback);*/
 
 	storage = OpenGLStorage::Get();
 

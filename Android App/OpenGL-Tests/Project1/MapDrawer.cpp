@@ -40,8 +40,9 @@ bool MapDrawer::Init() {
 }
 #ifdef __ANDROID__
 void MapDrawer::Init(AAssetManager* asset_manager){
-    EGLContext mEglContext = eglGetCurrentContext();
-    std::cout << "Init()\n";
+	Log::debug(TAG, "Init()");
+	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
+	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
     DataBase* database = new DataBase(asset_manager);
 	storage_->SetDatabase(database);
 	storage_->InflateStorage();

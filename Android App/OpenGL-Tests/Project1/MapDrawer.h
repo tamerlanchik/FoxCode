@@ -6,11 +6,9 @@
 #define FOXMAPNATIVE_1_MAPDRAWER_H
 
 #ifdef __ANDROID__
-    #include <dlfcn.h>
-    #include <jni.h>
     #include <GLES3/gl3.h>
-	#include <EGL/egl.h>
 	#include <android/asset_manager.h>
+#include <EGL/egl.h>
 #else
     #define GLEW_STATIC
     #include <GL/glew.h>

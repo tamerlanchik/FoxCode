@@ -1,6 +1,6 @@
 //
 // Created by Andrey on 06.04.2019.
-//
+#define DEBUG
 #include "Log.h"
 
 void Log::error(const char *tag, const char *message, ...) {

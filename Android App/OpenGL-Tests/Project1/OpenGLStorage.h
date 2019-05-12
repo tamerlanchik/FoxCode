@@ -1,10 +1,10 @@
 #pragma once
 #include "MapItemsStorage.h"
+#include "Point.h"
 #ifdef __ANDROID__
-    #include <dlfcn.h>
     #include <GLES3/gl3.h>
 #else
-#define GLEW_STATIC
+	#define GLEW_STATIC
     #include <GL/glew.h>
 #endif
 #include "glm/glm.hpp"

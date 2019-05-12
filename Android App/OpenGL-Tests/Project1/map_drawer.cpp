@@ -10,7 +10,7 @@
 #include <android/asset_manager_jni.h>
 #include <string>
 
-const char TAG[] = "MapDrawer";
+const char TAG[] = "map_drawer";
 
 
 MapDrawer map_drawer;

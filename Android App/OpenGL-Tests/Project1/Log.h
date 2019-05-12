@@ -6,7 +6,9 @@
 #define FOXMAPNATIVE_1_LOGNATIVE_H
 #ifdef __ANDROID__
 	#include <android/log.h>
-	#include <jni.h>
+	#ifdef NDEBUG
+	#define DEBUG
+	#endif
 #else
 	#include <stdio.h>
 	#include <stdarg.h>

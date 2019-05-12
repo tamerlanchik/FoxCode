@@ -5,7 +5,6 @@
 #ifndef FOXMAPNATIVE_1_MAPITEM_H
 #define FOXMAPNATIVE_1_MAPITEM_H
 #include "Visitor.h"
-#include <string.h>
 #include <vector>
 #include <string>
 #include "Point.h"

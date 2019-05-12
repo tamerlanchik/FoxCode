@@ -2,7 +2,7 @@
 
 char DataBase::filename_[] = "map.txt";
 
-DataBase::DataBase()
+DataBase::DataBase() throw(std::system_error)
 {
 	std::ifstream file(filename_);
 	if (!file.is_open())
@@ -80,13 +80,14 @@ Point DataBase::GetMapDimensions() const {
 	return dimensions_;
 }
 
-bool DataBase::parseFile(std::string& s) {
+bool DataBase::parseFile(std::string& s) throw(std::logic_error){
     std::stringstream f;
     f << s;
 	//------ReadHeader-----
 	f >> dimensions_.x >> dimensions_.y;
 	if (!dimensions_.x || !dimensions_.y) {
-		std::cout << "Cannot get dimensions\n";
+		//std::cout << "Cannot get dimensions\n";
+		throw(std::logic_error("Cannot read dimensions"));
 		return false;
 	}
 
@@ -108,12 +109,10 @@ bool DataBase::parseFile(std::string& s) {
 			data_len = 4;
 		}
 		else {
-			std::cout << "Wrong object";
 			throw std::logic_error("Wrong object type");
 			return false;
 		}
 		f >> size;
-		//std::cout << "\n" << type << "\n";
 		std::vector<float> coords;
 		coords.reserve(data_len * size);
 		for (int i = 0; i < size; i++) {

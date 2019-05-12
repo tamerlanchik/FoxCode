@@ -48,4 +48,5 @@ target_link_libraries(
         map_drawer
         android
         GLESv3
+        EGL
         log)

@@ -43,6 +43,7 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 	Log::debug(TAG, "Init()");
 	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
 	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+
     DataBase* database = new DataBase(asset_manager);
 	storage_->SetDatabase(database);
 	storage_->InflateStorage();
@@ -51,7 +52,7 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 #endif
 void MapDrawer::Render() {
 	#ifdef __ANDROID__
-	Log::debug(TAG, "Render");
+	//Log::debug(TAG, "Render");
 	#endif
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -84,7 +85,7 @@ void MapDrawer::SurfaceChanged(int w, int h) {
     //  Устанавливаем границы обрабатываемой части предоставленной поверхности
     //  Левый верхний (X,Y) и правый нижний (X,Y) углы обьекта
     glViewport(0, 0, w, h);
-    assert(storage_);
+    //assert(storage_);
     storage_->UpdateScreenDimensions(w,h);
     Log::debug(TAG, "SurfaceChanged()");
 }
@@ -108,9 +109,9 @@ void MapDrawer::BindData() {
 	storage_->SetVboSize(storage_->GetBufferSize());
 
 	glBindVertexArray(storage_->GetVaoPassage());
+	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
-	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);	// отвязали VAO
 
 	/*glBindVertexArray(storage_->GetVaoRoom());

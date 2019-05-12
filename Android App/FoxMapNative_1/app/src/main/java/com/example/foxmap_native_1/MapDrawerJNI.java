@@ -18,4 +18,6 @@ public class MapDrawerJNI {
     public static native void drawFrame();
     public static native void onPause();
     public static native void onResume();
+    public static native void commitMapMovement(float dx, float dy);
+    public static native void commitMapZoom(float dz);
 }

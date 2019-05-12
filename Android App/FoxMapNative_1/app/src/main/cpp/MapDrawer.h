@@ -8,6 +8,7 @@
 #ifdef __ANDROID__
     #include <GLES3/gl3.h>
 	#include <android/asset_manager.h>
+#include <EGL/egl.h>
 #else
     #define GLEW_STATIC
     #include <GL/glew.h>

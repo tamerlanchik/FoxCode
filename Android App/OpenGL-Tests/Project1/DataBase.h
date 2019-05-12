@@ -3,15 +3,12 @@
 #include <list>
 #include <vector>
 #include <fstream>
-#include <assert.h>
-#include <iostream>
 #include "Point.h"
 #include <sstream>
+#include <system_error>
+#include <exception>
 #ifdef __ANDROID__
     #include <android/asset_manager.h>
-	#include <dlfcn.h>
-	#include <jni.h>
-	#include <GLES3/gl3.h>
 #endif
 class DataBase
 {
@@ -44,7 +41,7 @@ public:
 	std::vector<PassageParcel> GetPassages();
 	Point GetMapDimensions() const;
 private:
-    bool parseFile(std::string&) throw(std::invalid_argument);
+    bool parseFile(std::string&) throw(std::logic_error);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;

@@ -4,20 +4,14 @@
 
 #ifndef FOXMAPNATIVE_1_MAPITEMSSTORAGE_H
 #define FOXMAPNATIVE_1_MAPITEMSSTORAGE_H
-#define UUID unsigned int
 
-#include "MapItem.h"
 #include <vector>
-#include <iostream>
-#include <iterator>
-#include <algorithm>
+#include "MapItem.h"
 #include "DataBase.h"
 #include "Point.h"
 #include "Log.h"
 #include <system_error>
 using std::vector;
-using std::cerr;
-using std::cout;
 
 class MapItemStorage {
 protected:

@@ -1,0 +1,4 @@
+#Sat Mar 30 15:34:34 MSK 2019
+base.0=C\:\\Users\\Andrey\\YandexDisk\\Documents\\TPark\\CPP\\Project\\Git\\FoxCode\\Android App\\FoxMap-Java_1\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

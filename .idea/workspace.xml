@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="PROJECT" targetName="PROJECT" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7fe6e092-d26b-4531-a162-bdc6207281a9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/PROJECT.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DBMaster.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/CXX.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/PROJECT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/PROJECT.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/.idea/untitled.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/.idea/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/.idea/untitled.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/ZD1.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/ZD1.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/untitled" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/untitled" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/cmake-build-debug/untitled.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/untitled.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD1/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/.idea/ZD2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/.idea/ZD2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/ZD2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/ZD2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/ZD2.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/ZD2.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD2/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/.idea/ZD3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/.idea/ZD3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/ZD3" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/ZD3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/ZD3.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/ZD3.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD3/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/DZ4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/DZ4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/DZ4" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/DZ4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/DZ4.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/DZ4.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/.idea/b.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/.idea/b.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/b.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/DZ4.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/b" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/b" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/b.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/b.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD4_NOheap/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD4_NOheap/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/.idea/ZD5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/.idea/ZD5.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/ZD5.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/ZD3.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD3/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/ZD5" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/ZD5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/ZD5.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/ZD5.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD5/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD5/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/.idea/ZD6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/.idea/ZD6.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/ZD6.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/ZD2.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD2/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/ZD6" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/ZD6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/ZD6.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/ZD6.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD6/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD6/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/.idea/ZD7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/.idea/ZD7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/3.13.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/ZD7.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/ZD1.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/feature_tests.cxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD1/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/ZD7" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/ZD7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/ZD7.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/ZD7.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ALGORITMS/ZD7/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ALGORITMS/Module1/ZD7/main.cpp" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-700">
+              <folding>
+                <element signature="e#1#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1076">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DBMaster.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+              <folding>
+                <element signature="e#13#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/DBMaster.h" />
+        <option value="$PROJECT_DIR$/Server.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/Server.h" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1168" />
+    <option name="y" value="48" />
+    <option name="width" value="1535" />
+    <option name="height" value="1752" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PROJECT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Server c++" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PROJECT" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="PROJECT" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROJECT" TARGET_NAME="PROJECT" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROJECT" RUN_TARGET_NAME="PROJECT">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fe6e092-d26b-4531-a162-bdc6207281a9" name="Default Changelist" comment="" />
+      <created>1557562916178</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557562916178</updated>
+      <workItem from="1557562917627" duration="14194000" />
+      <workItem from="1557743653036" duration="5395000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="19589000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="130" y="-8" width="3070" height="1808" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16800804" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2134412" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37772247" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.2794026" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3298071" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="msend" language="ObjectiveC" />
+        <watch expression="&amp;mas[i]" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>&amp;mas[i]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&amp;aa</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>msend</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file:///usr/include/x86_64-linux-gnu/bits/socket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="22" column="67" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBMaster.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding>
+            <element signature="e#13#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-700">
+          <folding>
+            <element signature="e#1#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1076">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

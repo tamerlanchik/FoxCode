@@ -1,4 +1,5 @@
 #include "OpenGLStorage.h"
+#include <unistd.h>
 
 const char OpenGLStorage::TAG[] = "OpenGLStorage";
 
@@ -46,6 +47,9 @@ void OpenGLStorage::CommitMapMovement(int x, int y) {
 	delta = delta/screen_dimensions_;
 	moving_matrix_ = glm::translate(moving_matrix_, glm::vec3(delta.x, delta.y, 0));
 	updateTransformMatrix();
+	Log::info(TAG, "Go sleep 10 s");
+	sleep(10);
+	Log::info(TAG, "Continue");
 }
 
 void OpenGLStorage::CommitMapZoom(float d_z) {

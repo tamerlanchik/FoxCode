@@ -13,6 +13,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GLMapView extends GLSurfaceView{
     private static final String TAG = "GLMapView";
+    private Renderer mRenderer;
 
     public GLMapView(Context context) {
         super(context);
@@ -27,7 +28,8 @@ public class GLMapView extends GLSurfaceView{
         // "glDrawArrays is called with VERTEX_ARRAY client state disabled!"
         // Thanks to Chineese friends of ours!
         setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
-        setRenderer(new Renderer());
+        mRenderer = new Renderer();
+        setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
         this.setOnTouchListener(new TouchListener());
     }
@@ -40,6 +42,7 @@ public class GLMapView extends GLSurfaceView{
             Log.d(TAG, "onSurfaceCreated()");
             MapDrawerJNI.init(getContext().getAssets());
             MapDrawerJNI.surfaceCreated();
+
         }
 
         @Override
@@ -53,6 +56,10 @@ public class GLMapView extends GLSurfaceView{
         //Вызывается по готовности Surface отобразить новый кадр
         public void onDrawFrame(GL10 gl) {
             MapDrawerJNI.drawFrame();
+        }
+
+        public void load() {
+            MapDrawerJNI.load();
         }
     };
 
@@ -94,8 +101,14 @@ public class GLMapView extends GLSurfaceView{
                 case MotionEvent.ACTION_MOVE:
                     if(pointerCount == 1){
                         if(mIsDragging){
+                            final PointF cX = new PointF(event.getX(), event.getY());
+                            queueEvent(new Runnable() {
+                                @Override
+                                public void run() {
 
-                            MapDrawerJNI.commitMapMovement(event.getX()-mPrevA.x, event.getY() - mPrevA.y);
+                            MapDrawerJNI.commitMapMovement(cX.x-mPrevA.x, cX.y - mPrevA.y);
+                                }
+                            });
                         }
                         mPrevA.set(event.getX(), event.getY());
                     }else{

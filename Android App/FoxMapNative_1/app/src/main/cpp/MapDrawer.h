@@ -24,6 +24,7 @@
 class MapDrawer : public Visitor{
 public:
     MapDrawer();
+    void Load();
     bool Init();
 
 #ifdef __ANDROID__
@@ -36,6 +37,9 @@ public:
 private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
+#ifdef __ANDROID__
+	AAssetManager* asset_manager_;
+#endif
 
     void BindData();
 
@@ -52,6 +56,7 @@ private:
     void visit(const Steps& r) override{
 
     }
+
 
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];

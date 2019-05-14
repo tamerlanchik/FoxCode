@@ -3,7 +3,7 @@
 //
 
 #include "MapDrawer.h"
-
+#include <unistd.h>
 
 const char MapDrawer::TAG[] = "MapDrawer";
 const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
@@ -18,6 +18,9 @@ bool MapDrawer::Init() {
     Log::debug(TAG, "Init()");
 	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
 	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+	Log::info(TAG, "Go sleep 10 s");
+	sleep(10);
+	Log::info(TAG, "Continue");
 
 	try {
 		DataBase* database;
@@ -44,12 +47,36 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
 	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
 
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+
+
     DataBase* database = new DataBase(asset_manager);
 	storage_->SetDatabase(database);
 	storage_->InflateStorage();
 	program1_ = ShaderProgram(asset_manager, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+
 }
 #endif
+
+void MapDrawer::Load() {
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+    //assert(mEglContext);
+
+    Log::info(TAG, "Go sleep 10 s");
+    //sleep(10);
+    Log::info(TAG, "Continue");
+
+    DataBase* database = new DataBase(asset_manager_);
+    storage_->SetDatabase(database);
+    storage_->InflateStorage();
+    program1_ = ShaderProgram(asset_manager_, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+}
 void MapDrawer::Render() {
 	#ifdef __ANDROID__
 	//Log::debug(TAG, "Render");
@@ -62,7 +89,10 @@ void MapDrawer::Render() {
 
 	drawPassages();
 	drawRooms();
-
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
 	glBindVertexArray(0);
 }
 

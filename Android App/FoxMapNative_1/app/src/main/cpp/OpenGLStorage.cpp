@@ -47,13 +47,9 @@ void OpenGLStorage::CommitMapMovement(int x, int y) {
 	delta = delta/screen_dimensions_;
 	moving_matrix_ = glm::translate(moving_matrix_, glm::vec3(delta.x, delta.y, 0));
 	updateTransformMatrix();
-	Log::info(TAG, "Go sleep 10 s");
-	sleep(10);
-	Log::info(TAG, "Continue");
 }
 
 void OpenGLStorage::CommitMapZoom(float d_z) {
-	Log::debug(TAG, "Commit zoom");
 	scaling_matrix_ = glm::scale(scaling_matrix_, glm::vec3(d_z, d_z, 1));
 	updateTransformMatrix();
 }

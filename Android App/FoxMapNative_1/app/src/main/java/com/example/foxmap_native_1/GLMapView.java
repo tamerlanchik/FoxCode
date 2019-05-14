@@ -5,7 +5,9 @@ import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -31,7 +33,7 @@ public class GLMapView extends GLSurfaceView{
         mRenderer = new Renderer();
         setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
-        this.setOnTouchListener(new TouchListener());
+        this.setOnTouchListener(new TouchListener(getContext()));
     }
 
     class Renderer implements GLSurfaceView.Renderer{
@@ -64,87 +66,35 @@ public class GLMapView extends GLSurfaceView{
     };
 
     class TouchListener implements OnTouchListener{
-        private PointF mPrevA = new PointF(0,0);
-        private PointF mPrevB = new PointF(0,0);
-        private float mPrevDist = 0;
+        private PointF mPrev = new PointF(0,0);
         private boolean mIsDragging = false;
-        private PointF mScreenDimensions = new PointF(0,0);
+        private ScaleGestureDetector mScaleDetector;
+        private GestureDetector mPanDetector;
+
+        public TouchListener(Context context) {
+            mScaleDetector = new ScaleGestureDetector(context, new ScaleGestureDetector.SimpleOnScaleGestureListener(){
+
+                @Override
+                public boolean onScale(ScaleGestureDetector detector) {
+                    MapDrawerJNI.commitMapZoom(detector.getScaleFactor());
+                    return true;
+                }
+            });
+
+            mPanDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    MapDrawerJNI.commitMapMovement(-distanceX, -distanceY);
+                    return true;
+                }
+            });
+        }
+
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-
-            int actionMask = event.getActionMasked();
-            int pointerIndex = event.getActionIndex();
-            int pointerCount = event.getPointerCount();
-            /*Log.d(TAG, "onTouch: action=" + Integer.toString(actionMask)
-                + " pointerIndex=" + Integer.toString(pointerIndex) + " pointerCount=" + Integer.toString(pointerCount));
-            */
-            if(pointerCount > 2)
-                return false;
-            switch (actionMask){
-                case MotionEvent.ACTION_DOWN:   // первое касание
-                    mIsDragging = true;
-                    mPrevA.set(event.getX(), event.getY());
-                    mScreenDimensions.set(getWidth(), getHeight());
-                    Log.d(TAG, "Start moving");
-                    break;
-
-                case MotionEvent.ACTION_POINTER_DOWN:   // второе и последующие касания
-                    mIsDragging = false;
-                    if(pointerIndex == 1){
-                        Log.d(TAG, "Start scaling");
-                    }else{
-                        Log.d(TAG, "Pause scaling: too many tips: "+ Integer.toString(pointerCount));
-                    }
-                    mPrevB.set(event.getX(), event.getY());
-                    mPrevDist = mPrevB.length(mPrevA.x, mPrevA.y);
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    if(pointerCount == 1){
-                        if(mIsDragging){
-                            final PointF cX = new PointF(event.getX(), event.getY());
-                            queueEvent(new Runnable() {
-                                @Override
-                                public void run() {
-
-                            MapDrawerJNI.commitMapMovement(cX.x-mPrevA.x, cX.y - mPrevA.y);
-                                }
-                            });
-                        }
-                        mPrevA.set(event.getX(), event.getY());
-                    }else{
-                        float newL = mPrevDist;
-                        float ds = 1;
-                        switch(pointerIndex){
-                            case 0:
-                                newL = mPrevB.length(event.getX(), event.getY());
-                                ds = 1 + (newL - mPrevDist)/mScreenDimensions.y;
-                                mPrevA.set(event.getX(), event.getY());
-                                break;
-                            case 1:
-                                newL = mPrevB.length(event.getX(), event.getY());
-                                ds = 1 + (newL - mPrevDist)/mScreenDimensions.y;
-                                mPrevA.set(event.getX(), event.getY());
-                                break;
-                        }
-                        MapDrawerJNI.commitMapZoom(ds*1);
-                        mPrevDist = newL;
-                    }
-                    requestRender();
-                    break;
-                case MotionEvent.ACTION_POINTER_UP:     //отпускаем второй и последующий палец
-                    if(pointerIndex == 1){
-                        Log.d(TAG, "Stop scaling");
-                        //return false;
-                    }else{
-                        Log.d(TAG, "Continue scaling: " + Integer.toString(pointerCount-1));
-                    }
-                    break;
-                case MotionEvent.ACTION_UP:     //отпускаем последний палец
-                case MotionEvent.ACTION_CANCEL:
-                    mIsDragging = false;
-                    Log.d(TAG, "Stop moving");
-                    break;
-            }
+            mScaleDetector.onTouchEvent(event);
+            mPanDetector.onTouchEvent(event);
+            requestRender();
             return true;
         }
 

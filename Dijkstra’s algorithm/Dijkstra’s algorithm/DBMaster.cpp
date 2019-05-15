@@ -13,10 +13,6 @@ DBMaster::DBMaster(std::string folder, std::string dbname, std::string* SQLQuery
 		ReadRoomsSQLQuery = SQLQuery[1];
 	else
 		ReadRoomsSQLQuery = "";
-	if (SQLQuery + 2 != nullptr)
-		ReadLift = SQLQuery[2];
-	else
-		ReadLift = "";
 }
 
 DBMaster::DBMaster(std::string connectionString, std::string* SQLQuery) {
@@ -29,10 +25,6 @@ DBMaster::DBMaster(std::string connectionString, std::string* SQLQuery) {
 		ReadRoomsSQLQuery = SQLQuery[1];
 	else
 		ReadRoomsSQLQuery = "";
-	if (SQLQuery + 2 != nullptr)
-		ReadLift = SQLQuery[2];
-	else
-		ReadLift = "";
 }
 
 DBMaster::DBMaster(std::string connectionString) {
@@ -60,7 +52,8 @@ int CallbackHall(void *data, int argc, char **argv, char **azColName) {
 	return 0;
 }
 
-int DBMaster::CallbackRoom(void *data, int argc, char **argv, char **azColName) {
+int CallbackRoom(void *data, int argc, char **argv, char **azColName) {
+	std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
 	Room TempRoom;
 	TempRoom.ID = atoi(argv[0]);
 	TempRoom.LeftTop.x = atoi(argv[1]);
@@ -71,26 +64,28 @@ int DBMaster::CallbackRoom(void *data, int argc, char **argv, char **azColName) 
 	TempRoom.RightBottom.z = atoi(argv[5]);
 	TempRoom.Status = atoi(argv[6]);
 	TempRoom.Type = std::string(argv[6]);
-	Rooms.push_back(TempRoom);
+	Rooms->push_back(TempRoom);
 	return 0;
 }
 
-int DBMaster::CallbackDoor(void *data, int argc, char **argv, char **azColName) {
+int CallbackDoor(void *data, int argc, char **argv, char **azColName) {
 	//ID, X, Y, Z, Weight
+	std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
 	Coordinate TempCoordinate;
 	TempCoordinate.x = atoi(argv[1]);
 	TempCoordinate.y = atoi(argv[2]);
 	TempCoordinate.z = atoi(argv[3]);
 	//«апись ширины дверного проЄма в вектор 
-	Rooms[atoi(argv[0])].Wight.push_back(atoi(argv[4]));
-	Rooms[atoi(argv[0])].Input.push_back(TempCoordinate);
+	Rooms[0][atoi(argv[0])].Wight.push_back(atoi(argv[4]));
+	Rooms[0][atoi(argv[0])].Input.push_back(TempCoordinate);
 	return 0;
 }
 
-int DBMaster::CallbackRoomHall(void *data, int argc, char **argv, char **azColName) {
+int CallbackRoomHall(void *data, int argc, char **argv, char **azColName) {
 	//RoomID, HallId
+	std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
 	//«апись Id коридоров, в которых наход€тс€ аудитории
-	Rooms[atoi(argv[0])].HallID.push_back(atoi(argv[1]));
+	Rooms[0][atoi(argv[0])].HallID.push_back(atoi(argv[1]));
 	return 0;
 }
 
@@ -99,7 +94,7 @@ int DBMaster::ReadHalls() {
 	char *err = 0;
 	Hall *DataHall = nullptr;
 	// открываем соединение
-	if (sqlite3_open("MapDB.db", &MapDB))
+	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
 	// выполн€ем _SQLquery
 	if (sqlite3_exec(MapDB, ReadHallsSQLQuery.c_str(), CallbackHall, (void*)&Halls, &err)) {
@@ -118,7 +113,7 @@ int DBMaster::ReadRooms() {
 	// открываем соединение
 	if (sqlite3_open("MapDB.db", &MapDB))
 		return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
-	if (sqlite3_exec(MapDB, ReadRoomsSQLQuery.c_str(), &DBMaster::CallbackRoom, (void*)data, &err)) {
+	if (sqlite3_exec(MapDB, ReadRoomsSQLQuery.c_str(), CallbackRoom, (void*)&Rooms, &err)) {
 		return -1; //??????????????????
 		sqlite3_free(err);
 	}
@@ -130,13 +125,13 @@ int DBMaster::ReadRooms() {
 		SQLQuery += std::string(1, CurrentId);
 		SQLQuery += "= RoomAndDoor.Room and RoomAndDoor.Door =";
 		SQLQuery += std::string(1, CurrentId);
-		if (sqlite3_exec(MapDB, SQLQuery.c_str(), &DBMaster::CallbackDoor, (void*)data, &err)) {
+		if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackDoor, (void*)data, &err)) {
 			return -1;
 			sqlite3_free(err);
 		}
 		SQLQuery = "select Room.Id, HallAndRoom.Hall from room, hallandroom where hallandroom.Room= ";
 		SQLQuery += std::string(1, CurrentId);
-		if (sqlite3_exec(MapDB, SQLQuery.c_str(), &DBMaster::CallbackRoomHall, (void*)data, &err)) {
+		if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackRoomHall, (void*)data, &err)) {
 			return -1;
 			sqlite3_free(err);
 		}

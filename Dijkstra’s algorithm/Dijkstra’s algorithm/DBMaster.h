@@ -16,16 +16,10 @@ public:
 	const std::vector<Hall> GetHalls();
 	const std::vector<Room> GetRooms();
 private:
-	//int CallbackHall(void *data, int argc, char **argv, char **azColName);
-	int CallbackRoom(void *data, int argc, char **argv, char **azColName);
-	int CallbackDoor(void *data, int argc, char **argv, char **azColName);
-	int CallbackRoomHall(void *data, int argc, char **argv, char **azColName);
 	std::vector<Hall> Halls;
 	std::vector<Room> Rooms;
-
 	std::string ConnectionString;
 	std::string ReadHallsSQLQuery;
 	std::string ReadRoomsSQLQuery;
-	std::string ReadLift;
 };
 

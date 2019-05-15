@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Проверяем поддержку необходимой версии OpenGL ES (2)
-        if( !supportES2() ){
+        if( !supportES3() ){
             Toast.makeText(getApplicationContext(),
                     getResources().getString(R.string.toast_no_opengl_support),
                     Toast.LENGTH_LONG)
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mMapView = findViewById(R.id.map_view);
+        //mMapView = new GLMapView(getApplicationContext());
         mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
 
@@ -300,11 +301,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Проверка подержки смартфоном версии OpenGL ES не меньше 2
-    private boolean supportES2() {
+    private boolean supportES3() {
         ActivityManager activityManager =
                 (ActivityManager) getSystemService(getApplicationContext().ACTIVITY_SERVICE);
         ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-        return (configurationInfo.reqGlEsVersion >= 0x20000);
+        return (configurationInfo.reqGlEsVersion >= 0x30000);
     }
 
     public void onButtonClicked() {

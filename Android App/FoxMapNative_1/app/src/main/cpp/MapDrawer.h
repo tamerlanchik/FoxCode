@@ -1,43 +1,67 @@
 //
 // Created by Andrey on 06.04.2019.
 //
-
+#pragma once
 #ifndef FOXMAPNATIVE_1_MAPDRAWER_H
 #define FOXMAPNATIVE_1_MAPDRAWER_H
 
-#include <jni.h>
-#include <cstdlib>
-#include <android/log.h>
-#include <android/asset_manager_jni.h>
-#include <string>
-#include <GLES2/gl2.h>
+#ifdef __ANDROID__
+    #include <GLES3/gl3.h>
+	#include <android/asset_manager.h>
+#include <EGL/egl.h>
+#else
+    #define GLEW_STATIC
+    #include <GL/glew.h>
+#endif
+#include "Visitor.h"
+#include "OpenGLStorage.h"
+#include "ShaderProgram.h"
+#include "Log.h"
+#include <assert.h>
+#include "DataBase.h"
 
 
-
-class MapDrawer{
+class MapDrawer : public Visitor{
 public:
-    MapDrawer() {};
-    void Init( AAssetManager* );
+    MapDrawer();
+    void Load();
+    bool Init();
+
+#ifdef __ANDROID__
+    void Init(AAssetManager*);
+#endif
+
     void Render();
     void SurfaceChanged(int w, int h);
     void SurfaceCreated();
 private:
-    std::string triangle_vert_sh_src_;
-    std::string triangle_frag_sh_src_;
-    GLuint u_color_location_;
-    GLuint a_position_location_;
-    GLuint triangle_program_id;
-    //  Координаты поля OpenGL — от -1 до 1
-    const GLfloat vertex_data_ [6]= {-0.5, -0.2, 0.0, 0.2, 0.5, -0.2};
+	ShaderProgram program1_;
+	OpenGLStorage* storage_;
+#ifdef __ANDROID__
+	AAssetManager* asset_manager_;
+#endif
 
     void BindData();
+
+	void drawPassages();
+
+	void drawRooms();
+
+    void visit(const Room& r) override {
+
+    }
+    void visit(const Passage& r) override{
+
+    }
+    void visit(const Steps& r) override{
+
+    }
+
 
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];
     static const char triangle_fragment_shader_name_[];
 };
-const char MapDrawer::TAG[] = "MapDrawer";
-const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
-const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";
+
 
 #endif //FOXMAPNATIVE_1_MAPDRAWER_H

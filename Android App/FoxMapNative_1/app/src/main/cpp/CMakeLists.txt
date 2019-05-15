@@ -10,40 +10,20 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-add_library( # Sets the name of the library.
-        native-lib
-
-        # Sets the library as a shared library.
-        SHARED
-
-        # Provides a relative path to your source file(s).
-        native-lib.cpp)
-
-add_library(
-        map_guide
-        SHARED
-        map_guide.cpp
-)
 
 add_library(
         map_drawer
         SHARED
         map_drawer.cpp
-)
-add_library(
-        Log
-        SHARED
         Log.cpp
-)
-add_library(
-        MapDrawer
-        SHARED
         MapDrawer.cpp
-)
-add_library(
-        ShaderMaster
-        SHARED
         ShaderMaster.cpp
+        OpenGLStorage.cpp
+        MapItemsStorage.cpp
+        ShaderProgram.cpp
+        DataBase.cpp
+        MapItem.cpp
+        Point.cpp
 )
 
 
@@ -64,35 +44,9 @@ find_library( # Sets the name of the path variable.
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
-target_link_libraries( # Specifies the target library.
-        native-lib
-        # Links the target library to the log library
-        # included in the NDK.
-        android
-        log
-        ${log-lib})
 target_link_libraries(
         map_drawer
-        Log
         android
-        MapDrawer
+        GLESv3
+        EGL
         log)
-target_link_libraries(
-        Log
-        android
-        log
-)
-target_link_libraries(
-        MapDrawer
-        ShaderMaster
-        android
-        Log
-        GLESv2
-)
-
-target_link_libraries(
-        ShaderMaster
-        android
-        Log
-        GLESv2
-)

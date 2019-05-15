@@ -8,8 +8,8 @@
 
 int main(){
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
-	dbMaster.ReadHalls();
-	std::vector<Hall> Halls = dbMaster.GetHalls();
+	dbMaster.ReadAllData();
+	std::vector<Room> Halls = dbMaster.GetRooms();
 	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
     std::cout << Halls.size(); 
 }

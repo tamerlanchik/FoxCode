@@ -6,15 +6,15 @@
 #include <cstdlib>
 #include "Log.h"
 #include "MapDrawer.h"
+#include "OpenGLStorage.h"
 #include <android/log.h>
 #include <android/asset_manager_jni.h>
 #include <string>
 
-const char TAG[] = "MapDrawer";
+const char TAG[] = "map_drawer";
 
 
 MapDrawer map_drawer;
-
 
 extern "C" {
 JNIEXPORT void JNICALL
@@ -24,6 +24,12 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_init(
 
     AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
     map_drawer.Init(native_asset_manager);
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_foxmap_1native_11_MapDrawerJNI_load(JNIEnv *env, jclass type){
+    Log::debug(TAG, "load()");
+    map_drawer.Load();
 }
 
 JNIEXPORT void JNICALL
@@ -51,4 +57,17 @@ JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_onPause(JNIEnv *env, jclass type){
     Log::debug(TAG, "onPause()");
 }
+
+JNIEXPORT void JNICALL
+Java_com_example_foxmap_1native_11_MapDrawerJNI_commitMapMovement(JNIEnv *env, jclass type,
+        jfloat dx, jfloat dy){
+    OpenGLStorage::Get()->CommitMapMovement(dx, dy);
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_foxmap_1native_11_MapDrawerJNI_commitMapZoom(JNIEnv *env, jclass type,
+                                                                  jfloat dz){
+    OpenGLStorage::Get()->CommitMapZoom(dz);
+}
+
 }

@@ -3,79 +3,157 @@
 //
 
 #include "MapDrawer.h"
-#include "ShaderMaster.h"
-#include "Log.h"
-#include <dlfcn.h>
-#include <jni.h>
-#include <GLES2/gl2.h>
-#include <assert.h>
+#include <unistd.h>
+
+const char MapDrawer::TAG[] = "MapDrawer";
+const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
+const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
-
-void MapDrawer::Init(AAssetManager* asset_manager) {
-    Log::debug(TAG, "Init()");
-    assert(asset_manager);
-
-    //  Получаем вершинный шейдер
-    this->triangle_vert_sh_src_ = ShaderMaster::GetShaderRaw(
-            asset_manager, triangle_vertex_shader_name_);
-    assert(this->triangle_vert_sh_src_.size() > 0);
-
-    //  Получаем фрагментный шейдер
-    this->triangle_frag_sh_src_ = ShaderMaster::GetShaderRaw(
-            asset_manager, triangle_fragment_shader_name_);
-    assert(this->triangle_frag_sh_src_.size() > 0);
+MapDrawer::MapDrawer() {
+	storage_ = OpenGLStorage::Get();
 }
 
-void MapDrawer::Render() {
-    Log::debug(TAG, "Render()");
-    glClear(GL_COLOR_BUFFER_BIT);
-    //glUseProgram(triangle_program_id);
+bool MapDrawer::Init() {
+    Log::debug(TAG, "Init()");
+	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
+	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+	Log::info(TAG, "Go sleep 10 s");
+	sleep(10);
+	Log::info(TAG, "Continue");
 
-    //  рисуем TRIANLGE, значения берём с 0 индекса для 3 вершин
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-    Log::debug(TAG, "Render() - 1");
+	try {
+		DataBase* database;
+		database = new DataBase();
+		if (!storage_)
+			throw std::runtime_error("Null pointer to storage");
+		storage_->SetDatabase(database);
+		storage_->InflateStorage();
+		program1_ = ShaderProgram(triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+	}
+	catch (const std::exception& e) {
+		Log::error(TAG, e.what());
+		return 0;
+	}
+	catch (...) {
+		Log::error(TAG, "Unknown error");
+		return 0;
+	}
+	return true;
+}
+#ifdef __ANDROID__
+void MapDrawer::Init(AAssetManager* asset_manager){
+	Log::debug(TAG, "Init()");
+	Log::info("OpenGL Version", (const char*)glGetString(GL_VERSION));
+	Log::info("GLSL Version", (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+
+
+    DataBase* database = new DataBase(asset_manager);
+	storage_->SetDatabase(database);
+	storage_->InflateStorage();
+	program1_ = ShaderProgram(asset_manager, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+
+}
+#endif
+
+void MapDrawer::Load() {
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+    //assert(mEglContext);
+
+    Log::info(TAG, "Go sleep 10 s");
+    //sleep(10);
+    Log::info(TAG, "Continue");
+
+    DataBase* database = new DataBase(asset_manager_);
+    storage_->SetDatabase(database);
+    storage_->InflateStorage();
+    program1_ = ShaderProgram(asset_manager_, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
+}
+void MapDrawer::Render() {
+	#ifdef __ANDROID__
+	//Log::debug(TAG, "Render");
+	#endif
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glBindVertexArray(storage_->GetVaoPassage());
+	program1_.SetVertexColor(0, 0, 1);
+	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
+
+	drawPassages();
+	drawRooms();
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+	glBindVertexArray(0);
+}
+
+void MapDrawer::drawPassages() {
+	glLineWidth(3);
+	glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize() / 2);
+}
+
+void MapDrawer::drawRooms() {
+	glLineWidth(1);
+	program1_.SetVertexColor(0, 0, 0);
+	for (int i = storage_->GetPassagesBufSize() / 2;
+		i < storage_->GetBufferSize(); i += 4) {
+
+		glDrawArrays(GL_LINE_LOOP, i, 4);
+	}
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {
     //  Устанавливаем границы обрабатываемой части предоставленной поверхности
     //  Левый верхний (X,Y) и правый нижний (X,Y) углы обьекта
     glViewport(0, 0, w, h);
+    //assert(storage_);
+    storage_->UpdateScreenDimensions(w,h);
     Log::debug(TAG, "SurfaceChanged()");
 }
 
 void MapDrawer::SurfaceCreated() {
-    Log::debug(TAG, "Start SurfaceCreated()");
-    glClearColor(0.698f, 0.843f, 0.784f, 1.f);
-    GLuint program_id = ShaderMaster::CreateProgram(
-            this->triangle_vert_sh_src_, this->triangle_frag_sh_src_);
-    assert(program_id != 0);
-
-    glUseProgram(program_id);
-
-    this->triangle_program_id = program_id;
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
+    Log::debug(TAG, "SurfaceCreated()");
+    //glClearColor(0.698f, 0.843f, 0.784f, 1.f);
+	glClearColor(1, 1, 1, 1.f);
+	Log::info(TAG, "Cleared color");
+	program1_.Generate();               // после перезапуска ошибка в glCompileShader() для второго
+	Log::info(TAG, "Generated program");
+	program1_.Use();
+	Log::info(TAG, "Using program");
     this->BindData();
-
-    Log::debug(TAG, "End SurfaceCreated()");
 }
 
 void MapDrawer::BindData() {
-    int u_color_location = glGetUniformLocation(this->triangle_program_id, "u_Color");
-    assert(u_color_location != -1);
-    //  Передаём в u_color_location синий цвет (0, 0, 1: 1)
-    glUniform4f(u_color_location, 0.0f, 0.0f, 1.0f, 1.0f);
-    u_color_location_ = (GLuint) u_color_location;  // signed to unsigned int
+	glBindBuffer(GL_ARRAY_BUFFER, storage_->GetVbo());
+	float* buf = storage_->GetObjects();
+	//float* buf = storage_->GetPassages();
+	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
+				buf, GL_STATIC_DRAW);	// загрузили данные в буфер
+	buf = nullptr;
+	storage_->SetVboSize(storage_->GetBufferSize());
 
-    int a_position_location = glGetAttribLocation(this->triangle_program_id, "a_Position");
-    assert(a_position_location != -1);
-    a_position_location_ = (GLuint) a_position_location;
+	glBindVertexArray(storage_->GetVaoPassage());
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
+	glBindVertexArray(0);	// отвязали VAO
 
-    //  заполняем шейдер вершин значениями трёх заданных вершин треугольника
-    //  у нас есть по 2 координаты на вершину. Шейдер требует 4.
-    //  Поэтому передаём кол-во значений=2,
-    //  при этом шейдер дозаполнится значениями по умолчанию: {x, y, 0, 1}
-    //  0 - количество [передаваемых атрибутов в массиве] минус один
-    //  vertex_data_ - указатель на массив координат
-    glVertexAttribPointer(a_position_location_, 2, GL_FLOAT, GL_FALSE, 0, vertex_data_);
-    glEnableVertexAttribArray(a_position_location_);
+	/*glBindVertexArray(storage_->GetVaoRoom());
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+		2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+	glBindVertexArray(0);	// отвязали VAO*/
 }

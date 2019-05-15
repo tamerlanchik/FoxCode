@@ -13,9 +13,12 @@ public class MapDrawerJNI {
     }
 
     public static native void init(AssetManager assetsManager);
+    public static native void load();
     public static native void surfaceCreated();
     public static native void surfaceChanged(int width, int height);
     public static native void drawFrame();
     public static native void onPause();
     public static native void onResume();
+    public static native void commitMapMovement(float dx, float dy);
+    public static native void commitMapZoom(float dz);
 }

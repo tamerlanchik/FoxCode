@@ -1,0 +1,52 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/DBMaster.h
+iostream
+-
+string
+-
+vector
+-
+
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.h
+DBMaster.h
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/DBMaster.h
+vector
+-
+cstdlib
+-
+cstdio
+-
+sys/socket.h
+-
+netinet/in.h
+-
+cstring
+-
+zconf.h
+-
+
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/main.cpp
+vector
+-
+cstdlib
+-
+cstdio
+-
+sys/socket.h
+-
+netinet/in.h
+-
+cstring
+-
+zconf.h
+-
+Server.h
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.h
+

@@ -1,0 +1,3 @@
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles/PROJECT.dir
+/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles/edit_cache.dir

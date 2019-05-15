@@ -1,15 +1,21 @@
 package com.example.foxmap_native_1;
 
 import android.content.Context;
+import android.graphics.PointF;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.View;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class GLMapView extends GLSurfaceView {
+public class GLMapView extends GLSurfaceView{
     private static final String TAG = "GLMapView";
+    private Renderer mRenderer;
 
     public GLMapView(Context context) {
         super(context);
@@ -19,47 +25,80 @@ public class GLMapView extends GLSurfaceView {
         super(context, attrs);
     }
 
-
     public void init(){
-        setEGLContextClientVersion(2);     //На данный момент актуальна 3 версия (?)
-        setRenderer(new GLSurfaceView.Renderer() {
-            @Override
-            //Вызывается при создании/пересоздании Surface
-            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                //Устанавливаем параметры OpenGL
-                Log.d(TAG, "onSurfaceCreated()");
-                MapDrawerJNI.surfaceCreated();
-            }
-
-            @Override
-            //Вызывается при смене размера Surface (в т.ч. при создании и при смене ориентации экрана)
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-                Log.d(TAG, "onSurfaceChanged");
-                MapDrawerJNI.surfaceChanged(width, height);
-            }
-
-            @Override
-            //Вызывается по готовности Surface отобразить новый кадр
-            public void onDrawFrame(GL10 gl) {
-                MapDrawerJNI.drawFrame();
-            }
-        });
+        // Если не вызвать функцию ниже, будет ошибка
+        // "glDrawArrays is called with VERTEX_ARRAY client state disabled!"
+        // Thanks to Chineese friends of ours!
+        setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
+        mRenderer = new Renderer();
+        setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
+        this.setOnTouchListener(new TouchListener(getContext()));
+    }
 
-        //Переданный Runnable будет запущен в GL-потоке
-        //так как нативная основа MapDriverJNI работает в нём.
-        //  Стандартный способ общения с Renderer-ом
-        //Инициализируем рисовальщика
-        queueEvent(new Runnable() {
-            @Override
-            public void run() {
-                // assets - файлы ресурсов в папке res/assets/
-                // AssetManager предоставляет к ним доступ
-                // К остальным ресурсам из нативного кода обратиться сложно (нельзя?)
-                // Используем для загрузки файлов шейдеров
-                MapDrawerJNI.init(getContext().getAssets());
-            }
-        });
+    class Renderer implements GLSurfaceView.Renderer{
+        @Override
+        //Вызывается при создании/пересоздании Surface
+        public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            //Устанавливаем параметры OpenGL
+            Log.d(TAG, "onSurfaceCreated()");
+            MapDrawerJNI.init(getContext().getAssets());
+            MapDrawerJNI.surfaceCreated();
+
+        }
+
+        @Override
+        //Вызывается при смене размера Surface (в т.ч. при создании и при смене ориентации экрана)
+        public void onSurfaceChanged(GL10 gl, int width, int height) {
+            Log.d(TAG, "onSurfaceChanged");
+            MapDrawerJNI.surfaceChanged(width, height);
+            requestRender();
+        }
+
+        @Override
+        //Вызывается по готовности Surface отобразить новый кадр
+        public void onDrawFrame(GL10 gl) {
+            MapDrawerJNI.drawFrame();
+        }
+
+        public void load() {
+            MapDrawerJNI.load();
+        }
+    };
+
+    class TouchListener implements OnTouchListener{
+        private PointF mPrev = new PointF(0,0);
+        private boolean mIsDragging = false;
+        private ScaleGestureDetector mScaleDetector;
+        private GestureDetector mPanDetector;
+
+        public TouchListener(Context context) {
+            mScaleDetector = new ScaleGestureDetector(context, new ScaleGestureDetector.SimpleOnScaleGestureListener(){
+
+                @Override
+                public boolean onScale(ScaleGestureDetector detector) {
+                    MapDrawerJNI.commitMapZoom(detector.getScaleFactor());
+                    return true;
+                }
+            });
+
+            mPanDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    MapDrawerJNI.commitMapMovement(-distanceX, -distanceY);
+                    return true;
+                }
+            });
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            mScaleDetector.onTouchEvent(event);
+            mPanDetector.onTouchEvent(event);
+            requestRender();
+            return true;
+        }
+
     }
 
     // Is called by Activity

@@ -69,10 +69,44 @@ public class client {
                 Vector<Room> rooms = new Vector<Room>();
 
                 for (int i = 0; i < hallsSize; i++) {
-                   halls.add(new Hall());
+                    int id=br.read();
+                    Coordinate lefttop= new Coordinate(br.read(),br.read(),br.read());
+                    Coordinate rightbottom= new Coordinate(br.read(),br.read(),br.read());
+                    String st=br.readLine();
+                    boolean status;
+                    status= st.equals("true");
+                    halls.add(new Hall(id,lefttop,rightbottom,status));
                 }
                 for (int i = 0; i < roomsSize; i++) {
-                  rooms.add(new Room());
+                    int id=br.read();
+                    Coordinate lefttop= new Coordinate(br.read(),br.read(),br.read());
+                    Coordinate rightbottom= new Coordinate(br.read(),br.read(),br.read());
+                    String st=br.readLine();
+                    boolean status;
+                    status= st.equals("true");
+
+                    String type=br.readLine();
+
+                    int vecsizeHallID=br.read();
+                    Vector<Integer> vecHallid = new Vector<>();
+                    for(int j=0;j<vecsizeHallID;j++){
+                        vecHallid.add(br.read());
+                    }
+
+                    int vecsizeWight=br.read();
+                    Vector<Integer> vecWight = new Vector<>();
+                    for(int j=0;j<vecsizeWight;j++){
+                        vecWight.add(br.read());
+                    }
+
+                    int vecsizeInput=br.read();
+                    Vector<Coordinate> vecInput = new Vector<>();
+                    for(int j=0;j<vecsizeInput;j++){
+                        Coordinate cor=new Coordinate(br.read(),br.read(),br.read());
+                        vecInput.add(cor);
+                    }
+
+                  rooms.add(new Room(id,lefttop,rightbottom,status,vecInput,vecWight,vecHallid,type));
                 }
 
                 sock.close();

@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
     if (server.currentBDversion == server.BDversion) {
 
-        write(s1, "NO UPDATES", 10);
+        write(s1,"NO UPDATES", 10);
         printf("NO UPDATES");
     }
     else {
@@ -31,3 +31,4 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+

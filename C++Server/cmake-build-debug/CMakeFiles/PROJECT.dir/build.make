@@ -43,10 +43,10 @@ RM = /snap/clion/70/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/nasty/CLionProjects/TECHNO/Server c++"
+CMAKE_SOURCE_DIR = "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug"
+CMAKE_BINARY_DIR = "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PROJECT.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/PROJECT.dir/flags.make
 
 CMakeFiles/PROJECT.dir/main.cpp.o: CMakeFiles/PROJECT.dir/flags.make
 CMakeFiles/PROJECT.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PROJECT.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROJECT.dir/main.cpp.o -c "/home/nasty/CLionProjects/TECHNO/Server c++/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PROJECT.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROJECT.dir/main.cpp.o -c "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/main.cpp"
 
 CMakeFiles/PROJECT.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nasty/CLionProjects/TECHNO/Server c++/main.cpp" > CMakeFiles/PROJECT.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/main.cpp" > CMakeFiles/PROJECT.dir/main.cpp.i
 
 CMakeFiles/PROJECT.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nasty/CLionProjects/TECHNO/Server c++/main.cpp" -o CMakeFiles/PROJECT.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/main.cpp" -o CMakeFiles/PROJECT.dir/main.cpp.s
 
 CMakeFiles/PROJECT.dir/Server.cpp.o: CMakeFiles/PROJECT.dir/flags.make
 CMakeFiles/PROJECT.dir/Server.cpp.o: ../Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROJECT.dir/Server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROJECT.dir/Server.cpp.o -c "/home/nasty/CLionProjects/TECHNO/Server c++/Server.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PROJECT.dir/Server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PROJECT.dir/Server.cpp.o -c "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.cpp"
 
 CMakeFiles/PROJECT.dir/Server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PROJECT.dir/Server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nasty/CLionProjects/TECHNO/Server c++/Server.cpp" > CMakeFiles/PROJECT.dir/Server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.cpp" > CMakeFiles/PROJECT.dir/Server.cpp.i
 
 CMakeFiles/PROJECT.dir/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PROJECT.dir/Server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nasty/CLionProjects/TECHNO/Server c++/Server.cpp" -o CMakeFiles/PROJECT.dir/Server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.cpp" -o CMakeFiles/PROJECT.dir/Server.cpp.s
 
 # Object files for target PROJECT
 PROJECT_OBJECTS = \
@@ -95,7 +95,7 @@ PROJECT: CMakeFiles/PROJECT.dir/main.cpp.o
 PROJECT: CMakeFiles/PROJECT.dir/Server.cpp.o
 PROJECT: CMakeFiles/PROJECT.dir/build.make
 PROJECT: CMakeFiles/PROJECT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable PROJECT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable PROJECT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PROJECT.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/PROJECT.dir/clean:
 .PHONY : CMakeFiles/PROJECT.dir/clean
 
 CMakeFiles/PROJECT.dir/depend:
-	cd "/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/nasty/CLionProjects/TECHNO/Server c++" "/home/nasty/CLionProjects/TECHNO/Server c++" "/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug" "/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug" "/home/nasty/CLionProjects/TECHNO/Server c++/cmake-build-debug/CMakeFiles/PROJECT.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server" "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server" "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug" "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug" "/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/cmake-build-debug/CMakeFiles/PROJECT.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/PROJECT.dir/depend
 

@@ -4,21 +4,14 @@
 template<class T>
 class GraphConstructor{
 public:
-	GraphConstructor(const struct Hall* halls, const int hallsNumber,
-		const struct Room* rooms, const int roomsNumber,
-		const struct MoveObject* moveObjects, const int moveObjectsNumber);
+	GraphConstructor(const std::vector<Hall> *halls,const std::vector<Room> *rooms);
 	~GraphConstructor();
-	T** GetMatrix();
-	int GetMatrixSize();
-	bool CreateGraph();
+	std::vector<std::vector<T>> GetMatrix();
+	int CreateGraphMatrix();
 private:
-	const struct Hall* Halls;
-	const int HallsNumber;
-	const struct Room* Rooms;
-	const int RoomsNumber;
-	const struct MoveObject* MoveObjects;
-	const int MoveObjectsNumber;
-	T** Matrix;
+	const std::vector<Hall> *Halls;
+	const std::vector<Room> *Rooms;
+	std::vector<std::vector<T>> Matrix;
 	int MatrixSize;
 };
 

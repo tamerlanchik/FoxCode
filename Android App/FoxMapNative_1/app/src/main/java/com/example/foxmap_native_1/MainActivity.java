@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String mCurrentStoreyKey = "STOREY_KEY";
     private static final int mStoreyRange[] = {0, 6};
+    private String mServerAddress = "192.168.1.69";
+    private int mServerPort = 80;
 
     private MenuItem mUpdateDataItem;
     private ProgressBar mProgressBar;
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mGoUpButton;
     private FloatingActionButton mGoDownButton;
     private GLMapView mMapView;
+
+    private NetworkMaster mNetworkMaster;
 
     private int mFloor = 3;
 
@@ -194,6 +198,22 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new NetworkMaster(getString(R.string.ServerAddress), getResources().getInteger(R.integer.ServerPort));
+                        } catch (Exception e) {
+                            Log.e(TAG, "Cannot create socket: " + e.getMessage());
+                        }
+                    }
+                }).start();
+                return true;
+            }
+        });
+        /*mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
                 class Updater extends AsyncTask<Void,Void,Void> {
 
                     @Override
@@ -203,6 +223,15 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     protected Void doInBackground(Void... voids) {
+                        /*new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new NetworkMaster("192.168.1.69", 80);
+                            }
+                        }).start();
+                        Log.d(TAG, "Start starting server");
+                        new NetworkMaster("192.168.1.69", 80);
+                        Log.d(TAG, "server created");
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
@@ -221,27 +250,8 @@ public class MainActivity extends AppCompatActivity {
                 new Updater().execute();
                 return false;
             }
-        });
-
-        /*mSearchView = (SearchView) mSearchItem.getActionView();
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-
-                //new PingServer().execute();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                Log.d("TAG", "onQueryTextChange");
-                return false;
-            }
         });*/
-
         return true;
-
     }
 
     //Обработка события активации кнопки Тулбара

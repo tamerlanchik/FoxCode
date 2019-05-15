@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/DBMaster.h
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/DBMaster.h
 iostream
 -
 string
@@ -14,9 +14,13 @@ string
 vector
 -
 
-/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.h
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/Server.cpp
+Server.h
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/Server.h
+
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/Server.h
 DBMaster.h
-/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/DBMaster.h
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/DBMaster.h
 vector
 -
 cstdlib
@@ -32,7 +36,7 @@ cstring
 zconf.h
 -
 
-/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/main.cpp
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/main.cpp
 vector
 -
 cstdlib
@@ -48,5 +52,5 @@ cstring
 zconf.h
 -
 Server.h
-/home/nasty/CLionProjects/TECHNO/Server c++/C++Server/Server.h
+C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/Server.h
 

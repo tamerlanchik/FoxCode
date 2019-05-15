@@ -121,11 +121,18 @@ void MapDrawer::SurfaceChanged(int w, int h) {
 }
 
 void MapDrawer::SurfaceCreated() {
+    EGLContext mEglContext = eglGetCurrentContext();
+    if(!mEglContext){
+        Log::error(TAG, "Zero context");
+    }
     Log::debug(TAG, "SurfaceCreated()");
     //glClearColor(0.698f, 0.843f, 0.784f, 1.f);
 	glClearColor(1, 1, 1, 1.f);
-	program1_.Generate();
+	Log::info(TAG, "Cleared color");
+	program1_.Generate();               // после перезапуска ошибка в glCompileShader() для второго
+	Log::info(TAG, "Generated program");
 	program1_.Use();
+	Log::info(TAG, "Using program");
     this->BindData();
 }
 

@@ -52,6 +52,7 @@ public class GLMapView extends GLSurfaceView{
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             Log.d(TAG, "onSurfaceChanged");
             MapDrawerJNI.surfaceChanged(width, height);
+            requestRender();
         }
 
         @Override

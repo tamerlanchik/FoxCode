@@ -160,6 +160,8 @@
     <ClInclude Include="GraphConstructor.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RouteSearch.h" />
+    <ClInclude Include="sqlite_lib\sqlite3.h" />
+    <ClInclude Include="sqlite_lib\sqlite3ext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DBMaster.cpp" />
@@ -173,6 +175,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RouteSearch.cpp" />
+    <ClCompile Include="sqlite_lib\shell.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="sqlite_lib\sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

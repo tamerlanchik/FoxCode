@@ -4,13 +4,14 @@
 #include "pch.h"
 #include <iostream>
 #include "DijkstrasAlgorithm.h"
+#include "DBMaster.h"
 
 int main(){
-	int startRoom = 1;
-	int endRoom = 2;
-	int Matrix[2][2] = { 1,2,3,4 };
+	DBMaster dbMaster("sqlite_lib/MapDB.db");
+	dbMaster.ReadHalls();
+	std::vector<Hall> Halls = dbMaster.GetHalls();
 	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
-    std::cout << "Hello World!\n"; 
+    std::cout << Halls.size(); 
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

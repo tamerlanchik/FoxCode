@@ -2,10 +2,9 @@
 #include "GraphConstructor.h"
 
 template<class T>
-GraphConstructor<T>::GraphConstructor(const struct Hall* halls, const int hallsNumber,
-	const struct Room* rooms, const int roomsNumber,
-	const struct MoveObject* moveObjects, const int moveObjectsNumber){
-
+GraphConstructor<T>::GraphConstructor(const std::vector<Hall> *halls, const std::vector<Room> *rooms){
+	Halls = halls;
+	Rooms = rooms;
 }
 
 template<class T>

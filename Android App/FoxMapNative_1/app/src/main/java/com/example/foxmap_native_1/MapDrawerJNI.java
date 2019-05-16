@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class MapDrawerJNI {
     static{
-        System.loadLibrary("map_drawer");
+        System.loadLibrary("NativeDispatcher");
     }
 
     public static native void init(AssetManager assetsManager);

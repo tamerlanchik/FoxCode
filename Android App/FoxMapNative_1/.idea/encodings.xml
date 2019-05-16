@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/src/main/cpp/MapItem.h" charset="windows-1251" />
+    <file url="file://$USER_HOME$/Documents/AndroidStudio/DeviceExplorer/xiaomi-redmi_4x-84e259397cf4/data/data/com.example.foxmap_native_1/databases/MapDB.db" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/src/main/cpp/Database/Entity.h" charset="windows-1251" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

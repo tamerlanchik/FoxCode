@@ -4,10 +4,16 @@
 # Sets the minimum version of CMake required to build the native library.
 
 cmake_minimum_required(VERSION 3.4.1)
-
+add_subdirectory(${PROJECT_SOURCE_DIR}/FoxUtilites)
 add_subdirectory(${PROJECT_SOURCE_DIR}/RouteSearch)
+add_subdirectory(${PROJECT_SOURCE_DIR}/Graphics)
+if(NOT TARGET Database)
+add_subdirectory(${PROJECT_SOURCE_DIR}/Database)
+endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/glm)
+include_directories(${CMAKE_SOURCE_DIR})
+
+#include_directories(${PROJECT_SOURCE_DIR}/glm)
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -16,20 +22,12 @@ include_directories(${PROJECT_SOURCE_DIR}/glm)
 
 
 add_library(
-        map_drawer
+        NativeDispatcher
         SHARED
-        map_drawer.cpp
-        Log.cpp
-        MapDrawer.cpp
-        ShaderMaster.cpp
-        OpenGLStorage.cpp
-        MapItemsStorage.cpp
-        ShaderProgram.cpp
-        DataBase.cpp
-        MapItem.cpp
-        Point.cpp
+        NativeDispatcher.cpp
 )
 
+add_library(NativeDispatcher1 SHARED NativeDispatcher1.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -50,9 +48,15 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries(
-        map_drawer
+        NativeDispatcher
         android
         GLESv3
         EGL
         RouteSearch
+        Graphics
+        FoxUtilites
+        Database
+        sqlite_lib
+        log)
+target_link_libraries(NativeDispatcher1 android FoxUtilites
         log)

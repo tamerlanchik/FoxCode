@@ -2,6 +2,7 @@ package com.example.foxmap_native_1;
 
 import android.app.ActivityManager;
 import android.content.pm.ConfigurationInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.PersistableBundle;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int mStoreyRange[] = {0, 6};
     private String mServerAddress = "192.168.1.69";
     private int mServerPort = 80;
+    private StorageMasterJNI mStorageMaster;
 
     private MenuItem mUpdateDataItem;
     private ProgressBar mProgressBar;
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState != null){
             mFloor = savedInstanceState.getInt(mCurrentStoreyKey, 3);
         }
+
+        mStorageMaster = new StorageMasterJNI(getApplicationContext());
 
         mMapView = findViewById(R.id.map_view);
         //mMapView = new GLMapView(getApplicationContext());
@@ -180,6 +184,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, 0);
+        if(db.isOpen() == true) {
+            Log.d(TAG, "Database opened in Java");
+            db.close();
+        }else{
+            Log.e(TAG, "Cannot open database in Java");
+            return;
+        }
     }
 
     @Override
@@ -198,16 +211,9 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            new NetworkMaster(getString(R.string.ServerAddress), getResources().getInteger(R.integer.ServerPort));
-                        } catch (Exception e) {
-                            Log.e(TAG, "Cannot create socket: " + e.getMessage());
-                        }
-                    }
-                }).start();
+                startDataUpdate();
+                mStorageMaster.updateDatabaseRequest();
+                endDataUpdate(false);
                 return true;
             }
         });

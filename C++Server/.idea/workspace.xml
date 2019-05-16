@@ -12,39 +12,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96a5bb31-aac9-460f-830a-90fc398a990c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Android App/FoxMapNative_1/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.14.3/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/CXX.includecache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/Server.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/depend.internal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROJECT.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PROJECT.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PROJECT.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Android App/FoxMapNative_1/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/DataBase.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/DataBase.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/Log.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/Log.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapDrawer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapDrawer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapItem.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapItem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapItemsStorage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/MapItemsStorage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/NativeDispatcher.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/NativeDispatcher.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/OpenGLStorage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/OpenGLStorage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/ShaderMaster.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/ShaderMaster.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/ShaderProgram.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/ShaderProgram.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/Visitor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/map_drawer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/sqlite_lib/MapDB.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/sqlite_lib/shell.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/sqlite_lib/sqlite3.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/sqlite_lib/sqlite3.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Android App/FoxMapNative_1/app/src/main/cpp/sqlite_lib/sqlite3ext.h" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,7 +122,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,6 +133,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -188,8 +181,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1187" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25909495" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2635315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

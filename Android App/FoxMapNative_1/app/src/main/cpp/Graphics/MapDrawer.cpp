@@ -9,7 +9,12 @@ const char MapDrawer::TAG[] = "MapDrawer";
 const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
 const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";
 
-
+void delay() {
+	double u = 12345;
+	for(size_t i = 0; i < 100000; ++i)
+		for(size_t j = 0; j < 100000; ++j)
+			u /= 3;
+}
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
 MapDrawer::MapDrawer() {
@@ -72,16 +77,22 @@ void MapDrawer::Load() {
 
     Log::info(TAG, "Go sleep 10 s");
     //sleep(10);
+    storage_->NotifyStartWorking();
+    double t = 343;
+    for(size_t i = 0; i < 10000; ++i){
+        for(size_t j = 0; j < 10000; ++j){
+            t /= 45;
+        }
+        if(i%100 == 0)
+        //Log::debug(TAG, std::to_string(storage_->GetData()).c_str());
+    }
+    storage_->NotifyStopWorking();
     Log::info(TAG, "Continue");
 
-    DataBase* database = new DataBase(asset_manager_);
-    storage_->SetDatabase(database);
-    storage_->InflateStorage();
-    program1_ = ShaderProgram(asset_manager_, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
 }
 void MapDrawer::Render() {
 	#ifdef __ANDROID__
-	//Log::debug(TAG, "Render");
+	Log::debug(TAG, "Render");
 	#endif
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -130,15 +141,12 @@ void MapDrawer::SurfaceCreated() {
     Log::debug(TAG, "SurfaceCreated()");
     //glClearColor(0.698f, 0.843f, 0.784f, 1.f);
 	glClearColor(1, 1, 1, 1.f);
-	Log::info(TAG, "Cleared color");
 	program1_.Generate();               // после перезапуска ошибка в glCompileShader() для второго
-	Log::info(TAG, "Generated program");
 	program1_.Use();
-	Log::info(TAG, "Using program");
-    this->BindData();
+    this->bindData();
 }
 
-void MapDrawer::BindData() {
+void MapDrawer::bindData() {
 	glBindBuffer(GL_ARRAY_BUFFER, storage_->GetVbo());
 	float* buf = storage_->GetObjects();
 	//float* buf = storage_->GetPassages();

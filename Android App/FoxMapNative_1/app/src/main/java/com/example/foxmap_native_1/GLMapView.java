@@ -61,10 +61,16 @@ public class GLMapView extends GLSurfaceView{
             MapDrawerJNI.drawFrame();
         }
 
-        public void load() {
-            MapDrawerJNI.load();
-        }
     };
+        public void load() {
+            queueEvent(new Runnable() {
+                @Override
+                public void run() {
+
+            MapDrawerJNI.load();
+                }
+            });
+        }
 
     class TouchListener implements OnTouchListener{
         private PointF mPrev = new PointF(0,0);
@@ -124,4 +130,5 @@ public class GLMapView extends GLSurfaceView{
             }
         });
     }
+
 }

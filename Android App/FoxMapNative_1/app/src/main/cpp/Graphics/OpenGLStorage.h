@@ -11,6 +11,9 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include <system_error>
+#include <mutex>
+#include <unistd.h>
+#include "Database/Entity.h"
 
 class OpenGLStorage : public MapItemStorage
 {
@@ -26,9 +29,13 @@ protected:
 	size_t vbo_size_;
 	float* getRooms();
 	float* getPassages();
+	int data;
+	std::mutex m_;
 public:
+
 	static OpenGLStorage* Get();
 	virtual bool InflateStorage() override;
+	using MapItemStorage::InflateStorage;
 	const glm::f32* GetTransformMatrix() const;
 	const GLuint GetVaoRoom() const;
 	const GLuint GetVaoPassage() const;
@@ -45,6 +52,9 @@ public:
 
 	void CommitMapMovement(int x, int y);
 	void CommitMapZoom(float delta);
+
+	void NotifyStartWorking();
+	void NotifyStopWorking();
 private:
 	void updateTransformMatrix();
 	static const char TAG[];

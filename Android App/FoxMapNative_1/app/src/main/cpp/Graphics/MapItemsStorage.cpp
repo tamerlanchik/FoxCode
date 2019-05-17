@@ -1,5 +1,4 @@
 #include "MapItemsStorage.h"
-#include "MapItem.h"
 
 const char MapItemStorage::TAG[] = "MapItemsStorage";
 
@@ -28,7 +27,7 @@ bool MapItemStorage::InflateStorage() {
 		return 0;
 	std::vector<DataBase::RoomParcel> data = database_->GetRooms();
 	for (DataBase::RoomParcel c : data) {
-		Room* room = new Room(c.lines);
+		gls::Room* room = new gls::Room(c.lines);
 		room_storage_.push_back(room);
 	}
 	data.~vector();
@@ -38,4 +37,18 @@ bool MapItemStorage::InflateStorage() {
 		passage_storage_.push_back(room);
 	}
 	return 1;
+}
+
+bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
+	std::vector<Hall> passages = db.GetHalls();
+	std::vector<Room> rooms = db.GetRooms();
+	for(Hall h : passages){
+		//Passage* room = new Passage(h.lines);
+		Passage* pass = new Passage(h.LeftTop, h.RightBottom);
+		passage_storage_.push_back(pass);
+	}
+	for(Room r : rooms){
+		gls::Room* room;
+		room_storage_.push_back(room);
+	}
 }

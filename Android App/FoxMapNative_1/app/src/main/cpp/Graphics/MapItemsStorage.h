@@ -10,6 +10,8 @@
 #include "FoxUtilites/Point.h"
 #include "FoxUtilites/Log.h"
 #include <system_error>
+#include "Database/Entity.h"
+#include "MapItem.h"
 using std::vector;
 class MapItem;
 class Room;
@@ -17,15 +19,21 @@ class Passage;
 
 class MapItemStorage {
 protected:
-    vector<MapItem*> storage_;
+    vector<gls::MapItem*> storage_;
 	vector<float> buffer_;
-	vector<Room*> room_storage_;
-	vector<Passage*> passage_storage_;
+	vector<gls::Room*> room_storage_;
+	vector<gls::Passage*> passage_storage_;
 	size_t rooms_buf_size_;
 	size_t passages_buf_size_;
 	DataBase* database_;
 	MapItemStorage();
 public:
+	class DBAdapter{
+	public:
+		virtual std::vector<Room> GetRooms() = 0;
+		virtual std::vector<Hall> GetHalls() = 0;
+	};
+	virtual bool InflateStorage(DBAdapter&);
 	static MapItemStorage* Get();
 
 	void SetDatabase(DataBase*);

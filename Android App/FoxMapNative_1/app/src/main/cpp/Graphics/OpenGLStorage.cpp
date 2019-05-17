@@ -3,7 +3,6 @@
 #include <unistd.h>
 
 const char OpenGLStorage::TAG[] = "OpenGLStorage";
-
 OpenGLStorage::OpenGLStorage() : screen_dimensions_(Point(0,0))
 {
 	normalizing_matrix_ = glm::mat4(1.0);
@@ -87,12 +86,20 @@ const GLuint OpenGLStorage::GetVbo() const {
 	return VBO;
 }
 size_t OpenGLStorage::GetVboSize() const {
-	return vbo_size_;
+	size_t size = vbo_size_;
+	return size;
 }
 void OpenGLStorage::SetVboSize(size_t size) {
 	vbo_size_ = size;
 }
 
+void OpenGLStorage::NotifyStartWorking() {
+	m_.lock();
+}
+
+void OpenGLStorage::NotifyStopWorking() {
+	m_.unlock();
+}
 //--------Private-----------
 
 float* OpenGLStorage::getRooms() {

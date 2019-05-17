@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ServerAddress">192.168.1.69</string>
+    <string name="DatabaseName">MapDB.db</string>
     <integer name="ServerPort">80</integer>
 </resources>

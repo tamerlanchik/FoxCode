@@ -13,6 +13,7 @@
 #include <string>
 #include <Database/sqlite_lib/sqlite3ndk.h>
 #include <Database/sqlite_lib/sqlite3.h>
+#include <Database/Entity.h>
 
 const char TAG[] = "NativeDispatcher";
 
@@ -76,53 +77,58 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_commitMapZoom(JNIEnv *env, jclas
     OpenGLStorage::Get()->CommitMapZoom(dz);
 }
 
-JNIEXPORT void JNICALL
+JNIEXPORT jint JNICALL
 Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
-        JNIEnv *env, jobject instance, jobject asset_manager){
-    assert(asset_manager);
-    const char filename[] = "MapDB.db";
+        JNIEnv *env, jobject instance, jstring db_path){
     Log::debug(TAG, "Init storage master");
-    if(!database)
-        database = new DBMaster(DB_FILE);
+
+    if(!database) {
+        const char* path = env->GetStringUTFChars(db_path, 0);
+        database = new DBMaster(path);
+        env->ReleaseStringUTFChars(db_path, path);
+        if(!database){
+            return 1;
+        } else
+            Log::debug(TAG, "Created database");
+    }
     else
         Log::debug(TAG, "Database is already created");
-    if(!database){
-        Log::error(TAG, "Cannot create database!");
-        return;
-    } else
-        Log::debug(TAG, "Created database");
-    AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
-    /*if(sqlite3_ndk_init(native_asset_manager) != SQLITE_OK)
-    {
-        Log::error(TAG, "Cannot init sqlite3ndk");
-        return;
-    }else{
-        Log::debug(TAG, "sqlite3ndk init OK");
-    }*/
-    AAsset* asset = AAssetManager_open(native_asset_manager, filename, AASSET_MODE_STREAMING);
-    if(!asset){
-        Log::error(TAG, "Cannot open asset-database");
-        return;
-    }
-    sqlite3 *db;
-    int errCode = sqlite3_open_v2(DB_FILE, &db, SQLITE_OPEN_READWRITE, NULL);
-    if (SQLITE_OK != errCode) {
-        sqlite3_close(db);
-        Log::error(TAG, (std::string("Cannot open database: ") + std::to_string(errCode)).c_str());
-        return;
-    }else{
-        Log::debug(TAG, "Database opened");
-    }
 
-    if(database->ReadHalls() < 0) {
+    class Adapter : public OpenGLStorage::DBAdapter{
+        DBMaster& database_;
+    public:
+        Adapter(DBMaster& db) : database_(db) {};
+        std::vector<Hall> GetPassages() {
+            if(database_.ReadHalls() <= 0)
+                Log::debug(TAG, "Cannot read halls");
+            return database_.GetHalls();
+        }
+        std::vector<Room> GetRooms() {
+            if(database_.ReadRooms() <= 0)
+                Log::debug(TAG, "Cannot read rooms");
+            return database_.GetRooms();
+        }
+    };
+
+    Adapter adapter(*database);
+    OpenGLStorage::Get()->NotifyStartWorking();
+    OpenGLStorage::Get()->InflateStorage(adapter);
+    OpenGLStorage::Get()->NotifyStopWorking();
+
+    /*if(database->ReadHalls() < 0) {
         Log::error(TAG, "Cannot read halls from database");
     }
     else Log::debug(TAG, (std::string("Data halls read: ") + std::to_string(database->GetHalls().size())).c_str());
 
     if(database->ReadRooms() < 0) {
         Log::error(TAG, "Cannot read rooms from database");
+        return 1;
     }
     else Log::debug(TAG, (std::string("Data rooms read: ") + std::to_string(database->GetRooms().size())).c_str());
+    //Log::debug(TAG, std::to_string(OpenGLStorage::Get()->GetVboSize()).c_str());
+    OpenGLStorage::Get()->NotifyStartWorking();
+    OpenGLStorage::Get()->NotifyStopWorking();*/
+    return 0;
 }
 
 JNIEXPORT void JNICALL

@@ -40,7 +40,7 @@ private:
 	AAssetManager* asset_manager_;
 #endif
 
-    void BindData();
+    void bindData();
 
 	void drawPassages();
 

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.PersistableBundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
             mFloor = savedInstanceState.getInt(mCurrentStoreyKey, 3);
         }
 
-        mStorageMaster = new StorageMasterJNI(getApplicationContext());
+        mStorageMaster = new StorageMasterJNI(getApplicationContext(),
+                getString(R.string.DatabaseName), getString(R.string.ServerAddress),
+                getResources().getInteger(R.integer.ServerPort));
 
         mMapView = findViewById(R.id.map_view);
         //mMapView = new GLMapView(getApplicationContext());
@@ -330,6 +333,34 @@ public class MainActivity extends AppCompatActivity {
 
     public int[] getStoreyRange(){
         return mStoreyRange;
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "Destroying...");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        layout.removeView(mMapView);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "Stopping");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        layout.removeView(mMapView);
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "Starting...");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        try{
+            layout.addView(mMapView);
+        }catch (Exception e){
+            Log.d(TAG, "Cannot add view");
+        }
+        super.onStart();
     }
 }
 

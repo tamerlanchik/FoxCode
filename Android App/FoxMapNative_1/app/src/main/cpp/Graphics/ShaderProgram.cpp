@@ -54,6 +54,10 @@ void ShaderProgram::SetVertexColor(const float r, const float g, const float b) 
 	glUniform3f(vertex_color_param_location_, r, g, b);
 }
 
+void ShaderProgram::SetVertexColor(const Colour& c) {
+	SetVertexColor(c.r_, c.g_, c.b_);
+}
+
 void ShaderProgram::Generate() {
 	program_id_ =  ShaderMaster::CreateProgram(this->vertex, this->frag);
 	assert(program_id_ > 0);

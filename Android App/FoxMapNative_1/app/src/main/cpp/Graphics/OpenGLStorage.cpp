@@ -1,7 +1,9 @@
 #include "OpenGLStorage.h"
 #include "MapItem.h"
 #include <unistd.h>
+#include <array>
 
+typedef PointT<> Point;
 const char OpenGLStorage::TAG[] = "OpenGLStorage";
 OpenGLStorage::OpenGLStorage() : screen_dimensions_(Point(0,0))
 {
@@ -21,6 +23,8 @@ bool OpenGLStorage::InflateStorage(DBAdapter& adapter) {
         Log::debug(TAG, "Cannot inflate MapItemStorage");
         return false;
     }
+    double max_val = MapItemStorage::getMaxCoordinateValue();
+    Log::debug(TAG, (std::string("Max val: ") + std::to_string(max_val)).c_str());
     //map_dimensions_ = database_->GetMapDimensions();
 	map_dimensions_ = Point(1000, 1000);
     // Переворот по Y
@@ -32,10 +36,10 @@ bool OpenGLStorage::InflateStorage(DBAdapter& adapter) {
                                      glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
 
     /*glGenBuffers(1, &VBO);
-    glGenVertexArrays(1, &VAO_passage_);
+    glGenVertexArrays(1, &VAO_);
     glGenVertexArrays(1, &VAO_room_);*/
     is_inflated_ = true;
-    return VBO && VAO_passage_&&VAO_room_;
+    return true;
 }
 
 bool OpenGLStorage::InflateStorage() {
@@ -51,10 +55,7 @@ bool OpenGLStorage::InflateStorage() {
 	normalizing_matrix_ = glm::scale(normalizing_matrix_,
 					glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
 
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO_passage_);
-	glGenVertexArrays(1, &VAO_room_);
-	return VBO && VAO_passage_&&VAO_room_;
+	return true;
 }
 
 void OpenGLStorage::UpdateScreenDimensions(size_t w, size_t h){
@@ -89,34 +90,15 @@ float* OpenGLStorage::GetPassages() {
 float* OpenGLStorage::GetObjects() {
 	buffer_.clear();
 	getPassages();
-	float* d2 = getRooms();
-	return d2;
+	getRooms();
+	getPatches();
+	return buffer_.data();
 }
 
 const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
 }
 
-/*
-const GLuint OpenGLStorage::GetVaoRoom() const {
-	return VAO_room_;
-}
-
-const GLuint OpenGLStorage::GetVaoPassage() const {
-	return VAO_passage_;
-}
-
-const GLuint OpenGLStorage::GetVbo() const {
-	return VBO;
-}
-size_t OpenGLStorage::GetVboSize() const {
-	size_t size = vbo_size_;
-	return size;
-}
- */
-void OpenGLStorage::SetVboSize(size_t size) {
-	vbo_size_ = size;
-}
 
 void OpenGLStorage::NotifyStartWorking() {
 	m_.lock();
@@ -128,51 +110,74 @@ void OpenGLStorage::NotifyStopWorking() {
 //--------Private-----------
 
 float* OpenGLStorage::getRooms() {
-	rooms_buf_size_ = gls::Room::GetCount() * 8;
-	//rooms_buf_size_ = 8;
-	buffer_.reserve(buffer_.size() + rooms_buf_size_);
-	std::vector<float> verts;
-	int k = 0;
-	for (gls::Room* i : room_storage_) {
-		verts = i->GetVertices();
-		buffer_.push_back(verts[0]);
-		buffer_.push_back(verts[1]);
+	//rooms_buf_size_ = gls::Room::GetCount() * 8;
+	buffer_map_.SetRooms(gls::Room::GetCount() * 8);
+	buffer_.reserve(buffer_map_.GetTotal());
+	std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,   0, 3 };
 
-		buffer_.push_back(verts[2]);
-		buffer_.push_back(verts[1]);
-
-		buffer_.push_back(verts[2]);
-		buffer_.push_back(verts[3]);
-
-		buffer_.push_back(verts[0]);
-		buffer_.push_back(verts[3]);
-		//std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
+	for (gls::Room* obj : room_storage_) {
+		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
+		    buffer_.push_back(obj->GetVertices()[i]);
+		});
 	}
-	return &buffer_[0];
+	return buffer_.data();
 }
 
 float* OpenGLStorage::getPassages() {
-	passages_buf_size_ = gls::Passage::GetSize();
-	buffer_.reserve(buffer_.size() + passages_buf_size_);
-	std::vector<float> verts;
-	for (gls::Passage* i : passage_storage_) {
-		verts = i->GetVertices();
-		buffer_.push_back(verts[0]);
-		buffer_.push_back(verts[1]);
+	//passages_buf_size_ = gls::Passage::GetCount()*2*2*3;
+	buffer_map_.SetPassages(gls::Passage::GetCount()*2*2*3);
+	buffer_.reserve(buffer_map_.GetTotal());
+    std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,
+                                0, 1,   2, 3,   0, 3 };
 
-		buffer_.push_back(verts[2]);
-		buffer_.push_back(verts[1]);
-
-		buffer_.push_back(verts[2]);
-		buffer_.push_back(verts[3]);
-
-		buffer_.push_back(verts[0]);
-		buffer_.push_back(verts[3]);
-		//std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
+	for (gls::Passage* obj : passage_storage_) {
+        std::for_each(ind.begin(), ind.end(), [&](size_t& i){
+            buffer_.push_back(obj->GetVertices()[i]);
+        });
 	}
-	return &buffer_[0];
+	return buffer_.data();
+}
+
+float* OpenGLStorage::getPatches() {
+	const float dW = map_dimensions_.x * 0.02;	// значение ширины квадрата заглушки
+	buffer_map_.SetPatches(gls::Room::GetCount()*12);
+	buffer_.reserve(buffer_map_.GetTotal());
+
+	std::array<size_t, 12> ind = { 0, 1,   2, 1,   2, 3,
+                                   0, 1,   2, 3,   0, 3 };
+	std::array<float, 4> rect;
+    float eps = 10;
+    float dWx, dWy;
+	for (gls::Room* obj : room_storage_) {
+        dWx = eps/2; dWy = eps/2;
+	    Point e = obj->GetEntry();
+	    auto verts = obj->GetVertices();
+	    if(abs(verts[0] - e.x) < eps || abs(verts[2] - e.x) < eps)
+            dWy = dW;
+        else
+            dWx = dW;
+		generateCenteredRectangle< std::array<float, 4> >(rect, e, dWx, dWy);
+		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
+			buffer_.push_back(rect[i]);
+		});
+	}
+	return buffer_.data();
 }
 
 void OpenGLStorage::updateTransformMatrix() {
 	result_transform_matrix_ = moving_matrix_*scaling_matrix_*normalizing_matrix_;
 }
+
+template<class T>
+void OpenGLStorage::generateCenteredRectangle(T& dest, const Point &center, const float width,
+											  const float height) {
+	if(dest.size() < 4) return;
+
+	dest[0] = center.x - width;
+	dest[1] = center.y - height;
+
+	dest[2] = center.x + width;
+	dest[3] = center.y + height;
+}
+
+

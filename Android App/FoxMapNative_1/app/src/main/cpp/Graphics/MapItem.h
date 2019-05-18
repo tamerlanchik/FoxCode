@@ -9,6 +9,7 @@
 #include <string>
 #include "FoxUtilites/Point.h"
 #include <cmath>
+#include <functional>
 namespace gls {
 	class MapItem {
 	private:
@@ -44,6 +45,10 @@ namespace gls {
 		size_t GetSize() {
 			return vertices_count_;
 		}
+
+		double GetMaxValue() const {
+			return *std::max_element(vertices_.begin(), vertices_.end());
+		}
 	};
 
 	class Room : public MapItem {
@@ -64,6 +69,10 @@ namespace gls {
 
 		size_t GetLength() {
 			return vertices_.size();
+		}
+
+		Point GetEntry(){
+		    return entry_;
 		}
 
 		static size_t GetSize() {
@@ -88,13 +97,18 @@ namespace gls {
 		Passage() {};
         Passage(Point top_left, Point bottom_right) : MapItem(top_left, bottom_right) {
             size += 4;
+            ++count_;
         }
 		Passage(std::vector<float> &vertices) : MapItem(vertices) {
 			size += vertices.size();
+			++count_;
 		}
 		static size_t GetSize() {
 			return size;
 		}
+		static size_t GetCount() {
+        	return count_;
+        }
 
 		static void ConvertRect2Lines(std::vector<Point>&);
         static std::vector<Point> GeneratePlaceholders(const std::vector<Passage>&);
@@ -104,6 +118,7 @@ namespace gls {
         }
 	private:
 		static size_t size;
+        static size_t count_;
 	};
 
 	class Steps : public MapItem {

@@ -20,6 +20,11 @@ private:
 	static const char border_color_key[];
 	static const char transform_matrix_key[];
 public:
+	class Colour{
+	public:
+		Colour(float r, float g, float b, float a=0) : r_(r), g_(g), b_(b), a_(a) {}
+		float r_, g_, b_, a_;
+	};
 	ShaderProgram() {};
 	ShaderProgram(const char* vertex_shader_name, const char* fragment_shader_name);
 
@@ -32,6 +37,7 @@ public:
 	void Use();
 	void SetTransformMatrix(const GLfloat* ptr);
 	void SetVertexColor(const float r, const float g, const float b);
+	void SetVertexColor(const Colour&);
 	void Generate();
 };
 

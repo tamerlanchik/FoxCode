@@ -17,13 +17,14 @@ using std::vector;
 
 class MapItemStorage {
 protected:
-    vector<gls::MapItem*> storage_;
+    //vector<std::vector<gls::MapItem*>& > storage_;
 	vector<gls::Room*> room_storage_;
 	vector<gls::Passage*> passage_storage_;
 	//DataBase* database_;
 	//DBMaster* db_;
 	MapItemStorage();
 	bool is_inflated_;
+	double getMaxCoordinateValue() const;
 public:
 	class DBAdapter{
 	public:

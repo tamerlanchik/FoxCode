@@ -8,6 +8,9 @@
 const char MapDrawer::TAG[] = "MapDrawer";
 const char MapDrawer::triangle_vertex_shader_name_[] = "vertex_shader.glsl";
 const char MapDrawer::triangle_fragment_shader_name_[] = "fragment_shader.glsl";
+const ShaderProgram::Colour MapDrawer::passage_colour_(0.9, 0.9, 0.9);
+const ShaderProgram::Colour MapDrawer::room_colour_(0, 0, 1);
+const ShaderProgram::Colour MapDrawer::background_colour_(1, 1, 1);
 
 void delay() {
 	double u = 12345;
@@ -65,7 +68,7 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 	storage_->InflateStorage();*/
 	program1_ = ShaderProgram(asset_manager, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
     glGenBuffers(1, &VBO);
-    glGenVertexArrays(1, &VAO_passage_);
+    glGenVertexArrays(1, &VAO_);
     glGenVertexArrays(1, &VAO_room_);
 }
 #endif
@@ -99,12 +102,12 @@ void MapDrawer::Render() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	storage_->NotifyStartWorking();
-	glBindVertexArray(VAO_passage_);
-	program1_.SetVertexColor(0, 0, 1);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
 
-	//drawPassages();
+	glBindVertexArray(VAO_);
+	drawPassages();
 	drawRooms();
+	drawPatches();
 	storage_->NotifyStopWorking();
     EGLContext mEglContext = eglGetCurrentContext();
     if(!mEglContext){
@@ -115,22 +118,43 @@ void MapDrawer::Render() {
 
 void MapDrawer::drawPassages() {
 	glLineWidth(3);
-	glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize() / 2);
+    program1_.SetVertexColor(0.9, 0.9, 0.9);
+	/*GLuint ind[] = {
+	        0, 1, 2,
+	        0, 2, 3
+	};
+    GLuint EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ind), ind, GL_STATIC_DRAW);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    //glDrawRangeElements(GL_TRIANGLES, 0, 12, 6, GL_UNSIGNED_INT, 0);
+    glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, 2);*/
+	//glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize() / 2);
+    glDrawArrays(GL_TRIANGLES, 0, storage_->GetBufferMap().GetPassagesCount() / 2);
+
 }
 
 void MapDrawer::drawRooms() {
-	glLineWidth(1);
-	program1_.SetVertexColor(0, 0, 0);
-	/*for (int i = storage_->GetPassagesBufSize() / 2;
+	glLineWidth(2);
+	program1_.SetVertexColor(0, 0, 1);
+	/*for (int i = storage_->GetPassagesBufSize()/2;
 		i < storage_->GetBufferSize(); i += 4) {
 
 		glDrawArrays(GL_LINE_LOOP, i, 4);
 	}*/
-    for (int i = 0;
-         i < storage_->GetBufferSize(); i += 4) {
+	PointT<size_t> range = storage_->GetBufferMap().GetRoomsRange();
+	const size_t step = 4;
+	for(int i = range.x/2; 2*i < range.y; i+=step){
+		glDrawArrays(GL_LINE_LOOP, i, step);
+	}
+}
 
-        glDrawArrays(GL_LINE_LOOP, i, 4);
-    }
+void MapDrawer::drawPatches() {
+    program1_.SetVertexColor(1, 0, 0);
+	PointT<size_t> range = storage_->GetBufferMap().GetPatchesRange();
+	glDrawArrays(GL_TRIANGLES, range.x/2, range.y-range.x);
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {
@@ -168,13 +192,7 @@ void MapDrawer::bindData() {
 	//storage_->SetVboSize(storage_->GetBufferSize());
 	vbo_size_ = storage_->GetBufferSize();
 
-	glBindVertexArray(VAO_passage_);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
-				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
-	glBindVertexArray(0);	// отвязали VAO
-
-	/*glBindVertexArray(storage_->GetVaoRoom());
+	glBindVertexArray(VAO_);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 		2 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);

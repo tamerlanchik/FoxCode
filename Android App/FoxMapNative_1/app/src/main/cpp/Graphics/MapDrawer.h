@@ -36,7 +36,7 @@ public:
 private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
-	GLuint VBO, VAO_room_, VAO_passage_;
+	GLuint VBO, VAO_room_, VAO_;
 	size_t vbo_size_;
 #ifdef __ANDROID__
 	AAssetManager* asset_manager_;
@@ -48,11 +48,14 @@ private:
 
 	void drawRooms();
 
-
+	void drawPatches();
 
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];
     static const char triangle_fragment_shader_name_[];
+    static const ShaderProgram::Colour passage_colour_;
+	static const ShaderProgram::Colour room_colour_;
+	static const ShaderProgram::Colour background_colour_;
 };
 
 

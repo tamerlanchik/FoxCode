@@ -54,17 +54,23 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 			return Point(coord.x, coord.y);
 		}
 	} c;
+
+	//storage_.reserve(2);
+
 	std::vector<Hall> passages = db.GetPassages();
 	std::vector<Room> rooms = db.GetRooms();
 	for(Hall h : passages){
 		gls::Passage* pass = new gls::Passage(c(h.LeftTop), c(h.RightBottom));
 		passage_storage_.push_back(pass);
 	}
+	//storage_.emplace_back(passage_storage_);
 
 	for(Room r : rooms){
 		gls::Room* room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]));
 		room_storage_.push_back(room);
 	}
+	//storage_.emplace_back(room_storage_);
+
 	is_inflated_ = true;
 	Log::debug(TAG, "Inflated");
 	return true;
@@ -76,4 +82,13 @@ bool MapItemStorage::IsInflated() const {
 
 void MapItemStorage::convertPassages() {
 
+}
+
+double MapItemStorage::getMaxCoordinateValue() const {
+	double max_val = 1000;
+	/*for(std::vector& i : storage_){
+		for(gls::MapItem* item : i)
+			max_val = std::max(max_val, item->GetMaxValue());
+	}*/
+	return max_val;
 }

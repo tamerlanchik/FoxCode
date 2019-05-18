@@ -90,60 +90,64 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
     const bool database_src = ASSET;
 
     if(database_src == DBMASTER){
-
-        if(!database) {
-            const char* path = env->GetStringUTFChars(db_path, 0);
-            database = new DBMaster(path);
-            env->ReleaseStringUTFChars(db_path, path);
-            if(!database){
-                return 1;
-            } else
-                Log::debug(TAG, "Created database");
-        }
-        else
-            Log::debug(TAG, "Database is already created");
-
         class Adapter : public OpenGLStorage::DBAdapter{
-            DBMaster& database_;
+            DBMaster* database_;
         public:
-            Adapter(DBMaster& db) : database_(db) {};
+            Adapter(DBMaster* db) : database_(db) {};
+            Adapter(const char* path) {
+                database_ = new DBMaster(path);
+            }
+            ~Adapter(){
+                delete database_;
+            }
             std::vector<Hall> GetPassages() override {
-                if(database_.ReadHalls() < 0)
+                if(database_->ReadHalls() < 0)
                     Log::debug(TAG, "Cannot read halls");
-                return database_.GetHalls();
+                return database_->GetHalls();
             }
             std::vector<Room> GetRooms() override {
-                if(database_.ReadRooms() < 0)
+                if(database_->ReadRooms() < 0)
                     Log::debug(TAG, "Cannot read rooms");
-                return database_.GetRooms();
+                return database_->GetRooms();
             }
         };
 
-        Adapter adapter(*database);
+        const char* path = env->GetStringUTFChars(db_path, 0);
+        Adapter adapter(path);
+        env->ReleaseStringUTFChars(db_path, path);
+
         OpenGLStorage::Get()->NotifyStartWorking();
         OpenGLStorage::Get()->InflateStorage(adapter);
         OpenGLStorage::Get()->NotifyStopWorking();
     } else{
-    class Adapter : public OpenGLStorage::DBAdapter{
-    public:
-        Adapter(DataBase& db) : db_(db) {}
-        std::vector<Hall> GetPassages() override {
-            return db_.GetHalls();
-        }
-        std::vector<Room> GetRooms() override {
-            return db_.GetRooms();
-        }
-    private:
-        DataBase& db_;
-    };
+        class Adapter : public OpenGLStorage::DBAdapter{
+        public:
+            Adapter(AAssetManager* asset_manager, const std::string& filename){
+                db_ = new DataBase(asset_manager, filename);
+            }
+            std::vector<Hall> GetPassages() override {
+                return db_->GetHalls();
+            }
+            std::vector<Room> GetRooms() override {
+                return db_->GetRooms();
+            }
+            ~Adapter(){
+                delete db_;
+            }
+        private:
+            DataBase* db_;
+        };
+
         if(!asset_manager){
             Log::error(TAG, "Zero asset_manager");
+            return 1;
         }
         AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
-        DataBase* database = new DataBase(native_asset_manager, "map-rect-pass.txt");
-        Adapter adapter(*database);
-        OpenGLStorage::Get()->InflateStorage(adapter);
+        Adapter adapter(native_asset_manager, "map-rect-pass.txt");
 
+        OpenGLStorage::Get()->NotifyStartWorking();
+        OpenGLStorage::Get()->InflateStorage(adapter);
+        OpenGLStorage::Get()->NotifyStopWorking();
     }
 
 

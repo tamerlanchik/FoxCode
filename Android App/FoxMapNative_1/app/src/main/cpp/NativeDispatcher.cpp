@@ -34,11 +34,6 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_init(
     map_drawer.Init(native_asset_manager);
 }
 
-JNIEXPORT void JNICALL
-Java_com_example_foxmap_1native_11_MapDrawerJNI_load(JNIEnv *env, jclass type){
-    Log::debug(TAG, "load()");
-    map_drawer.Load();
-}
 
 JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_surfaceCreated(JNIEnv *env, jclass type){

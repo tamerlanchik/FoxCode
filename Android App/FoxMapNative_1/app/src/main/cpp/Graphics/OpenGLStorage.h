@@ -27,10 +27,6 @@ public:
 		void SetPassages(size_t end){ passages = end - 1; }	// нумерация с нуля
 		void SetRooms(size_t end) { rooms = passages + end;}
 		void SetPatches(size_t end) { patches = rooms + end; }
-
-		size_t GetPassagesCount() const { return passages+1; }
-		size_t GetRoomsCount() const { return rooms - passages; }
-		size_t GetPatchesCount() const { return patches - rooms; }
         PointT<size_t> GetPassagesRange() const { return PointT<size_t>(0, passages);}
 		PointT<size_t> GetRoomsRange() const { return PointT<size_t>(passages+1, rooms);}
         PointT<size_t> GetPatchesRange() const { return PointT<size_t>(rooms+1, patches);}

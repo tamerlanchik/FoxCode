@@ -23,7 +23,6 @@
 class MapDrawer{
 public:
     MapDrawer();
-    void Load();
     bool Init();
 
 #ifdef __ANDROID__
@@ -56,6 +55,7 @@ private:
     static const ShaderProgram::Colour passage_colour_;
 	static const ShaderProgram::Colour room_colour_;
 	static const ShaderProgram::Colour background_colour_;
+	static const size_t vert_param_cnt;
 };
 
 

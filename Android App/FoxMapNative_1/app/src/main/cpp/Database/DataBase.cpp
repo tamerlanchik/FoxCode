@@ -1,8 +1,9 @@
 #include "DataBase.h"
 
-char DataBase::filename_[] = "map.txt";
+//char DataBase::filename_[] = "map.txt";
+const std::string DataBase::filename_ = "map.txt";
 
-DataBase::DataBase() throw(std::system_error)
+DataBase::DataBase() throw(std::system_error) : DBMaster(" ")
 {
 	std::ifstream file(filename_);
 	if (!file.is_open())
@@ -24,19 +25,21 @@ DataBase::DataBase() throw(std::system_error)
 }
 
 #ifdef __ANDROID__
-DataBase::DataBase(AAssetManager* asset_manager){
-    AAsset *shader_asset = AAssetManager_open(asset_manager, filename_,
-                                              AASSET_MODE_BUFFER);
-    assert(shader_asset);
-    const void *shader_buf = AAsset_getBuffer(shader_asset);
-    assert(shader_buf);
-    off_t shader_length = AAsset_getLength(shader_asset);
-    std::string res = std::string((const char*)shader_buf,
-                                  (size_t)shader_length);
-    AAsset_close(shader_asset);
-    assert(res.size() > 0);
+DataBase::DataBase(AAssetManager* asset_manager) : DataBase(asset_manager, filename_){}
 
-    assert(parseFile(res));
+DataBase::DataBase(AAssetManager* asset_manager, const std::string& db_name) : DBMaster(" ") {
+	AAsset *shader_asset = AAssetManager_open(asset_manager, db_name.c_str(),
+											  AASSET_MODE_BUFFER);
+	assert(shader_asset);
+	const void *shader_buf = AAsset_getBuffer(shader_asset);
+	assert(shader_buf);
+	off_t shader_length = AAsset_getLength(shader_asset);
+	std::string res = std::string((const char*)shader_buf,
+								  (size_t)shader_length);
+	AAsset_close(shader_asset);
+	assert(res.size() > 0);
+
+	assert(parseFile(res));
 }
 #endif
 DataBase::~DataBase()
@@ -49,8 +52,43 @@ size_t DataBase::GetRoomNumber() {
 size_t DataBase::GetPassageNumber() {
 	return passages_.size();
 }
+std::vector<Room> DataBase::GetRooms() {
+	Converter c;
+	std::vector<Room> parcels;
+	parcels.reserve(rooms_.size());
 
-std::vector<DataBase::RoomParcel> DataBase::GetRooms() {
+	for (auto room : rooms_) {
+		Room parcel;
+		parcel.LeftTop.x = room[0];
+		parcel.LeftTop.y = room[1];
+		parcel.RightBottom.x = room[2];
+		parcel.RightBottom.y = room[3];
+		std::vector<Coordinate> input(1);
+		input[0].x = room[4]; input[0].y = room[5];
+		parcel.Input = input;
+		parcel.Type = "Room";
+		parcel.ID = 1;
+		parcels.push_back(parcel);
+	}
+
+	return parcels;
+}
+
+std::vector<Hall> DataBase::GetHalls() {
+	std::vector<Hall> parcels;
+	parcels.reserve(passages_.size());
+	for (auto room : passages_) {
+		Hall parcel;
+		parcel.LeftTop.x = room[0];
+		parcel.LeftTop.y = room[1];
+		parcel.RightBottom.x = room[2];
+		parcel.RightBottom.y = room[3];
+		parcel.ID = 1;
+		parcels.push_back(parcel);
+	}
+	return parcels;
+}
+/*std::vector<DataBase::RoomParcel> DataBase::GetRooms() {
 	std::vector<RoomParcel> parcels;
 	parcels.reserve(rooms_.size());
 
@@ -74,7 +112,9 @@ std::vector<DataBase::PassageParcel> DataBase::GetPassages() {
 		parcels.push_back(parcel);
 	}
 	return parcels;
-}
+}*/
+
+
 
 Point DataBase::GetMapDimensions() const {
 	return dimensions_;

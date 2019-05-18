@@ -1,4 +1,7 @@
 #pragma once
+
+#include <cmath>
+
 struct Point {
 	float x;
 	float y;
@@ -11,4 +14,7 @@ struct Point {
 	Point operator+ (float);
 	Point operator/ (float);
 	Point operator* (float);
+	double Norm() const {
+		return sqrt(x*x + y*y);
+	}
 };

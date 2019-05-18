@@ -25,6 +25,10 @@ protected:
 	glm::mat4 moving_matrix_;
 	glm::mat4 scaling_matrix_;
 	glm::mat4 result_transform_matrix_;
+
+	vector<float> buffer_;
+	size_t rooms_buf_size_;
+	size_t passages_buf_size_;
 	GLuint VBO, VAO_room_, VAO_passage_;
 	size_t vbo_size_;
 	float* getRooms();
@@ -34,13 +38,13 @@ protected:
 public:
 
 	static OpenGLStorage* Get();
+	virtual bool InflateStorage(DBAdapter&) override;
 	virtual bool InflateStorage() override;
-	using MapItemStorage::InflateStorage;
 	const glm::f32* GetTransformMatrix() const;
-	const GLuint GetVaoRoom() const;
-	const GLuint GetVaoPassage() const;
-	const GLuint GetVbo() const;
-	size_t GetVboSize() const;
+	//const GLuint GetVaoRoom() const;
+	//const GLuint GetVaoPassage() const;
+	//const GLuint GetVbo() const;
+	//size_t GetVboSize() const;
 	void SetVboSize(size_t);
 	void UpdateScreenDimensions(size_t w, size_t h);
 	float* GetRooms();

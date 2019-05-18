@@ -8,6 +8,7 @@
 #include "Graphics/MapDrawer.h"
 #include "Graphics/OpenGLStorage.h"
 #include "Database/DBMaster.h"
+#include "Database/DataBase.h"
 #include <android/log.h>
 #include <android/asset_manager_jni.h>
 #include <string>
@@ -41,6 +42,10 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_load(JNIEnv *env, jclass type){
 
 JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_surfaceCreated(JNIEnv *env, jclass type){
+    OpenGLStorage* s = OpenGLStorage::Get();
+    Log::debug(TAG, "Start waiting");
+    while(!s->IsInflated()) {}
+    Log::debug(TAG, "Stop waiting");
     map_drawer.SurfaceCreated();
 }
 
@@ -79,55 +84,69 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_commitMapZoom(JNIEnv *env, jclas
 
 JNIEXPORT jint JNICALL
 Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
-        JNIEnv *env, jobject instance, jstring db_path){
+        JNIEnv *env, jobject instance, jstring db_path, jobject asset_manager){
     Log::debug(TAG, "Init storage master");
+    enum {DBMASTER, ASSET};
+    const bool database_src = ASSET;
 
-    if(!database) {
-        const char* path = env->GetStringUTFChars(db_path, 0);
-        database = new DBMaster(path);
-        env->ReleaseStringUTFChars(db_path, path);
-        if(!database){
-            return 1;
-        } else
-            Log::debug(TAG, "Created database");
-    }
-    else
-        Log::debug(TAG, "Database is already created");
+    if(database_src == DBMASTER){
 
+        if(!database) {
+            const char* path = env->GetStringUTFChars(db_path, 0);
+            database = new DBMaster(path);
+            env->ReleaseStringUTFChars(db_path, path);
+            if(!database){
+                return 1;
+            } else
+                Log::debug(TAG, "Created database");
+        }
+        else
+            Log::debug(TAG, "Database is already created");
+
+        class Adapter : public OpenGLStorage::DBAdapter{
+            DBMaster& database_;
+        public:
+            Adapter(DBMaster& db) : database_(db) {};
+            std::vector<Hall> GetPassages() override {
+                if(database_.ReadHalls() < 0)
+                    Log::debug(TAG, "Cannot read halls");
+                return database_.GetHalls();
+            }
+            std::vector<Room> GetRooms() override {
+                if(database_.ReadRooms() < 0)
+                    Log::debug(TAG, "Cannot read rooms");
+                return database_.GetRooms();
+            }
+        };
+
+        Adapter adapter(*database);
+        OpenGLStorage::Get()->NotifyStartWorking();
+        OpenGLStorage::Get()->InflateStorage(adapter);
+        OpenGLStorage::Get()->NotifyStopWorking();
+    } else{
     class Adapter : public OpenGLStorage::DBAdapter{
-        DBMaster& database_;
     public:
-        Adapter(DBMaster& db) : database_(db) {};
-        std::vector<Hall> GetPassages() {
-            if(database_.ReadHalls() <= 0)
-                Log::debug(TAG, "Cannot read halls");
-            return database_.GetHalls();
+        Adapter(DataBase& db) : db_(db) {}
+        std::vector<Hall> GetPassages() override {
+            return db_.GetHalls();
         }
-        std::vector<Room> GetRooms() {
-            if(database_.ReadRooms() <= 0)
-                Log::debug(TAG, "Cannot read rooms");
-            return database_.GetRooms();
+        std::vector<Room> GetRooms() override {
+            return db_.GetRooms();
         }
+    private:
+        DataBase& db_;
     };
+        if(!asset_manager){
+            Log::error(TAG, "Zero asset_manager");
+        }
+        AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
+        DataBase* database = new DataBase(native_asset_manager, "map-rect-pass.txt");
+        Adapter adapter(*database);
+        OpenGLStorage::Get()->InflateStorage(adapter);
 
-    Adapter adapter(*database);
-    OpenGLStorage::Get()->NotifyStartWorking();
-    OpenGLStorage::Get()->InflateStorage(adapter);
-    OpenGLStorage::Get()->NotifyStopWorking();
-
-    /*if(database->ReadHalls() < 0) {
-        Log::error(TAG, "Cannot read halls from database");
     }
-    else Log::debug(TAG, (std::string("Data halls read: ") + std::to_string(database->GetHalls().size())).c_str());
 
-    if(database->ReadRooms() < 0) {
-        Log::error(TAG, "Cannot read rooms from database");
-        return 1;
-    }
-    else Log::debug(TAG, (std::string("Data rooms read: ") + std::to_string(database->GetRooms().size())).c_str());
-    //Log::debug(TAG, std::to_string(OpenGLStorage::Get()->GetVboSize()).c_str());
-    OpenGLStorage::Get()->NotifyStartWorking();
-    OpenGLStorage::Get()->NotifyStopWorking();*/
+
     return 0;
 }
 

@@ -20,7 +20,7 @@
 #include <assert.h>
 
 
-class MapDrawer : public Visitor{
+class MapDrawer{
 public:
     MapDrawer();
     void Load();
@@ -36,6 +36,8 @@ public:
 private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
+	GLuint VBO, VAO_room_, VAO_passage_;
+	size_t vbo_size_;
 #ifdef __ANDROID__
 	AAssetManager* asset_manager_;
 #endif
@@ -46,15 +48,6 @@ private:
 
 	void drawRooms();
 
-    void visit(const Room& r) override {
-
-    }
-    void visit(const Passage& r) override{
-
-    }
-    void visit(const Steps& r) override{
-
-    }
 
 
     static const char TAG[];

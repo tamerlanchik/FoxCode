@@ -60,11 +60,13 @@ void MapDrawer::Init(AAssetManager* asset_manager){
     }
 
 
-    DataBase* database = new DataBase(asset_manager);
+    /*DataBase* database = new DataBase(asset_manager);
 	storage_->SetDatabase(database);
-	storage_->InflateStorage();
+	storage_->InflateStorage();*/
 	program1_ = ShaderProgram(asset_manager, triangle_vertex_shader_name_, triangle_fragment_shader_name_);
-
+    glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO_passage_);
+    glGenVertexArrays(1, &VAO_room_);
 }
 #endif
 
@@ -83,7 +85,7 @@ void MapDrawer::Load() {
         for(size_t j = 0; j < 10000; ++j){
             t /= 45;
         }
-        if(i%100 == 0)
+        //if(i%100 == 0)
         //Log::debug(TAG, std::to_string(storage_->GetData()).c_str());
     }
     storage_->NotifyStopWorking();
@@ -96,12 +98,14 @@ void MapDrawer::Render() {
 	#endif
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glBindVertexArray(storage_->GetVaoPassage());
+	storage_->NotifyStartWorking();
+	glBindVertexArray(VAO_passage_);
 	program1_.SetVertexColor(0, 0, 1);
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
 
-	drawPassages();
+	//drawPassages();
 	drawRooms();
+	storage_->NotifyStopWorking();
     EGLContext mEglContext = eglGetCurrentContext();
     if(!mEglContext){
         Log::error(TAG, "Zero context");
@@ -117,11 +121,16 @@ void MapDrawer::drawPassages() {
 void MapDrawer::drawRooms() {
 	glLineWidth(1);
 	program1_.SetVertexColor(0, 0, 0);
-	for (int i = storage_->GetPassagesBufSize() / 2;
+	/*for (int i = storage_->GetPassagesBufSize() / 2;
 		i < storage_->GetBufferSize(); i += 4) {
 
 		glDrawArrays(GL_LINE_LOOP, i, 4);
-	}
+	}*/
+    for (int i = 0;
+         i < storage_->GetBufferSize(); i += 4) {
+
+        glDrawArrays(GL_LINE_LOOP, i, 4);
+    }
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {
@@ -129,7 +138,9 @@ void MapDrawer::SurfaceChanged(int w, int h) {
     //  Левый верхний (X,Y) и правый нижний (X,Y) углы обьекта
     glViewport(0, 0, w, h);
     //assert(storage_);
+    storage_->NotifyStartWorking();
     storage_->UpdateScreenDimensions(w,h);
+    storage_->NotifyStopWorking();
     Log::debug(TAG, "SurfaceChanged()");
 }
 
@@ -147,15 +158,17 @@ void MapDrawer::SurfaceCreated() {
 }
 
 void MapDrawer::bindData() {
-	glBindBuffer(GL_ARRAY_BUFFER, storage_->GetVbo());
+	storage_->NotifyStartWorking();
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	float* buf = storage_->GetObjects();
 	//float* buf = storage_->GetPassages();
 	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
 				buf, GL_STATIC_DRAW);	// загрузили данные в буфер
 	buf = nullptr;
-	storage_->SetVboSize(storage_->GetBufferSize());
+	//storage_->SetVboSize(storage_->GetBufferSize());
+	vbo_size_ = storage_->GetBufferSize();
 
-	glBindVertexArray(storage_->GetVaoPassage());
+	glBindVertexArray(VAO_passage_);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
 				2*sizeof(GLfloat), (GLvoid*)0);	// связываем вершинные атрибуты
@@ -166,4 +179,5 @@ void MapDrawer::bindData() {
 		2 * sizeof(GLfloat), (GLvoid*)0);
 	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);	// отвязали VAO*/
+	storage_->NotifyStopWorking();
 }

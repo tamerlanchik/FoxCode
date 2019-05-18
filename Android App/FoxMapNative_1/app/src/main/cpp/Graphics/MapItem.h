@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include "FoxUtilites/Point.h"
+#include <cmath>
 namespace gls {
 	class MapItem {
 	private:
@@ -16,24 +17,6 @@ namespace gls {
 		size_t vertices_count_;
 
 	public:
-		/*class Point {
-			float x_;
-			float y_;
-		public:
-			Point() : x_(0.0), y_(0.0) {};
-			Point(float x, float y) : x_(x), y_(y) {};
-
-			float GetX() { return x_; }
-			float GetY() { return y_; }
-			float* GetXY() {
-				float* buf = new float[2];
-				buf[0] = x_; buf[1] = y_;
-				return buf;
-			}
-
-			void GetY(float y) { y_ = y; }
-			void SetX(float x) { x_ = x; }
-		};*/
 		MapItem() {};
 
 		MapItem(const std::vector<float> &verts) {
@@ -43,12 +26,12 @@ namespace gls {
 		}
 
 		MapItem(Point &top_left, Point &bottom_right) {
-			vertices_.reserve(8);
+			vertices_.reserve(4);
 			vertices_.push_back(top_left.x);
 			vertices_.push_back(top_left.y);
+			vertices_.push_back(bottom_right.x);
+			vertices_.push_back(bottom_right.y);
 		}
-
-		virtual void Accept(Visitor &) = 0;
 
 		const float *GetVerticesArray() {
 			return &vertices_[0];
@@ -65,14 +48,19 @@ namespace gls {
 
 	class Room : public MapItem {
 	public:
+		Room(Point &top_left, Point &bottom_right) : MapItem(top_left, bottom_right) {
+			size += 4;
+			++count;
+		}
+		Room(Point top_left, Point bottom_right, Point entry) : MapItem(top_left, bottom_right) {
+			entry_ = entry;
+			size += 4;
+			++count;
+		}
 		Room(const std::vector<float> &verts) : MapItem(verts) {
 			size += verts.size();
 			++count;
 		};
-
-		void Accept(Visitor &v) override {
-			v.visit(*this);
-		}
 
 		size_t GetLength() {
 			return vertices_.size();
@@ -88,6 +76,7 @@ namespace gls {
 
 	protected:
 		std::string title_;
+		Point entry_;
 	private:
 		static size_t size;
 		static size_t count;
@@ -97,15 +86,22 @@ namespace gls {
 	class Passage : public MapItem {
 	public:
 		Passage() {};
+        Passage(Point top_left, Point bottom_right) : MapItem(top_left, bottom_right) {
+            size += 4;
+        }
 		Passage(std::vector<float> &vertices) : MapItem(vertices) {
 			size += vertices.size();
-		}
-		void Accept(Visitor &v) override {
-			v.visit(*this);
 		}
 		static size_t GetSize() {
 			return size;
 		}
+
+		static void ConvertRect2Lines(std::vector<Point>&);
+        static std::vector<Point> GeneratePlaceholders(const std::vector<Passage>&);
+
+        Point Center() const {
+        	return Point(vertices_[2]-vertices_[0], vertices_[1]-vertices_[3]);
+        }
 	private:
 		static size_t size;
 	};
@@ -116,9 +112,6 @@ namespace gls {
 			// ���������� ����� ��� �����
 		}
 
-		void Accept(Visitor &v) override {
-			v.visit(*this);
-		}
 	};
 }
 

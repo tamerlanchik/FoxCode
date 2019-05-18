@@ -4,19 +4,22 @@
 #include <vector>
 #include <fstream>
 #include "FoxUtilites/Point.h"
+#include "Database/Entity.h"
+#include "Database/DBMaster.h"
 #include <sstream>
 #include <system_error>
 #include <exception>
 #ifdef __ANDROID__
     #include <android/asset_manager.h>
 #endif
-class DataBase
+class DataBase : public DBMaster
 {
 public:
 	DataBase() throw (std::system_error);
 
 #ifdef __ANDROID__
 	DataBase(AAssetManager*);
+	DataBase(AAssetManager*, const std::string&);
 #endif
 	~DataBase();
 	size_t GetRoomNumber();
@@ -37,15 +40,23 @@ public:
 		RoomParcel() {};
 	};
 
-	std::vector<RoomParcel> GetRooms();
-	std::vector<PassageParcel> GetPassages();
+	//std::vector<RoomParcel> GetRooms();
+	//std::vector<PassageParcel> GetPassages();
+	std::vector<Room> GetRooms();
+	std::vector<Hall> GetHalls();
 	Point GetMapDimensions() const;
+	class Converter{
+	public:
+		Point operator()(const Coordinate& coord){
+			return Point(coord.x, coord.y);
+		}
+	};
 private:
     bool parseFile(std::string&) throw(std::logic_error);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
 	Point dimensions_;
 
-	static char filename_[];
+	static const std::string filename_;
 };
 

@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         mStorageMaster = new StorageMasterJNI(getApplicationContext(),
                 getString(R.string.DatabaseName), getString(R.string.ServerAddress),
                 getResources().getInteger(R.integer.ServerPort));
+        mStorageMaster.updateDatabaseRequest();
 
         mMapView = findViewById(R.id.map_view);
         //mMapView = new GLMapView(getApplicationContext());
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
+        /*String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
         SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, 0);
         if(db.isOpen() == true) {
             Log.d(TAG, "Database opened in Java");
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Log.e(TAG, "Cannot open database in Java");
             return;
-        }
+        }*/
     }
 
     @Override

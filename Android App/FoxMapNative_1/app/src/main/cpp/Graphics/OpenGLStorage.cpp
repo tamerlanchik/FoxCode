@@ -16,10 +16,33 @@ OpenGLStorage* OpenGLStorage::Get() {
 	return &instance_;
  }
 
+bool OpenGLStorage::InflateStorage(DBAdapter& adapter) {
+    if(!MapItemStorage::InflateStorage(adapter)){
+        Log::debug(TAG, "Cannot inflate MapItemStorage");
+        return false;
+    }
+    //map_dimensions_ = database_->GetMapDimensions();
+	map_dimensions_ = Point(1000, 1000);
+    // Переворот по Y
+    normalizing_matrix_ = glm::scale(normalizing_matrix_, glm::vec3(1, -1, 1));
+    // Сдвиг вправо вверх
+    normalizing_matrix_ = glm::translate(normalizing_matrix_, glm::vec3(-0.5, -0.5, 0));
+    //	Приведение масштаба к нормализованному
+    normalizing_matrix_ = glm::scale(normalizing_matrix_,
+                                     glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
+
+    /*glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO_passage_);
+    glGenVertexArrays(1, &VAO_room_);*/
+    is_inflated_ = true;
+    return VBO && VAO_passage_&&VAO_room_;
+}
+
 bool OpenGLStorage::InflateStorage() {
 	if (!MapItemStorage::InflateStorage())
 		return false;
-	map_dimensions_ = database_->GetMapDimensions();
+	//map_dimensions_ = database_->GetMapDimensions();
+	map_dimensions_ = Point(1000, 1000);
 	// Переворот по Y
 	normalizing_matrix_ = glm::scale(normalizing_matrix_, glm::vec3(1, -1, 1));
 	// Сдвиг вправо вверх
@@ -74,6 +97,7 @@ const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
 }
 
+/*
 const GLuint OpenGLStorage::GetVaoRoom() const {
 	return VAO_room_;
 }
@@ -89,6 +113,7 @@ size_t OpenGLStorage::GetVboSize() const {
 	size_t size = vbo_size_;
 	return size;
 }
+ */
 void OpenGLStorage::SetVboSize(size_t size) {
 	vbo_size_ = size;
 }
@@ -103,12 +128,12 @@ void OpenGLStorage::NotifyStopWorking() {
 //--------Private-----------
 
 float* OpenGLStorage::getRooms() {
-	rooms_buf_size_ = Room::GetCount() * 8;
+	rooms_buf_size_ = gls::Room::GetCount() * 8;
 	//rooms_buf_size_ = 8;
 	buffer_.reserve(buffer_.size() + rooms_buf_size_);
 	std::vector<float> verts;
 	int k = 0;
-	for (Room* i : room_storage_) {
+	for (gls::Room* i : room_storage_) {
 		verts = i->GetVertices();
 		buffer_.push_back(verts[0]);
 		buffer_.push_back(verts[1]);
@@ -127,12 +152,23 @@ float* OpenGLStorage::getRooms() {
 }
 
 float* OpenGLStorage::getPassages() {
-	passages_buf_size_ = Passage::GetSize();
+	passages_buf_size_ = gls::Passage::GetSize();
 	buffer_.reserve(buffer_.size() + passages_buf_size_);
 	std::vector<float> verts;
-	for (Passage* i : passage_storage_) {
+	for (gls::Passage* i : passage_storage_) {
 		verts = i->GetVertices();
-		std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
+		buffer_.push_back(verts[0]);
+		buffer_.push_back(verts[1]);
+
+		buffer_.push_back(verts[2]);
+		buffer_.push_back(verts[1]);
+
+		buffer_.push_back(verts[2]);
+		buffer_.push_back(verts[3]);
+
+		buffer_.push_back(verts[0]);
+		buffer_.push_back(verts[3]);
+		//std::copy(verts.begin(), verts.end(), std::back_inserter(buffer_));
 	}
 	return &buffer_[0];
 }

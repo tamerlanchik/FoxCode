@@ -43,7 +43,7 @@ public class StorageMasterJNI {
                 }
                 //String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
                 String path = mContext.getDatabasePath(mDBName).toString();
-                if(init(path) != 0){
+                if(init(path, mContext.getAssets()) != 0){
                     Log.e(TAG, "Cannot init database: error returned");
                 }
             }
@@ -53,7 +53,7 @@ public class StorageMasterJNI {
     static {
         System.loadLibrary("NativeDispatcher");
     }
-    private native int init(String path);
+    private native int init(String path, AssetManager assetManager);
     private native void inflateDatabase();
 
 }

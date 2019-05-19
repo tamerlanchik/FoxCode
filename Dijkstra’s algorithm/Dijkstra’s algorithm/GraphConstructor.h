@@ -4,7 +4,7 @@
 template<class T>
 class GraphConstructor{
 public:
-	GraphConstructor(const std::vector<Hall> *halls,const std::vector<Room> *rooms);
+	GraphConstructor(const std::vector<Hall> &halls,const std::vector<Room> &rooms);
 	~GraphConstructor();
 	std::vector<std::vector<T>> GetMatrix();
 	int CreateGraphMatrix();

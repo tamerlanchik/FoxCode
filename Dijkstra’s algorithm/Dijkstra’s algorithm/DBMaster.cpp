@@ -95,10 +95,10 @@ int DBMaster::ReadHalls() {
 	Hall *DataHall = nullptr;
 	// открываем соединение
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
-		return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
+		return -1;
 	// выполняем _SQLquery
 	if (sqlite3_exec(MapDB, ReadHallsSQLQuery.c_str(), CallbackHall, (void*)&Halls, &err)) {
-		return -1;//fprintf(stderr, "Error SQL query : %sn", err);
+		return -2;
 		sqlite3_free(err);
 	}
 	// закрываем соединение
@@ -112,9 +112,9 @@ int DBMaster::ReadRooms() {
 	const char* data = nullptr;
 	// открываем соединение
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
-		return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
+		return -1;
 	if (sqlite3_exec(MapDB, ReadRoomsSQLQuery.c_str(), CallbackRoom, (void*)&Rooms, &err)) {
-		return -1; //??????????????????
+		return -2; //??????????????????
 		sqlite3_free(err);
 	}
 
@@ -126,13 +126,13 @@ int DBMaster::ReadRooms() {
 		SQLQuery += "= RoomAndDoor.Room and RoomAndDoor.Door =";
 		SQLQuery += std::to_string(CurrentId);
 		if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackDoor, (void*)&Rooms, &err)) {
-			return -1;
+			return -2;
 			sqlite3_free(err);
 		}
 		SQLQuery = "select Room.Id, HallAndRoom.Hall from room, hallandroom where hallandroom.Room= ";
 		SQLQuery += std::to_string(CurrentId);
 		if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackRoomHall, (void*)&Rooms, &err)) {
-			return -1;
+			return -2;
 			sqlite3_free(err);
 		}
 	}
@@ -142,15 +142,22 @@ int DBMaster::ReadRooms() {
 }
 
 int DBMaster::ReadAllData() {
-	ReadHalls();
+	switch (ReadHalls()) {
+	case -1:
+		std::cout << "Connection Error" << std::endl;
+	case -2:
+		std::cout << "SQLQuery Error" << std::endl;
+	default:
+		std::cout << "All data has been read" << std::endl;
+	}
 	ReadRooms();
 	return 0;
 }
 
-const std::vector<Hall> DBMaster::GetHalls() {
+const std::vector<Hall> &DBMaster::GetHalls() {
 	return Halls;
 }
 
-const std::vector<Room> DBMaster::GetRooms() {
+const std::vector<Room> &DBMaster::GetRooms() {
 	return Rooms;
 }

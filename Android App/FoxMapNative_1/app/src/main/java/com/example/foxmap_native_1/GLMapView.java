@@ -98,6 +98,15 @@ public class GLMapView extends GLSurfaceView{
 
     }
 
+    public boolean drawRouteRequest(){
+        requestRender();
+        return true;
+    }
+    public boolean drawObjectMarkerRequest(){
+        requestRender();
+        return true;
+    }
+
     // Is called by Activity
     @Override
     public void onPause() {

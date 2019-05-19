@@ -12,9 +12,8 @@
 #include <android/log.h>
 #include <android/asset_manager_jni.h>
 #include <string>
-#include <Database/sqlite_lib/sqlite3ndk.h>
-#include <Database/sqlite_lib/sqlite3.h>
 #include <Database/Entity.h>
+#include "RouteSearch/RouteSearch.h"
 
 const char TAG[] = "NativeDispatcher";
 
@@ -22,7 +21,25 @@ const char TAG[] = "NativeDispatcher";
 
 
 MapDrawer map_drawer;
-DBMaster* database = nullptr;
+//RouteSearch<float>* route_search;
+
+template<class T>
+class RouteSearchMock{
+public:
+    RouteSearchMock(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {}
+    int RefreshData(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) { return 1; }
+    int BuildRoute(int StartID, int EndID) {
+        route_ = { 1, 2 };
+        return route_.size();
+    }
+    const std::vector<int> &GetRoute() { return route_;}
+    ~RouteSearchMock(){}
+
+private:
+    std::vector<int> route_;
+};
+
+RouteSearchMock<float>* route_search;
 
 extern "C" {
 JNIEXPORT void JNICALL
@@ -114,6 +131,8 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         OpenGLStorage::Get()->NotifyStartWorking();
         OpenGLStorage::Get()->InflateStorage(adapter);
         OpenGLStorage::Get()->NotifyStopWorking();
+
+        route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
     } else{
         class Adapter : public OpenGLStorage::DBAdapter{
         public:
@@ -143,6 +162,8 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         OpenGLStorage::Get()->NotifyStartWorking();
         OpenGLStorage::Get()->InflateStorage(adapter);
         OpenGLStorage::Get()->NotifyStopWorking();
+
+        route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
     }
 
 
@@ -153,5 +174,45 @@ JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_StorageMasterJNI_inflateDatabase(
         JNIEnv *env, jobject instance) {
 }
+
+
+
+JNIEXPORT jboolean JNICALL
+Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
+        JNIEnv *env, jobject instance, jstring from_name, jstring to_name){
+
+    const char* from = env->GetStringUTFChars(from_name, 0);
+    const char* to = env->GetStringUTFChars(to_name, 0);
+    route_search = nullptr;
+    try{
+        if(!route_search) throw(new std::exception);
+        size_t path_size = route_search->BuildRoute(1, 2);
+        if(path_size <= 0) throw(new std::exception);
+        const std::vector<int>& path = route_search->GetRoute();
+
+        OpenGLStorage::Get()->NotifyStartWorking();
+        OpenGLStorage::Get()->SetRoute(path);
+        OpenGLStorage::Get()->NotifyStopWorking();
+        return true;
+    }catch (...){
+        env->ReleaseStringUTFChars(from_name, from);
+        env->ReleaseStringUTFChars(to_name, to);
+        return false;
+    }
 }
+
+JNIEXPORT jboolean JNICALL
+Java_com_example_foxmap_1native_11_MapGuide_findOnMap(
+        JNIEnv *env, jobject instance, jstring obj_name){
+
+    const char* str = env->GetStringUTFChars(obj_name, 0);
+    std::string obj(str);
+    bool res = OpenGLStorage::Get()->SetObjectMark(obj);
+    Log::debug(TAG, "SetMark");
+    env->ReleaseStringUTFChars(obj_name, str);
+    return res;
+}
+
+}
+
 

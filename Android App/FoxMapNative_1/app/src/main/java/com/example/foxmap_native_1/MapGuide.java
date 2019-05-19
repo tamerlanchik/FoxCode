@@ -5,17 +5,16 @@ import android.content.Context;
 import java.util.List;
 
 public class MapGuide {
-    private ItemsStorageSinglet mMapItems;
+    private Context mContext;
+    private GLMapView mMapView;
     static{
-        System.loadLibrary("map_guide");
+        System.loadLibrary("NativeDispatcher");
     }
 
     public MapGuide(Context context){
-        mMapItems = ItemsStorageSinglet.get(context);
+        mContext = context;
     }
 
-    //Получает имена обьектов начала и конца пути
-    //Возвращает список имён узлов - обьектов, которые надо посетить
-    //ACHTUNG!! Как соединить хранилища на Java и С++?
-    public native List<String> getRoute(String from, String to);
+    public native boolean buildRoute(String from, String to);
+    public native boolean findOnMap(String obj);
 }

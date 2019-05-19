@@ -6,6 +6,9 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/FoxUtilites Graphics/Bin)
 if (NOT TARGET Database)
     add_subdirectory(${CMAKE_SOURCE_DIR}/Database Graphics/Bin)
 endif()
+if (NOT TARGET RouteSearch)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/RouteSearch Graphics/Bin)
+endif()
 add_library(Graphics SHARED
     MapDrawer.cpp
     MapItem.cpp
@@ -18,6 +21,7 @@ add_library(Graphics SHARED
 target_link_libraries(Graphics
         FoxUtilites
         Database
+        RouteSearch
         android
         GLESv3
         EGL)

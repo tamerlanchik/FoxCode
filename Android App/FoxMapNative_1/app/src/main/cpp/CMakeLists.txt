@@ -11,6 +11,10 @@ if(NOT TARGET Database)
 add_subdirectory(${PROJECT_SOURCE_DIR}/Database)
 endif()
 
+if(NOT TARGET RouteSearch)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/RouteSearch)
+endif()
+
 include_directories(${CMAKE_SOURCE_DIR})
 
 #include_directories(${PROJECT_SOURCE_DIR}/glm)
@@ -27,7 +31,6 @@ add_library(
         NativeDispatcher.cpp
 )
 
-add_library(NativeDispatcher1 SHARED NativeDispatcher1.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -56,7 +59,6 @@ target_link_libraries(
         Graphics
         FoxUtilites
         Database
+        RouteSearch
         sqlite_lib
-        log)
-target_link_libraries(NativeDispatcher1 android FoxUtilites
         log)

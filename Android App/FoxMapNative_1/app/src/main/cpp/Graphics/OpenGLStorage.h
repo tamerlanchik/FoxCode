@@ -14,6 +14,8 @@
 #include <mutex>
 #include <unistd.h>
 #include "Database/Entity.h"
+#include "RouteSearch/RouteSearch.h"
+#include "vector"
 
 class OpenGLStorage : public MapItemStorage
 {
@@ -66,6 +68,10 @@ public:
 
 	void CommitMapMovement(int x, int y);
 	void CommitMapZoom(float delta);
+
+	void SetRoute(const std::vector<int>& path);
+	void SetObjectMark(const int id);
+	bool SetObjectMark(const std::string& name);
 
 	void NotifyStartWorking();
 	void NotifyStopWorking();

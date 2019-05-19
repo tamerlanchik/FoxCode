@@ -1,5 +1,5 @@
 #pragma once
-#include "Entity.h"
+#include "Database/Entity.h"
 
 template<class T>
 class GraphConstructor{

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mGoUpButton;
     private FloatingActionButton mGoDownButton;
     private GLMapView mMapView;
+    private MapGuide mMapGuide;
 
     private NetworkMaster mNetworkMaster;
 
@@ -83,18 +84,13 @@ public class MainActivity extends AppCompatActivity {
         mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
 
+        mMapGuide = new MapGuide(getApplicationContext());
+
         mSourceSearchView = findViewById(R.id.from_search_view);
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //mSourceSearchView.setQuery(query, false);
-                String dest = mDestSearchView.getQuery().toString();
-                Log.d(TAG, "source: " + query + " " + dest);
-                if(query.length() > 0 && mDestSearchView.getQuery().length() > 0){
-                    displayRoute(query, mDestSearchView.getQuery().toString());
-                }else{
-                    searchOnMap(query);
-                }
+                handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 return false;
             }
 
@@ -109,14 +105,7 @@ public class MainActivity extends AppCompatActivity {
         mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //mDestSearchView.setQuery(query, false);
-                String source = mSourceSearchView.getQuery().toString();
-                Log.d(TAG, "dest: " + query + " " + source);
-                if(query.length() > 0 && mSourceSearchView.getQuery().length() > 0){
-                    displayRoute(mSourceSearchView.getQuery().toString(), query);
-                }else{
-                    searchOnMap(query);
-                }
+                handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 return false;
             }
 
@@ -145,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
 
                 }
+                //handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 //mSourceSearchView.clearFocus();
                 //mDestSearchView.clearFocus();
             }
@@ -221,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         /*mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -302,6 +293,40 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
 
+    }
+
+    void handleFindRequest(String from, String to){
+        if(from.length() > 0 && to.length() > 0){
+            displayRoute(from, to);
+            if(!mMapGuide.buildRoute(from, to)){
+                Toast.makeText(getApplicationContext(), "Cannot find route, sorre!",
+                        Toast.LENGTH_SHORT).show();
+            }else{
+                boolean res = mMapView.drawRouteRequest();
+                if(res)
+                    Log.d(TAG, "Маршрут построен");
+                else{
+                    Log.e(TAG, "Маршрут не найден");
+                    Toast.makeText(getApplicationContext(), "Маршрут не найден. А оно вам надо?",
+                            Toast.LENGTH_SHORT);
+                }
+            }
+        }else{
+            String target = from.length() > 0 ? from : to;
+            searchOnMap(target);
+            if(!mMapGuide.findOnMap(target)){
+                Toast.makeText(getApplicationContext(), "Cannot find object, sorre!",
+                        Toast.LENGTH_SHORT).show();
+            }else{
+                boolean res = mMapView.drawObjectMarkerRequest();
+                if(res){
+                    Log.d(TAG, "Обьект найден");
+                }else{
+                    Log.e(TAG, "Обьект не найден");
+                    Toast.makeText(getApplicationContext(), "Здесь таких нет", Toast.LENGTH_SHORT);
+                }
+            }
+        }
     }
 
     //  Вызывается автоматически при уходе Activity с первого плана

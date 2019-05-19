@@ -99,6 +99,17 @@ const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
 }
 
+void OpenGLStorage::SetRoute(const std::vector<int>& path){
+
+}
+
+void OpenGLStorage::SetObjectMark(const int id) {
+
+}
+
+bool OpenGLStorage::SetObjectMark(const std::string& name) {
+	return false;
+}
 
 void OpenGLStorage::NotifyStartWorking() {
 	m_.lock();

@@ -2,10 +2,8 @@
 #include "RouteSearch.h"
 
 template<class T>
-RouteSearch<T>::RouteSearch(const struct Hall* halls, const int hallsNumber,
-	const struct Room* rooms, const int roomsNumber,
-	const struct MoveObject* moveObjects, const int moveObjectsNumber,
-	const int start, const int end, const T**const Matrix){
+RouteSearch<T>::RouteSearch(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms,
+	const int StartId, const int EndId){
 }
 
 template<class T>

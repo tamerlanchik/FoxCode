@@ -1,7 +1,6 @@
-﻿  GraphConstructor.cpp
-  RouteSearch.cpp
-  Компиляция...
-  Создание кода...
+﻿  RouteSearch.cpp
+  LINK : не найден или не выполнена сборка C:\Users\Admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe при последней инкрементной компоновке; выполняется полная компоновка
+LINK : warning LNK4067: неоднозначная точка входа; выбрана "mainCRTStartup"
   Dijkstra’s algorithm.vcxproj -> C:\Users\Admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(13): warning C6011: Разыменование пустого указателя "SQLQuery". 
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(25): warning C6011: Разыменование пустого указателя "SQLQuery". 

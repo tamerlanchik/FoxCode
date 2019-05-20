@@ -35,7 +35,10 @@ int CallbackHall(void *data, int argc, char **argv, char **azColName) {
 	TempHall.RightBottom.y = atoi(argv[4]);
 	TempHall.LeftTop.z = atoi(argv[5]);
 	TempHall.RightBottom.z = atoi(argv[5]);
-	TempHall.Status = atoi(argv[6]);
+	if (std::string(argv[6]).size() == 4)
+		TempHall.Status = true;
+	else
+		TempHall.Status = false;
 	Halls->push_back(TempHall);
 	return 0;
 }
@@ -51,7 +54,7 @@ int CallbackRoom(void *data, int argc, char **argv, char **azColName) {
 	TempRoom.LeftTop.z = atoi(argv[5]);
 	TempRoom.RightBottom.z = atoi(argv[5]);
 	TempRoom.Status = atoi(argv[6]);
-	TempRoom.Type = std::string(argv[6]);
+	TempRoom.Type = std::string(argv[7]);
 	Rooms->push_back(TempRoom);
 	return 0;
 }
@@ -140,12 +143,25 @@ int DBMaster::ReadAllData() {
 	switch (ReadHalls()) {
 	case -1:
 		std::cout << "Connection Error" << std::endl;
+		break;
 	case -2:
 		std::cout << "SQLQuery Error" << std::endl;
+		break;
 	default:
-		std::cout << "All data has been read" << std::endl;
+		std::cout << "Halls data has been read" << std::endl;
+		break;
 	}
-	ReadRooms();
+	switch (ReadRooms()) {
+	case -1:
+		std::cout << "Connection Error" << std::endl;
+		break;
+	case -2:
+		std::cout << "SQLQuery Error" << std::endl;
+		break;
+	default:
+		std::cout << "Rooms data has been read" << std::endl;
+		break;
+	}
 	return 0;
 }
 

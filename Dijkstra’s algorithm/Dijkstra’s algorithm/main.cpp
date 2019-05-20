@@ -9,6 +9,9 @@
 int main() {
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
+	for (int i = 0; i < dbMaster.GetHalls().size(); i++) {
+		std::cout << dbMaster.GetHalls()[i].ID << std::endl;
+	}
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	MatrixGraph.ptintMatrix();
 	//std::vector<Room> Halls = dbMaster.GetRooms();

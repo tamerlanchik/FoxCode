@@ -1,5 +1,4 @@
-﻿  DBMaster.cpp
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(63): warning C4715: GetRoomIndex: значение возвращается не при всех путях выполнения
+﻿  main.cpp
   Dijkstra’s algorithm.vcxproj -> C:\Users\Admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\entity.h(17): warning C26495: Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib\shell.c(212): warning C6031: Возвращаемое значение пропущено: "_setmode".

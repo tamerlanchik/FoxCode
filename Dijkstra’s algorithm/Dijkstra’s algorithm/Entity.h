@@ -12,13 +12,13 @@ struct Coordinate {
 struct Hall {
 	std::string ID;
 	Coordinate LeftTop;
-	Coordinate RightBottom;
+	Coordinate RightBottom;	
+	std::vector<std::string> HallID;
 	bool Status; //Работает или нет
 };
 
 struct Room :Hall {
 	std::vector<Coordinate> Input;
 	std::vector<int> Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
-	std::vector<std::string> HallID;
 	std::string Type; //Аудитория, лифт, лестница, столовая и т. д.
 };

@@ -2,9 +2,31 @@
 //
 #include "pch.h"
 #include <iostream>
-#include "DijkstrasAlgorithm.h"
+//#include "DijkstrasAlgorithm.h"
 #include "DBMaster.h"
 #include "CMatrixGraph.h"
+#include <queue>
+void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph)) {
+	std::vector<bool> visited(graph.VerticesCount(), false);
+	// Тут храним текуший фронт - ?
+	std::queue<int> qu;
+	// Кладем вершину, с которой наиснаем обход
+	qu.push(vertex);
+	visited[vertex] = true;
+
+	while (qu.size() != 0) {
+		int current = qu.front();
+		qu.pop();
+		visit(current,graph);
+		std::vector<int> adjacentVertices = graph.GetNextVertices(current);
+		for (int i = 0; i < adjacentVertices.size(); ++i) {
+			if (!visited[adjacentVertices[i]]) {
+				qu.push(adjacentVertices[i]);
+				visited[adjacentVertices[i]] = true;
+			}
+		}
+	}
+}
 
 int main() {
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
@@ -13,7 +35,10 @@ int main() {
 		std::cout << dbMaster.GetHalls()[i].ID << std::endl;
 	}
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
+	std::cout << MatrixGraph.IdElements.size() << std::endl;
 	MatrixGraph.ptintMatrix();
+	BFS(MatrixGraph, 0, [](int vertex, CMatrixGraph graph) { std::cout << graph.IdElements[vertex] << " "; });
+	//MatrixGraph.ptintMatrix();
 	//std::vector<Room> Halls = dbMaster.GetRooms();
 	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
 	//std::cout << Halls.size(); 

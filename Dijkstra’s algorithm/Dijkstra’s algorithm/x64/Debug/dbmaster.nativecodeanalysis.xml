@@ -4,42 +4,42 @@
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
       <FILENAME>entity.h</FILENAME>
-      <LINE>17</LINE>
+      <LINE>18</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
     <DESCRIPTION>Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>Hall::{ctor}</FUNCTION>
     <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
-    <FUNCLINE>17</FUNCLINE>
+    <FUNCLINE>18</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
       <FILENAME>entity.h</FILENAME>
-      <LINE>17</LINE>
+      <LINE>18</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
     <DESCRIPTION>Variable 'Hall::LeftTop' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>Hall::{ctor}</FUNCTION>
     <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
-    <FUNCLINE>17</FUNCLINE>
+    <FUNCLINE>18</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
       <FILENAME>entity.h</FILENAME>
-      <LINE>17</LINE>
+      <LINE>18</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
     <DESCRIPTION>Variable 'Hall::Status' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
     <FUNCTION>Hall::{ctor}</FUNCTION>
     <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
-    <FUNCLINE>17</FUNCLINE>
+    <FUNCLINE>18</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
 </DEFECTS>

@@ -43,6 +43,21 @@ int CallbackHall(void *data, int argc, char **argv, char **azColName) {
 	return 0;
 }
 
+int getHallIndex(std::vector<Hall> Halls, std::string HallID) {
+	for (int i = 0; i < Halls.size(); i++)
+		if (HallID == Halls[i].ID)
+			return i;
+}
+
+int CallbackHallHall(void *data, int argc, char **argv, char **azColName) {
+	//HallID, HallId
+	std::vector<Hall> *Halls = static_cast<std::vector<Hall>*>(data);
+	//Запись Id коридоров, в которых находятся аудитории
+	Halls[0][getHallIndex(Halls[0], argv[0])].HallID.push_back(argv[1]);
+	Halls[0][getHallIndex(Halls[0], argv[1])].HallID.push_back(argv[0]);
+	return 0;
+}
+
 int CallbackRoom(void *data, int argc, char **argv, char **azColName) {
 	std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
 	Room TempRoom;
@@ -97,6 +112,18 @@ int DBMaster::ReadHalls() {
 	if (sqlite3_exec(MapDB, ReadHallsSQLQuery.c_str(), CallbackHall, (void*)&Halls, &err)) {
 		return -2;
 		sqlite3_free(err);
+	}
+	for (Hall hall : Halls) {
+		std::string CurrentId = "'";
+		CurrentId += hall.ID;
+		CurrentId += "'";
+		std::string SQLQuery = "select hallandhall.Hall1, HallAndHall.Hall2 from hallandhall where hallandhall.hall1= ";
+		SQLQuery += CurrentId;
+		if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackHallHall, (void*)&Halls, &err)) {
+			return -2;
+			sqlite3_free(err);
+		}
+
 	}
 	// закрываем соединение
 	sqlite3_close(MapDB);

@@ -1,10 +1,16 @@
 #include "pch.h"
 #include "CMatrixGraph.h"
 
+
 void CMatrixGraph::ptintMatrix(){
+	for (int i = 0; i < IdElements.size(); i++)
+		std::cout << IdElements[i] << " ";
+	std::cout<<std::endl;
 	for (int i = 0; i < adjacencyMatrix.size(); i++) {
-		for (int j = 0; j < adjacencyMatrix.size(); j++)
-			std::cout << adjacencyMatrix[i][j] << " ";
+		for (int j = 0; j < adjacencyMatrix.size(); j++) {
+			std::cout.width(8);
+			std::cout << adjacencyMatrix[i][j];
+		}
 		std::cout << std::endl;
 	}
 }
@@ -28,6 +34,17 @@ int HallRoomDistance(Room room, Hall hall) {
 	return MinDistance;
 }
 
+int HallHallDistance(Hall hall1, Hall hall2) {
+	Coordinate CenterHall1, CenterHall2;
+	CenterHall1.x = abs(hall1.RightBottom.x - hall1.LeftTop.x) / 2;
+	CenterHall1.y = abs(hall1.LeftTop.y - hall1.RightBottom.y) / 2;
+	CenterHall2.x = abs(hall2.RightBottom.x - hall2.LeftTop.x) / 2;
+	CenterHall2.y = abs(hall2.LeftTop.y - hall2.RightBottom.y) / 2;
+	int MinDistance = sqrt(pow((CenterHall2.x - CenterHall1.x), 2) + pow((CenterHall2.y - CenterHall1.y), 2));
+	return MinDistance;
+}
+
+
 CMatrixGraph::CMatrixGraph(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {
 	int MatrixSize = Halls.size() + Rooms.size();
 	adjacencyMatrix.resize(MatrixSize);
@@ -35,12 +52,21 @@ CMatrixGraph::CMatrixGraph(const std::vector<Hall> &Halls, const std::vector<Roo
 		adjacencyMatrix[i].resize(MatrixSize, 0);
 	}
 	for (int j = 0; j < Rooms.size(); j++) {
+		IdElements.push_back(Rooms[j].ID);
 		for (int k = 0; k < Rooms[j].HallID.size(); k++) {
 			int HallIndex = GetHallIndex(Halls, Rooms[j].HallID[k]) + Rooms.size();
 			adjacencyMatrix[j][HallIndex] = HallRoomDistance(Rooms[j], Halls[GetHallIndex(Halls, Rooms[j].HallID[k])]);
 			adjacencyMatrix[HallIndex][j] = HallRoomDistance(Rooms[j], Halls[GetHallIndex(Halls, Rooms[j].HallID[k])]);
 		}
+	}
+	for (int i = 0; i < Halls.size(); i++) {
+		IdElements.push_back(Halls[i].ID);
+		for (int j = 0; j < Halls[i].HallID.size(); j++) {
+			int HallIndex = GetHallIndex(Halls, Halls[i].HallID[j]) + Rooms.size();
+			std::cout << i + Rooms.size() << " " << HallIndex << " " << HallHallDistance(Halls[i], Halls[j]) << std::endl;
+			adjacencyMatrix[i+Rooms.size()][HallIndex] = HallHallDistance(Halls[i], Halls[j]);
 		}
+	}
 }
 
 CMatrixGraph::CMatrixGraph(int count) {

@@ -39,6 +39,12 @@
     <ClInclude Include="sqlite_lib\sqlite3ext.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="IGraph.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CMatrixGraph.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -63,6 +69,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="sqlite_lib\sqlite3.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CMatrixGraph.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

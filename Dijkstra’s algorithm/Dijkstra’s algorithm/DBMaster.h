@@ -3,8 +3,8 @@
 
 class DBMaster{
 public:
-	DBMaster(std::string folder, std::string dbname, std::string* SQLQuery);
-	DBMaster(std::string connectionString, std::string* SQLQuery);
+	DBMaster(std::string folder, std::string dbname, std::vector<std::string> SQLQuery);
+	DBMaster(std::string connectionString, std::vector<std::string> SQLQuery);
 	DBMaster(std::string connectionString);
 	~DBMaster();
 	int ReadAllData();

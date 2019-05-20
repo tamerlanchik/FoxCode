@@ -1,17 +1,19 @@
 ﻿// Dijkstra’s algorithm.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
 #include "pch.h"
 #include <iostream>
 #include "DijkstrasAlgorithm.h"
 #include "DBMaster.h"
+#include "CMatrixGraph.h"
 
-int main(){
+int main() {
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
-	std::vector<Room> Halls = dbMaster.GetRooms();
+	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
+	MatrixGraph.ptintMatrix();
+	//std::vector<Room> Halls = dbMaster.GetRooms();
 	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);
-    std::cout << Halls.size(); 
+	//std::cout << Halls.size(); 
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

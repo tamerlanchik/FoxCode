@@ -1,7 +1,0 @@
-﻿  main.cpp
-d:\c++ project\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(12): error C2664: "DijkstrasAlgorithm<int>::DijkstrasAlgorithm(const DijkstrasAlgorithm<int> &)": невозможно преобразовать аргумент 3 из "int [2][2]" в "T **"
-          with
-          [
-              T=int
-          ]
-  d:\c++ project\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(12): note: Типы, на которые указывают указатели, не связаны; для преобразования требуется reinterpret_cast, приведение в стиле С или приведение в стиле функции

@@ -10,7 +10,7 @@ struct Coordinate {
 };
 
 struct Hall {
-	int ID;
+	std::string ID;
 	Coordinate LeftTop;
 	Coordinate RightBottom;
 	bool Status; //Работает или нет
@@ -19,6 +19,6 @@ struct Hall {
 struct Room :Hall {
 	std::vector<Coordinate> Input;
 	std::vector<int> Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
-	std::vector<int> HallID;
+	std::vector<std::string> HallID;
 	std::string Type; //Аудитория, лифт, лестница, столовая и т. д.
 };

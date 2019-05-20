@@ -154,16 +154,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CMatrixGraph.h" />
     <ClInclude Include="DBMaster.h" />
     <ClInclude Include="DijkstrasAlgorithm.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GraphConstructor.h" />
+    <ClInclude Include="IGraph.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RouteSearch.h" />
     <ClInclude Include="sqlite_lib\sqlite3.h" />
     <ClInclude Include="sqlite_lib\sqlite3ext.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CMatrixGraph.cpp" />
     <ClCompile Include="DBMaster.cpp" />
     <ClCompile Include="DijkstrasAlgorithm.cpp" />
     <ClCompile Include="GraphConstructor.cpp" />

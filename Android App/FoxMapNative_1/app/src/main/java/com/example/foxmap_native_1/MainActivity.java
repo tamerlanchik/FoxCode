@@ -1,6 +1,7 @@
 package com.example.foxmap_native_1;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.pm.ConfigurationInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLSurfaceView;
@@ -77,7 +78,19 @@ public class MainActivity extends AppCompatActivity {
         mStorageMaster = new StorageMasterJNI(getApplicationContext(),
                 getString(R.string.DatabaseName), getString(R.string.ServerAddress),
                 getResources().getInteger(R.integer.ServerPort));
-        mStorageMaster.updateDatabaseRequest();
+        int res = mStorageMaster.updateDatabaseRequest();
+        switch(res){
+            case 1:
+                Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_SHORT)
+                        .show();
+                break;
+            case 2:
+                Toast.makeText(getApplicationContext(),
+                        "Database error! Shutting down...", Toast.LENGTH_SHORT).show();
+
+                finish();
+                break;
+        }
 
         mMapView = findViewById(R.id.map_view);
         //mMapView = new GLMapView(getApplicationContext());

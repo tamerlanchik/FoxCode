@@ -59,6 +59,9 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 
 	std::vector<Hall> passages = db.GetPassages();
 	std::vector<Room> rooms = db.GetRooms();
+	if(passages.size() == 0 || rooms.size() == 0){
+		return false;
+	}
 	for(Hall h : passages){
 		gls::Passage* pass = new gls::Passage(c(h.LeftTop), c(h.RightBottom));
 		passage_storage_.push_back(pass);

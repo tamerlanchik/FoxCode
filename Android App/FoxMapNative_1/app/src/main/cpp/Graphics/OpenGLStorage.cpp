@@ -150,23 +150,26 @@ float* OpenGLStorage::getPassages() {
 }
 
 float* OpenGLStorage::getPatches() {
-	const float dW = map_dimensions_.x * 0.02;	// значение ширины квадрата заглушки
+	const float dW = 5;	// значение ширины квадрата заглушки
 	buffer_map_.SetPatches(gls::Room::GetCount()*12);
 	buffer_.reserve(buffer_map_.GetTotal());
 
 	std::array<size_t, 12> ind = { 0, 1,   2, 1,   2, 3,
                                    0, 1,   2, 3,   0, 3 };
 	std::array<float, 4> rect;
-    float eps = 10;
+    float eps = 3;
     float dWx, dWy;
 	for (gls::Room* obj : room_storage_) {
         dWx = eps/2; dWy = eps/2;
 	    Point e = obj->GetEntry();
 	    auto verts = obj->GetVertices();
-	    if(abs(verts[0] - e.x) < eps || abs(verts[2] - e.x) < eps)
+	    if(abs(verts[0] - e.x) < eps || abs(verts[2] - e.x) < eps) {
             dWy = dW;
-        else
+        }
+        else{
             dWx = dW;
+
+        }
 		generateCenteredRectangle< std::array<float, 4> >(rect, e, dWx, dWy);
 		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
 			buffer_.push_back(rect[i]);

@@ -113,13 +113,24 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
                 delete database_;
             }
             std::vector<Hall> GetPassages() override {
-                if(database_->ReadHalls() < 0)
-                    Log::debug(TAG, "Cannot read halls");
-                return database_->GetHalls();
+                int res = database_->ReadHalls();
+                switch(res){
+                    case -1:
+                        Log::error(TAG, "Cannot open database");
+                        break;
+                    case -2:
+                        Log::error(TAG, "Cannot read from database");
+                        break;
+                    case 0:
+                        return database_->GetHalls();
+                }
+                return std::vector<Hall>();
             }
             std::vector<Room> GetRooms() override {
-                if(database_->ReadRooms() < 0)
+                if(database_->ReadRooms() < 0){
                     Log::debug(TAG, "Cannot read rooms");
+                    return std::vector<Room>();
+                }
                 return database_->GetRooms();
             }
         };
@@ -129,8 +140,11 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         env->ReleaseStringUTFChars(db_path, path);
 
         OpenGLStorage::Get()->NotifyStartWorking();
-        OpenGLStorage::Get()->InflateStorage(adapter);
+        bool res = OpenGLStorage::Get()->InflateStorage(adapter);
         OpenGLStorage::Get()->NotifyStopWorking();
+        if(res == false){
+            return 2;
+        }
 
         route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
     } else{
@@ -157,7 +171,7 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
             return 1;
         }
         AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
-        Adapter adapter(native_asset_manager, "map-rect-pass.txt");
+        Adapter adapter(native_asset_manager, "map.txt");
 
         OpenGLStorage::Get()->NotifyStartWorking();
         OpenGLStorage::Get()->InflateStorage(adapter);

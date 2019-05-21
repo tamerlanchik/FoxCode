@@ -1,28 +1,17 @@
 #include "DBMaster.h"
 #include <algorithm>
 #include "sqlite_lib/sqlite3.h"
-DBMaster::DBMaster(std::string folder, std::string dbname, std::string* SQLQuery) {
+
+DBMaster::DBMaster(std::string folder, std::string dbname, std::vector<std::string> SQLQuery) {
     ConnectionString = folder + "/" + dbname;
-    if (SQLQuery != nullptr)
-        ReadHallsSQLQuery = SQLQuery[0];
-    else
-        ReadHallsSQLQuery = "";
-    if (SQLQuery + 1 != nullptr)
-        ReadRoomsSQLQuery = SQLQuery[1];
-    else
-        ReadRoomsSQLQuery = "";
+    ReadHallsSQLQuery = SQLQuery[0];
+    ReadRoomsSQLQuery = SQLQuery[1];
 }
 
-DBMaster::DBMaster(std::string connectionString, std::string* SQLQuery) {
+DBMaster::DBMaster(std::string connectionString, std::vector<std::string> SQLQuery) {
     ConnectionString = connectionString;
-    if (SQLQuery != nullptr)
-        ReadHallsSQLQuery = SQLQuery[0];
-    else
-        ReadHallsSQLQuery = "";
-    if (SQLQuery + 1 != nullptr)
-        ReadRoomsSQLQuery = SQLQuery[1];
-    else
-        ReadRoomsSQLQuery = "";
+    ReadHallsSQLQuery = SQLQuery[0];
+    ReadRoomsSQLQuery = SQLQuery[1];
 }
 
 DBMaster::DBMaster(std::string connectionString) {
@@ -38,7 +27,7 @@ DBMaster::DBMaster::~DBMaster()
 int CallbackHall(void *data, int argc, char **argv, char **azColName) {
     std::vector<Hall> *Halls = static_cast<std::vector<Hall>*>(data);
     Hall TempHall;
-    TempHall.ID = atoi(argv[0]);
+    TempHall.ID = argv[0];
     TempHall.LeftTop.x = atoi(argv[1]);
     TempHall.LeftTop.y = atoi(argv[2]);
     TempHall.RightBottom.x = atoi(argv[3]);
@@ -53,7 +42,7 @@ int CallbackHall(void *data, int argc, char **argv, char **azColName) {
 int CallbackRoom(void *data, int argc, char **argv, char **azColName) {
     std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
     Room TempRoom;
-    TempRoom.ID = atoi(argv[0]);
+    TempRoom.ID = argv[0];
     TempRoom.LeftTop.x = atoi(argv[1]);
     TempRoom.LeftTop.y = atoi(argv[2]);
     TempRoom.RightBottom.x = atoi(argv[3]);
@@ -66,6 +55,12 @@ int CallbackRoom(void *data, int argc, char **argv, char **azColName) {
     return 0;
 }
 
+int GetRoomIndex(std::vector<Room> Rooms, std::string RoomID) {
+    for (int i = 0; i < Rooms.size(); i++)
+        if (RoomID == Rooms[i].ID)
+            return i;
+}
+
 int CallbackDoor(void *data, int argc, char **argv, char **azColName) {
     //ID, X, Y, Z, Weight
     std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
@@ -74,8 +69,8 @@ int CallbackDoor(void *data, int argc, char **argv, char **azColName) {
     TempCoordinate.y = atoi(argv[2]);
     TempCoordinate.z = atoi(argv[3]);
     //Çàïèñü øèðèíû äâåðíîãî ïðî¸ìà â âåêòîð
-    Rooms[0][atoi(argv[0])-1].Wight.push_back(atoi(argv[4]));
-    Rooms[0][atoi(argv[0])-1].Input.push_back(TempCoordinate);
+    Rooms[0][GetRoomIndex(Rooms[0],argv[0])].Wight.push_back(atoi(argv[4]));
+    Rooms[0][GetRoomIndex(Rooms[0], argv[0])].Input.push_back(TempCoordinate);
     return 0;
 }
 
@@ -83,7 +78,7 @@ int CallbackRoomHall(void *data, int argc, char **argv, char **azColName) {
     //RoomID, HallId
     std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
     //Çàïèñü Id êîðèäîðîâ, â êîòîðûõ íàõîäÿòñÿ àóäèòîðèè
-    Rooms[0][atoi(argv[0])-1].HallID.push_back(atoi(argv[1]));
+    Rooms[0][GetRoomIndex(Rooms[0], argv[0])].HallID.push_back(argv[1]);
     return 0;
 }
 
@@ -93,11 +88,11 @@ int DBMaster::ReadHalls() {
     Hall *DataHall = nullptr;
     // îòêðûâàåì ñîåäèíåíèå
     if (sqlite3_open(ConnectionString.c_str(), &MapDB))
-        return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
+        return -1;
     // âûïîëíÿåì _SQLquery
     if (sqlite3_exec(MapDB, ReadHallsSQLQuery.c_str(), CallbackHall, (void*)&Halls, &err)) {
-        return -1;//fprintf(stderr, "Error SQL query : %sn", err);
         sqlite3_free(err);
+        return -2;
     }
     // çàêðûâàåì ñîåäèíåíèå
     sqlite3_close(MapDB);
@@ -110,29 +105,30 @@ int DBMaster::ReadRooms() {
     const char* data = nullptr;
     // îòêðûâàåì ñîåäèíåíèå
     if (sqlite3_open(ConnectionString.c_str(), &MapDB))
-        return -1;//fprintf(stderr, "Error create DB : %s\n", sqlite3_errmsg(MapDB));
+        return -1;
     if (sqlite3_exec(MapDB, ReadRoomsSQLQuery.c_str(), CallbackRoom, (void*)&Rooms, &err)) {
-        return -1; //??????????????????
+        return -2; //??????????????????
         sqlite3_free(err);
     }
 
     for (Room room : Rooms) {
-        int CurrentId = room.ID;
-        //select Room.Id, Door.Id, Door.X, Door.Y, Door.Z, Door.Wight from Door, Room, RoomAndDoor where CURRENTID = RoomAndDoor.Room and RoomAndDoor.Door = CURRENTID
-        std::string SQLQuery = "select Room.Id, Door.Id, Door.X, Door.Y, Door.Z, Door.Wight from Door, Room, RoomAndDoor where ";
-        SQLQuery += std::to_string(CurrentId);
-        SQLQuery += "= RoomAndDoor.Room and RoomAndDoor.Door =";
-        SQLQuery += std::to_string(CurrentId);
+        std::string CurrentId = "'";
+        CurrentId+= room.ID;
+        CurrentId+= "'";
+        std::string SQLQuery = "select RoomAndDoor.Room, Door.Id, Door.X, Door.Y, Door.Z, Door.Wight from Door, RoomAndDoor where ";
+        SQLQuery += CurrentId;
+        SQLQuery += " = RoomAndDoor.Room and Door.Id = RoomAndDoor.Door";
         if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackDoor, (void*)&Rooms, &err)) {
-            return -1;
+            return -2;
             sqlite3_free(err);
         }
-        SQLQuery = "select Room.Id, HallAndRoom.Hall from room, hallandroom where hallandroom.Room= ";
-        SQLQuery += std::to_string(CurrentId);
+        SQLQuery = "select hallandroom.Room, HallAndRoom.Hall from hallandroom where hallandroom.Room= ";
+        SQLQuery += CurrentId;
         if (sqlite3_exec(MapDB, SQLQuery.c_str(), CallbackRoomHall, (void*)&Rooms, &err)) {
-            return -1;
+            return -2;
             sqlite3_free(err);
         }
+
     }
     // çàêðûâàåì ñîåäèíåíèå
     sqlite3_close(MapDB);
@@ -140,15 +136,22 @@ int DBMaster::ReadRooms() {
 }
 
 int DBMaster::ReadAllData() {
-    ReadHalls();
+    switch (ReadHalls()) {
+        case -1:
+            std::cout << "Connection Error" << std::endl;
+        case -2:
+            std::cout << "SQLQuery Error" << std::endl;
+        default:
+            std::cout << "All data has been read" << std::endl;
+    }
     ReadRooms();
     return 0;
 }
 
-const std::vector<Hall> DBMaster::GetHalls() {
+const std::vector<Hall> &DBMaster::GetHalls() {
     return Halls;
 }
 
-const std::vector<Room> DBMaster::GetRooms() {
+const std::vector<Room> &DBMaster::GetRooms() {
     return Rooms;
 }

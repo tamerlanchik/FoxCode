@@ -134,8 +134,9 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
 	std::string type;
 	size_t size;
 	float data;
-
+    int i = 0;
 	while (f >> type) {
+	    ++i;
 		char t = '0';
 		size_t data_len = 0;
 		int e = type.find("ROOM");
@@ -144,12 +145,14 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
 			t = 'r';
 			data_len = 6;
 		}
-		else if (type.find("Passage") != std::string::npos) {
+		else if (type.find("Passage") != std::string::npos ||
+				 type.find("Lift") != std::string::npos ||
+				type.find("Steps") != std::string::npos) {
 			t = 'p';
 			data_len = 4;
 		}
 		else {
-			throw std::logic_error("Wrong object type");
+			throw std::logic_error(std::string("Wrong object type ") + type + " i=" + std::to_string(i));
 			return false;
 		}
 		f >> size;

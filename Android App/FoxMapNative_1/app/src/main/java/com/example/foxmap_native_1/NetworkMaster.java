@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Vector;
 
@@ -51,7 +52,8 @@ public class NetworkMaster {
 
     public NetworkMaster(String hostAddr, int port) throws Exception{
         try {
-            Socket sock = new Socket(hostAddr, port);
+            Socket sock = new Socket();
+            sock.connect(new InetSocketAddress(hostAddr, port), 500);
             if(sock.isConnected())
                 Log.d(TAG, "Connected");
             else

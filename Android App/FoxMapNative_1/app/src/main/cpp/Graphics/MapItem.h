@@ -91,7 +91,6 @@ namespace gls {
 		static size_t count;
 	};
 
-
 	class Passage : public MapItem {
 	public:
 		Passage() {};
@@ -121,12 +120,27 @@ namespace gls {
         static size_t count_;
 	};
 
-	class Steps : public MapItem {
+	class Steps : public Passage {
 	public:
-		Steps(std::vector<float> &vertices) : MapItem(vertices) {
-			// ���������� ����� ��� �����
+		Steps(Point top_left, Point bottom_right) : Passage(top_left, bottom_right) {
+			size += 4;
+			++count_;
 		}
+	private:
+		static size_t size;
+		static size_t count_;
 
+	};
+
+	class Lift : public Passage {
+	public:
+		Lift(Point top_left, Point bottom_right) : Passage(top_left, bottom_right) {
+			size += 4;
+			++count_;
+		}
+	private:
+		static size_t size;
+		static size_t count_;
 	};
 }
 

@@ -69,8 +69,19 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 	//storage_.emplace_back(passage_storage_);
 
 	for(Room r : rooms){
-		gls::Room* room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]));
-		room_storage_.push_back(room);
+		if(r.Type == "Room") {
+			gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]));
+			room_storage_.push_back(room);
+		}
+		else {
+			if (r.Type == "Lift") {
+				gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom));
+				lift_storage_.push_back(room);
+			} else if (r.Type == "Steps") {
+				gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom));
+				steps_storage_.push_back(room);
+			}
+		}
 	}
 	//storage_.emplace_back(room_storage_);
 

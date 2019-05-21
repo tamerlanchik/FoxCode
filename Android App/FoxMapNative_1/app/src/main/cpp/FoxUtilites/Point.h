@@ -13,6 +13,7 @@ struct PointT {
 	PointT<T> operator- (const PointT<T>&);
 	PointT<T> operator* (const PointT<T>&);
 	PointT<T> operator/ (const PointT<T>&);
+	bool operator< (const PointT<T>&);
 	PointT<T> operator+ (T);
 	PointT<T> operator/ (T);
 	PointT<T> operator* (T);

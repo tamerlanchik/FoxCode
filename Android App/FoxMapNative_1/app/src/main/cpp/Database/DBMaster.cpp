@@ -59,6 +59,7 @@ int GetRoomIndex(std::vector<Room> Rooms, std::string RoomID) {
     for (int i = 0; i < Rooms.size(); i++)
         if (RoomID == Rooms[i].ID)
             return i;
+    return 0;
 }
 
 int CallbackDoor(void *data, int argc, char **argv, char **azColName) {

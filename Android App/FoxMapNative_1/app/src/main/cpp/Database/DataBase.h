@@ -9,6 +9,7 @@
 #include <sstream>
 #include <system_error>
 #include <exception>
+#include <queue>
 #ifdef __ANDROID__
     #include <android/asset_manager.h>
 #endif
@@ -55,6 +56,7 @@ private:
     bool parseFile(std::string&) throw(std::logic_error);
 	std::list< std::vector<float> > rooms_;
 	std::list< std::vector<float> > passages_;
+	std::vector<char> room_types_;
 	Point dimensions_;
 
 	static const std::string filename_;

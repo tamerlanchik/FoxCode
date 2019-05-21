@@ -49,6 +49,10 @@ private:
 
 	void drawPatches();
 
+	void drawLifts();
+
+	void drawSteps();
+
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];
     static const char triangle_fragment_shader_name_[];

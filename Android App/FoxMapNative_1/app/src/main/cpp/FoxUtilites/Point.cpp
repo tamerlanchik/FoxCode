@@ -38,5 +38,10 @@ PointT<T> PointT<T>::operator* (T a) {
 	return PointT<T>(x*a, y*a);
 }
 
+template<class T>
+bool PointT<T>::operator< (const PointT<T>& p2) {
+	return x<p2.x && y < p2.y;
+}
+
 template class PointT<float>;
 template class PointT<size_t>;

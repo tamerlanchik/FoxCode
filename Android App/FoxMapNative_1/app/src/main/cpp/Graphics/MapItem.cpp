@@ -4,6 +4,10 @@ size_t Room::size = 0;
 size_t Room::count = 0;
 size_t Passage::size = 0;
 size_t Passage::count_ = 0;
+size_t Lift::size = 0;
+size_t Lift::count_ = 0;
+size_t Steps::size = 0;
+size_t Steps::count_ = 0;
 
 void Passage::ConvertRect2Lines(std::vector<Point>& v) {
 

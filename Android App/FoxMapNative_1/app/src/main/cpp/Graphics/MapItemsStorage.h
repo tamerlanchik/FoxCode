@@ -20,6 +20,8 @@ protected:
     //vector<std::vector<gls::MapItem*>& > storage_;
 	vector<gls::Room*> room_storage_;
 	vector<gls::Passage*> passage_storage_;
+	vector<gls::Lift*> lift_storage_;
+	std::vector<gls::Steps*> steps_storage_;
 	//DataBase* database_;
 	//DBMaster* db_;
 	MapItemStorage();

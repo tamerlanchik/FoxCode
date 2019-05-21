@@ -91,6 +91,8 @@ float* OpenGLStorage::GetObjects() {
 	buffer_.clear();
 	getPassages();
 	getRooms();
+	getLifts();
+	getSteps();
 	getPatches();
 	return buffer_.data();
 }
@@ -122,7 +124,10 @@ void OpenGLStorage::NotifyStopWorking() {
 
 float* OpenGLStorage::getRooms() {
 	//rooms_buf_size_ = gls::Room::GetCount() * 8;
-	buffer_map_.SetRooms(gls::Room::GetCount() * 8);
+	//buffer_map_.SetRooms((gls::Room::GetCount() + gls::Lift::GetCount() + gls::Steps::GetCount()) * 8);
+	//buffer_map_.SetRooms((room_storage_.size() + lift_storage_.size() + steps_storage_.size())*8);
+	buffer_map_.SetLocation(BufMap::R,
+	        (room_storage_.size() + lift_storage_.size() + steps_storage_.size())*8);
 	buffer_.reserve(buffer_map_.GetTotal());
 	std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,   0, 3 };
 
@@ -131,12 +136,24 @@ float* OpenGLStorage::getRooms() {
 		    buffer_.push_back(obj->GetVertices()[i]);
 		});
 	}
+	for (gls::Lift* obj : lift_storage_) {
+		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
+			buffer_.push_back(obj->GetVertices()[i]);
+		});
+	}
+	for (gls::Steps* obj : steps_storage_) {
+		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
+			buffer_.push_back(obj->GetVertices()[i]);
+		});
+	}
 	return buffer_.data();
 }
 
 float* OpenGLStorage::getPassages() {
 	//passages_buf_size_ = gls::Passage::GetCount()*2*2*3;
-	buffer_map_.SetPassages(gls::Passage::GetCount()*2*2*3);
+	//buffer_map_.SetPassages(gls::Passage::GetCount()*2*2*3);
+	//buffer_map_.SetPassages(passage_storage_.size() * 2*2*3);
+    buffer_map_.SetLocation(BufMap::P, passage_storage_.size() * 2*2*3);
 	buffer_.reserve(buffer_map_.GetTotal());
     std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,
                                 0, 1,   2, 3,   0, 3 };
@@ -151,7 +168,8 @@ float* OpenGLStorage::getPassages() {
 
 float* OpenGLStorage::getPatches() {
 	const float dW = 5;	// значение ширины квадрата заглушки
-	buffer_map_.SetPatches(gls::Room::GetCount()*12);
+	//buffer_map_.SetPatches(gls::Room::GetCount()*12);
+    buffer_map_.SetLocation(BufMap::PT, gls::Room::GetCount()*12);
 	buffer_.reserve(buffer_map_.GetTotal());
 
 	std::array<size_t, 12> ind = { 0, 1,   2, 1,   2, 3,
@@ -178,6 +196,46 @@ float* OpenGLStorage::getPatches() {
 	return buffer_.data();
 }
 
+float* OpenGLStorage::getLifts() {
+	//buffer_map_.SetLifts(gls::Lift::GetCount() * 8);
+    buffer_map_.SetLocation(BufMap::L, lift_storage_.size()*8);
+	buffer_.reserve(buffer_map_.GetTotal());
+	std::array<size_t, 8> ind = {0, 1, 2, 3, 2, 1, 0, 3};
+
+	for (gls::Lift *obj : lift_storage_) {
+		std::for_each(ind.begin(), ind.end(), [&](size_t &i) {
+			buffer_.push_back(obj->GetVertices()[i]);
+		});
+	}
+	return buffer_.data();
+}
+
+float* OpenGLStorage::getSteps() {
+    buffer_map_.SetLocation(BufMap::S, steps_storage_.size() * 4 * 4);
+	//buffer_map_.SetSteps(gls::Steps::GetCount() * 4 * 4);
+	buffer_.reserve(buffer_map_.GetTotal());
+	std::array<size_t, 8> ind = {0, 1, 2, 3, 2, 1, 0, 3};
+	const size_t lines_count = 2;
+
+	for (gls::Steps *obj : steps_storage_) {
+		const std::vector<float>& v = obj->GetVertices();
+		Point l_t(v[0], v[1]);
+		Point r_b(v[2], v[3]);
+		Point d = (r_b - l_t)/(lines_count+1);
+		for(Point i = l_t+d; i < r_b; i = i + d){
+			buffer_.push_back(i.x);
+			buffer_.push_back(l_t.y);
+			buffer_.push_back(i.x);
+			buffer_.push_back(r_b.y);
+
+			buffer_.push_back(l_t.x);
+			buffer_.push_back(i.y);
+			buffer_.push_back(r_b.x);
+			buffer_.push_back(i.y);
+		}
+	}
+	return buffer_.data();
+}
 void OpenGLStorage::updateTransformMatrix() {
 	result_transform_matrix_ = moving_matrix_*scaling_matrix_*normalizing_matrix_;
 }

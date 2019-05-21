@@ -56,7 +56,7 @@ std::vector<Room> DataBase::GetRooms() {
 	Converter c;
 	std::vector<Room> parcels;
 	parcels.reserve(rooms_.size());
-
+	size_t i = 0;
 	for (auto room : rooms_) {
 		Room parcel;
 		parcel.LeftTop.x = room[0];
@@ -65,8 +65,21 @@ std::vector<Room> DataBase::GetRooms() {
 		parcel.RightBottom.y = room[3];
 		std::vector<Coordinate> input(1);
 		input[0].x = room[4]; input[0].y = room[5];
+		char type = room_types_[i++];
+		switch(type){
+			case 'r':
+				parcel.Type = "Room";
+				break;
+			case 'l':
+				parcel.Type = "Lift";
+				break;
+			case 's':
+				parcel.Type = "Steps";
+				break;
+			default:
+				assert(false);
+		}
 		parcel.Input = input;
-		parcel.Type = "Room";
 		parcel.ID = 1;
 		parcels.push_back(parcel);
 	}
@@ -138,18 +151,22 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
 	while (f >> type) {
 	    ++i;
 		char t = '0';
-		size_t data_len = 0;
+		size_t data_len = 4;
 		int e = type.find("ROOM");
 		if (type.find("Room")!= std::string::npos) {
 			//std::cout << "\nRead room\n";
 			t = 'r';
+			room_types_.push_back('r');
 			data_len = 6;
 		}
-		else if (type.find("Passage") != std::string::npos ||
-				 type.find("Lift") != std::string::npos ||
-				type.find("Steps") != std::string::npos) {
-			t = 'p';
-			data_len = 4;
+		else if (type.find("Passage") != std::string::npos){
+		    t = 'p';
+		}else if(type.find("Lift") != std::string::npos){
+		    t = 'r';
+			room_types_.push_back('l');
+		}else if(type.find("Steps") != std::string::npos){
+		    t = 'r';
+			room_types_.push_back('s');
 		}
 		else {
 			throw std::logic_error(std::string("Wrong object type ") + type + " i=" + std::to_string(i));

@@ -13,6 +13,7 @@
 #include <system_error>
 #include <mutex>
 #include <unistd.h>
+#include <array>
 #include "Database/Entity.h"
 #include "RouteSearch/RouteSearch.h"
 #include "vector"
@@ -21,19 +22,42 @@ class OpenGLStorage : public MapItemStorage
 {
 public:
 	class BufMap{
-		size_t passages;
-		size_t rooms;
-		size_t patches;
+		static const size_t types_count = 5;
+	    // passages rooms lifts steps patches
+		std::array<int, 6> map_ = {0};
 	public:
+		enum types {P = 0, R, L, S, PT};
+		void SetLocation(int param, size_t count){ insert(param, count);}
+		PointT<size_t> GetSectorRange(int param) const { return get(param); }
+		bool IsFilled(size_t param) const  {
+			return param < types_count && map_[param] != map_[param+1];
+		}
 		// вводим количество, храним позиции
-		void SetPassages(size_t end){ passages = end - 1; }	// нумерация с нуля
-		void SetRooms(size_t end) { rooms = passages + end;}
-		void SetPatches(size_t end) { patches = rooms + end; }
-        PointT<size_t> GetPassagesRange() const { return PointT<size_t>(0, passages);}
-		PointT<size_t> GetRoomsRange() const { return PointT<size_t>(passages+1, rooms);}
-        PointT<size_t> GetPatchesRange() const { return PointT<size_t>(rooms+1, patches);}
-		size_t GetTotal() const { return patches + 1;}	// количество
+		/*void SetPassages(size_t end){ insert(P, end); }	// нумерация с нуля
+		void SetRooms(size_t end) { insert(R, end);}
+		void SetLifts(size_t end) { insert(L, end); }
+		void SetSteps(size_t end) { insert(S, end); }
+		void SetPatches(size_t end) { insert(PT, end); }
+        PointT<int> GetPassagesRange() const { return get(P);}
+		PointT<int> GetRoomsRange() const { return get(R);}
+		PointT<int> GetLiftsRange() const { return get(L);}
+		PointT<int> GetStepsRange() const { return get(S);}
+        PointT<int> GetPatchesRange() const { return get(PT);}*/
+		int GetTotal() const { return map_[PT] + 1;}	// количество
+	private:
+	    void insert(size_t index, size_t val){
+			int d = map_[index+1] - map_[index];
+		    int delta = val - d;
+		    std::for_each(map_.begin()+index+1, map_.end(), [&delta](int& elem){
+		        elem += delta;
+		    });
+		    int i = 0;
+		}
+        PointT<size_t> get(size_t index) const {
+		    return PointT<size_t>(map_[index], map_[index+1]-1);
+		}
 	};
+	//const size_t BufMap::types_count = 5;
 protected:
 	OpenGLStorage();
 	Point map_dimensions_;
@@ -50,6 +74,8 @@ protected:
 	float* getRooms();
 	float* getPassages();
 	float* getPatches();
+	float* getLifts();
+	float* getSteps();
 	int data;
 	std::mutex m_;
 public:

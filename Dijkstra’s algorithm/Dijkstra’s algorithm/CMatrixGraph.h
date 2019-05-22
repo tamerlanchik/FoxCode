@@ -9,7 +9,7 @@ public:
 	CMatrixGraph(const std::vector<Hall> &halls, const std::vector<Room> &rooms);
 	~CMatrixGraph();
 
-	void RefreshData(const std::vector<Hall> &halls, const std::vector<Room> &rooms);
+	int RefreshData(const std::vector<Hall> &halls, const std::vector<Room> &rooms);
 
 	virtual void AddEdge(int from, int to) override;
 	virtual int VerticesCount() const override;

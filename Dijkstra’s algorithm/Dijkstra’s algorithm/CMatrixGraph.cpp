@@ -44,8 +44,7 @@ int HallHallDistance(Hall hall1, Hall hall2) {
 	return MinDistance;
 }
 
-
-CMatrixGraph::CMatrixGraph(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {
+int CMatrixGraph::RefreshData(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {
 	int MatrixSize = Halls.size() + Rooms.size();
 	adjacencyMatrix.resize(MatrixSize);
 	for (int i = 0; i < MatrixSize; i++) {
@@ -63,10 +62,15 @@ CMatrixGraph::CMatrixGraph(const std::vector<Hall> &Halls, const std::vector<Roo
 		IdElements.push_back(Halls[i].ID);
 		for (int j = 0; j < Halls[i].HallID.size(); j++) {
 			int HallIndex = GetHallIndex(Halls, Halls[i].HallID[j]) + Rooms.size();
-			std::cout << i + Rooms.size() << " " << HallIndex << " " << HallHallDistance(Halls[i], Halls[j]) << std::endl;
-			adjacencyMatrix[i+Rooms.size()][HallIndex] = HallHallDistance(Halls[i], Halls[j]);
+			std::cout <<"Number Hall"<< i + Rooms.size() << " " << HallIndex << " "<< HallHallDistance(Halls[i], Halls[GetHallIndex(Halls, Halls[i].HallID[j])]) << std::endl;
+			adjacencyMatrix[i + Rooms.size()][HallIndex] = HallHallDistance(Halls[i], Halls[GetHallIndex(Halls, Halls[i].HallID[j])]);
 		}
 	}
+	return 0;
+}
+
+CMatrixGraph::CMatrixGraph(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {
+	RefreshData(Halls, Rooms);
 }
 
 CMatrixGraph::CMatrixGraph(int count) {

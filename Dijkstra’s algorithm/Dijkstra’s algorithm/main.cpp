@@ -17,7 +17,7 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 	while (qu.size() != 0) {
 		int current = qu.front();
 		qu.pop();
-		visit(current,graph);
+		visit(current, graph);
 		std::vector<int> adjacentVertices = graph.GetNextVertices(current);
 		for (int i = 0; i < adjacentVertices.size(); ++i) {
 			if (!visited[adjacentVertices[i]]) {
@@ -33,14 +33,17 @@ int main() {
 	dbMaster.ReadAllData();
 	std::cout << dbMaster.GetInfo().Version << std::endl;
 	for (int i = 0; i < dbMaster.GetHalls().size(); i++) {
-		std::cout << dbMaster.GetHalls()[i].ID << std::endl;
+		std::cout << dbMaster.GetHalls()[i].ID << " ";
+		for (int j = 0; j < dbMaster.GetHalls()[i].HallID.size(); j++) {
+			std::cout << dbMaster.GetHalls()[i].HallID[j] << std::endl;
+		}
 	}
 	for (int i = 0; i < dbMaster.GetRooms().size(); i++) {
 		for (int j = 0; j < dbMaster.GetRooms()[i].Input.size(); j++) {
-			std::cout <<"X="<< dbMaster.GetRooms()[i].Input[j].x << " " << std::endl;
+			std::cout << "X=" << dbMaster.GetRooms()[i].Input[j].x << " " << std::endl;
 		}
-		std::cout << std::endl;
 	}
+
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	std::cout << MatrixGraph.IdElements.size() << std::endl;
 	MatrixGraph.ptintMatrix();

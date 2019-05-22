@@ -21,7 +21,7 @@ void delay() {
 }
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
-MapDrawer::MapDrawer() {
+MapDrawer::MapDrawer() : floor(3){
 	storage_ = OpenGLStorage::Get();
 }
 
@@ -93,6 +93,11 @@ void MapDrawer::Render() {
 	drawSteps();
 	storage_->NotifyStopWorking();
 	glBindVertexArray(0);
+}
+
+void MapDrawer::SetFloor(size_t f) {
+    floor = f;
+    bindData();
 }
 
 void MapDrawer::drawPassages() {
@@ -189,7 +194,7 @@ void MapDrawer::SurfaceCreated() {
 void MapDrawer::bindData() {
 	storage_->NotifyStartWorking();
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	float* buf = storage_->GetObjects();
+	float* buf = storage_->GetObjects(floor);
 	//float* buf = storage_->GetPassages();
 	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
 				buf, GL_STATIC_DRAW);	// загрузили данные в буфер

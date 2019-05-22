@@ -16,8 +16,15 @@ namespace gls {
 	protected:
 		std::vector<float> vertices_;
 		size_t vertices_count_;
+		std::string id_;
 
 	public:
+		class Compare{
+		public:
+			bool operator() (MapItem* const a, MapItem* const b) const{
+				return a->id_ < b->id_;
+			}
+		};
 		MapItem() {};
 
 		MapItem(const std::vector<float> &verts) {
@@ -26,23 +33,24 @@ namespace gls {
 			vertices_count_ = verts.size() / 2;
 		}
 
-		MapItem(Point &top_left, Point &bottom_right) {
+		MapItem(Point &top_left, Point &bottom_right, std::string id) {
 			vertices_.reserve(4);
 			vertices_.push_back(top_left.x);
 			vertices_.push_back(top_left.y);
 			vertices_.push_back(bottom_right.x);
 			vertices_.push_back(bottom_right.y);
+			id_ = id;
 		}
 
-		const float *GetVerticesArray() {
+		const float *GetVerticesArray() const {
 			return &vertices_[0];
 		}
 
-		const std::vector<float> &GetVertices() {
+		const std::vector<float> &GetVertices() const {
 			return vertices_;
 		}
 
-		size_t GetSize() {
+		size_t GetSize() const {
 			return vertices_count_;
 		}
 
@@ -53,11 +61,12 @@ namespace gls {
 
 	class Room : public MapItem {
 	public:
-		Room(Point &top_left, Point &bottom_right) : MapItem(top_left, bottom_right) {
+		Room(Point &top_left, Point &bottom_right, std::string id) : MapItem(top_left, bottom_right, id) {
 			size += 4;
 			++count;
 		}
-		Room(Point top_left, Point bottom_right, Point entry) : MapItem(top_left, bottom_right) {
+		Room(Point top_left, Point bottom_right, Point entry, std::string id) :
+								MapItem(top_left, bottom_right, id) {
 			entry_ = entry;
 			size += 4;
 			++count;
@@ -67,11 +76,11 @@ namespace gls {
 			++count;
 		};
 
-		size_t GetLength() {
+		size_t GetLength() const {
 			return vertices_.size();
 		}
 
-		Point GetEntry(){
+		Point GetEntry() const {
 		    return entry_;
 		}
 
@@ -94,7 +103,7 @@ namespace gls {
 	class Passage : public MapItem {
 	public:
 		Passage() {};
-        Passage(Point top_left, Point bottom_right) : MapItem(top_left, bottom_right) {
+        Passage(Point top_left, Point bottom_right, std::string id) : MapItem(top_left, bottom_right, id) {
             size += 4;
             ++count_;
         }
@@ -122,7 +131,7 @@ namespace gls {
 
 	class Steps : public Passage {
 	public:
-		Steps(Point top_left, Point bottom_right) : Passage(top_left, bottom_right) {
+		Steps(Point top_left, Point bottom_right, std::string id) : Passage(top_left, bottom_right, id) {
 			size += 4;
 			++count_;
 		}
@@ -134,7 +143,7 @@ namespace gls {
 
 	class Lift : public Passage {
 	public:
-		Lift(Point top_left, Point bottom_right) : Passage(top_left, bottom_right) {
+		Lift(Point top_left, Point bottom_right, std::string id) : Passage(top_left, bottom_right, id) {
 			size += 4;
 			++count_;
 		}

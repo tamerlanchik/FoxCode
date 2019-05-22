@@ -33,7 +33,7 @@ import javax.microedition.khronos.opengles.GL10;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String mCurrentStoreyKey = "STOREY_KEY";
-    private static final int mStoreyRange[] = {0, 6};
+    private static final int mStoreyRange[] = {3, 4};
     private String mServerAddress = "192.168.1.69";
     private int mServerPort = 80;
     private StorageMasterJNI mStorageMaster;
@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     mFloor++;
                     mFloorNumberTextView.setText(
                             String.format(getResources().getString(R.string.storey_number_textview), mFloor));
+                    mMapView.changeFloor(mFloor);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             getResources().getString(R.string.toast_max_floor_reached), Toast.LENGTH_SHORT)
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     mFloor--;
                     mFloorNumberTextView.setText(
                             String.format(getResources().getString(R.string.storey_number_textview), mFloor));
+                    mMapView.changeFloor(mFloor);
                    }else{
                     Toast.makeText(getApplicationContext(),
                             getResources().getString(R.string.toast_min_floor_reached),

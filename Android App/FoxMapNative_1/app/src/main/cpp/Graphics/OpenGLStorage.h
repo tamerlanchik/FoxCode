@@ -70,6 +70,7 @@ protected:
 	vector<float> buffer_;
 	size_t rooms_buf_size_;
 	size_t passages_buf_size_;
+	size_t current_floor_;
 	BufMap buffer_map_;
 	float* getRooms();
 	float* getPassages();
@@ -88,12 +89,14 @@ public:
 	float* GetRooms();
 	float* GetPassages();
 	float* GetObjects();
+	float* GetObjects(size_t floor);
 //	size_t GetPassagesBufSize() const { return passages_buf_size_; }
 	const size_t GetBufferSize() const { return buffer_.size(); }
 	const BufMap& GetBufferMap() const { return buffer_map_; }
 
 	void CommitMapMovement(int x, int y);
 	void CommitMapZoom(float delta);
+	void SetCurrentFloor(size_t);
 
 	void SetRoute(const std::vector<int>& path);
 	void SetObjectMark(const int id);

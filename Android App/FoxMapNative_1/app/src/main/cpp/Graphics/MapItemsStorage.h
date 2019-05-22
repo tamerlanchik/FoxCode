@@ -11,6 +11,8 @@
 #include "FoxUtilites/Log.h"
 #include <system_error>
 #include <Database/DBMaster.h>
+#include <set>
+#include <array>
 #include "Database/Entity.h"
 #include "MapItem.h"
 using std::vector;
@@ -22,6 +24,9 @@ protected:
 	vector<gls::Passage*> passage_storage_;
 	vector<gls::Lift*> lift_storage_;
 	std::vector<gls::Steps*> steps_storage_;
+	std::array< std::array<
+	                  std::set< gls::MapItem*, gls::MapItem::Compare>, 4>, 6> storage_;
+	enum class Type { P = 0, R, S, L };
 	//DataBase* database_;
 	//DBMaster* db_;
 	MapItemStorage();

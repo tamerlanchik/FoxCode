@@ -21,6 +21,7 @@ public:
 #ifdef __ANDROID__
 	DataBase(AAssetManager*);
 	DataBase(AAssetManager*, const std::string&);
+	DataBase(AAssetManager*, const std::vector<std::string>&);
 #endif
 	~DataBase();
 	size_t GetRoomNumber();
@@ -54,9 +55,13 @@ public:
 	};
 private:
     bool parseFile(std::string&) throw(std::logic_error);
-	std::list< std::vector<float> > rooms_;
-	std::list< std::vector<float> > passages_;
+	/*std::list< std::vector<float> > rooms_;
+	std::list< std::vector<float> > passages_;*/
+	std::vector<Hall> passages_;
+	std::vector<Room> rooms_;
 	std::vector<char> room_types_;
+	std::vector<std::string> db_names_;
+	AAssetManager* asset_manager_;
 	Point dimensions_;
 
 	static const std::string filename_;

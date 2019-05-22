@@ -107,6 +107,16 @@ public class GLMapView extends GLSurfaceView{
         return true;
     }
 
+    public void changeFloor(final int floor){
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                MapDrawerJNI.setFloor(floor);
+            }
+        });
+        requestRender();
+    }
+
     // Is called by Activity
     @Override
     public void onPause() {

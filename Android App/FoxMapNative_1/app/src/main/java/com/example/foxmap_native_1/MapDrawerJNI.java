@@ -20,4 +20,5 @@ public class MapDrawerJNI {
     public static native void onResume();
     public static native void commitMapMovement(float dx, float dy);
     public static native void commitMapZoom(float dz);
+    public static native void setFloor(int floor);
 }

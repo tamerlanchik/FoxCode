@@ -2,7 +2,7 @@
 
 const char MapItemStorage::TAG[] = "MapItemsStorage";
 
-MapItemStorage::MapItemStorage() : is_inflated_(false){
+MapItemStorage::MapItemStorage() : is_inflated_(false) {
 	 Log::debug(TAG, "MapItemStorage created\n");
 };
 
@@ -63,22 +63,28 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 		return false;
 	}
 	for(Hall h : passages){
-		gls::Passage* pass = new gls::Passage(c(h.LeftTop), c(h.RightBottom));
+		size_t storey = h.ID[0] - '0';
+		gls::Passage* pass = new gls::Passage(c(h.LeftTop), c(h.RightBottom), h.ID);
+		storage_[storey - 1][(size_t)Type::P].insert(pass);
 		passage_storage_.push_back(pass);
 	}
 	//storage_.emplace_back(passage_storage_);
 
 	for(Room r : rooms){
+	    size_t storey = r.ID[0] - '0';
 		if(r.Type == "Room") {
-			gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]));
+			gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]), r.ID);
+			storage_[storey - 1][(int)Type::R].insert(room);
 			room_storage_.push_back(room);
 		}
 		else {
 			if (r.Type == "Lift") {
-				gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom));
+				gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom), r.ID);
+				storage_[storey - 1][(int)Type::L].insert(room);
 				lift_storage_.push_back(room);
 			} else if (r.Type == "Steps") {
-				gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom));
+				gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom), r.ID);
+				storage_[storey - 1][(size_t)Type::S].insert(room);
 				steps_storage_.push_back(room);
 			}
 		}

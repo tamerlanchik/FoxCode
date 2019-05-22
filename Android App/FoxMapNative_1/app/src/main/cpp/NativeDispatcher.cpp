@@ -14,6 +14,7 @@
 #include <string>
 #include <Database/Entity.h>
 #include "RouteSearch/RouteSearch.h"
+#include <array>
 
 const char TAG[] = "NativeDispatcher";
 
@@ -59,6 +60,11 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_surfaceCreated(JNIEnv *env, jcla
     while(!s->IsInflated()) {}
     Log::debug(TAG, "Stop waiting");
     map_drawer.SurfaceCreated();
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_foxmap_1native_11_MapDrawerJNI_setFloor(JNIEnv *env, jclass type, jint floor){
+    map_drawer.SetFloor(floor);
 }
 
 JNIEXPORT void JNICALL
@@ -153,6 +159,10 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
             Adapter(AAssetManager* asset_manager, const std::string& filename){
                 db_ = new DataBase(asset_manager, filename);
             }
+
+            Adapter(AAssetManager* asset_manager, const std::vector<std::string>& filenames){
+                db_ = new DataBase(asset_manager, filenames);
+            }
             std::vector<Hall> GetPassages() override {
                 return db_->GetHalls();
             }
@@ -171,7 +181,8 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
             return 1;
         }
         AAssetManager *native_asset_manager = AAssetManager_fromJava(env, asset_manager);
-        Adapter adapter(native_asset_manager, "map.txt");
+        std::vector<std::string> db_names= {"map_3.txt", "map_4.txt"};
+        Adapter adapter(native_asset_manager, db_names);
 
         OpenGLStorage::Get()->NotifyStartWorking();
         OpenGLStorage::Get()->InflateStorage(adapter);

@@ -32,11 +32,13 @@ public:
     void Render();
     void SurfaceChanged(int w, int h);
     void SurfaceCreated();
+    void SetFloor(size_t floor);
 private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
 	GLuint VBO, VAO_room_, VAO_;
 	size_t vbo_size_;
+	size_t floor;
 #ifdef __ANDROID__
 	AAssetManager* asset_manager_;
 #endif

@@ -5,7 +5,7 @@
 
 typedef PointT<> Point;
 const char OpenGLStorage::TAG[] = "OpenGLStorage";
-OpenGLStorage::OpenGLStorage() : screen_dimensions_(Point(0,0))
+OpenGLStorage::OpenGLStorage() : screen_dimensions_(Point(0,0)), current_floor_(3)
 {
 	normalizing_matrix_ = glm::mat4(1.0);
 	moving_matrix_ = glm::mat4(1.0f);
@@ -96,6 +96,16 @@ float* OpenGLStorage::GetObjects() {
 	getPatches();
 	return buffer_.data();
 }
+float* OpenGLStorage::GetObjects(size_t floor) {
+	current_floor_ = floor;
+	buffer_.clear();
+	getPassages();
+	getRooms();
+	getLifts();
+	getSteps();
+	getPatches();
+	return buffer_.data();
+}
 
 const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
@@ -111,6 +121,10 @@ void OpenGLStorage::SetObjectMark(const int id) {
 
 bool OpenGLStorage::SetObjectMark(const std::string& name) {
 	return false;
+}
+
+void OpenGLStorage::SetCurrentFloor(size_t new_floor) {
+    current_floor_ = new_floor;
 }
 
 void OpenGLStorage::NotifyStartWorking() {
@@ -130,18 +144,18 @@ float* OpenGLStorage::getRooms() {
 	        (room_storage_.size() + lift_storage_.size() + steps_storage_.size())*8);
 	buffer_.reserve(buffer_map_.GetTotal());
 	std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,   0, 3 };
-
-	for (gls::Room* obj : room_storage_) {
+	std::vector<std::vector<int> > e;
+	for(const gls::MapItem* obj : storage_[current_floor_ - 1][(size_t)Type::R]){
 		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
 		    buffer_.push_back(obj->GetVertices()[i]);
 		});
 	}
-	for (gls::Lift* obj : lift_storage_) {
+	for (gls::MapItem* obj : storage_[current_floor_ - 1][(size_t)Type::L]) {
 		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
 			buffer_.push_back(obj->GetVertices()[i]);
 		});
 	}
-	for (gls::Steps* obj : steps_storage_) {
+	for (gls::MapItem* obj : storage_[current_floor_ - 1][(size_t)Type::S]) {
 		std::for_each(ind.begin(), ind.end(), [&](size_t& i){
 			buffer_.push_back(obj->GetVertices()[i]);
 		});
@@ -158,7 +172,7 @@ float* OpenGLStorage::getPassages() {
     std::vector<size_t> ind = { 0, 1,   2, 1,   2, 3,
                                 0, 1,   2, 3,   0, 3 };
 
-	for (gls::Passage* obj : passage_storage_) {
+	for (gls::MapItem* obj : storage_[current_floor_ - 1][(size_t)Type::P]) {
         std::for_each(ind.begin(), ind.end(), [&](size_t& i){
             buffer_.push_back(obj->GetVertices()[i]);
         });
@@ -177,9 +191,9 @@ float* OpenGLStorage::getPatches() {
 	std::array<float, 4> rect;
     float eps = 3;
     float dWx, dWy;
-	for (gls::Room* obj : room_storage_) {
+	for (gls::MapItem* obj : storage_[current_floor_ - 1][(size_t)Type::R]) {
         dWx = eps/2; dWy = eps/2;
-	    Point e = obj->GetEntry();
+	    Point e = static_cast<gls::Room*>(obj)->GetEntry();
 	    auto verts = obj->GetVertices();
 	    if(abs(verts[0] - e.x) < eps || abs(verts[2] - e.x) < eps) {
             dWy = dW;
@@ -202,7 +216,7 @@ float* OpenGLStorage::getLifts() {
 	buffer_.reserve(buffer_map_.GetTotal());
 	std::array<size_t, 8> ind = {0, 1, 2, 3, 2, 1, 0, 3};
 
-	for (gls::Lift *obj : lift_storage_) {
+	for (gls::MapItem *obj : storage_[current_floor_ - 1][(size_t)Type::L]) {
 		std::for_each(ind.begin(), ind.end(), [&](size_t &i) {
 			buffer_.push_back(obj->GetVertices()[i]);
 		});
@@ -217,7 +231,7 @@ float* OpenGLStorage::getSteps() {
 	std::array<size_t, 8> ind = {0, 1, 2, 3, 2, 1, 0, 3};
 	const size_t lines_count = 2;
 
-	for (gls::Steps *obj : steps_storage_) {
+	for (gls::MapItem *obj : storage_[current_floor_ - 1][(size_t)Type::S]) {
 		const std::vector<float>& v = obj->GetVertices();
 		Point l_t(v[0], v[1]);
 		Point r_b(v[2], v[3]);

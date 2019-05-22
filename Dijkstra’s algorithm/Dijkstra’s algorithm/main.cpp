@@ -31,8 +31,15 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 int main() {
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
+	std::cout << dbMaster.GetInfo().Version << std::endl;
 	for (int i = 0; i < dbMaster.GetHalls().size(); i++) {
 		std::cout << dbMaster.GetHalls()[i].ID << std::endl;
+	}
+	for (int i = 0; i < dbMaster.GetRooms().size(); i++) {
+		for (int j = 0; j < dbMaster.GetRooms()[i].Input.size(); j++) {
+			std::cout <<"X="<< dbMaster.GetRooms()[i].Input[j].x << " " << std::endl;
+		}
+		std::cout << std::endl;
 	}
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	std::cout << MatrixGraph.IdElements.size() << std::endl;

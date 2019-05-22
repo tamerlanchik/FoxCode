@@ -3,6 +3,12 @@
 #include <string>
 #include <vector>
 
+//Структура с данными о приложении (и о БД)
+struct Info {
+	std::string Version;
+	std::string CreationDate;
+};
+
 struct Coordinate {
 	int x;
 	int y;

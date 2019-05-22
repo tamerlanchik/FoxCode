@@ -14,6 +14,5 @@ public:
     void CreateSocket(int);
     static void * socketThread(void *arg);
     static void Fill(int s1);
-    int BDversion;
-    int currentBDversion=0;
+    std::string currentBDversion='';
 };

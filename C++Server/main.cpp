@@ -16,10 +16,9 @@ int main(int argc, char *argv[]) {
 
     DBMaster dbMaster("sqlite_lib/MapDB.db");
     dbMaster.ReadAllData();
+    
 
-    server.BDversion=dbMaster.GetID();
-
-    if (server.currentBDversion == server.BDversion) {
+    if (server.currentBDversion.Version == dbMaster.GetInfo().Version) {
 
         write(s1,"NO UPDATES", 10);
         printf("NO UPDATES");
@@ -29,7 +28,7 @@ int main(int argc, char *argv[]) {
     }
     else {
 
-        server.BDversion=server.currentBDversion;
+        server.currentBDversion.Version=dbMaster.GetInfo().Version;
         server.CreateSocket(s1);
         printf("worked good");
     }

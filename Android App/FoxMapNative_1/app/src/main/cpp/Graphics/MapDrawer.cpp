@@ -149,7 +149,8 @@ void MapDrawer::drawPatches() {
 	glDrawArrays(GL_TRIANGLES, range.x, range.y - range.x + 1);
 }
 
-void MapDrawer::drawLifts() {
+void MapDrawer::drawLifts(){
+    program1_.SetVertexColor(1, 0, 0);
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
 	if(!bufmap.IsFilled(bufmap.P)){
 		Log::error(TAG, "EMPTY BUF");

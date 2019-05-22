@@ -110,7 +110,7 @@ std::vector<Room> DataBase::GetRooms() {
 }
 
 std::vector<Hall> DataBase::GetHalls() {
-    
+
 	return passages_;
 	/*std::vector<Hall> parcels;
 	parcels.reserve(passages_.size());
@@ -223,6 +223,7 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
             switch(t){
                 case 'r': {
                     parcel.ID = type.substr(5, type.size());
+                    parcel.Type = "Room";
                     std::vector<Coordinate> input(1);
                     input[0].x = coords[4];
                     input[0].y = coords[5];
@@ -231,10 +232,12 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
                 }
                 case 'l': {
                     parcel.ID = type.substr(5, type.size());
+                    parcel.Type = "Lift";
                     break;
                 }
                 case 's': {
                     parcel.ID = type.substr(6, type.size());
+                    parcel.Type = "Steps";
                     break;
                 }
             }

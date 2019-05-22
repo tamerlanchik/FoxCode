@@ -72,17 +72,24 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 
 	for(Room r : rooms){
 	    size_t storey = r.ID[0] - '0';
+	    if(storey < 3 || storey > 4){
+	        Log::error(TAG, (r.ID  + std::string(" Wrong storey ") + std::to_string(storey)).c_str());
+	        assert(false);
+	    }
 		if(r.Type == "Room") {
+		    Log::debug(TAG, "Room");
 			gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]), r.ID);
 			storage_[storey - 1][(int)Type::R].insert(room);
 			room_storage_.push_back(room);
 		}
 		else {
 			if (r.Type == "Lift") {
+			    Log::debug(TAG, "Lift");
 				gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom), r.ID);
 				storage_[storey - 1][(int)Type::L].insert(room);
 				lift_storage_.push_back(room);
 			} else if (r.Type == "Steps") {
+			    Log::debug(TAG, "Steps");
 				gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom), r.ID);
 				storage_[storey - 1][(size_t)Type::S].insert(room);
 				steps_storage_.push_back(room);

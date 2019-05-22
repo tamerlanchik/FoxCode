@@ -1,13 +1,6 @@
-﻿  CMatrixGraph.cpp
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(28): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(30): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(43): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(48): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(56): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(64): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(99): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(22): warning C4715: GetHallIndex: значение возвращается не при всех путях выполнения
+﻿  main.cpp
   Dijkstra’s algorithm.vcxproj -> C:\Users\admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(139): warning C6001: Использование неинициализированной памяти "index".
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\entity.h(24): warning C26495: Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib\shell.c(212): warning C6031: Возвращаемое значение пропущено: "_setmode".
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib\shell.c(216): warning C6031: Возвращаемое значение пропущено: "_setmode".

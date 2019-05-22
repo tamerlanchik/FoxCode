@@ -45,9 +45,14 @@ int main() {
 	}
 
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
-	std::cout << MatrixGraph.IdElements.size() << std::endl;
 	MatrixGraph.ptintMatrix();
-	BFS(MatrixGraph, 0, [](int vertex, CMatrixGraph graph) { std::cout << graph.IdElements[vertex] << " "; });
+	for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {
+		std::cout << MatrixGraph.Dijkstra(1)[i] << std::endl;
+	}
+	
+	//std::cout << MatrixGraph.IdElements.size() << std::endl;
+	//MatrixGraph.ptintMatrix();
+	//BFS(MatrixGraph, 0, [](int vertex, CMatrixGraph graph) { std::cout << graph.IdElements[vertex] << " "; });
 	//MatrixGraph.ptintMatrix();
 	//std::vector<Room> Halls = dbMaster.GetRooms();
 	//DijkstrasAlgorithm<int> NewRoute(startRoom, endRoom, Matrix);

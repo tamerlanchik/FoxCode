@@ -117,36 +117,64 @@ std::vector<int> CMatrixGraph::GetPrevVertices(int vertex) const {
 	return prev;
 }
 
-std::vector<int> CMatrixGraph::Dijkstra(const std::vector<std::vector<int>> GR, int st) {
-	std::vector<int> distance(GR.size());
-	int count, index, i, u, m = st + 1;
-	std::vector<bool> visited(GR.size());
-	int V = GR.size();
-	for (i = 0; i < V; i++)
-	{
-		distance[i] = INT_MAX; visited[i] = false;
-	}
-	distance[st] = 0;
-	for (count = 0; count < V - 1; count++)
-	{
+std::vector<int> CMatrixGraph::Dijkstra(const std::vector<std::vector<int>> Matrix, int StartIndex) {
+	std::vector<int> distance(Matrix.size(), INT_MAX);
+	std::vector<bool> visited(Matrix.size(), false);
+	int index, m = StartIndex;
+	int Size = Matrix.size();
+	distance[StartIndex] = 0;
+	for (int count = 0; count < Size - 1; count++) {
 		int min = INT_MAX;
-		for (i = 0; i < V; i++)
-			if (!visited[i] && distance[i] <= min)
-			{
-				min = distance[i]; index = i;
+		for (int i = 0; i < Size; i++)
+			if (!visited[i] && distance[i] <= min) {
+				min = distance[i];
+				index = i;
 			}
-		u = index;
-		visited[u] = true;
-		for (i = 0; i < V; i++)
-			if (!visited[i] && GR[u][i] && distance[u] != INT_MAX &&
-				distance[u] + GR[u][i] < distance[i])
-				distance[i] = distance[u] + GR[u][i];
+		visited[index] = true;
+		for (int i = 0; i < Size; i++)
+			if (!visited[i] && Matrix[index][i] && distance[index] != INT_MAX &&
+				distance[index] + Matrix[index][i] < distance[i])
+				distance[i] = distance[index] + Matrix[index][i];
 	}
 	return distance;
 }
 
-std::vector<std::string> CMatrixGraph::FindRoute(std::string StartID, std::string EndID) {
-	for()
-	Dijkstra(adjacencyMatrix)
+int CMatrixGraph::FindRoute(std::string StartID, std::string EndID) {
+	int StartIndex = -1;
+	int EndIndex = -1;
+	int index = 0;
+	while (index < IdElements.size() && (StartIndex == -1 || EndIndex == -1)) {
+		if (IdElements[index] == StartID)
+			StartIndex = index;
+		if (IdElements[index] == EndID)
+			EndIndex = index;
+		index++;
+	}
+	if (StartIndex == -1) {
+		Error = "Start Id not found";
+		return -1;
+	}
+	startID = StartID;
+	if (EndIndex == -1) {
+		Error = "End Id not found";
+		return -1;
+	}
+	Distance = Dijkstra(adjacencyMatrix, StartIndex);
+	LastRoute.push_back(IdElements[EndIndex]);
+	while (EndIndex != StartIndex) {
+		for (int i = 0; i < Distance.size(); i++) {
+			if (adjacencyMatrix[EndIndex][i] != 0) {
+				if (Distance[EndIndex] - adjacencyMatrix[EndIndex][i] == Distance[i]) {
+					EndIndex = i;
+					LastRoute.push_back(IdElements[i]);
+				}
 
+			}
+		}
+	}
+	return 0;
+}
+
+std::vector<std::string> CMatrixGraph::GetLastRoute() {
+	return LastRoute;
 }

@@ -18,14 +18,18 @@ public:
 	virtual std::vector<int> GetPrevVertices(int vertex) const override;
 
 	void ptintMatrix();
-	std::vector<std::string> FindRoute(std::string StartID, std::string EndID);
-	std::vector<std::string> IdElements;
+	int FindRoute(std::string StartID, std::string EndID);
+	std::vector<std::string> GetLastRoute();
 
 private:
 	static int GetHallIndex(std::vector<Hall> Halls, std::string HallID);
 	static int HallRoomDistance(Room room, Hall hall);
 	static int HallHallDistance(Hall hall1, Hall hall2);
-	std::vector<int> Dijkstra(const std::vector<std::vector<int>> GR, int st);
+	static std::vector<int> Dijkstra(const std::vector<std::vector<int>> Matrix, int StartIndex);
+	std::vector<std::string> LastRoute;
+	std::string Error;
 	std::vector<std::vector<int>> adjacencyMatrix;
-
+	std::vector<std::string> IdElements;
+	std::vector<int> Distance;
+	std::string startID;
 };

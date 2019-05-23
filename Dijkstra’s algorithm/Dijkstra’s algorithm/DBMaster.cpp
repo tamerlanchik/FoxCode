@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "DBMaster.h"
-#include <algorithm>
-#include "sqlite_lib/sqlite3.h"
+
 
 DBMaster::DBMaster(std::string folder, std::string dbname, std::vector<std::string> SQLQuery) {
 	ConnectionString = folder + "/" + dbname;

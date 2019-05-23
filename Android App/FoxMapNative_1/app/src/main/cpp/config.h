@@ -13,5 +13,7 @@ namespace conf{
     const size_t path_dash_step = 5;
     const size_t max_id_length = 5;
     const char map_name_divider = '_';
+    enum {DBMASTER, ASSET};
+    const bool database_src = ASSET;
 }
 #endif //FOXMAPNATIVE_1_CONFIG_H

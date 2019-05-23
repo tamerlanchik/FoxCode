@@ -15,6 +15,7 @@
 #include <Database/Entity.h>
 #include "RouteSearch/RouteSearch.h"
 #include <array>
+#include "config.h"
 
 const char TAG[] = "NativeDispatcher";
 
@@ -112,10 +113,10 @@ JNIEXPORT jint JNICALL
 Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         JNIEnv *env, jobject instance, jstring db_path, jobject asset_manager){
     Log::debug(TAG, "Init storage master");
-    enum {DBMASTER, ASSET};
-    const bool database_src = ASSET;
+    /*enum {DBMASTER, ASSET};
+    const bool database_src = ASSET;*/
 
-    if(database_src == DBMASTER){
+    if(conf::database_src == conf::DBMASTER){
         class Adapter : public OpenGLStorage::DBAdapter{
             DBMaster* database_;
         public:

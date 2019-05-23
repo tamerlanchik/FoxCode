@@ -43,7 +43,7 @@ int DBMaster::CallbackHall(void *data, int argc, char **argv, char **azColName) 
 	TempHall.RightBottom.y = atoi(argv[4]);
 	TempHall.LeftTop.z = atoi(argv[5]);
 	TempHall.RightBottom.z = atoi(argv[5]);
-	if (std::string(argv[6]).size() == 4)
+	if (atoi(argv[6]) == 1)
 		TempHall.Status = true;
 	else
 		TempHall.Status = false;
@@ -60,7 +60,7 @@ int DBMaster::GetHallIndex(std::vector<Hall> Halls, std::string HallID) {
 int DBMaster::CallbackHallHall(void *data, int argc, char **argv, char **azColName) {
 	//HallID, HallId
 	std::vector<Hall> *Halls = static_cast<std::vector<Hall>*>(data);
-	//Запись Id коридоров, в которых находятся аудитории
+	//Записываем смежные коридоры (сначала второй к первому, потом первый ко второму)
 	Halls[0][GetHallIndex(Halls[0], argv[0])].HallID.push_back(argv[1]);
 	Halls[0][GetHallIndex(Halls[0], argv[1])].HallID.push_back(argv[0]);
 	return 0;
@@ -76,7 +76,10 @@ int DBMaster::CallbackRoom(void *data, int argc, char **argv, char **azColName) 
 	TempRoom.RightBottom.y = atoi(argv[4]);
 	TempRoom.LeftTop.z = atoi(argv[5]);
 	TempRoom.RightBottom.z = atoi(argv[5]);
-	TempRoom.Status = atoi(argv[6]);
+	if (atoi(argv[6]) == 1)
+		TempRoom.Status = true;
+	else
+		TempRoom.Status = false;
 	TempRoom.Type = std::string(argv[7]);
 	Rooms->push_back(TempRoom);
 	return 0;
@@ -231,6 +234,69 @@ int DBMaster::ReadAllData() {
 		std::cout << "Info data has been read" << std::endl;
 		break;
 	}
+	return 0;
+}
+
+int DBMaster::WriteHalls(std::vector<Hall> halls) {
+	sqlite3 *MapDB = 0; // хэндл объекта соединение к БД
+	char *err = 0;
+	// открываем соединение
+	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
+		return -1;
+	for (int i = 0; i < halls.size(); i++) {
+		std::string WriteRoomsSQLQuery = "INSERT INTO Hall VALUES (";
+		WriteRoomsSQLQuery += "'" + halls[i].ID + "'," + std::to_string(halls[i].LeftTop.x) + "," + std::to_string(halls[i].LeftTop.y); //+ "'" + halls[i].ID +"',"Room_2", "Room", 0,0,0,0,1, 1);"
+		WriteRoomsSQLQuery += "," + std::to_string(halls[i].RightBottom.x) + "," + std::to_string(halls[i].RightBottom.y) + "," + std::to_string(halls[i].LeftTop.z);
+		WriteRoomsSQLQuery += "," + std::to_string(halls[i].Status) + ")";
+		if (sqlite3_exec(MapDB, WriteRoomsSQLQuery.c_str(), 0, 0, &err))
+			return -2;
+		sqlite3_free(err);
+	}
+	sqlite3_close(MapDB);
+	return 0;
+}
+
+int DBMaster::WriteRooms(std::vector<Room> rooms) {
+	sqlite3 *MapDB = 0;
+	char *err = 0;
+	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
+		return -1;
+	for (int i = 0; i < rooms.size(); i++) {
+		//Запись комнат
+		std::string WriteRoomsSQLQuery = "INSERT INTO Room VALUES (";
+		WriteRoomsSQLQuery += "'" + rooms[i].ID + "'," + "'" + rooms[i].Type + "'," + std::to_string(rooms[i].LeftTop.x) + "," + std::to_string(rooms[i].LeftTop.y);
+		WriteRoomsSQLQuery += "," + std::to_string(rooms[i].RightBottom.x) + "," + std::to_string(rooms[i].RightBottom.y) + "," + std::to_string(rooms[i].LeftTop.z);
+		WriteRoomsSQLQuery += "," + std::to_string(rooms[i].Status) + ")";
+		if (sqlite3_exec(MapDB, WriteRoomsSQLQuery.c_str(), 0, 0, &err))
+			return -2;
+		sqlite3_free(err);
+		std::string DoorID = rooms[i].ID;
+		DoorID[0] = 'D';
+		DoorID[3] = 'r';
+		for (int j = 0; j < rooms[i].Input.size(); j++) {
+			//Создание ID двери
+			for (int k = 0; k < j; k++) {
+				if (k > 0)
+					DoorID += char('a' + k);
+			}
+			//Запись двери
+			std::string WriteDoorsSQLQuery = "INSERT INTO Door VALUES (";
+			WriteDoorsSQLQuery += "'" + DoorID + "'," + std::to_string(rooms[i].Input[j].x) + "," + std::to_string(rooms[i].Input[j].y);
+			WriteDoorsSQLQuery += "," + std::to_string(rooms[i].Input[j].z) + "," + std::to_string(rooms[i].Wight[j]) + ")";
+
+			if (sqlite3_exec(MapDB, WriteDoorsSQLQuery.c_str(), 0, 0, &err))
+				return -2;
+			sqlite3_free(err);
+			//Запись смежных дверей и комнат
+			std::string WriteRoomAndDoorSQLQuery = "INSERT INTO RoomAndDoor VALUES (";
+			WriteRoomAndDoorSQLQuery += "'" + rooms[i].ID + "'," + "'" + DoorID + "')";
+
+			if (sqlite3_exec(MapDB, WriteRoomAndDoorSQLQuery.c_str(), 0, 0, &err))
+				return -2;
+			sqlite3_free(err);
+		}
+	}
+	sqlite3_close(MapDB);
 	return 0;
 }
 

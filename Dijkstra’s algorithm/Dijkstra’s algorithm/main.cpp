@@ -6,6 +6,103 @@
 #include "DBMaster.h"
 #include "CMatrixGraph.h"
 #include <queue>
+
+void InputDB(std::string ConnectionString) {
+	int RecordNumber;
+	int Floor = 3;
+	std::string TempID;
+	double  TempLeftTopX, TempLeftTopY, TRASH, TempRightBottomX, TempRightBottomY, TempRightBottomZ, DoorX, DoorY;
+	std::vector<Room> TempRoomVector;
+	std::vector<Hall> TempHallVector;
+	Coordinate TempCoord;
+	Room TempRoom;
+	Hall TempHall;
+	std::cout << "Input Number of records" << std::endl;
+	std::cin >> RecordNumber;
+	std::cout << "Input All records" << std::endl;
+	for (int i = 0; i < RecordNumber; i++) {
+		std::cin >> TempID;
+		std::cin >> TRASH;
+		std::cin >> TempLeftTopX;
+		std::cin >> TempLeftTopY;
+		std::cin >> TempRightBottomX;
+		std::cin >> TempRightBottomY;
+		if (TempID[0] == 'R') {
+			std::cin >> DoorX;
+			std::cin >> DoorY;
+
+			TempCoord.x = (int)DoorX;
+			TempCoord.y = (int)DoorY;
+			TempCoord.z = Floor;
+
+
+			TempRoom.ID = TempID;
+			TempRoom.Type = "Room";
+			TempRoom.LeftTop.x = (int)TempLeftTopX;
+			TempRoom.LeftTop.y = (int)TempLeftTopY;
+			TempRoom.LeftTop.z = Floor;
+			TempRoom.RightBottom.x = (int)TempRightBottomX;
+			TempRoom.RightBottom.y = (int)TempRightBottomY;
+			TempRoom.RightBottom.z = Floor;
+			TempRoom.Status = true;
+			TempRoom.Input.push_back(TempCoord);
+			TempRoom.Wight.push_back(1);
+			TempRoomVector.push_back(TempRoom);
+		}
+
+		if (TempID[0] == 'P') {
+			TempHall.ID = TempID;
+			TempHall.LeftTop.x = (int)TempLeftTopX;
+			TempHall.LeftTop.y = (int)TempLeftTopY;
+			TempHall.LeftTop.z = Floor;
+			TempHall.RightBottom.x = (int)TempRightBottomX;
+			TempHall.RightBottom.y = (int)TempRightBottomY;
+			TempHall.RightBottom.z = Floor;
+			TempHall.Status = true;
+			TempHallVector.push_back(TempHall);
+		}
+
+		if (TempID[0] == 'S') {
+			TempRoom.ID = TempID;
+			TempRoom.Type = "Step";
+			TempRoom.LeftTop.x = (int)TempLeftTopX;
+			TempRoom.LeftTop.y = (int)TempLeftTopY;
+			TempRoom.LeftTop.z = Floor;
+			TempRoom.RightBottom.x = (int)TempRightBottomX;
+			TempRoom.RightBottom.y = (int)TempRightBottomY;
+			TempRoom.RightBottom.z = Floor;
+			TempRoom.Status = true;
+			TempRoomVector.push_back(TempRoom);
+		}
+
+		if (TempID[0] == 'L') {
+			TempRoom.ID = TempID;
+			TempRoom.Type = "Lift";
+			TempRoom.LeftTop.x = (int)TempLeftTopX;
+			TempRoom.LeftTop.y = (int)TempLeftTopY;
+			TempRoom.LeftTop.z = Floor;
+			TempRoom.RightBottom.x = (int)TempRightBottomX;
+			TempRoom.RightBottom.y = (int)TempRightBottomY;
+			TempRoom.RightBottom.z = Floor;
+			TempRoom.Status = true;
+			TempRoomVector.push_back(TempRoom);
+		}
+
+	}
+	for (int i = 0; i < TempRoomVector.size(); i++) {
+		std::cout << TempRoomVector[i].ID << " ";
+		std::cout << TempRoomVector[i].LeftTop.x << " ";
+		std::cout << TempRoomVector[i].LeftTop.y << " ";
+		std::cout << TempRoomVector[i].RightBottom.x << " ";
+		std::cout << TempRoomVector[i].RightBottom.y << " ";
+		std::cout << TempRoomVector[i].LeftTop.z << " ";
+		std::cout << std::endl;
+	}
+	DBMaster dbMaster(ConnectionString);
+	dbMaster.WriteHalls(TempHallVector);
+	dbMaster.WriteRooms(TempRoomVector);
+}
+
 void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph)) {
 	std::vector<bool> visited(graph.VerticesCount(), false);
 	// Тут храним текуший фронт - ?
@@ -28,27 +125,8 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 	}
 }
 
-struct Coordinates {
-	double x;
-	double y;
-	double z;
-};
-
-struct Halls {
-	std::string ID;
-	Coordinates LeftTop;
-	Coordinates RightBottom;
-	std::vector<std::string> HallID;
-	bool Status; //Работает или нет
-};
-
-struct Rooms:Halls {
-	std::vector<Coordinate> Input;
-	std::vector<int> Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
-	std::string Type; //Аудитория, лифт, лестница, столовая и т. д.
-};
-
 int main() {
+	InputDB("sqlite_lib/MapDB.db");
 	/*
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
@@ -73,38 +151,6 @@ int main() {
 		std::cout << Root[i] << " ";
 	}
 	*/
-	sqlite3 *MapDB = 0; // хэндл объекта соединение к БД
-	char *err = 0;
-	// открываем соединение
-	if (sqlite3_open("sqlite_lib/MapDB.db", &MapDB))
-		return -1;
-	int RecordNumber;
-	Rooms TempRoom;
-	std::cin >> RecordNumber;
-	for (int i = 0; i < RecordNumber; i++) {
-		std::cin >> TempRoom.ID;
-		std::cin >> TempRoom.LeftTop.z;
-		TempRoom.Type = "Audit";
-		std::cin >> TempRoom.LeftTop.x;
-		std::cin >> TempRoom.LeftTop.y;
-		std::cin >> TempRoom.RightBottom.x;
-		std::cin >> TempRoom.RightBottom.y;
-		//TempRoom.LeftTop.z = 1;
-		TempRoom.Status = true;
-	}
-	for (int i = 0; i < RecordNumber; i++) {
-		std::cout << TempRoom.ID << " ";
-		//TempRoom.Type = "Audit";
-		std::cout << (int)TempRoom.LeftTop.x << " ";
-		std::cout << TempRoom.LeftTop.y << " ";
-		std::cout << TempRoom.RightBottom.x << " ";
-		std::cout << TempRoom.RightBottom.y << " ";
-		std::cout << TempRoom.LeftTop.z << " ";
-		//TempRoom.LeftTop.z = 1;
-		//TempRoom.Status = true;
-		std::cout << std::endl;
-	}
-	sqlite3_close(MapDB);
 	return 0;
 	//(sqlite3_exec(db, _SQLquery, 0, 0, &err))
 	//for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {

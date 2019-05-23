@@ -3,43 +3,43 @@
   <DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>main.cpp</FILENAME>
-      <LINE>43</LINE>
+      <FILENAME>entity.h</FILENAME>
+      <LINE>24</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'Halls::LeftTop' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
-    <FUNCTION>Halls::{ctor}</FUNCTION>
-    <DECORATED>??0Halls@@QEAA@XZ</DECORATED>
-    <FUNCLINE>43</FUNCLINE>
+    <DESCRIPTION>Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Hall::{ctor}</FUNCTION>
+    <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
+    <FUNCLINE>24</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>main.cpp</FILENAME>
-      <LINE>43</LINE>
+      <FILENAME>entity.h</FILENAME>
+      <LINE>24</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'Halls::Status' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
-    <FUNCTION>Halls::{ctor}</FUNCTION>
-    <DECORATED>??0Halls@@QEAA@XZ</DECORATED>
-    <FUNCLINE>43</FUNCLINE>
+    <DESCRIPTION>Variable 'Hall::LeftTop' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Hall::{ctor}</FUNCTION>
+    <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
+    <FUNCLINE>24</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>main.cpp</FILENAME>
-      <LINE>43</LINE>
+      <FILENAME>entity.h</FILENAME>
+      <LINE>24</LINE>
       <COLUMN>0</COLUMN>
     </SFA>
     <DEFECTCODE>26495</DEFECTCODE>
-    <DESCRIPTION>Variable 'Halls::RightBottom' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
-    <FUNCTION>Halls::{ctor}</FUNCTION>
-    <DECORATED>??0Halls@@QEAA@XZ</DECORATED>
-    <FUNCLINE>43</FUNCLINE>
+    <DESCRIPTION>Variable 'Hall::Status' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Hall::{ctor}</FUNCTION>
+    <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
+    <FUNCLINE>24</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
 </DEFECTS>

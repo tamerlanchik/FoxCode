@@ -13,9 +13,8 @@ public:
 	int ReadHalls();
 	int ReadRooms();
 	int ReadInfo();
-	int WriteAllData(struct Hall* halls, int hallsNumber, struct Room* rooms, int roomsNumber, struct MoveObject* moveObjects, int moveObjectsNumber);
-	bool WriteHalls(struct Hall* halls, int hallsNumber);
-	bool WriteRooms(struct Room* rooms, int roomsNumber);
+	int WriteHalls(std::vector<Hall> halls);
+	int WriteRooms(std::vector<Room> rooms);
 	const std::vector<Hall> &GetHalls();
 	const std::vector<Room> &GetRooms();
 	const Info &GetInfo();

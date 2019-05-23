@@ -105,7 +105,7 @@ bool MapItemStorage::GetObjectsByNames(const std::vector<std::string>& ids, std:
 	dest.reserve(dest.size() + ids.size());
 	for(const std::string& id : ids){
 		size_t floor = IDConverter::GetFloor(id);
-		if(floor != floor_condition) continue;
+		if(floor_condition != 0 && floor != floor_condition) continue;
 		search_item.SetID(IDConverter::GetId(id));
 		size_t obj_type = 0;
 		if(id.find("Room") != std::string::npos) obj_type = (size_t)Type::R;
@@ -113,6 +113,7 @@ bool MapItemStorage::GetObjectsByNames(const std::vector<std::string>& ids, std:
 		else if(id.find("Lift") != std::string::npos) obj_type = (size_t)Type::L;
 		else if(id.find("Steps") != std::string::npos) obj_type = (size_t)Type::S;
 		else continue;
+		if(floor >= storage_.size()) return false;
 		auto res = storage_[floor - 1][obj_type].find(&search_item);
 		if(res!= storage_[floor - 1][obj_type].end()) {
 			dest.push_back(*(res));

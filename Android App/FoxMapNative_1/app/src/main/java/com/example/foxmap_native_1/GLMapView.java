@@ -109,7 +109,7 @@ public class GLMapView extends GLSurfaceView{
         return true;
     }
     public boolean drawObjectMarkerRequest(){
-        requestRender();
+        drawRouteRequest();
         return true;
     }
 

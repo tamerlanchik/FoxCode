@@ -98,6 +98,7 @@ void MapDrawer::Render() {
 	drawObjects(GL_LINES, bufmap.L, bufmap, RED, 5);	//LIFTS
 	drawObjects(GL_LINES, bufmap.S, bufmap, BLUE, 5);	//STEPS
 	drawObjects(GL_LINES, bufmap.PATH, bufmap, RED, 10);	//Path
+	drawObjects(GL_TRIANGLES, bufmap.MARK, bufmap, GREEN, 10);
 
 	storage_->NotifyStopWorking();
 	glBindVertexArray(0);
@@ -163,7 +164,7 @@ void MapDrawer::bindData() {
 	glBufferData(GL_ARRAY_BUFFER, storage_->GetBufferSize()*sizeof(float),
 				buf, GL_STATIC_DRAW);	// загрузили данные в буфер
 	buf = nullptr;
-	vbo_size_ = storage_->GetBufferSize();
+	//vbo_size_ = storage_->GetBufferSize();
 
 	glBindVertexArray(VAO_);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,

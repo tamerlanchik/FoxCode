@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <array>
 #include "config.h"
+#include <cmath>
 
 typedef PointT<> Point;
 const char OpenGLStorage::TAG[] = "OpenGLStorage";
@@ -91,6 +92,7 @@ float* OpenGLStorage::GetObjects(size_t floor) {
 	getSteps();
 	getPatches();
 	getPath();
+	getMarks();
 	return buffer_.data();
 }
 
@@ -98,15 +100,20 @@ const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
 }
 
-
-void OpenGLStorage::SetObjectMark(const int id) {
-
-}
-
 bool OpenGLStorage::SetObjectMark(const std::string& name) {
-	return false;
+	std::vector<std::string> names;
+	if(name.find("Room") == std::string::npos)
+	    names.push_back("Room " + name);
+    else
+        names.push_back(name);
+	bool res = GetObjectsByNames(names, marks_, 0);
+	return res;
 }
-
+void OpenGLStorage::SetRoute(std::vector<std::string> path){
+    MapItemStorage::SetRoute(path);
+    SetObjectMark(*path.begin());
+    SetObjectMark(*(path.end()-1));
+}
 void OpenGLStorage::SetCurrentFloor(size_t new_floor) {
     current_floor_ = new_floor;
 }
@@ -203,7 +210,7 @@ float* OpenGLStorage::getSteps() {
     		*conf::dims_count*conf::dims_count*lines_count*2);
 
 	buffer_.reserve(buffer_map_.GetTotal());
-	
+
 	for (gls::MapItem *obj : storage_[current_floor_ - 1][(size_t)Type::S]) {
 		const std::vector<float>& v = obj->GetVertices();
 		Point l_t(v[0], v[1]);	//left-top corner
@@ -281,6 +288,24 @@ float* OpenGLStorage::getPath() {
 	return buffer_.data();
 }
 
+float* OpenGLStorage::getMarks() {
+	buffer_map_.SetLocation(BufMap::MARK, marks_.size()*conf::dims_count*3);
+	std::array<size_t, 6> ind = {0, 1, 2, 3, 4, 5};
+	if(marks_.size() == 0) return nullptr;
+	gls::MapItem* first = marks_[0];
+
+	std::array<float, 6> triangle;
+	for (gls::MapItem *obj : marks_) {
+	    size_t floor = obj->GetId()[0] - '0';
+	    if(floor != current_floor_) continue;
+		generateCenteredTriangle(triangle, obj->GetCenter(), obj->GetDiagonal()/3);
+		std::for_each(ind.begin(), ind.end(), [&](size_t &i) {
+			buffer_.push_back(triangle[i]);
+		});
+	}
+	return buffer_.data();
+}
+
 void OpenGLStorage::updateTransformMatrix() {
 	result_transform_matrix_ = moving_matrix_*scaling_matrix_*normalizing_matrix_;
 }
@@ -295,6 +320,21 @@ void OpenGLStorage::generateCenteredRectangle(T& dest, const Point &center, cons
 
 	dest[2] = center.x + width;
 	dest[3] = center.y + height;
+}
+
+template<class T>
+void OpenGLStorage::generateCenteredTriangle(T& dest, const Point &center, const float r) {
+	const float K = 3.1415/180;
+	if(dest.size() < 6) return;
+
+	dest[0] = center.x;
+	dest[1] = center.y + r;
+
+	dest[2] = center.x + r*cos(30*K);
+	dest[3] = center.y - r*sin(30*K);
+
+	dest[4] = center.x - r*cos(30*K);
+	dest[5] = center.y - r*sin(30*K);
 }
 
 

@@ -22,27 +22,16 @@ class OpenGLStorage : public MapItemStorage
 {
 public:
 	class BufMap{
-		static const size_t types_count = 6;
+		static const size_t types_count = 7;
 	    // passages rooms lifts steps patches
-		std::array<int, 7> map_ = {0};
+		std::array<int, 8> map_ = {0};
 	public:
-		enum types {P = 0, R, L, S, PT, PATH};
+		enum types {P = 0, R, L, S, PT, PATH, MARK};
 		void SetLocation(int param, size_t count){ insert(param, count);}
 		PointT<size_t> GetSectorRange(int param) const { return get(param); }
 		bool IsFilled(size_t param) const  {
 			return param < types_count && map_[param] != map_[param+1];
 		}
-		// вводим количество, храним позиции
-		/*void SetPassages(size_t end){ insert(P, end); }	// нумерация с нуля
-		void SetRooms(size_t end) { insert(R, end);}
-		void SetLifts(size_t end) { insert(L, end); }
-		void SetSteps(size_t end) { insert(S, end); }
-		void SetPatches(size_t end) { insert(PT, end); }
-        PointT<int> GetPassagesRange() const { return get(P);}
-		PointT<int> GetRoomsRange() const { return get(R);}
-		PointT<int> GetLiftsRange() const { return get(L);}
-		PointT<int> GetStepsRange() const { return get(S);}
-        PointT<int> GetPatchesRange() const { return get(PT);}*/
 		int GetTotal() const { return map_[PT] + 1;}	// количество
 	private:
 	    void insert(size_t index, size_t val){
@@ -57,7 +46,6 @@ public:
 		    return PointT<size_t>(map_[index], map_[index+1]-1);
 		}
 	};
-	//const size_t BufMap::types_count = 5;
 protected:
 	OpenGLStorage();
 	Point map_dimensions_;
@@ -68,16 +56,16 @@ protected:
 	glm::mat4 result_transform_matrix_;
 
 	vector<float> buffer_;
-	size_t rooms_buf_size_;
-	size_t passages_buf_size_;
 	size_t current_floor_;
 	BufMap buffer_map_;
+	std::vector<gls::MapItem*> marks_;
 	float* getRooms();
 	float* getPassages();
 	float* getPatches();
 	float* getLifts();
 	float* getSteps();
 	float* getPath();
+	float* getMarks();
 	int data;
 	std::mutex m_;
 public:
@@ -98,10 +86,8 @@ public:
 	void CommitMapMovement(int x, int y);
 	void CommitMapZoom(float delta);
 	void SetCurrentFloor(size_t);
-
-	//void SetRoute(const std::vector<int>& path);
-	void SetObjectMark(const int id);
 	bool SetObjectMark(const std::string& name);
+	virtual void SetRoute(std::vector<std::string>) override;
 
 	void NotifyStartWorking();
 	void NotifyStopWorking();
@@ -110,6 +96,9 @@ private:
 	template<class T>
 	void generateCenteredRectangle(T& dest, const Point& center,
 	        const float width, const float height);
+	template<class T>
+	void generateCenteredTriangle(T& dest, const Point& center,
+								   const float r);
 	static const char TAG[];
 };
 

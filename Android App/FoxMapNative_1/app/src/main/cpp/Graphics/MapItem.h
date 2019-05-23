@@ -58,8 +58,15 @@ namespace gls {
 			return Point(vertices_[2]+vertices_[0], vertices_[3]+vertices_[1])/2;
 		}
 
+		float GetDiagonal() const{
+			return (Point(vertices_[0], vertices_[1]) - Point(vertices_[2], vertices_[3])).Norm();
+		}
+
 		const std::vector<float> &GetVertices() const {
 			return vertices_;
+		}
+		const std::string& GetId() const {
+		    return id_;
 		}
 		const bool IsVertical() const{
 			if(abs(vertices_[0] - vertices_[2]) < abs(vertices_[1] - vertices_[3]))

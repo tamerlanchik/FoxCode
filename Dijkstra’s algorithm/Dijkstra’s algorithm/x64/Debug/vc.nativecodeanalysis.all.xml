@@ -1,211 +1,207 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>dbmaster.cpp</FILENAME>
-      <LINE>13</LINE>
-      <COLUMN>20</COLUMN>
+      <FILENAME>cmatrixgraph.cpp</FILENAME>
+      <LINE>133</LINE>
+      <COLUMN>17</COLUMN>
     </SFA>
-    <DEFECTCODE>6011</DEFECTCODE>
-    <DESCRIPTION>Разыменование пустого указателя "SQLQuery". </DESCRIPTION>
-    <FUNCTION>DBMaster::{ctor}</FUNCTION>
-    <DECORATED>??0DBMaster@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0PEAV12@@Z</DECORATED>
-    <FUNCLINE>6</FUNCLINE>
+    <DEFECTCODE>6001</DEFECTCODE>
+    <DESCRIPTION>Использование неинициализированной памяти "index".</DESCRIPTION>
+    <FUNCTION>CMatrixGraph::Dijkstra</FUNCTION>
+    <DECORATED>?Dijkstra@CMatrixGraph@@CA?AV?$vector@HV?$allocator@H@std@@@std@@V?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@3@H@Z</DECORATED>
+    <FUNCLINE>120</FUNCLINE>
     <PROBABILITY>1</PROBABILITY>
-    <RANK>4</RANK>
+    <RANK>3</RANK>
     <CATEGORY>
       <RULECATEGORY>mspft</RULECATEGORY>
     </CATEGORY>
     <PATH>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>6</LINE>
-        <COLUMN>82</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>7</LINE>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>121</LINE>
         <COLUMN>18</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>7</LINE>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>122</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>123</LINE>
+        <COLUMN>5</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Инициализация "index" не выполнена</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>123</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>124</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>125</LINE>
+        <COLUMN>22</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>126</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>126</LINE>
         <COLUMN>27</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>7</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>7</LINE>
-        <COLUMN>33</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>7</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>8</LINE>
-        <COLUMN>14</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>"SQLQuery" может быть равно NULL (Пропустить эту ветвь)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>11</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>12</LINE>
-        <COLUMN>18</COLUMN>
         <KEYEVENT>
           <ID>2</ID>
           <KIND>ветвь</KIND>
           <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Войти в эту ветвь (предполагается "SQLQuery+1!=0")</MESSAGE>
+          <MESSAGE>Войти в этот цикл (предполагается "count&lt;Size-1")</MESSAGE>
         </KEYEVENT>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>13</LINE>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>127</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>128</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>128</LINE>
         <COLUMN>20</COLUMN>
         <KEYEVENT>
           <ID>3</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить этот цикл (предполагается, что "i&lt;Size" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>"index" является аргументом ввода-вывода для "std::vector&lt;bool,std::allocator&lt;bool&gt; &gt;::[]" (объявлено в c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\vector: 2926)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+        <FILENAME>cmatrixgraph.cpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
           <KIND>использование</KIND>
           <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"SQLQuery" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
+          <MESSAGE>"index" используется, но, возможно, не инициализировано</MESSAGE>
         </KEYEVENT>
       </SFA>
     </PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>dbmaster.cpp</FILENAME>
-      <LINE>25</LINE>
-      <COLUMN>20</COLUMN>
+      <FILENAME>entity.h</FILENAME>
+      <LINE>24</LINE>
+      <COLUMN>0</COLUMN>
     </SFA>
-    <DEFECTCODE>6011</DEFECTCODE>
-    <DESCRIPTION>Разыменование пустого указателя "SQLQuery". </DESCRIPTION>
-    <FUNCTION>DBMaster::{ctor}</FUNCTION>
-    <DECORATED>??0DBMaster@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAV12@@Z</DECORATED>
-    <FUNCLINE>18</FUNCLINE>
-    <PROBABILITY>1</PROBABILITY>
-    <RANK>4</RANK>
-    <CATEGORY>
-      <RULECATEGORY>mspft</RULECATEGORY>
-    </CATEGORY>
-    <PATH>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>18</LINE>
-        <COLUMN>72</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>19</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>20</LINE>
-        <COLUMN>14</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>"SQLQuery" может быть равно NULL (Пропустить эту ветвь)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>23</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>24</LINE>
-        <COLUMN>18</COLUMN>
-        <KEYEVENT>
-          <ID>2</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Войти в эту ветвь (предполагается "SQLQuery+1!=0")</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-        <FILENAME>dbmaster.cpp</FILENAME>
-        <LINE>25</LINE>
-        <COLUMN>20</COLUMN>
-        <KEYEVENT>
-          <ID>3</ID>
-          <KIND>использование</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"SQLQuery" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-    </PATH>
-  </DEFECT><DEFECT>
-    <SFA>
-      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>dbmaster.cpp</FILENAME>
-      <LINE>79</LINE>
-      <COLUMN>23</COLUMN>
-    </SFA>
-    <DEFECTCODE>26451</DEFECTCODE>
-    <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
-    <FUNCTION>CallbackDoor</FUNCTION>
-    <DECORATED>?CallbackDoor@@YAHPEAXHPEAPEAD1@Z</DECORATED>
-    <FUNCLINE>71</FUNCLINE>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Hall::{ctor}</FUNCTION>
+    <DECORATED>??0Hall@@QEAA@XZ</DECORATED>
+    <FUNCLINE>24</FUNCLINE>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>dbmaster.cpp</FILENAME>
-      <LINE>80</LINE>
-      <COLUMN>23</COLUMN>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>28</COLUMN>
     </SFA>
     <DEFECTCODE>26451</DEFECTCODE>
     <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
-    <FUNCTION>CallbackDoor</FUNCTION>
-    <DECORATED>?CallbackDoor@@YAHPEAXHPEAPEAD1@Z</DECORATED>
-    <FUNCLINE>71</FUNCLINE>
+    <FUNCTION>PointOnLine</FUNCTION>
+    <DECORATED>?PointOnLine@@YA_NHHHHHH@Z</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
-      <FILENAME>dbmaster.cpp</FILENAME>
-      <LINE>88</LINE>
-      <COLUMN>23</COLUMN>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>61</COLUMN>
     </SFA>
     <DEFECTCODE>26451</DEFECTCODE>
     <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
-    <FUNCTION>CallbackRoomHall</FUNCTION>
-    <DECORATED>?CallbackRoomHall@@YAHPEAXHPEAPEAD1@Z</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCTION>PointOnLine</FUNCTION>
+    <DECORATED>?PointOnLine@@YA_NHHHHHH@Z</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>93</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>PointOnLine</FUNCTION>
+    <DECORATED>?PointOnLine@@YA_NHHHHHH@Z</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>87</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>PointOnLine</FUNCTION>
+    <DECORATED>?PointOnLine@@YA_NHHHHHH@Z</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>124</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>PointOnLine</FUNCTION>
+    <DECORATED>?PointOnLine@@YA_NHHHHHH@Z</DECORATED>
+    <FUNCLINE>10</FUNCLINE>
     <PATH></PATH>
   </DEFECT><DEFECT>
     <SFA>
@@ -1947,6 +1943,277 @@
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
       <FILENAME>shell.c</FILENAME>
+      <LINE>10374</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>6011</DEFECTCODE>
+    <DESCRIPTION>Разыменование пустого указателя "abYield". </DESCRIPTION>
+    <FUNCTION>explain_data_prepare</FUNCTION>
+    <DECORATED>explain_data_prepare</DECORATED>
+    <FUNCLINE>10313</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10314</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10315</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10316</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10317</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10318</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10320</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10321</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10323</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10327</LINE>
+        <COLUMN>32</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10331</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10332</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10333</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10333</LINE>
+        <COLUMN>58</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10334</LINE>
+        <COLUMN>22</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10339</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10339</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10340</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10341</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10342</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10349</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10350</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10353</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10354</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10357</LINE>
+        <COLUMN>27</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10359</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10361</LINE>
+        <COLUMN>66</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>47</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10361</LINE>
+        <COLUMN>66</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>47</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10360</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10368</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10369</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10370</LINE>
+        <COLUMN>21</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10371</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10372</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>"abYield" может быть равно NULL (Войти в эту ветвь)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10372</LINE>
+        <COLUMN>42</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>10374</LINE>
+        <COLUMN>17</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>использование</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"abYield" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+      <FILENAME>shell.c</FILENAME>
       <LINE>10375</LINE>
       <COLUMN>21</COLUMN>
     </SFA>
@@ -2223,277 +2490,6 @@
           <KIND>использование</KIND>
           <IMPORTANCE>Essential</IMPORTANCE>
           <MESSAGE>"p-&gt;aiIndent" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-    </PATH>
-  </DEFECT><DEFECT>
-    <SFA>
-      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-      <FILENAME>shell.c</FILENAME>
-      <LINE>10374</LINE>
-      <COLUMN>17</COLUMN>
-    </SFA>
-    <DEFECTCODE>6011</DEFECTCODE>
-    <DESCRIPTION>Разыменование пустого указателя "abYield". </DESCRIPTION>
-    <FUNCTION>explain_data_prepare</FUNCTION>
-    <DECORATED>explain_data_prepare</DECORATED>
-    <FUNCLINE>10313</FUNCLINE>
-    <PROBABILITY>1</PROBABILITY>
-    <RANK>4</RANK>
-    <CATEGORY>
-      <RULECATEGORY>mspft</RULECATEGORY>
-    </CATEGORY>
-    <PATH>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10314</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10315</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10316</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10317</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10318</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10320</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10321</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10323</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10327</LINE>
-        <COLUMN>32</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10331</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10332</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10333</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10333</LINE>
-        <COLUMN>58</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10334</LINE>
-        <COLUMN>22</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10339</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10339</LINE>
-        <COLUMN>23</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10340</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10341</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10342</LINE>
-        <COLUMN>16</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10349</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10350</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10353</LINE>
-        <COLUMN>11</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10354</LINE>
-        <COLUMN>13</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10357</LINE>
-        <COLUMN>27</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10359</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10361</LINE>
-        <COLUMN>66</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>47</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10361</LINE>
-        <COLUMN>66</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>47</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10360</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10368</LINE>
-        <COLUMN>13</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10369</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10370</LINE>
-        <COLUMN>21</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10371</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10372</LINE>
-        <COLUMN>17</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>"abYield" может быть равно NULL (Войти в эту ветвь)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10372</LINE>
-        <COLUMN>42</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>10374</LINE>
-        <COLUMN>17</COLUMN>
-        <KEYEVENT>
-          <ID>2</ID>
-          <KIND>использование</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"abYield" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
         </KEYEVENT>
       </SFA>
     </PATH>
@@ -3292,373 +3288,6 @@
     <DECORATED>wmain</DECORATED>
     <FUNCLINE>16478</FUNCLINE>
     <PATH></PATH>
-  </DEFECT><DEFECT>
-    <SFA>
-      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-      <FILENAME>shell.c</FILENAME>
-      <LINE>16547</LINE>
-      <COLUMN>18</COLUMN>
-    </SFA>
-    <DEFECTCODE>6386</DEFECTCODE>
-    <DESCRIPTION>Переполнение буфера при записи в "argvToFree":  доступный для записи объем равен "sizeof((argv[0]))*argc*2" байт, однако записать можно только "16" байт.</DESCRIPTION>
-    <FUNCTION>wmain</FUNCTION>
-    <DECORATED>wmain</DECORATED>
-    <FUNCLINE>16478</FUNCLINE>
-    <PROBABILITY>1</PROBABILITY>
-    <RANK>4</RANK>
-    <CATEGORY>
-      <RULECATEGORY>mspft</RULECATEGORY>
-    </CATEGORY>
-    <PATH>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16479</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16481</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16482</LINE>
-        <COLUMN>13</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16483</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16484</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16485</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16486</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16487</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16488</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16489</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16490</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16492</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16493</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16496</LINE>
-        <COLUMN>15</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16497</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16498</LINE>
-        <COLUMN>23</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16499</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16502</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16519</LINE>
-        <COLUMN>53</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16525</LINE>
-        <COLUMN>11</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16534</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16535</LINE>
-        <COLUMN>13</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>объявление</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"argvToFree" является массивом размером 0 байт</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16536</LINE>
-        <COLUMN>13</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16537</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16538</LINE>
-        <COLUMN>10</COLUMN>
-        <KEYEVENT>
-          <ID>2</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16539</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16539</LINE>
-        <COLUMN>12</COLUMN>
-        <KEYEVENT>
-          <ID>3</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Войти в этот цикл (предполагается "i&lt;argc")</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16540</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16541</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16542</LINE>
-        <COLUMN>9</COLUMN>
-        <KEYEVENT>
-          <ID>4</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "z==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16543</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16544</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16545</LINE>
-        <COLUMN>15</COLUMN>
-        <KEYEVENT>
-          <ID>5</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv[i]==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16546</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16547</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16548</LINE>
-        <COLUMN>16</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16539</LINE>
-        <COLUMN>20</COLUMN>
-        <KEYEVENT>
-          <ID>6</ID>
-          <KIND>объявление</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"i" может быть равно 1</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16539</LINE>
-        <COLUMN>12</COLUMN>
-        <KEYEVENT>
-          <ID>7</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Продолжить этот цикл (предполагается "i&lt;argc")</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16540</LINE>
-        <COLUMN>10</COLUMN>
-        <KEYEVENT>
-          <ID>8</ID>
-          <KIND>объявление</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>"i" является выходными данными из "sqlite3_win32_unicode_to_utf8" (объявлено в строке 197)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16541</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16542</LINE>
-        <COLUMN>9</COLUMN>
-        <KEYEVENT>
-          <ID>9</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "z==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16543</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16544</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16545</LINE>
-        <COLUMN>15</COLUMN>
-        <KEYEVENT>
-          <ID>10</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv[i]==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16546</LINE>
-        <COLUMN>10</COLUMN>
-        <KEYEVENT>
-          <ID>11</ID>
-          <KIND>объявление</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>"i" является аргументом ввода-вывода для "memcpy" (объявлено в c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\vcruntime_string.h: 40)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>16547</LINE>
-        <COLUMN>18</COLUMN>
-        <KEYEVENT>
-          <ID>12</ID>
-          <KIND>использование</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>Недопустимая операция записи в "argvToFree" (за пределами доступного для записи диапазона)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-    </PATH>
   </DEFECT><DEFECT>
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
@@ -4935,6 +4564,373 @@
           <KIND>использование</KIND>
           <IMPORTANCE>Essential</IMPORTANCE>
           <MESSAGE>Недопустимая операция чтения из "argvToFree" (за пределами доступного для чтения диапазона)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+      <FILENAME>shell.c</FILENAME>
+      <LINE>16547</LINE>
+      <COLUMN>18</COLUMN>
+    </SFA>
+    <DEFECTCODE>6386</DEFECTCODE>
+    <DESCRIPTION>Переполнение буфера при записи в "argvToFree":  доступный для записи объем равен "sizeof((argv[0]))*argc*2" байт, однако записать можно только "16" байт.</DESCRIPTION>
+    <FUNCTION>wmain</FUNCTION>
+    <DECORATED>wmain</DECORATED>
+    <FUNCLINE>16478</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16479</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16481</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16482</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16483</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16484</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16485</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16486</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16487</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16488</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16489</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16490</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16492</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16493</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16496</LINE>
+        <COLUMN>15</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16497</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16498</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16499</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16502</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16519</LINE>
+        <COLUMN>53</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16525</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16534</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16535</LINE>
+        <COLUMN>13</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"argvToFree" является массивом размером 0 байт</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16536</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16537</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16538</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16539</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16539</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Войти в этот цикл (предполагается "i&lt;argc")</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16540</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16541</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16542</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "z==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16543</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16544</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16545</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>5</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv[i]==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16546</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16547</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16548</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16539</LINE>
+        <COLUMN>20</COLUMN>
+        <KEYEVENT>
+          <ID>6</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"i" может быть равно 1</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16539</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>7</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Продолжить этот цикл (предполагается "i&lt;argc")</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16540</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>8</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>"i" является выходными данными из "sqlite3_win32_unicode_to_utf8" (объявлено в строке 197)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16541</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16542</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>9</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "z==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16543</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16544</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16545</LINE>
+        <COLUMN>15</COLUMN>
+        <KEYEVENT>
+          <ID>10</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "argv[i]==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16546</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>11</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>"i" является аргументом ввода-вывода для "memcpy" (объявлено в c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\vcruntime_string.h: 40)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>16547</LINE>
+        <COLUMN>18</COLUMN>
+        <KEYEVENT>
+          <ID>12</ID>
+          <KIND>использование</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>Недопустимая операция записи в "argvToFree" (за пределами доступного для записи диапазона)</MESSAGE>
         </KEYEVENT>
       </SFA>
     </PATH>

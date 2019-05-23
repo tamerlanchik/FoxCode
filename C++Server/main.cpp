@@ -14,20 +14,24 @@ int main(int argc, char *argv[]) {
 
     int s1=server.Connect();
 
-    //сходили в бд, взяли номер версии, записали в currentBDversion
+    DBMaster dbMaster("sqlite_lib/MapDB.db");
+    dbMaster.ReadAllData();
+    
 
-    if (server.currentBDversion == server.BDversion) {
+    if (server.currentBDversion.Version == dbMaster.GetInfo().Version) {
 
         write(s1,"NO UPDATES", 10);
         printf("NO UPDATES");
+        close(s1);
+
+        return 0;
     }
     else {
 
-        server.BDversion=server.currentBDversion;
-        server.Fill(s1);
+        server.currentBDversion.Version=dbMaster.GetInfo().Version;
+        server.CreateSocket(s1);
         printf("worked good");
     }
-    close(s1);
 
     return 0;
 }

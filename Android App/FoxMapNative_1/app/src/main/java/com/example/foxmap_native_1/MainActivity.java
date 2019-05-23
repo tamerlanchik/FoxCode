@@ -1,10 +1,13 @@
 package com.example.foxmap_native_1;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.pm.ConfigurationInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.PersistableBundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +33,10 @@ import javax.microedition.khronos.opengles.GL10;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String mCurrentStoreyKey = "STOREY_KEY";
-    private static final int mStoreyRange[] = {0, 6};
+    private static final int mStoreyRange[] = {3, 4};
+    private String mServerAddress = "192.168.1.69";
+    private int mServerPort = 80;
+    private StorageMasterJNI mStorageMaster;
 
     private MenuItem mUpdateDataItem;
     private ProgressBar mProgressBar;
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mGoUpButton;
     private FloatingActionButton mGoDownButton;
     private GLMapView mMapView;
+    private MapGuide mMapGuide;
+
+    private NetworkMaster mNetworkMaster;
 
     private int mFloor = 3;
 
@@ -66,23 +75,35 @@ public class MainActivity extends AppCompatActivity {
             mFloor = savedInstanceState.getInt(mCurrentStoreyKey, 3);
         }
 
+        mStorageMaster = new StorageMasterJNI(getApplicationContext(),
+                getString(R.string.DatabaseName), getString(R.string.ServerAddress),
+                getResources().getInteger(R.integer.ServerPort));
+        int res = mStorageMaster.updateDatabaseRequest();
+        switch(res){
+            case 1:
+                Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_SHORT)
+                        .show();
+                break;
+            case 2:
+                Toast.makeText(getApplicationContext(),
+                        "Database error! Shutting down...", Toast.LENGTH_SHORT).show();
+
+                finish();
+                break;
+        }
+
         mMapView = findViewById(R.id.map_view);
         //mMapView = new GLMapView(getApplicationContext());
         mMapView.init();
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
 
+        mMapGuide = new MapGuide(getApplicationContext());
+
         mSourceSearchView = findViewById(R.id.from_search_view);
         mSourceSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //mSourceSearchView.setQuery(query, false);
-                String dest = mDestSearchView.getQuery().toString();
-                Log.d(TAG, "source: " + query + " " + dest);
-                if(query.length() > 0 && mDestSearchView.getQuery().length() > 0){
-                    displayRoute(query, mDestSearchView.getQuery().toString());
-                }else{
-                    searchOnMap(query);
-                }
+                handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 return false;
             }
 
@@ -97,14 +118,7 @@ public class MainActivity extends AppCompatActivity {
         mDestSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //mDestSearchView.setQuery(query, false);
-                String source = mSourceSearchView.getQuery().toString();
-                Log.d(TAG, "dest: " + query + " " + source);
-                if(query.length() > 0 && mSourceSearchView.getQuery().length() > 0){
-                    displayRoute(mSourceSearchView.getQuery().toString(), query);
-                }else{
-                    searchOnMap(query);
-                }
+                handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 return false;
             }
 
@@ -133,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
 
                 }
+                //handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
                 //mSourceSearchView.clearFocus();
                 //mDestSearchView.clearFocus();
             }
@@ -153,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     mFloor++;
                     mFloorNumberTextView.setText(
                             String.format(getResources().getString(R.string.storey_number_textview), mFloor));
+                    mMapView.changeFloor(mFloor);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             getResources().getString(R.string.toast_max_floor_reached), Toast.LENGTH_SHORT)
@@ -168,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     mFloor--;
                     mFloorNumberTextView.setText(
                             String.format(getResources().getString(R.string.storey_number_textview), mFloor));
+                    mMapView.changeFloor(mFloor);
                    }else{
                     Toast.makeText(getApplicationContext(),
                             getResources().getString(R.string.toast_min_floor_reached),
@@ -176,6 +193,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, 0);
+        if(db.isOpen() == true) {
+            Log.d(TAG, "Database opened in Java");
+            db.close();
+        }else{
+            Log.e(TAG, "Cannot open database in Java");
+            return;
+        }*/
     }
 
     @Override
@@ -194,6 +220,16 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                startDataUpdate();
+                mStorageMaster.updateDatabaseRequest();
+                endDataUpdate(false);
+                return true;
+            }
+        });
+
+        /*mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
                 class Updater extends AsyncTask<Void,Void,Void> {
 
                     @Override
@@ -203,6 +239,15 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     protected Void doInBackground(Void... voids) {
+                        /*new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new NetworkMaster("192.168.1.69", 80);
+                            }
+                        }).start();
+                        Log.d(TAG, "Start starting server");
+                        new NetworkMaster("192.168.1.69", 80);
+                        Log.d(TAG, "server created");
                         try {
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
@@ -221,27 +266,8 @@ public class MainActivity extends AppCompatActivity {
                 new Updater().execute();
                 return false;
             }
-        });
-
-        /*mSearchView = (SearchView) mSearchItem.getActionView();
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-
-                //new PingServer().execute();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                Log.d("TAG", "onQueryTextChange");
-                return false;
-            }
         });*/
-
         return true;
-
     }
 
     //Обработка события активации кнопки Тулбара
@@ -284,6 +310,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void handleFindRequest(String from, String to){
+        if(from.length() > 0 && to.length() > 0){
+            displayRoute(from, to);
+            if(!mMapGuide.buildRoute(from, to)){
+                Toast.makeText(getApplicationContext(), "Cannot find route, sorre!",
+                        Toast.LENGTH_SHORT).show();
+            }else{
+                boolean res = mMapView.drawRouteRequest();
+                if(res)
+                    Log.d(TAG, "Маршрут построен");
+                else{
+                    Log.e(TAG, "Маршрут не найден");
+                    Toast.makeText(getApplicationContext(), "Маршрут не найден. А оно вам надо?",
+                            Toast.LENGTH_SHORT);
+                }
+            }
+        }else{
+            String target = from.length() > 0 ? from : to;
+            searchOnMap(target);
+            if(!mMapGuide.findOnMap(target)){
+                Toast.makeText(getApplicationContext(), "Cannot find object, sorre!",
+                        Toast.LENGTH_SHORT).show();
+            }else{
+                boolean res = mMapView.drawObjectMarkerRequest();
+                if(res){
+                    Log.d(TAG, "Обьект найден");
+                }else{
+                    Log.e(TAG, "Обьект не найден");
+                    Toast.makeText(getApplicationContext(), "Здесь таких нет", Toast.LENGTH_SHORT);
+                }
+            }
+        }
+    }
+
     //  Вызывается автоматически при уходе Activity с первого плана
     // (переворот, переключение приложения)
     @Override
@@ -314,6 +374,34 @@ public class MainActivity extends AppCompatActivity {
 
     public int[] getStoreyRange(){
         return mStoreyRange;
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "Destroying...");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        layout.removeView(mMapView);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "Stopping");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        layout.removeView(mMapView);
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "Starting...");
+        ConstraintLayout layout =  findViewById(R.id.layout);
+        try{
+            layout.addView(mMapView);
+        }catch (Exception e){
+            Log.d(TAG, "Cannot add view");
+        }
+        super.onStart();
     }
 }
 

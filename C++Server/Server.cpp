@@ -1,5 +1,20 @@
 #include "Server.h"
 
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
+void *Server:: socketThread(void *arg)
+{
+    int newSocket = *((int *)arg);
+
+    pthread_mutex_lock(&lock);
+
+    Fill(newSocket);
+
+    printf("Exit socketThread \n");
+    close(newSocket);
+    pthread_exit(NULL);
+}
+
 int Server::Connect() {
 
     int listenPort = 1234;
@@ -30,13 +45,24 @@ int Server::Connect() {
         perror("Cannot listen");
         exit(1);
     }
-
+    return s0;
+}
+void Server::CreateSocket(int s0) {
     struct sockaddr_in peeraddr{};
     socklen_t peeraddr_len;
-    int s1 = accept(s0, (struct sockaddr *) &peeraddr, &peeraddr_len);
-    if (s1 < 0) {
-        perror("Cannot accept");
-        exit(1);
+    pthread_t tid[60];
+    int i = 0;
+    int newSocket = accept(s0, (struct sockaddr *) &peeraddr, &peeraddr_len);
+    if( pthread_create(&tid[i], NULL, socketThread, &newSocket) != 0 )
+        printf("Failed to create thread\n");
+    if( i >= 50)
+    {
+        i = 0;
+        while(i < 50)
+        {
+            pthread_join(tid[i++],NULL);
+        }
+        i = 0;
     }
 
     printf(
@@ -47,18 +73,20 @@ int Server::Connect() {
             ntohl(peeraddr.sin_addr.s_addr) & 0xff,
             ntohs(peeraddr.sin_port)
     );
-
-    res = close(s0);
-
-    return s1;
 }
+
+
 
 void Server::Fill(int s1) {
 
     std::vector<Hall> halls;
     std::vector<Room> rooms;
 
-    //Здесь должен быть блок похода в бд ---> наполнили структуру даннными
+    DBMaster dbMaster("sqlite_lib/MapDB.db");
+    dbMaster.ReadAllData();
+
+    halls=dbMaster.GetHalls();
+    rooms=dbMaster.GetRooms();
 
     int hallsSize = halls.size();
     int roomsSize = rooms.size();

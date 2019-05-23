@@ -61,9 +61,6 @@ public class GLMapView extends GLSurfaceView{
             MapDrawerJNI.drawFrame();
         }
 
-        public void load() {
-            MapDrawerJNI.load();
-        }
     };
 
     class TouchListener implements OnTouchListener{
@@ -101,6 +98,31 @@ public class GLMapView extends GLSurfaceView{
 
     }
 
+    public boolean drawRouteRequest(){
+        requestRender();
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                MapDrawerJNI.rebind();
+            }
+        });
+        return true;
+    }
+    public boolean drawObjectMarkerRequest(){
+        drawRouteRequest();
+        return true;
+    }
+
+    public void changeFloor(final int floor){
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                MapDrawerJNI.setFloor(floor);
+            }
+        });
+        requestRender();
+    }
+
     // Is called by Activity
     @Override
     public void onPause() {
@@ -124,4 +146,5 @@ public class GLMapView extends GLSurfaceView{
             }
         });
     }
+
 }

@@ -9,11 +9,10 @@ import android.widget.ImageView;
 
 public class MapDrawerJNI {
     static{
-        System.loadLibrary("map_drawer");
+        System.loadLibrary("NativeDispatcher");
     }
 
     public static native void init(AssetManager assetsManager);
-    public static native void load();
     public static native void surfaceCreated();
     public static native void surfaceChanged(int width, int height);
     public static native void drawFrame();
@@ -21,4 +20,6 @@ public class MapDrawerJNI {
     public static native void onResume();
     public static native void commitMapMovement(float dx, float dy);
     public static native void commitMapZoom(float dz);
+    public static native void setFloor(int floor);
+    public static native void rebind();
 }

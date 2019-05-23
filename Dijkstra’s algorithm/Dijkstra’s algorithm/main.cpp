@@ -197,8 +197,8 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 }
 
 int main() {
-	InputDB("sqlite_lib/MapDB.db");
-	/*
+	//InputDB("sqlite_lib/MapDB.db");
+	
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
 	std::cout << dbMaster.GetInfo().Version << std::endl;
@@ -221,7 +221,7 @@ int main() {
 	for (int i = 0; i < Root.size(); i++) {
 		std::cout << Root[i] << " ";
 	}
-	*/
+	
 	return 0;
 	//(sqlite3_exec(db, _SQLquery, 0, 0, &err))
 	//for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {

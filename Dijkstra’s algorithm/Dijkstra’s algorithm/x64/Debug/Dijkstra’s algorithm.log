@@ -1,4 +1,8 @@
 ﻿  DBMaster.cpp
+  main.cpp
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(14): warning C4101: TempRightBottomZ: неиспользованная локальная переменная
+  Компиляция...
+  Создание кода...
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(58): warning C4715: DBMaster::GetHallIndex: значение возвращается не при всех путях выполнения
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\dbmaster.cpp(92): warning C4715: DBMaster::GetRoomIndex: значение возвращается не при всех путях выполнения
   Dijkstra’s algorithm.vcxproj -> C:\Users\admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe

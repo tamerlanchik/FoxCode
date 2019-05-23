@@ -15,7 +15,7 @@ void InputDB(std::string ConnectionString) {
 	std::vector<Room> TempRoomVector;
 	std::vector<Hall> TempHallVector;
 	Coordinate TempCoord;
-	Room TempRoom;
+
 	Hall TempHall;
 	std::cout << "Input Number of records" << std::endl;
 	std::cin >> RecordNumber;
@@ -28,6 +28,7 @@ void InputDB(std::string ConnectionString) {
 		std::cin >> TempRightBottomX;
 		std::cin >> TempRightBottomY;
 		if (TempID[0] == 'R') {
+			Room TempRoom;
 			std::cin >> DoorX;
 			std::cin >> DoorY;
 
@@ -63,6 +64,7 @@ void InputDB(std::string ConnectionString) {
 		}
 
 		if (TempID[0] == 'S') {
+			Room TempRoom;
 			TempRoom.ID = TempID;
 			TempRoom.Type = "Step";
 			TempRoom.LeftTop.x = (int)TempLeftTopX;
@@ -76,6 +78,7 @@ void InputDB(std::string ConnectionString) {
 		}
 
 		if (TempID[0] == 'L') {
+			Room TempRoom;
 			TempRoom.ID = TempID;
 			TempRoom.Type = "Lift";
 			TempRoom.LeftTop.x = (int)TempLeftTopX;
@@ -99,7 +102,7 @@ void InputDB(std::string ConnectionString) {
 		std::cout << std::endl;
 	}
 	DBMaster dbMaster(ConnectionString);
-	dbMaster.WriteHalls(TempHallVector);
+	//dbMaster.WriteHalls(TempHallVector);
 	dbMaster.WriteRooms(TempRoomVector);
 }
 

@@ -270,30 +270,32 @@ int DBMaster::WriteRooms(std::vector<Room> rooms) {
 		if (sqlite3_exec(MapDB, WriteRoomsSQLQuery.c_str(), 0, 0, &err))
 			return -2;
 		sqlite3_free(err);
-		std::string DoorID = rooms[i].ID;
-		DoorID[0] = 'D';
-		DoorID[3] = 'r';
-		for (int j = 0; j < rooms[i].Input.size(); j++) {
-			//Создание ID двери
-			for (int k = 0; k < j; k++) {
-				if (k > 0)
-					DoorID += char('a' + k);
+		if (rooms[i].Type[0] == 'R') {
+			std::string DoorID = rooms[i].ID;
+			DoorID[0] = 'D';
+			DoorID[3] = 'r';
+			for (int j = 0; j < rooms[i].Input.size(); j++) {
+				//Создание ID двери
+				for (int k = 0; k < j; k++) {
+					if (k > 0)
+						DoorID += char('a' + k);
+				}
+				//Запись двери
+				std::string WriteDoorsSQLQuery = "INSERT INTO Door VALUES (";
+				WriteDoorsSQLQuery += "'" + DoorID + "'," + std::to_string(rooms[i].Input[j].x) + "," + std::to_string(rooms[i].Input[j].y);
+				WriteDoorsSQLQuery += "," + std::to_string(rooms[i].Input[j].z) + "," + std::to_string(rooms[i].Wight[j]) + ")";
+
+				if (sqlite3_exec(MapDB, WriteDoorsSQLQuery.c_str(), 0, 0, &err))
+					return -2;
+				sqlite3_free(err);
+				//Запись смежных дверей и комнат
+				std::string WriteRoomAndDoorSQLQuery = "INSERT INTO RoomAndDoor VALUES (";
+				WriteRoomAndDoorSQLQuery += "'" + rooms[i].ID + "'," + "'" + DoorID + "')";
+
+				if (sqlite3_exec(MapDB, WriteRoomAndDoorSQLQuery.c_str(), 0, 0, &err))
+					return -2;
+				sqlite3_free(err);
 			}
-			//Запись двери
-			std::string WriteDoorsSQLQuery = "INSERT INTO Door VALUES (";
-			WriteDoorsSQLQuery += "'" + DoorID + "'," + std::to_string(rooms[i].Input[j].x) + "," + std::to_string(rooms[i].Input[j].y);
-			WriteDoorsSQLQuery += "," + std::to_string(rooms[i].Input[j].z) + "," + std::to_string(rooms[i].Wight[j]) + ")";
-
-			if (sqlite3_exec(MapDB, WriteDoorsSQLQuery.c_str(), 0, 0, &err))
-				return -2;
-			sqlite3_free(err);
-			//Запись смежных дверей и комнат
-			std::string WriteRoomAndDoorSQLQuery = "INSERT INTO RoomAndDoor VALUES (";
-			WriteRoomAndDoorSQLQuery += "'" + rooms[i].ID + "'," + "'" + DoorID + "')";
-
-			if (sqlite3_exec(MapDB, WriteRoomAndDoorSQLQuery.c_str(), 0, 0, &err))
-				return -2;
-			sqlite3_free(err);
 		}
 	}
 	sqlite3_close(MapDB);

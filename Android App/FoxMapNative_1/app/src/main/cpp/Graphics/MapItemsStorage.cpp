@@ -31,20 +31,6 @@ void MapItemStorage::SetDatabase(DBMaster* database) {
 
 
 bool MapItemStorage::InflateStorage() {
-	/*if (!database_)
-		return 0;
-	std::vector<DataBase::RoomParcel> data = database_->GetRooms();
-	for (DataBase::RoomParcel c : data) {
-		gls::Room* room = new gls::Room(c.lines);
-		room_storage_.push_back(room);
-	}
-	data.~vector();
-	std::vector<DataBase::PassageParcel> d = database_->GetPassages();
-	for (DataBase::PassageParcel c : d) {
-		gls::Passage* room = new gls::Passage(c.lines);
-		passage_storage_.push_back(room);
-	}
-	is_inflated_ = true;*/
 	return 1;
 }
 bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
@@ -54,8 +40,6 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 			return Point(coord.x, coord.y);
 		}
 	} c;
-
-	//storage_.reserve(2);
 
 	std::vector<Hall> passages = db.GetPassages();
 	std::vector<Room> rooms = db.GetRooms();
@@ -103,6 +87,9 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 	return true;
 }
 
+void MapItemStorage::SetRoute(std::vector<std::string> r) {
+    route_ = r;
+}
 bool MapItemStorage::IsInflated() const {
 	return is_inflated_;
 }

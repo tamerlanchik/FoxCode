@@ -33,6 +33,8 @@ public:
     void SurfaceChanged(int w, int h);
     void SurfaceCreated();
     void SetFloor(size_t floor);
+    void Rebind();
+    bool rebind_request;
 private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
@@ -54,6 +56,11 @@ private:
 	void drawLifts();
 
 	void drawSteps();
+
+	void drawPath();
+
+	void drawObjects(const GLuint mode, const size_t type, const OpenGLStorage::BufMap& bufmap,
+			const ShaderProgram::Colour&, const size_t line_width = 1, const size_t step = 0);
 
     static const char TAG[];
     static const char triangle_vertex_shader_name_[];

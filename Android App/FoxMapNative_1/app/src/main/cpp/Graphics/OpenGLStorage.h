@@ -22,11 +22,11 @@ class OpenGLStorage : public MapItemStorage
 {
 public:
 	class BufMap{
-		static const size_t types_count = 5;
+		static const size_t types_count = 6;
 	    // passages rooms lifts steps patches
-		std::array<int, 6> map_ = {0};
+		std::array<int, 7> map_ = {0};
 	public:
-		enum types {P = 0, R, L, S, PT};
+		enum types {P = 0, R, L, S, PT, PATH};
 		void SetLocation(int param, size_t count){ insert(param, count);}
 		PointT<size_t> GetSectorRange(int param) const { return get(param); }
 		bool IsFilled(size_t param) const  {
@@ -77,6 +77,7 @@ protected:
 	float* getPatches();
 	float* getLifts();
 	float* getSteps();
+	float* getPath();
 	int data;
 	std::mutex m_;
 public:
@@ -98,7 +99,7 @@ public:
 	void CommitMapZoom(float delta);
 	void SetCurrentFloor(size_t);
 
-	void SetRoute(const std::vector<int>& path);
+	//void SetRoute(const std::vector<int>& path);
 	void SetObjectMark(const int id);
 	bool SetObjectMark(const std::string& name);
 

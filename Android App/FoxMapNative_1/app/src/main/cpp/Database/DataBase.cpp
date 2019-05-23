@@ -73,86 +73,12 @@ size_t DataBase::GetPassageNumber() {
 }
 std::vector<Room> DataBase::GetRooms() {
 	return rooms_;
-	/*Converter c;
-	std::vector<Room> parcels;
-	parcels.reserve(rooms_.size());
-	size_t i = 0;
-	for (auto room : rooms_) {
-		Room parcel;
-		parcel.LeftTop.x = room[0];
-		parcel.LeftTop.y = room[1];
-		parcel.RightBottom.x = room[2];
-		parcel.RightBottom.y = room[3];
-		std::vector<Coordinate> input(1);
-		input[0].x = room[4]; input[0].y = room[5];
-		char type = room_types_[i++];
-		std::string id;
-		switch(type){
-			case 'r':
-				parcel.Type = "Room";
-				id =
-				break;
-			case 'l':
-				parcel.Type = "Lift";
-				break;
-			case 's':
-				parcel.Type = "Steps";
-				break;
-			default:
-				assert(false);
-		}
-		parcel.Input = input;
-		parcel.ID = ;
-		parcels.push_back(parcel);
-	}
-
-	return parcels;*/
 }
 
 std::vector<Hall> DataBase::GetHalls() {
 
 	return passages_;
-	/*std::vector<Hall> parcels;
-	parcels.reserve(passages_.size());
-	for (auto room : passages_) {
-		Hall parcel;
-		parcel.LeftTop.x = room[0];
-		parcel.LeftTop.y = room[1];
-		parcel.RightBottom.x = room[2];
-		parcel.RightBottom.y = room[3];
-		parcel.ID = 1;
-		parcels.push_back(parcel);
-	}
-	return parcels;*/
 }
-/*std::vector<DataBase::RoomParcel> DataBase::GetRooms() {
-	std::vector<RoomParcel> parcels;
-	parcels.reserve(rooms_.size());
-
-	for (auto room : rooms_) {
-		RoomParcel parcel;
-		parcel.lines = room;
-		parcel.name_ = "123";
-		parcel.id_ = 1;
-		parcels.push_back(parcel);
-	}
-
-	return parcels;
-}
-std::vector<DataBase::PassageParcel> DataBase::GetPassages() {
-	std::vector<PassageParcel> parcels;
-	parcels.reserve(passages_.size());
-	for (auto room : passages_) {
-		PassageParcel parcel;
-		parcel.lines = room;
-		parcel.id_ = 1;
-		parcels.push_back(parcel);
-	}
-	return parcels;
-}*/
-
-
-
 Point DataBase::GetMapDimensions() const {
 	return dimensions_;
 }

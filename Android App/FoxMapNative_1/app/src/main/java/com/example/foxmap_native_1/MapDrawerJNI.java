@@ -21,4 +21,5 @@ public class MapDrawerJNI {
     public static native void commitMapMovement(float dx, float dy);
     public static native void commitMapZoom(float dz);
     public static native void setFloor(int floor);
+    public static native void rebind();
 }

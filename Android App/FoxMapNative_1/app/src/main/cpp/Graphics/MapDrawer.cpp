@@ -13,6 +13,10 @@ const ShaderProgram::Colour MapDrawer::room_colour_(0, 0, 1);
 const ShaderProgram::Colour MapDrawer::background_colour_(1, 1, 1);
 const size_t MapDrawer::vert_param_cnt = 2;
 
+const ShaderProgram::Colour RED(1, 0, 0);
+const ShaderProgram::Colour GREEN(0, 1, 0);
+const ShaderProgram::Colour BLUE(0, 0, 1);
+
 void delay() {
 	double u = 12345;
 	for(size_t i = 0; i < 100000; ++i)
@@ -21,7 +25,7 @@ void delay() {
 }
 
 //Tutorial: https://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
-MapDrawer::MapDrawer() : floor(3){
+MapDrawer::MapDrawer() : floor(3), rebind_request(false){
 	storage_ = OpenGLStorage::Get();
 }
 
@@ -76,6 +80,7 @@ void MapDrawer::Init(AAssetManager* asset_manager){
 
 void MapDrawer::Render() {
     Log::debug(TAG, "Render");
+    if(rebind_request) bindData();
     EGLContext mEglContext = eglGetCurrentContext();
     if(!mEglContext){
         Log::error(TAG, "Zero context");
@@ -86,11 +91,20 @@ void MapDrawer::Render() {
 	storage_->NotifyStartWorking();
 	program1_.SetTransformMatrix(storage_->GetTransformMatrix());
 
-	drawPassages();
+	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
+	drawObjects(GL_TRIANGLES, bufmap.P, bufmap, passage_colour_, 3);	//Passages
+	drawObjects(GL_LINE_LOOP, bufmap.R, bufmap, room_colour_, 2, 4);	//Rooms
+	drawObjects(GL_TRIANGLES, bufmap.PT, bufmap, RED);	//Patches
+	drawObjects(GL_LINES, bufmap.L, bufmap, RED, 5);	//LIFTS
+	drawObjects(GL_LINES, bufmap.S, bufmap, BLUE, 5);	//STEPS
+	drawObjects(GL_LINES, bufmap.PATH, bufmap, GREEN, 10);	//Path
+
+	/*drawPassages();
 	drawRooms();
 	drawPatches();
 	drawLifts();
 	drawSteps();
+	drawPath();*/
 	storage_->NotifyStopWorking();
 	glBindVertexArray(0);
 }
@@ -100,25 +114,28 @@ void MapDrawer::SetFloor(size_t f) {
     bindData();
 }
 
+void MapDrawer::Rebind() {
+    bindData();
+}
+
+void MapDrawer::drawPath() {
+	glLineWidth(3);
+	program1_.SetVertexColor(1, 0, 0);
+	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
+	if(!bufmap.IsFilled(bufmap.PATH)){
+		Log::error(TAG, "EMPTY BUF: Path");
+		return;
+	}
+	PointT<size_t> range = (bufmap.GetSectorRange(OpenGLStorage::BufMap::PATH))/vert_param_cnt;
+	glDrawArrays(GL_LINES, range.x, 4);
+}
+
 void MapDrawer::drawPassages() {
 	glLineWidth(3);
     program1_.SetVertexColor(0.9, 0.9, 0.9);
-	/*GLuint ind[] = {
-	        0, 1, 2,
-	        0, 2, 3
-	};
-    GLuint EBO;
-    glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ind), ind, GL_STATIC_DRAW);
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    //glDrawRangeElements(GL_TRIANGLES, 0, 12, 6, GL_UNSIGNED_INT, 0);
-    glDrawElementsInstanced(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0, 2);*/
-	//glDrawArrays(GL_LINES, 0, storage_->GetPassagesBufSize() / 2);
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
 	if(!bufmap.IsFilled(bufmap.P)){
-		Log::error(TAG, "EMPTY BUF");
+		Log::error(TAG, "EMPTY BUF: Pass");
 		return;
 	}
 	PointT<size_t> range = (bufmap.GetSectorRange(OpenGLStorage::BufMap::P))/vert_param_cnt;
@@ -130,7 +147,10 @@ void MapDrawer::drawRooms() {
 	glLineWidth(2);
 	program1_.SetVertexColor(room_colour_);
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.R)) return;
+	if(!bufmap.IsFilled(bufmap.R)){
+        Log::error(TAG, "EMPTY BUF: Rooms");
+	    return;
+	}
 	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.R))/vert_param_cnt;
 	const size_t step = 4;
 	for(int i = range.x; i < range.y; i+=step){
@@ -142,7 +162,7 @@ void MapDrawer::drawPatches() {
     program1_.SetVertexColor(1, 0, 0);
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
 	if(!bufmap.IsFilled(bufmap.P)){
-        Log::error(TAG, "EMPTY BUF");
+        Log::error(TAG, "EMPTY BUF: patches");
 	    return;
 	}
 	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.PT))/vert_param_cnt;
@@ -153,7 +173,7 @@ void MapDrawer::drawLifts(){
     program1_.SetVertexColor(1, 0, 0);
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
 	if(!bufmap.IsFilled(bufmap.P)){
-		Log::error(TAG, "EMPTY BUF");
+		Log::error(TAG, "EMPTY BUF: lifts");
 		return;
 	}
 	glLineWidth(5);
@@ -163,10 +183,31 @@ void MapDrawer::drawLifts(){
 
 void MapDrawer::drawSteps() {
 	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.P)) return;
+	if(!bufmap.IsFilled(bufmap.S)){
+        Log::error(TAG, "EMPTY BUF: Steps");
+	    return;
+	}
 	program1_.SetVertexColor(0, 0, 1);
 	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.S))/vert_param_cnt;
 	glDrawArrays(GL_LINES, range.x, range.y - range.x + 1);
+}
+
+void MapDrawer::drawObjects(const GLenum mode, const size_t type, const OpenGLStorage::BufMap& bufmap,
+		const ShaderProgram::Colour& color, const size_t line_width, const size_t step){
+	if(!bufmap.IsFilled(type)){
+		Log::error(TAG, "EMPTY BUF");
+		return;
+	}
+	program1_.SetVertexColor(color);
+	glLineWidth(line_width);
+	PointT<size_t> range = (bufmap.GetSectorRange(type))/vert_param_cnt;
+	if(step == 0){
+		glDrawArrays(mode, range.x, range.y - range.x + 1);
+	}else{
+		for(int i = range.x; i < range.y; i+=step){
+			glDrawArrays(mode, i, step);
+		}
+	}
 }
 
 void MapDrawer::SurfaceChanged(int w, int h) {
@@ -193,6 +234,8 @@ void MapDrawer::SurfaceCreated() {
 }
 
 void MapDrawer::bindData() {
+    Log::debug(TAG, "bindData()");
+    rebind_request = false;
 	storage_->NotifyStartWorking();
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	float* buf = storage_->GetObjects(floor);

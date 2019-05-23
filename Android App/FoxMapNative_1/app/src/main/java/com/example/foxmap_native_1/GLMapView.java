@@ -100,6 +100,12 @@ public class GLMapView extends GLSurfaceView{
 
     public boolean drawRouteRequest(){
         requestRender();
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                MapDrawerJNI.rebind();
+            }
+        });
         return true;
     }
     public boolean drawObjectMarkerRequest(){

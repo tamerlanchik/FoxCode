@@ -88,13 +88,7 @@ float* OpenGLStorage::GetPassages() {
 }
 
 float* OpenGLStorage::GetObjects() {
-	buffer_.clear();
-	getPassages();
-	getRooms();
-	getLifts();
-	getSteps();
-	getPatches();
-	return buffer_.data();
+	return GetObjects(3);
 }
 float* OpenGLStorage::GetObjects(size_t floor) {
 	current_floor_ = floor;
@@ -104,6 +98,7 @@ float* OpenGLStorage::GetObjects(size_t floor) {
 	getLifts();
 	getSteps();
 	getPatches();
+	getPath();
 	return buffer_.data();
 }
 
@@ -111,9 +106,6 @@ const glm::f32* OpenGLStorage::GetTransformMatrix() const {
 	return glm::value_ptr(result_transform_matrix_);
 }
 
-void OpenGLStorage::SetRoute(const std::vector<int>& path){
-
-}
 
 void OpenGLStorage::SetObjectMark(const int id) {
 
@@ -250,6 +242,104 @@ float* OpenGLStorage::getSteps() {
 			buffer_.push_back(i.y);
 		}
 	}
+	return buffer_.data();
+}
+
+float* OpenGLStorage::getPath() {
+	//buffer_map_.SetLocation(BufMap::PATH, route_.size() * 2);
+	if(route_.size() == 0) return nullptr;
+	buffer_.reserve(buffer_map_.GetTotal() + route_.size()*10);
+	const std::array<size_t, 4> ind = {0, 1, 2, 3};
+	gls::MapItem search_item;
+	std::vector<gls::MapItem*> path;
+	path.reserve(route_.size());
+	std::vector<Point> path_p;
+	// "Room 312"
+	for(const std::string& id : route_){
+		int space = id.find(" ");
+		if(space == std::string::npos){
+		    Log::error(TAG, "Wrong id: " + id);
+		    return nullptr;
+		}
+		size_t floor = id[space+1] - '0';
+		search_item.SetID(id.substr(space+1, 5));
+		size_t obj_type = 0;
+		if(id.find("Room") != std::string::npos) obj_type = (size_t)Type::R;
+        else if(id.find("Passage") != std::string::npos)obj_type = (size_t)Type::P;
+        else if(id.find("Lift") != std::string::npos) obj_type = (size_t)Type::L;
+        else if(id.find("Steps") != std::string::npos) obj_type = (size_t)Type::S;
+        else continue;
+
+		auto res = storage_[floor - 1][obj_type].find(&search_item);
+		if(res!= storage_[current_floor_ - 1][(size_t)Type::R].end()) {
+            Log::debug(TAG, "Found " + id);
+            path.push_back(*(res));
+            /*if(obj_type == Type::R){
+                gls::Room* room = dynamic_cast<gls::Room*>(obj);
+                if(!room){
+                    Log::error(TAG, "Cannot cast to room: " + id);
+                    return nullptr;
+                }
+                path_p.emplace_back(room->GetCenter());
+            }else if(obj_type == Type::P){
+
+            }*/
+        }
+		else{
+		    Log::error(TAG, "Cannot found " + id);
+		    return nullptr;
+		}
+        /*const gls::MapItem* obj = *(res);
+		Point center = obj->GetCenter();
+		buffer_.push_back(center.x);
+        buffer_.push_back(center.y);*/
+	}
+	Point center1 = path[0]->GetCenter(), center2;
+	const size_t step = 5;
+	size_t counter = 0;
+	std::function<void(Point&, Point&, size_t)> generate_line =
+	        [&buffer_ = buffer_, &counter] (Point& center1, Point& center2, size_t step){
+                Point st = (center2-center1) / ((center2-center1).Norm()/step);
+                for(Point p = center1; (p-(center2+st)).Norm() > step; p = p + st){
+                    buffer_.push_back(p.x);
+                    buffer_.push_back(p.y);
+                    counter += 2;
+                }
+	        };
+	for(int i = 1; i < path.size(); ++i){
+		center2 = path[i]->GetCenter();
+		if(route_[i].find("Passage") != std::string::npos){
+			// ищем точку коридора напротив комнаты
+			const auto verts = path[i] ->GetVertices();
+			if(path[i]->IsVertical()){
+				center2.y = center1.y;
+				generate_line(center1, center2, step);
+				center1 = center2;
+				if(i < path.size() - 1) {
+					center2.y = path[i + 1]->GetCenter().y;
+					generate_line(center1, center2, step);
+				}
+			}else{
+				center2.x = center1.x;
+				generate_line(center1, center2, step);
+				center1 = center2;
+				if(i < path.size() - 1) {
+					center2.x = path[i + 1]->GetCenter().x;
+					generate_line(center1, center2, step);
+				}
+			}
+		}else{
+			generate_line(center1, center2, step);
+		}
+	    /*Point st = (center2-center1) / ((center2-center1).Norm()/step);
+	    for(Point p = center1; (p-(center2+st)).Norm() > step; p = p + st){
+	        buffer_.push_back(p.x);
+	        buffer_.push_back(p.y);
+	        counter += 2;
+	    }*/
+	    center1 = center2;
+	}
+    buffer_map_.SetLocation(BufMap::PATH, counter);
 	return buffer_.data();
 }
 void OpenGLStorage::updateTransformMatrix() {

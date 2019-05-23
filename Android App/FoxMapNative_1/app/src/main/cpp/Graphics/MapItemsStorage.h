@@ -26,6 +26,7 @@ protected:
 	std::vector<gls::Steps*> steps_storage_;
 	std::array< std::array<
 	                  std::set< gls::MapItem*, gls::MapItem::Compare>, 4>, 6> storage_;
+	std::vector<std::string> route_;
 	enum class Type { P = 0, R, S, L };
 	//DataBase* database_;
 	//DBMaster* db_;
@@ -45,6 +46,8 @@ public:
 	void SetDatabase(DBMaster*);
 
 	virtual bool InflateStorage();
+
+	virtual void SetRoute(std::vector<std::string>);
 
 	bool IsInflated() const;
 private:

@@ -45,9 +45,21 @@ namespace gls {
 		const float *GetVerticesArray() const {
 			return &vertices_[0];
 		}
+		void SetID(const std::string& id){
+			id_ = id;
+		}
+		virtual Point GetCenter() const {
+			return Point(vertices_[2]+vertices_[0], vertices_[3]+vertices_[1])/2;
+		}
 
 		const std::vector<float> &GetVertices() const {
 			return vertices_;
+		}
+		const bool IsVertical() const{
+			if(abs(vertices_[0] - vertices_[2]) < abs(vertices_[1] - vertices_[3]))
+				return true;
+			else
+				return false;
 		}
 
 		size_t GetSize() const {
@@ -82,6 +94,14 @@ namespace gls {
 
 		Point GetEntry() const {
 		    return entry_;
+		}
+
+		virtual Point GetCenter() const override {
+			if(entry_.x == vertices_[0] || entry_.x == vertices_[2]){
+				return Point(MapItem::GetCenter().x, entry_.y);
+			}else{
+				return Point(entry_.x, MapItem::GetCenter().y);
+			}
 		}
 
 		static size_t GetSize() {

@@ -30,14 +30,14 @@ public:
     RouteSearchMock(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {}
     int RefreshData(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) { return 1; }
     int BuildRoute(int StartID, int EndID) {
-        route_ = { 1, 2 };
+        route_ = { "Room 302", "Passage 3015", "Passage 3016", "Passage 3017", "Room 307" };
         return route_.size();
     }
-    const std::vector<int> &GetRoute() { return route_;}
+    const std::vector<std::string> &GetRoute() { return route_;}
     ~RouteSearchMock(){}
 
 private:
-    std::vector<int> route_;
+    std::vector<std::string> route_;
 };
 
 RouteSearchMock<float>* route_search;
@@ -65,6 +65,11 @@ Java_com_example_foxmap_1native_11_MapDrawerJNI_surfaceCreated(JNIEnv *env, jcla
 JNIEXPORT void JNICALL
 Java_com_example_foxmap_1native_11_MapDrawerJNI_setFloor(JNIEnv *env, jclass type, jint floor){
     map_drawer.SetFloor(floor);
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_foxmap_1native_11_MapDrawerJNI_rebind(JNIEnv *env, jclass type){
+    map_drawer.Rebind();
 }
 
 JNIEXPORT void JNICALL
@@ -208,16 +213,17 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
 
     const char* from = env->GetStringUTFChars(from_name, 0);
     const char* to = env->GetStringUTFChars(to_name, 0);
-    route_search = nullptr;
     try{
         if(!route_search) throw(new std::exception);
-        size_t path_size = route_search->BuildRoute(1, 2);
+        size_t path_size = route_search->BuildRoute(303, 323);
         if(path_size <= 0) throw(new std::exception);
-        const std::vector<int>& path = route_search->GetRoute();
 
         OpenGLStorage::Get()->NotifyStartWorking();
-        OpenGLStorage::Get()->SetRoute(path);
+        OpenGLStorage::Get()->SetRoute(route_search->GetRoute());
         OpenGLStorage::Get()->NotifyStopWorking();
+        Log::debug(TAG, "Set route");
+        //map_drawer.Rebind();
+        map_drawer.rebind_request = true;
         return true;
     }catch (...){
         env->ReleaseStringUTFChars(from_name, from);

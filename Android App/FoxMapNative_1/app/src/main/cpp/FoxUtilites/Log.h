@@ -4,6 +4,7 @@
 
 #ifndef FOXMAPNATIVE_1_LOGNATIVE_H
 #define FOXMAPNATIVE_1_LOGNATIVE_H
+#include <string>
 #ifdef __ANDROID__
 	#include <android/log.h>
 	#ifdef NDEBUG
@@ -21,6 +22,9 @@ public:
     static void error(const char* tag, const char* message, ...);
     static void debug(const char* tag, const char* message, ...);
     static void info(const char* tag, const char* message, ...);
+	static void error(const char* tag, const std::string& message, ...);
+	static void debug(const char* tag, const std::string& message, ...);
+	static void info(const char* tag, const std::string& message, ...);
 private:
     static void print(const int prioritet, const char* tag, const char* message, ...);
 };

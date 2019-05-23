@@ -8,15 +8,23 @@ void Log::error(const char *tag, const char *message, ...) {
 }
 
 void Log::debug(const char *tag, const char *message ...) {
-#ifdef DEBUG
     Log::print(ANDROID_LOG_DEBUG, tag, message);
-#endif
 }
 
 void Log::info(const char *tag, const char *message, ...) {
-#ifdef DEBUG
     Log::print(ANDROID_LOG_INFO, tag, message);
-#endif
+}
+
+void Log::error(const char *tag, const std::string& message, ...) {
+	Log::print(ANDROID_LOG_ERROR, tag, message.c_str());
+}
+
+void Log::debug(const char *tag, const std::string& message ...) {
+	Log::print(ANDROID_LOG_DEBUG, tag, message.c_str());
+}
+
+void Log::info(const char *tag, const std::string& message, ...) {
+	Log::print(ANDROID_LOG_INFO, tag, message.c_str());
 }
 
 #ifdef __ANDROID__

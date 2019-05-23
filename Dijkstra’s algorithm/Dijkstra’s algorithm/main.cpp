@@ -7,6 +7,13 @@
 #include "CMatrixGraph.h"
 #include <queue>
 
+bool PointOnLine(int StartX, int StartY, int EndX, int EndY, int PointX, int PointY) {
+	if (PointY == (double(EndY - StartY)*PointX) / (double(EndX - StartX)) + double(StartY*EndX - EndY * StartX) / double(EndX - StartX))
+		return true;
+	else
+		return false;
+}
+
 void InputDB(std::string ConnectionString) {
 	int RecordNumber;
 	int Floor = 3;
@@ -101,10 +108,71 @@ void InputDB(std::string ConnectionString) {
 		std::cout << TempRoomVector[i].LeftTop.z << " ";
 		std::cout << std::endl;
 	}
+	for (int i = 0; i < TempRoomVector.size(); i++) {
+		for (int k = 0; k < TempHallVector.size(); k++) {
+			if (TempHallVector[k].LeftTop.z == TempRoomVector[i].LeftTop.z) {
+				int Xk1 = TempHallVector[k].LeftTop.x;
+				int Yk1 = TempHallVector[k].LeftTop.y;
+				int Xk2 = TempHallVector[k].RightBottom.x;
+				int Yk2 = TempHallVector[k].RightBottom.y;
+				if (TempRoomVector[i].ID[0] == 'R') {
+					for (int j = 0; j < TempRoomVector[i].Input.size(); j++) {
+						if (TempRoomVector[i].Input[j].x == Xk1 || TempRoomVector[i].Input[j].x == Xk2) {
+							if ((TempRoomVector[i].Input[j].y <= Yk1 && TempRoomVector[i].Input[j].y >= Yk2) || (TempRoomVector[i].Input[j].y <= Yk2 && TempRoomVector[i].Input[j].y >= Yk1))
+								TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+						}
+						else
+							if (TempRoomVector[i].Input[j].y == Yk1 || TempRoomVector[i].Input[j].y == Yk2)
+								if ((TempRoomVector[i].Input[j].x <= Xk1 && TempRoomVector[i].Input[j].x >= Xk2) || (TempRoomVector[i].Input[j].x <= Xk2 && TempRoomVector[i].Input[j].x >= Xk1)) {
+									TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+								}
+					}
+				}
+				else {
+					int Xi1 = TempRoomVector[i].LeftTop.x;
+					int Yi1 = TempRoomVector[i].LeftTop.y;
+					int Xi2 = TempRoomVector[i].RightBottom.x;
+					int Yi2 = TempRoomVector[i].RightBottom.y;
+					if ((Xi1 == Xk1 && Yi1 == Yk1) || (Xi1 == Xk2 && Yi1 == Yk1) || (Xi1 == Xk1 && Yi1 == Yk2) || (Xi1 == Xk2 && Yi1 == Yk2))
+						TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+					if ((Xi2 == Xk1 && Yi1 == Yk1) || (Xi2 == Xk2 && Yi1 == Yk1) || (Xi2 == Xk1 && Yi1 == Yk2) || (Xi2 == Xk2 && Yi1 == Yk2))
+						TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+					if ((Xi1 == Xk1 && Yi2 == Yk1) || (Xi1 == Xk2 && Yi2 == Yk1) || (Xi1 == Xk1 && Yi2 == Yk2) || (Xi1 == Xk2 && Yi2 == Yk2))
+						TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+					if ((Xi2 == Xk1 && Yi2 == Yk1) || (Xi2 == Xk2 && Yi2 == Yk1) || (Xi2 == Xk1 && Yi2 == Yk2) || (Xi2 == Xk2 && Yi2 == Yk2))
+						TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
+				}
+			}
+		}
+	}
+	for (int i = 0; i < TempHallVector.size(); i++) {
+		int Xi1 = TempHallVector[i].LeftTop.x;
+		int Yi1 = TempHallVector[i].LeftTop.y;
+		int Xi2 = TempHallVector[i].RightBottom.x;
+		int Yi2 = TempHallVector[i].RightBottom.y;
+		for (int j = i + 1; j < TempHallVector.size(); j++) {
+			int Xj1 = TempHallVector[j].LeftTop.x;
+			int Yj1 = TempHallVector[j].LeftTop.y;
+			int Xj2 = TempHallVector[j].RightBottom.x;
+			int Yj2 = TempHallVector[j].RightBottom.y;
+			if (TempHallVector[i].LeftTop.z == TempHallVector[j].LeftTop.z) {
+				if ((Xi1 == Xj1 && Yi1 == Yj1) || (Xi1 == Xj2 && Yi1 == Yj1) || (Xi1 == Xj1 && Yi1 == Yj2) || (Xi1 == Xj2 && Yi1 == Yj2))
+					TempHallVector[i].HallID.push_back(TempHallVector[j].ID);
+				if ((Xi2 == Xj1 && Yi1 == Yj1) || (Xi2 == Xj2 && Yi1 == Yj1) || (Xi2 == Xj1 && Yi1 == Yj2) || (Xi2 == Xj2 && Yi1 == Yj2))
+					TempHallVector[i].HallID.push_back(TempHallVector[j].ID);
+				if ((Xi1 == Xj1 && Yi2 == Yj1) || (Xi1 == Xj2 && Yi2 == Yj1) || (Xi1 == Xj1 && Yi2 == Yj2) || (Xi1 == Xj2 && Yi2 == Yj2))
+					TempHallVector[i].HallID.push_back(TempHallVector[j].ID);
+				if ((Xi2 == Xj1 && Yi2 == Yj1) || (Xi2 == Xj2 && Yi2 == Yj1) || (Xi2 == Xj1 && Yi2 == Yj2) || (Xi2 == Xj2 && Yi2 == Yj2))
+					TempHallVector[i].HallID.push_back(TempHallVector[j].ID);
+			}
+		}
+	}
 	DBMaster dbMaster(ConnectionString);
-	//dbMaster.WriteHalls(TempHallVector);
+	dbMaster.WriteHalls(TempHallVector);
 	dbMaster.WriteRooms(TempRoomVector);
 }
+
+
 
 void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph)) {
 	std::vector<bool> visited(graph.VerticesCount(), false);

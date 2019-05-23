@@ -251,6 +251,15 @@ int DBMaster::WriteHalls(std::vector<Hall> halls) {
 		if (sqlite3_exec(MapDB, WriteRoomsSQLQuery.c_str(), 0, 0, &err))
 			return -2;
 		sqlite3_free(err);
+		for (int j = 0; j < halls[i].HallID.size(); j++) {
+			std::string WriteHallAndHallSQLQuery = "INSERT INTO HallAndHall VALUES (";
+			WriteHallAndHallSQLQuery += "'" + halls[i].ID + "'," + "'" + halls[i].HallID[j] + "')";
+
+			if (sqlite3_exec(MapDB, WriteHallAndHallSQLQuery.c_str(), 0, 0, &err))
+				return -2;
+			sqlite3_free(err);
+		}
+
 	}
 	sqlite3_close(MapDB);
 	return 0;
@@ -270,6 +279,14 @@ int DBMaster::WriteRooms(std::vector<Room> rooms) {
 		if (sqlite3_exec(MapDB, WriteRoomsSQLQuery.c_str(), 0, 0, &err))
 			return -2;
 		sqlite3_free(err);
+		for (int j = 0; j < rooms[i].HallID.size(); j++) {
+			std::string WriteHallAndRoomSQLQuery = "INSERT INTO HallAndRoom VALUES (";
+			WriteHallAndRoomSQLQuery += "'" + rooms[i].HallID[j] + "'," + "'" + rooms[i].ID + "')";
+
+			if (sqlite3_exec(MapDB, WriteHallAndRoomSQLQuery.c_str(), 0, 0, &err))
+				return -2;
+			sqlite3_free(err);
+		}
 		if (rooms[i].Type[0] == 'R') {
 			std::string DoorID = rooms[i].ID;
 			DoorID[0] = 'D';

@@ -220,134 +220,6 @@
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
       <FILENAME>shell.c</FILENAME>
-      <LINE>771</LINE>
-      <COLUMN>12</COLUMN>
-    </SFA>
-    <DEFECTCODE>28182</DEFECTCODE>
-    <DESCRIPTION>Разыменование пустого (NULL) указателя. "zCsr" содержит то же значение NULL, которое находилось в "realloc()`765". </DESCRIPTION>
-    <FUNCTION>appendText</FUNCTION>
-    <DECORATED>appendText</DECORATED>
-    <FUNCLINE>750</FUNCLINE>
-    <PROBABILITY>1</PROBABILITY>
-    <RANK>3</RANK>
-    <CATEGORY>
-      <RULECATEGORY>mspft</RULECATEGORY>
-    </CATEGORY>
-    <PATH>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>751</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>752</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>753</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>755</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>756</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>757</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>758</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>758</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>763</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>764</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>765</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>766</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>766</LINE>
-        <COLUMN>37</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>769</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>770</LINE>
-        <COLUMN>10</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>объявление</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"zCsr" может быть равно NULL</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>771</LINE>
-        <COLUMN>12</COLUMN>
-        <KEYEVENT>
-          <ID>2</ID>
-          <KIND>использование</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"zCsr" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-    </PATH>
-  </DEFECT>
-  <DEFECT>
-    <SFA>
-      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-      <FILENAME>shell.c</FILENAME>
       <LINE>780</LINE>
       <COLUMN>10</COLUMN>
     </SFA>
@@ -616,6 +488,134 @@
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
       <FILENAME>shell.c</FILENAME>
+      <LINE>771</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>28182</DEFECTCODE>
+    <DESCRIPTION>Разыменование пустого (NULL) указателя. "zCsr" содержит то же значение NULL, которое находилось в "realloc()`765". </DESCRIPTION>
+    <FUNCTION>appendText</FUNCTION>
+    <DECORATED>appendText</DECORATED>
+    <FUNCLINE>750</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>3</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>751</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>752</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>753</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>755</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>756</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>757</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>758</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>758</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>763</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>764</LINE>
+        <COLUMN>14</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>765</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>766</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>766</LINE>
+        <COLUMN>37</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>769</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>770</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>объявление</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"zCsr" может быть равно NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>771</LINE>
+        <COLUMN>12</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>использование</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"zCsr" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+      <FILENAME>shell.c</FILENAME>
       <LINE>2702</LINE>
       <COLUMN>59</COLUMN>
     </SFA>
@@ -681,6 +681,176 @@
     <DECORATED>expertBestIndex</DECORATED>
     <FUNCLINE>7114</FUNCLINE>
     <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+      <FILENAME>shell.c</FILENAME>
+      <LINE>7417</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>"pNew-&gt;zName" может быть равен "0":  это не соответствует спецификации функции "memcpy". </DESCRIPTION>
+    <FUNCTION>idxGetTableInfo</FUNCTION>
+    <DECORATED>idxGetTableInfo</DECORATED>
+    <FUNCLINE>7352</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7358</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7359</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7360</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7361</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7362</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7363</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7363</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7364</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7366</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7367</LINE>
+        <COLUMN>23</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7376</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7377</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7379</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7380</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7383</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "rc==0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7389</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7390</LINE>
+        <COLUMN>23</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить этот цикл (предполагается, что "rc==0&amp;&amp;100==sqlite3_step(p1)" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7410</LINE>
+        <COLUMN>13</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7412</LINE>
+        <COLUMN>8</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>ветвь</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>Пропустить эту ветвь (предполагается, что "rc!=0" равно false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7416</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
+        <FILENAME>shell.c</FILENAME>
+        <LINE>7417</LINE>
+        <COLUMN>10</COLUMN>
+        <KEYEVENT>
+          <ID>4</ID>
+          <KIND>использование</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>"pNew-&gt;zName" не должно равняться NULL, поскольку это не соответствует SAL-аннотации для "memcpy"</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
@@ -854,176 +1024,6 @@
           <KIND>использование</KIND>
           <IMPORTANCE>Essential</IMPORTANCE>
           <MESSAGE>"pNew" разыменовано, но, возможно, по-прежнему равно NULL</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-    </PATH>
-  </DEFECT>
-  <DEFECT>
-    <SFA>
-      <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-      <FILENAME>shell.c</FILENAME>
-      <LINE>7417</LINE>
-      <COLUMN>10</COLUMN>
-    </SFA>
-    <DEFECTCODE>6387</DEFECTCODE>
-    <DESCRIPTION>"pNew-&gt;zName" может быть равен "0":  это не соответствует спецификации функции "memcpy". </DESCRIPTION>
-    <FUNCTION>idxGetTableInfo</FUNCTION>
-    <DECORATED>idxGetTableInfo</DECORATED>
-    <FUNCLINE>7352</FUNCLINE>
-    <PROBABILITY>1</PROBABILITY>
-    <RANK>4</RANK>
-    <CATEGORY>
-      <RULECATEGORY>mspft</RULECATEGORY>
-    </CATEGORY>
-    <PATH>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7358</LINE>
-        <COLUMN>16</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7359</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7360</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7361</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7362</LINE>
-        <COLUMN>12</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7363</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7363</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7364</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7366</LINE>
-        <COLUMN>5</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7367</LINE>
-        <COLUMN>23</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7376</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7377</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7379</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7380</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7383</LINE>
-        <COLUMN>8</COLUMN>
-        <KEYEVENT>
-          <ID>1</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "rc==0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7389</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7390</LINE>
-        <COLUMN>23</COLUMN>
-        <KEYEVENT>
-          <ID>2</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить этот цикл (предполагается, что "rc==0&amp;&amp;100==sqlite3_step(p1)" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7410</LINE>
-        <COLUMN>13</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7412</LINE>
-        <COLUMN>8</COLUMN>
-        <KEYEVENT>
-          <ID>3</ID>
-          <KIND>ветвь</KIND>
-          <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>Пропустить эту ветвь (предполагается, что "rc!=0" равно false)</MESSAGE>
-        </KEYEVENT>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7416</LINE>
-        <COLUMN>16</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\sqlite_lib</FILEPATH>
-        <FILENAME>shell.c</FILENAME>
-        <LINE>7417</LINE>
-        <COLUMN>10</COLUMN>
-        <KEYEVENT>
-          <ID>4</ID>
-          <KIND>использование</KIND>
-          <IMPORTANCE>Essential</IMPORTANCE>
-          <MESSAGE>"pNew-&gt;zName" не должно равняться NULL, поскольку это не соответствует SAL-аннотации для "memcpy"</MESSAGE>
         </KEYEVENT>
       </SFA>
     </PATH>

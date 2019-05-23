@@ -13,7 +13,7 @@
 #include <android/asset_manager_jni.h>
 #include <string>
 #include <Database/Entity.h>
-#include "RouteSearch/RouteSearch.h"
+#include "RouteSearch/CMatrixGraph.h"
 #include <array>
 #include "config.h"
 
@@ -45,6 +45,7 @@ private:
 };
 
 RouteSearchMock<float>* route_search;
+CMatrixGraph* route_search_2;
 
 extern "C" {
 JNIEXPORT void JNICALL
@@ -155,13 +156,19 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         env->ReleaseStringUTFChars(db_path, path);
 
         OpenGLStorage::Get()->NotifyStartWorking();
+        Log::debug(TAG, "Start reading");
         bool res = OpenGLStorage::Get()->InflateStorage(adapter);
+        Log::debug(TAG, "Stop reading");
         OpenGLStorage::Get()->NotifyStopWorking();
         if(res == false){
             return 2;
         }
 
-        route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
+        if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH)
+            route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
+        else
+            route_search_2 = new CMatrixGraph(adapter.GetPassages(), adapter.GetRooms());
+        Log::debug(TAG, "Grapg inited");
     } else{
         class Adapter : public OpenGLStorage::DBAdapter{
         public:
@@ -199,8 +206,10 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         if(res == false){
             return 2;
         }
-
-        route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
+        if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH)
+            route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
+        else
+            route_search_2 = new CMatrixGraph(adapter.GetPassages(), adapter.GetRooms());
     }
 
 
@@ -220,13 +229,29 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
 
     const char* from = env->GetStringUTFChars(from_name, 0);
     const char* to = env->GetStringUTFChars(to_name, 0);
+    /*const char* from = "Room_404u";
+    const char* to = "Room_429u";*/
     try{
-        if(!route_search) throw(new std::exception);
-        size_t path_size = route_search->BuildRoute(303, 323);
+        size_t path_size = 1;
+        if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH) {
+            if (!route_search) throw (new std::exception);
+            path_size = route_search->BuildRoute(303, 323);
+        }
+        else{
+            if(!route_search_2) throw(new std::exception);
+            Log::debug(TAG, "Start finding route");
+            route_search_2->FindRoute(from, to);
+            Log::debug(TAG, "Finish finding route");
+        }
         if(path_size <= 0) throw(new std::exception);
-
         OpenGLStorage::Get()->NotifyStartWorking();
-        OpenGLStorage::Get()->SetRoute(route_search->GetRoute());
+        if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH)
+            OpenGLStorage::Get()->SetRoute(route_search->GetRoute());
+        else{
+            std::vector<std::string> route = route_search_2->GetLastRoute();
+            if(route.size() == 0) throw(new std::exception);
+            OpenGLStorage::Get()->SetRoute(route);
+        }
         OpenGLStorage::Get()->NotifyStopWorking();
         Log::debug(TAG, "Set route");
         //map_drawer.Rebind();

@@ -37,6 +37,7 @@ bool OpenGLStorage::InflateStorage(DBAdapter& adapter) {
     normalizing_matrix_ = glm::scale(normalizing_matrix_,
                                      glm::vec3(1/map_dimensions_.x, 1/map_dimensions_.y, 1));
 
+    Log::debug(TAG, "Matrix inited");
     /*glGenBuffers(1, &VBO);
     glGenVertexArrays(1, &VAO_);
     glGenVertexArrays(1, &VAO_room_);*/
@@ -111,8 +112,13 @@ bool OpenGLStorage::SetObjectMark(const std::string& name) {
 }
 void OpenGLStorage::SetRoute(std::vector<std::string> path){
     MapItemStorage::SetRoute(path);
-    SetObjectMark(*path.begin());
-    SetObjectMark(*(path.end()-1));
+    try {
+        SetObjectMark(*path.begin());
+        SetObjectMark(*(path.end() - 1));
+    }catch(std::exception& e){
+        Log::error(TAG, "Cannot find object " + *(path.begin()));
+        throw(e);
+    }
 }
 void OpenGLStorage::SetCurrentFloor(size_t new_floor) {
     current_floor_ = new_floor;
@@ -242,6 +248,7 @@ float* OpenGLStorage::getPath() {
 	    Log::error(TAG, "Cannot find path objects");
 	    return nullptr;
 	};
+	if(path.size() == 0) return nullptr;
 	Point center1 = path[0]->GetCenter(), center2;
 	const size_t step = conf::path_dash_step;
 	std::function<size_t(Point&, Point&, size_t)> generate_line =
@@ -259,7 +266,7 @@ float* OpenGLStorage::getPath() {
 	for(int i = 1; i < path.size(); ++i){
 	    Log::debug(TAG, "Gen");
 		center2 = path[i]->GetCenter();
-		if(IDConverter::GetType(route_[i]) == gls::MapKeys::Pass){
+		if(IDConverter::GetType(route_[i], conf::map_name_divider) == gls::MapKeys::Pass){
 			// ищем точку коридора напротив комнаты
 			const auto verts = path[i] ->GetVertices();
 			if(path[i]->IsVertical()){

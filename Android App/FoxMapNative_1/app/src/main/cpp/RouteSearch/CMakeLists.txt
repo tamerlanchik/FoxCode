@@ -10,6 +10,9 @@ add_library(RouteSearch SHARED
         DijkstrasAlgorithm.cpp
         GraphConstructor.cpp
         RouteSearch.cpp
+        CMatrixGraph.cpp
+        GraphConstructor.cpp
+
 )
 
 target_link_libraries(

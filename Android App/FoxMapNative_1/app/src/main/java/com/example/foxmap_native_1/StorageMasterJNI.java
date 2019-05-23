@@ -77,10 +77,10 @@ public class StorageMasterJNI {
         Thread t = new Thread(task);
         t.start();
         try {
-            t.join(800);
+            t.join(5000);
             if(t.isAlive()){
                 t.interrupt();
-                Log.d(TAG, "Val = " + Boolean.toString(t.isAlive()));
+                Log.d(TAG, "IsAlive val = " + Boolean.toString(t.isAlive()));
                 return 2;
             }
         } catch (InterruptedException e) {

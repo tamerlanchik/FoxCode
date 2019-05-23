@@ -12,8 +12,11 @@ namespace conf{
     const size_t rect_vertex_count = 6;
     const size_t path_dash_step = 5;
     const size_t max_id_length = 5;
-    const char map_name_divider = '_';
     enum {DBMASTER, ASSET};
-    const bool database_src = ASSET;
+    const bool database_src = DBMASTER;
+    enum {REAL_ROUTE_SEARCH, MOCK_ROUTE_SEARCH};
+    const int route_search_src = REAL_ROUTE_SEARCH;
+    const std::string steps_name = database_src == ASSET ? "Steps" : "Step";
+    const char map_name_divider = '_';
 }
 #endif //FOXMAPNATIVE_1_CONFIG_H

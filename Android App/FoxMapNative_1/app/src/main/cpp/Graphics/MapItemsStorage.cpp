@@ -80,8 +80,8 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
                     gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom), IDConverter::GetId(r.ID, conf::map_name_divider));
                     storage_[storey - 1][(int) Type::L].insert(room);
                     lift_storage_.push_back(room);
-                } else if (r.Type == "Steps") {
-                    Log::debug(TAG, "Steps");
+                } else if (r.Type == conf::steps_name) {
+                    Log::debug(TAG, "Step");
                     gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom), IDConverter::GetId(r.ID, conf::map_name_divider));
                     storage_[storey - 1][(size_t) Type::S].insert(room);
                     steps_storage_.push_back(room);
@@ -104,9 +104,9 @@ bool MapItemStorage::GetObjectsByNames(const std::vector<std::string>& ids, std:
 	gls::MapItem search_item;
 	dest.reserve(dest.size() + ids.size());
 	for(const std::string& id : ids){
-		size_t floor = IDConverter::GetFloor(id);
+		size_t floor = IDConverter::GetFloor(id, conf::map_name_divider);
 		if(floor_condition != 0 && floor != floor_condition) continue;
-		search_item.SetID(IDConverter::GetId(id));
+		search_item.SetID(IDConverter::GetId(id, conf::map_name_divider));
 		size_t obj_type = 0;
 		if(id.find("Room") != std::string::npos) obj_type = (size_t)Type::R;
 		else if(id.find("Passage") != std::string::npos)obj_type = (size_t)Type::P;

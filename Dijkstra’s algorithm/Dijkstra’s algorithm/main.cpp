@@ -28,7 +28,28 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 	}
 }
 
+struct Coordinates {
+	double x;
+	double y;
+	double z;
+};
+
+struct Halls {
+	std::string ID;
+	Coordinates LeftTop;
+	Coordinates RightBottom;
+	std::vector<std::string> HallID;
+	bool Status; //Работает или нет
+};
+
+struct Rooms:Halls {
+	std::vector<Coordinate> Input;
+	std::vector<int> Wight; //Под вопросом, мб не будет и везде будет стандарная ширина дверного проёма
+	std::string Type; //Аудитория, лифт, лестница, столовая и т. д.
+};
+
 int main() {
+	/*
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
 	std::cout << dbMaster.GetInfo().Version << std::endl;
@@ -46,10 +67,50 @@ int main() {
 
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	MatrixGraph.ptintMatrix();
-	for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {
-		std::cout << MatrixGraph.Dijkstra(1)[i] << std::endl;
+	MatrixGraph.FindRoute("Room_501", "Room_507");
+	std::vector<std::string> Root = MatrixGraph.GetLastRoute();
+	for (int i = 0; i < Root.size(); i++) {
+		std::cout << Root[i] << " ";
 	}
-	
+	*/
+	sqlite3 *MapDB = 0; // хэндл объекта соединение к БД
+	char *err = 0;
+	// открываем соединение
+	if (sqlite3_open("sqlite_lib/MapDB.db", &MapDB))
+		return -1;
+	int RecordNumber;
+	Rooms TempRoom;
+	std::cin >> RecordNumber;
+	for (int i = 0; i < RecordNumber; i++) {
+		std::cin >> TempRoom.ID;
+		std::cin >> TempRoom.LeftTop.z;
+		TempRoom.Type = "Audit";
+		std::cin >> TempRoom.LeftTop.x;
+		std::cin >> TempRoom.LeftTop.y;
+		std::cin >> TempRoom.RightBottom.x;
+		std::cin >> TempRoom.RightBottom.y;
+		//TempRoom.LeftTop.z = 1;
+		TempRoom.Status = true;
+	}
+	for (int i = 0; i < RecordNumber; i++) {
+		std::cout << TempRoom.ID << " ";
+		//TempRoom.Type = "Audit";
+		std::cout << (int)TempRoom.LeftTop.x << " ";
+		std::cout << TempRoom.LeftTop.y << " ";
+		std::cout << TempRoom.RightBottom.x << " ";
+		std::cout << TempRoom.RightBottom.y << " ";
+		std::cout << TempRoom.LeftTop.z << " ";
+		//TempRoom.LeftTop.z = 1;
+		//TempRoom.Status = true;
+		std::cout << std::endl;
+	}
+	sqlite3_close(MapDB);
+	return 0;
+	//(sqlite3_exec(db, _SQLquery, 0, 0, &err))
+	//for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {
+	//	std::cout << MatrixGraph.Dijkstra(1)[i] << std::endl;
+	//}
+
 	//std::cout << MatrixGraph.IdElements.size() << std::endl;
 	//MatrixGraph.ptintMatrix();
 	//BFS(MatrixGraph, 0, [](int vertex, CMatrixGraph graph) { std::cout << graph.IdElements[vertex] << " "; });

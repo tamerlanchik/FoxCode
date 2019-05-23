@@ -1,5 +1,7 @@
 #pragma once
 #include "Entity.h"
+#include "sqlite_lib/sqlite3.h"
+#include <algorithm>
 
 class DBMaster{
 public:

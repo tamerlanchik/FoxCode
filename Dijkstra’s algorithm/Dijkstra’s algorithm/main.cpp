@@ -16,7 +16,7 @@ bool PointOnLine(int StartX, int StartY, int EndX, int EndY, int PointX, int Poi
 
 void InputDB(std::string ConnectionString) {
 	int RecordNumber;
-	int Floor = 3;
+	int Floor = 4;
 	std::string TempID;
 	double  TempLeftTopX, TempLeftTopY, TRASH, TempRightBottomX, TempRightBottomY, TempRightBottomZ, DoorX, DoorY;
 	std::vector<Room> TempRoomVector;
@@ -216,7 +216,7 @@ int main() {
 
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	MatrixGraph.ptintMatrix();
-	MatrixGraph.FindRoute("Room_501", "Room_507");
+	MatrixGraph.FindRoute("Room_420", "Room_420");
 	std::vector<std::string> Root = MatrixGraph.GetLastRoute();
 	for (int i = 0; i < Root.size(); i++) {
 		std::cout << Root[i] << " ";

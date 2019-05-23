@@ -25,13 +25,18 @@ int CMatrixGraph::HallRoomDistance(Room room, Hall hall) {
 	Coordinate CenterHall;
 	CenterHall.x = abs(hall.RightBottom.x - hall.LeftTop.x) / 2;
 	CenterHall.y = abs(hall.LeftTop.y - hall.RightBottom.y) / 2;
-	int MinDistance = sqrt(pow((room.Input[0].x - CenterHall.x), 2) + pow((room.Input[0].y - CenterHall.y), 2));
-	for (int i = 1; i < room.Input.size(); i++) {
-		int newDistance = sqrt(pow((room.Input[i].x - CenterHall.x), 2) + pow((room.Input[i].y - CenterHall.y), 2));
-		if (newDistance < MinDistance)
-			MinDistance = newDistance;
+	if (room.Input.size() > 0) {
+		int MinDistance = sqrt(pow((room.Input[0].x - CenterHall.x), 2) + pow((room.Input[0].y - CenterHall.y), 2));
+		for (int i = 1; i < room.Input.size(); i++) {
+			int newDistance = sqrt(pow((room.Input[i].x - CenterHall.x), 2) + pow((room.Input[i].y - CenterHall.y), 2));
+			if (newDistance < MinDistance)
+				MinDistance = newDistance;
+		}
+		return MinDistance;
 	}
-	return MinDistance;
+	else
+		return 0;
+	
 }
 
 int CMatrixGraph::HallHallDistance(Hall hall1, Hall hall2) {

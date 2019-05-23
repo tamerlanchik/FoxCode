@@ -216,7 +216,7 @@ int main() {
 
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	MatrixGraph.ptintMatrix();
-	MatrixGraph.FindRoute("Room_420", "Room_420");
+	MatrixGraph.FindRoute("Room_420", "Room_421");
 	std::vector<std::string> Root = MatrixGraph.GetLastRoute();
 	for (int i = 0; i < Root.size(); i++) {
 		std::cout << Root[i] << " ";

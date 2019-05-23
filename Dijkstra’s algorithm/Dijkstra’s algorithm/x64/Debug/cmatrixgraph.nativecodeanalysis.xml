@@ -4,14 +4,14 @@
     <SFA>
       <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
       <FILENAME>cmatrixgraph.cpp</FILENAME>
-      <LINE>133</LINE>
+      <LINE>138</LINE>
       <COLUMN>17</COLUMN>
     </SFA>
     <DEFECTCODE>6001</DEFECTCODE>
     <DESCRIPTION>Использование неинициализированной памяти "index".</DESCRIPTION>
     <FUNCTION>CMatrixGraph::Dijkstra</FUNCTION>
     <DECORATED>?Dijkstra@CMatrixGraph@@CA?AV?$vector@HV?$allocator@H@std@@@std@@V?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@3@H@Z</DECORATED>
-    <FUNCLINE>120</FUNCLINE>
+    <FUNCLINE>125</FUNCLINE>
     <PROBABILITY>1</PROBABILITY>
     <RANK>3</RANK>
     <CATEGORY>
@@ -21,19 +21,19 @@
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>121</LINE>
+        <LINE>126</LINE>
         <COLUMN>18</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>122</LINE>
+        <LINE>127</LINE>
         <COLUMN>19</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>123</LINE>
+        <LINE>128</LINE>
         <COLUMN>5</COLUMN>
         <KEYEVENT>
           <ID>1</ID>
@@ -45,31 +45,31 @@
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>123</LINE>
+        <LINE>128</LINE>
         <COLUMN>12</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>124</LINE>
+        <LINE>129</LINE>
         <COLUMN>5</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>125</LINE>
+        <LINE>130</LINE>
         <COLUMN>22</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>126</LINE>
+        <LINE>131</LINE>
         <COLUMN>10</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>126</LINE>
+        <LINE>131</LINE>
         <COLUMN>27</COLUMN>
         <KEYEVENT>
           <ID>2</ID>
@@ -81,19 +81,19 @@
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>127</LINE>
+        <LINE>132</LINE>
         <COLUMN>6</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>128</LINE>
+        <LINE>133</LINE>
         <COLUMN>11</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>128</LINE>
+        <LINE>133</LINE>
         <COLUMN>20</COLUMN>
         <KEYEVENT>
           <ID>3</ID>
@@ -105,7 +105,7 @@
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>133</LINE>
+        <LINE>138</LINE>
         <COLUMN>17</COLUMN>
         <KEYEVENT>
           <ID>4</ID>
@@ -117,7 +117,7 @@
       <SFA>
         <FILEPATH>c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm</FILEPATH>
         <FILENAME>cmatrixgraph.cpp</FILENAME>
-        <LINE>133</LINE>
+        <LINE>138</LINE>
         <COLUMN>17</COLUMN>
         <KEYEVENT>
           <ID>5</ID>

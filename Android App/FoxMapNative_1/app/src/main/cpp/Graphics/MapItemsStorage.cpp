@@ -46,44 +46,81 @@ bool MapItemStorage::InflateStorage(MapItemStorage::DBAdapter & db) {
 	if(passages.size() == 0 || rooms.size() == 0){
 		return false;
 	}
-	for(Hall h : passages){
-		size_t storey = h.ID[0] - '0';
-		gls::Passage* pass = new gls::Passage(c(h.LeftTop), c(h.RightBottom), h.ID);
-		storage_[storey - 1][(size_t)Type::P].insert(pass);
-		passage_storage_.push_back(pass);
+	try {
+        for (Hall h : passages) {
+            size_t storey = IDConverter::GetFloor(h.ID, conf::map_name_divider);
+            gls::Passage *pass = new gls::Passage(
+                    c(h.LeftTop), c(h.RightBottom), IDConverter::GetId(h.ID, conf::map_name_divider));
+            storage_[storey - 1][(size_t) Type::P].insert(pass);
+            passage_storage_.push_back(pass);
+        }
+    }catch (std::exception& e){
+	    Log::error(TAG, "Cannot inflate DB: Halls");
+	    return false;
 	}
 	//storage_.emplace_back(passage_storage_);
 
-	for(Room r : rooms){
-	    size_t storey = r.ID[0] - '0';
-	    if(storey < 3 || storey > 4){
-	        Log::error(TAG, (r.ID  + std::string(" Wrong storey ") + std::to_string(storey)).c_str());
-	        assert(false);
-	    }
-		if(r.Type == "Room") {
-		    Log::debug(TAG, "Room");
-			gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]), r.ID);
-			storage_[storey - 1][(int)Type::R].insert(room);
-			room_storage_.push_back(room);
-		}
-		else {
-			if (r.Type == "Lift") {
-			    Log::debug(TAG, "Lift");
-				gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom), r.ID);
-				storage_[storey - 1][(int)Type::L].insert(room);
-				lift_storage_.push_back(room);
-			} else if (r.Type == "Steps") {
-			    Log::debug(TAG, "Steps");
-				gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom), r.ID);
-				storage_[storey - 1][(size_t)Type::S].insert(room);
-				steps_storage_.push_back(room);
-			}
-		}
+	try {
+        for (Room r : rooms) {
+            size_t storey = IDConverter::GetFloor(r.ID, conf::map_name_divider);
+            if (storey < 3 || storey > 4) {
+                Log::error(TAG,
+                           (r.ID + std::string(" Wrong storey ") + std::to_string(storey)).c_str());
+                throw std::exception();
+            }
+            if (r.Type == "Room") {
+                Log::debug(TAG, "Room");
+                gls::Room *room = new gls::Room(c(r.LeftTop), c(r.RightBottom), c(r.Input[0]),
+                                                IDConverter::GetId(r.ID, conf::map_name_divider));
+                storage_[storey - 1][(int) Type::R].insert(room);
+                room_storage_.push_back(room);
+            } else {
+                if (r.Type == "Lift") {
+                    Log::debug(TAG, "Lift");
+                    gls::Lift *room = new gls::Lift(c(r.LeftTop), c(r.RightBottom), IDConverter::GetId(r.ID, conf::map_name_divider));
+                    storage_[storey - 1][(int) Type::L].insert(room);
+                    lift_storage_.push_back(room);
+                } else if (r.Type == "Steps") {
+                    Log::debug(TAG, "Steps");
+                    gls::Steps *room = new gls::Steps(c(r.LeftTop), c(r.RightBottom), IDConverter::GetId(r.ID, conf::map_name_divider));
+                    storage_[storey - 1][(size_t) Type::S].insert(room);
+                    steps_storage_.push_back(room);
+                }
+            }
+        }
+    }catch (std::exception& e){
+	    Log::error(TAG, "Cannot inflate database: Other");
+	    return false;
 	}
 	//storage_.emplace_back(room_storage_);
 
 	is_inflated_ = true;
 	Log::debug(TAG, "Inflated");
+	return true;
+}
+
+bool MapItemStorage::GetObjectsByNames(const std::vector<std::string>& ids, std::vector<gls::MapItem*>& dest,
+						size_t floor_condition) const{
+	gls::MapItem search_item;
+	dest.reserve(dest.size() + ids.size());
+	for(const std::string& id : ids){
+		size_t floor = IDConverter::GetFloor(id);
+		if(floor != floor_condition) continue;
+		search_item.SetID(IDConverter::GetId(id));
+		size_t obj_type = 0;
+		if(id.find("Room") != std::string::npos) obj_type = (size_t)Type::R;
+		else if(id.find("Passage") != std::string::npos)obj_type = (size_t)Type::P;
+		else if(id.find("Lift") != std::string::npos) obj_type = (size_t)Type::L;
+		else if(id.find("Steps") != std::string::npos) obj_type = (size_t)Type::S;
+		else continue;
+		auto res = storage_[floor - 1][obj_type].find(&search_item);
+		if(res!= storage_[floor - 1][obj_type].end()) {
+			dest.push_back(*(res));
+		}
+		else{
+			return false;
+		}
+	}
 	return true;
 }
 

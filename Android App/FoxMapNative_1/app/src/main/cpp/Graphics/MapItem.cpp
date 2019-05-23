@@ -1,5 +1,11 @@
 #include "MapItem.h"
 using namespace gls;
+
+const std::string MapKeys::Room = "Room";
+const std::string MapKeys::Pass = "Passage";
+const std::string MapKeys::Lift = "Lift";
+const std::string MapKeys::Steps = "Steps";
+
 size_t Room::size = 0;
 size_t Room::count = 0;
 size_t Passage::size = 0;

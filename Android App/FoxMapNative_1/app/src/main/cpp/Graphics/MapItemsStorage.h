@@ -13,6 +13,7 @@
 #include <Database/DBMaster.h>
 #include <set>
 #include <array>
+#include <config.h>
 #include "Database/Entity.h"
 #include "MapItem.h"
 using std::vector;
@@ -33,6 +34,32 @@ protected:
 	MapItemStorage();
 	bool is_inflated_;
 	double getMaxCoordinateValue() const;
+	bool GetObjectsByNames(const std::vector<std::string>& ids, std::vector<gls::MapItem*>& dest,
+						   size_t) const;
+	class IDConverter{
+	public:
+		static std::string GetId(const std::string& src, const char divider = ' ') throw(std::exception) {
+			int space = src.find(divider);
+			if(space == std::string::npos)
+				throw std::exception();
+			else
+				return src.substr(space+1, conf::max_id_length);
+		}
+		static std::string GetType(const std::string& src, const char divider = ' ') throw(std::exception){
+			int space = src.find(divider);
+			if(space == std::string::npos)
+				throw std::exception();
+			else
+				return src.substr(0, space);
+		}
+		static size_t GetFloor(const std::string& src, const char divider = ' ') throw(std::exception) {
+			int space = src.find(divider);
+			if(space == std::string::npos)
+				throw std::exception();
+			else
+				return src[space+1] - '0';
+		}
+	};
 public:
 	class DBAdapter{
 	public:

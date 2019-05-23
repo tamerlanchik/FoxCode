@@ -11,6 +11,12 @@
 #include <cmath>
 #include <functional>
 namespace gls {
+    struct MapKeys{
+        static const std::string Room;
+        static const std::string Pass;
+        static const std::string Lift;
+        static const std::string Steps;
+    };
 	class MapItem {
 	private:
 	protected:

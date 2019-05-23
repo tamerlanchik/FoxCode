@@ -97,14 +97,8 @@ void MapDrawer::Render() {
 	drawObjects(GL_TRIANGLES, bufmap.PT, bufmap, RED);	//Patches
 	drawObjects(GL_LINES, bufmap.L, bufmap, RED, 5);	//LIFTS
 	drawObjects(GL_LINES, bufmap.S, bufmap, BLUE, 5);	//STEPS
-	drawObjects(GL_LINES, bufmap.PATH, bufmap, GREEN, 10);	//Path
+	drawObjects(GL_LINES, bufmap.PATH, bufmap, RED, 10);	//Path
 
-	/*drawPassages();
-	drawRooms();
-	drawPatches();
-	drawLifts();
-	drawSteps();
-	drawPath();*/
 	storage_->NotifyStopWorking();
 	glBindVertexArray(0);
 }
@@ -116,80 +110,6 @@ void MapDrawer::SetFloor(size_t f) {
 
 void MapDrawer::Rebind() {
     bindData();
-}
-
-void MapDrawer::drawPath() {
-	glLineWidth(3);
-	program1_.SetVertexColor(1, 0, 0);
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.PATH)){
-		Log::error(TAG, "EMPTY BUF: Path");
-		return;
-	}
-	PointT<size_t> range = (bufmap.GetSectorRange(OpenGLStorage::BufMap::PATH))/vert_param_cnt;
-	glDrawArrays(GL_LINES, range.x, 4);
-}
-
-void MapDrawer::drawPassages() {
-	glLineWidth(3);
-    program1_.SetVertexColor(0.9, 0.9, 0.9);
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.P)){
-		Log::error(TAG, "EMPTY BUF: Pass");
-		return;
-	}
-	PointT<size_t> range = (bufmap.GetSectorRange(OpenGLStorage::BufMap::P))/vert_param_cnt;
-    glDrawArrays(GL_TRIANGLES, range.x, range.y - range.x + 1);
-
-}
-
-void MapDrawer::drawRooms() {
-	glLineWidth(2);
-	program1_.SetVertexColor(room_colour_);
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.R)){
-        Log::error(TAG, "EMPTY BUF: Rooms");
-	    return;
-	}
-	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.R))/vert_param_cnt;
-	const size_t step = 4;
-	for(int i = range.x; i < range.y; i+=step){
-		glDrawArrays(GL_LINE_LOOP, i, step);
-	}
-}
-
-void MapDrawer::drawPatches() {
-    program1_.SetVertexColor(1, 0, 0);
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.P)){
-        Log::error(TAG, "EMPTY BUF: patches");
-	    return;
-	}
-	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.PT))/vert_param_cnt;
-	glDrawArrays(GL_TRIANGLES, range.x, range.y - range.x + 1);
-}
-
-void MapDrawer::drawLifts(){
-    program1_.SetVertexColor(1, 0, 0);
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.P)){
-		Log::error(TAG, "EMPTY BUF: lifts");
-		return;
-	}
-	glLineWidth(5);
-	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.L))/vert_param_cnt;
-	glDrawArrays(GL_LINES, range.x, range.y - range.x + 1);
-}
-
-void MapDrawer::drawSteps() {
-	const OpenGLStorage::BufMap& bufmap = storage_->GetBufferMap();
-	if(!bufmap.IsFilled(bufmap.S)){
-        Log::error(TAG, "EMPTY BUF: Steps");
-	    return;
-	}
-	program1_.SetVertexColor(0, 0, 1);
-	PointT<size_t> range = (bufmap.GetSectorRange(bufmap.S))/vert_param_cnt;
-	glDrawArrays(GL_LINES, range.x, range.y - range.x + 1);
 }
 
 void MapDrawer::drawObjects(const GLenum mode, const size_t type, const OpenGLStorage::BufMap& bufmap,

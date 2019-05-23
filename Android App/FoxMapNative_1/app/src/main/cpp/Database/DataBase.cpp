@@ -89,9 +89,8 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
 	//------ReadHeader-----
 	f >> dimensions_.x >> dimensions_.y;
 	if (!dimensions_.x || !dimensions_.y) {
-		//std::cout << "Cannot get dimensions\n";
 		throw(std::logic_error("Cannot read dimensions"));
-		return false;
+		//return false;
 	}
 
 	std::string type;
@@ -137,7 +136,8 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
             parcel.LeftTop.y = coords[1];
             parcel.RightBottom.x = coords[2];
             parcel.RightBottom.y = coords[3];
-            parcel.ID = type.substr(8, type.size());
+            //parcel.ID = type.substr(8, type.size());
+            parcel.ID = type;
             passages_.push_back(parcel);
 		}else{
 		    Room parcel;
@@ -148,7 +148,8 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
 
             switch(t){
                 case 'r': {
-                    parcel.ID = type.substr(5, type.size());
+                    //parcel.ID = type.substr(5, type.size());
+                    parcel.ID = type;
                     parcel.Type = "Room";
                     std::vector<Coordinate> input(1);
                     input[0].x = coords[4];
@@ -157,12 +158,14 @@ bool DataBase::parseFile(std::string& s) throw(std::logic_error){
                     break;
                 }
                 case 'l': {
-                    parcel.ID = type.substr(5, type.size());
+                    //parcel.ID = type.substr(5, type.size());
+                    parcel.ID = type;
                     parcel.Type = "Lift";
                     break;
                 }
                 case 's': {
                     parcel.ID = type.substr(6, type.size());
+                    parcel.ID = type;
                     parcel.Type = "Steps";
                     break;
                 }

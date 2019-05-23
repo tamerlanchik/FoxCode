@@ -9,7 +9,7 @@ def parseMapObject(mapp):
             coords = parsePassage(data[header_end+1:])
             #coords = parseObjectParts(data[header_end+1:])
         elif("Room" in name):
-            name = changeObjFloor(name, 4)
+            #name = changeObjFloor(name, 4)
             coords = parseRoom(data[header_end+1:])
         else:
             print("Wrong object:" + name)
@@ -131,6 +131,7 @@ def changeObjFloor(name, floor):
         name = name[:ind-1] + str(floor) + name[ind+1:]
     return name
     
+
 f = open('big_map_4.svg', 'r')
 data = f.read()
 f.close()

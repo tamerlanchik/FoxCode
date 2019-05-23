@@ -39,25 +39,12 @@ private:
 	ShaderProgram program1_;
 	OpenGLStorage* storage_;
 	GLuint VBO, VAO_room_, VAO_;
-	size_t vbo_size_;
 	size_t floor;
 #ifdef __ANDROID__
 	AAssetManager* asset_manager_;
 #endif
 
     void bindData();
-
-	void drawPassages();
-
-	void drawRooms();
-
-	void drawPatches();
-
-	void drawLifts();
-
-	void drawSteps();
-
-	void drawPath();
 
 	void drawObjects(const GLuint mode, const size_t type, const OpenGLStorage::BufMap& bufmap,
 			const ShaderProgram::Colour&, const size_t line_width = 1, const size_t step = 0);

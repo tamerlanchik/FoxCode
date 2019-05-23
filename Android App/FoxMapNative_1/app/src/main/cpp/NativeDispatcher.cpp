@@ -30,7 +30,10 @@ public:
     RouteSearchMock(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) {}
     int RefreshData(const std::vector<Hall> &Halls, const std::vector<Room> &Rooms) { return 1; }
     int BuildRoute(int StartID, int EndID) {
-        route_ = { "Room 302", "Passage 3015", "Passage 3016", "Passage 3017", "Room 307" };
+        //route_ = { "Room 302", "Passage 3015", "Passage 3016", "Passage 3017", "Room 307" };
+        //route_ = { "Room 362", "Passage 301", "Steps 307", "Passage 401", "Room 4027" };
+        route_ = { "Room 402u", "Passage 407", "Passage 406", "Passage 405", "Passage 404",
+                   "Steps 403", "Steps 306", "Passage 304", "Passage 303", "Passage 302", "Room 350" };
         return route_.size();
     }
     const std::vector<std::string> &GetRoute() { return route_;}
@@ -190,8 +193,11 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         Adapter adapter(native_asset_manager, db_names);
 
         OpenGLStorage::Get()->NotifyStartWorking();
-        OpenGLStorage::Get()->InflateStorage(adapter);
+        bool res = OpenGLStorage::Get()->InflateStorage(adapter);
         OpenGLStorage::Get()->NotifyStopWorking();
+        if(res == false){
+            return 2;
+        }
 
         route_search = new RouteSearchMock<float>(adapter.GetPassages(), adapter.GetRooms());
     }

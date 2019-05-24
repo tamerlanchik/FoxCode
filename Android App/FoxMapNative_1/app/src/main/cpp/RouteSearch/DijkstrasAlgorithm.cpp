@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "DijkstrasAlgorithm.h"
+﻿#include "DijkstrasAlgorithm.h"
 
 /*
 void BFS(const IGraph& graph, int vertex, void(*visit)(int)) {

@@ -9,7 +9,6 @@
 #include "Graphics/OpenGLStorage.h"
 #include "Database/DBMaster.h"
 #include "Database/DataBase.h"
-#include <android/log.h>
 #include <android/asset_manager_jni.h>
 #include <string>
 #include <Database/Entity.h>
@@ -19,11 +18,7 @@
 
 const char TAG[] = "NativeDispatcher";
 
-#define DB_FILE "/data/data/com.example.foxmap_native_1/databases/MapDB.db"
-
-
 MapDrawer map_drawer;
-//RouteSearch<float>* route_search;
 
 template<class T>
 class RouteSearchMock{

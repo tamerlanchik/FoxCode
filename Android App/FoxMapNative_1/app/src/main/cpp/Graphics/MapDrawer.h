@@ -2,8 +2,6 @@
 // Created by Andrey on 06.04.2019.
 //
 #pragma once
-#ifndef FOXMAPNATIVE_1_MAPDRAWER_H
-#define FOXMAPNATIVE_1_MAPDRAWER_H
 
 #ifdef __ANDROID__
     #include <GLES3/gl3.h>
@@ -13,7 +11,6 @@
     #define GLEW_STATIC
     #include <GL/glew.h>
 #endif
-#include "Visitor.h"
 #include "OpenGLStorage.h"
 #include "ShaderProgram.h"
 #include "FoxUtilites/Log.h"
@@ -58,5 +55,3 @@ private:
 	static const size_t vert_param_cnt;
 };
 
-
-#endif //FOXMAPNATIVE_1_MAPDRAWER_H

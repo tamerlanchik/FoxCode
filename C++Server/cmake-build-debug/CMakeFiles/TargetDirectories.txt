@@ -1,3 +1,0 @@
-C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/cmake-build-debug/CMakeFiles/PROJECT.dir
-C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Andrey/YandexDisk/Documents/TPark/CPP/Project/Git/FoxCode/C++Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir

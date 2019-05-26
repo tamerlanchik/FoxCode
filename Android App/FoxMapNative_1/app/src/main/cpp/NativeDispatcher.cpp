@@ -155,6 +155,14 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         Adapter adapter(path);
         env->ReleaseStringUTFChars(db_path, path);
 
+        if(OpenGLStorage::Get()->IsInflated()){
+            float e = 5;
+            for(int i = 0; i < 1000000; i++){
+                for(int j = 0; j < 1000000; j++){
+                    e /= 3;
+                }
+            }
+        }
         OpenGLStorage::Get()->NotifyStartWorking();
         Log::debug(TAG, "Start reading");
         bool res = OpenGLStorage::Get()->InflateStorage(adapter);
@@ -230,12 +238,8 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
     const char* from = env->GetStringUTFChars(from_name, 0);
     const char* to = env->GetStringUTFChars(to_name, 0);
     std::string from_s(from), to_s(to);
-    if(from_s.find("Room") == std::string::npos){
-        from_s = "Room_" + from_s;
-    }
-    if(to_s.find("Room") == std::string::npos){
-        to_s = "Room_" + to_s;
-    }
+    OpenGLStorage::IDConverter::ConvertString(from_s);
+    OpenGLStorage::IDConverter::ConvertString(to_s);
     try{
         size_t path_size = 1;
         if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH) {
@@ -281,10 +285,13 @@ Java_com_example_foxmap_1native_11_MapGuide_findOnMap(
     if(obj.find("Room") == std::string::npos){
         obj = "Room_" + obj;
     }
+    OpenGLStorage::IDConverter::ConvertString(obj);
     bool res = OpenGLStorage::Get()->SetObjectMark(obj);
     env->ReleaseStringUTFChars(obj_name, str);
     return res;
 }
+
+
 
 }
 

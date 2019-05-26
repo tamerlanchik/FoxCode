@@ -36,6 +36,7 @@ protected:
 	double getMaxCoordinateValue() const;
 	bool GetObjectsByNames(const std::vector<std::string>& ids, std::vector<gls::MapItem*>& dest,
 						   size_t) const;
+public:
 	class IDConverter{
 	public:
 		static std::string GetId(const std::string& src, const char divider = ' ') throw(std::exception) {
@@ -59,8 +60,17 @@ protected:
 			else
 				return src[space+1] - '0';
 		}
+		static void ConvertString(std::string& src, const char divider = ' ') throw(std::exception){
+			if(src.find(gls::MapKeys::Room) == std::string::npos){
+				src = gls::MapKeys::Room + "_" + src;
+			}
+			int ind = src.find("ю");
+			if(ind != std::string::npos){
+				src.replace(ind, 2, "u");   //"ю" жирная и занимает 2 байта
+			}
+
+		}
 	};
-public:
 	class DBAdapter{
 	public:
 		virtual std::vector<Room> GetRooms() = 0;

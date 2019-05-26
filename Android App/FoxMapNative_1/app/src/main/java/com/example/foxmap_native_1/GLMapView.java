@@ -127,6 +127,7 @@ public class GLMapView extends GLSurfaceView{
     @Override
     public void onPause() {
         super.onPause();
+        Log.d(TAG, "Pause");
         queueEvent(new Runnable() {
             @Override
             public void run() {
@@ -139,6 +140,7 @@ public class GLMapView extends GLSurfaceView{
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "Resume");
         queueEvent(new Runnable() {
             @Override
             public void run() {
@@ -147,4 +149,9 @@ public class GLMapView extends GLSurfaceView{
         });
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Log.d(TAG, "Detach");
+    }
 }

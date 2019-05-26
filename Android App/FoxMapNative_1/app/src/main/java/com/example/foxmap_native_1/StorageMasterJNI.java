@@ -55,24 +55,6 @@ public class StorageMasterJNI {
                 return result;
             }
         }
-        /*Thread t = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    new NetworkMaster(mServerAddress, mServerPort);
-                } catch (Exception e) {
-                    Log.e(TAG, "Cannot create socket: " + e.getMessage());
-                    return;
-                }
-                //String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
-                String path = mContext.getDatabasePath(mDBName).toString();
-                if(init(path, mContext.getAssets()) != 0){
-                    Log.e(TAG, "Cannot init database: error returned");
-                    throw(new Exception());
-                }
-            }
-        });*/
         Task task = new Task();
         Thread t = new Thread(task);
         t.start();

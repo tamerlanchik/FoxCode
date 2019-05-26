@@ -220,53 +220,31 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startDataUpdate();
-                mStorageMaster.updateDatabaseRequest();
-                endDataUpdate(false);
-                return true;
-            }
-        });
-
-        /*mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
                 class Updater extends AsyncTask<Void,Void,Void> {
-
+                    private int res;
                     @Override
                     protected void onPreExecute() {
                         startDataUpdate();
                     }
-
                     @Override
                     protected Void doInBackground(Void... voids) {
-                        /*new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                new NetworkMaster("192.168.1.69", 80);
-                            }
-                        }).start();
-                        Log.d(TAG, "Start starting server");
-                        new NetworkMaster("192.168.1.69", 80);
-                        Log.d(TAG, "server created");
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        res = mStorageMaster.updateDatabaseRequest();
                         return null;
                     }
-
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         super.onPostExecute(aVoid);
-                        endDataUpdate(false);
+                        endDataUpdate(res == 0);
                     }
                 }
-
                 new Updater().execute();
-                return false;
+                /*startDataUpdate();
+                mStorageMaster.updateDatabaseRequest();
+                endDataUpdate(false);*/
+                return true;
             }
-        });*/
+        });
+
         return true;
     }
 

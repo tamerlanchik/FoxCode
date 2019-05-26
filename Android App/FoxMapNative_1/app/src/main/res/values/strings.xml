@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FoxMap-Native_1</string>
+    <string name="app_name">FoxMap</string>
     <string name="cannot_update_map">Sorry, it\'s unable to update map</string>
     <string name="success_map_updated">You map is synchronized</string>
     <string name="toast_max_floor_reached">Небо не принимает :(</string>

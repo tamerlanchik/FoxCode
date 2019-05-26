@@ -28,6 +28,7 @@ public:
 	public:
 		enum types {P = 0, R, L, S, PT, PATH, MARK};
 		void SetLocation(int param, size_t count){ insert(param, count);}
+		void Clear() { map_ = {0}; }
 		PointT<size_t> GetSectorRange(int param) const { return get(param); }
 		bool IsFilled(size_t param) const  {
 			return param < types_count && map_[param] != map_[param+1];

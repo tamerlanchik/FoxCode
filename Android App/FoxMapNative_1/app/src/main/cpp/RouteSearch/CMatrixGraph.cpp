@@ -165,16 +165,18 @@ int CMatrixGraph::FindRoute(std::string StartID, std::string EndID) {
 		Error = "End Id not found";
 		return -1;
 	}
+	LastRoute.clear();
 	Distance = Dijkstra(adjacencyMatrix, StartIndex);
-	LastRoute.push_back(IdElements[EndIndex]);
-	while (EndIndex != StartIndex) {
-		for (int i = 0; i < Distance.size(); i++) {
-			if (adjacencyMatrix[EndIndex][i] != 0) {
-				if (Distance[EndIndex] - adjacencyMatrix[EndIndex][i] == Distance[i]) {
-					EndIndex = i;
-					LastRoute.push_back(IdElements[i]);
+	if (Distance[EndIndex] != INT_MAX) {
+		LastRoute.push_back(IdElements[EndIndex]);
+		while (EndIndex != StartIndex) {
+			for (int i = 0; i < Distance.size(); i++) {
+				if (adjacencyMatrix[EndIndex][i] != 0) {
+					if (Distance[EndIndex] - adjacencyMatrix[EndIndex][i] == Distance[i]) {
+						EndIndex = i;
+						LastRoute.push_back(IdElements[i]);
+					}
 				}
-
 			}
 		}
 	}

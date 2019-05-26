@@ -87,6 +87,7 @@ float* OpenGLStorage::GetObjects() {
 float* OpenGLStorage::GetObjects(size_t floor) {
 	current_floor_ = floor;
 	buffer_.clear();
+	buffer_map_.Clear();
 	getPassages();
 	getRooms();
 	getLifts();
@@ -113,6 +114,7 @@ bool OpenGLStorage::SetObjectMark(const std::string& name) {
 void OpenGLStorage::SetRoute(std::vector<std::string> path){
     MapItemStorage::SetRoute(path);
     try {
+        marks_.clear();
         SetObjectMark(*path.begin());
         SetObjectMark(*(path.end() - 1));
     }catch(std::exception& e){
@@ -262,7 +264,7 @@ float* OpenGLStorage::getPath() {
                 }
                 return counter;
 	        };
-	size_t counter = 0;
+	size_t start_buffer_size = buffer_.size();
 	for(int i = 1; i < path.size(); ++i){
 	    Log::debug(TAG, "Gen");
 		center2 = path[i]->GetCenter();
@@ -271,19 +273,19 @@ float* OpenGLStorage::getPath() {
 			const auto verts = path[i] ->GetVertices();
 			if(path[i]->IsVertical()){
 				center2.y = center1.y;
-				counter+=generate_line(center1, center2, step);
+				generate_line(center1, center2, step);
 				center1 = center2;
 				if(i < path.size() - 1) {
 					center2.y = path[i + 1]->GetCenter().y;
-					counter += generate_line(center1, center2, step);
+					generate_line(center1, center2, step);
 				}
 			}else{
 				center2.x = center1.x;
-				counter += generate_line(center1, center2, step);
+				generate_line(center1, center2, step);
 				center1 = center2;
 				if(i < path.size() - 1) {
 					center2.x = path[i + 1]->GetCenter().x;
-					counter += generate_line(center1, center2, step);
+					generate_line(center1, center2, step);
 				}
 			}
 		}
@@ -291,7 +293,7 @@ float* OpenGLStorage::getPath() {
 			generate_line(center1, center2, step);	//для обычного обьекта
 	    center1 = center2;
 	}
-    buffer_map_.SetLocation(BufMap::PATH, counter);
+    buffer_map_.SetLocation(BufMap::PATH, buffer_.size() - start_buffer_size);
 	return buffer_.data();
 }
 

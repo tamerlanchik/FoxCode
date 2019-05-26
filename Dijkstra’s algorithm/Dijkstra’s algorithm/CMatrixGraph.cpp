@@ -36,7 +36,7 @@ int CMatrixGraph::HallRoomDistance(Room room, Hall hall) {
 	}
 	else
 		return 0;
-	
+
 }
 
 int CMatrixGraph::HallHallDistance(Hall hall1, Hall hall2) {
@@ -165,15 +165,16 @@ int CMatrixGraph::FindRoute(std::string StartID, std::string EndID) {
 		return -1;
 	}
 	Distance = Dijkstra(adjacencyMatrix, StartIndex);
-	LastRoute.push_back(IdElements[EndIndex]);
-	while (EndIndex != StartIndex) {
-		for (int i = 0; i < Distance.size(); i++) {
-			if (adjacencyMatrix[EndIndex][i] != 0) {
-				if (Distance[EndIndex] - adjacencyMatrix[EndIndex][i] == Distance[i]) {
-					EndIndex = i;
-					LastRoute.push_back(IdElements[i]);
+	if (Distance[EndIndex] != INT_MAX) {
+		LastRoute.push_back(IdElements[EndIndex]);
+		while (EndIndex != StartIndex) {
+			for (int i = 0; i < Distance.size(); i++) {
+				if (adjacencyMatrix[EndIndex][i] != 0) {
+					if (Distance[EndIndex] - adjacencyMatrix[EndIndex][i] == Distance[i]) {
+						EndIndex = i;
+						LastRoute.push_back(IdElements[i]);
+					}
 				}
-
 			}
 		}
 	}

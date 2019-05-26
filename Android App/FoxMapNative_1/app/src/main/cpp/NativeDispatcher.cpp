@@ -154,15 +154,6 @@ Java_com_example_foxmap_1native_11_StorageMasterJNI_init(
         const char* path = env->GetStringUTFChars(db_path, 0);
         Adapter adapter(path);
         env->ReleaseStringUTFChars(db_path, path);
-
-        if(OpenGLStorage::Get()->IsInflated()){
-            float e = 5;
-            for(int i = 0; i < 1000000; i++){
-                for(int j = 0; j < 1000000; j++){
-                    e /= 3;
-                }
-            }
-        }
         OpenGLStorage::Get()->NotifyStartWorking();
         Log::debug(TAG, "Start reading");
         bool res = OpenGLStorage::Get()->InflateStorage(adapter);

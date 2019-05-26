@@ -18,32 +18,63 @@ public class GLMapView extends GLSurfaceView{
     private Renderer mRenderer;
 
     public GLMapView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public GLMapView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setOnTouchListener(new TouchListener(getContext()));
+        setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
+        mRenderer = new Renderer();
+        setRenderer(mRenderer);
+        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
+        /*setRenderer(new GLSurfaceView.Renderer() {
+            @Override
+            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+
+            }
+
+            @Override
+            public void onSurfaceChanged(GL10 gl, int width, int height) {
+
+            }
+
+            @Override
+            public void onDrawFrame(GL10 gl) {
+
+            }
+        });*/
+        Log.d(TAG, "Create GLMapView");
     }
 
     public void init(){
         // Если не вызвать функцию ниже, будет ошибка
         // "glDrawArrays is called with VERTEX_ARRAY client state disabled!"
         // Thanks to Chineese friends of ours!
-        setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
-        mRenderer = new Renderer();
+        //setEGLContextClientVersion(3);     //На данный момент актуальна 3 версия (?)
+        /*mRenderer = new Renderer();
         setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);    //перерисовка по требованию (не постоянно)
-        this.setOnTouchListener(new TouchListener(getContext()));
+*/
+        if(mRenderer != null) {
+            mRenderer.isInflated = true;
+            /*MapDrawerJNI.init(getContext().getAssets());
+            MapDrawerJNI.surfaceCreated();*/
+            requestRender();
+        }
     }
 
     class Renderer implements GLSurfaceView.Renderer{
+        public boolean isInflated = false;
         @Override
         //Вызывается при создании/пересоздании Surface
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             //Устанавливаем параметры OpenGL
             Log.d(TAG, "onSurfaceCreated()");
-            MapDrawerJNI.init(getContext().getAssets());
-            MapDrawerJNI.surfaceCreated();
+            if(isInflated){
+                MapDrawerJNI.init(getContext().getAssets());
+                MapDrawerJNI.surfaceCreated();
+            }
 
         }
 
@@ -51,14 +82,16 @@ public class GLMapView extends GLSurfaceView{
         //Вызывается при смене размера Surface (в т.ч. при создании и при смене ориентации экрана)
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             Log.d(TAG, "onSurfaceChanged");
-            MapDrawerJNI.surfaceChanged(width, height);
+            if(isInflated)
+                MapDrawerJNI.surfaceChanged(width, height);
             requestRender();
         }
 
         @Override
         //Вызывается по готовности Surface отобразить новый кадр
         public void onDrawFrame(GL10 gl) {
-            MapDrawerJNI.drawFrame();
+            if(isInflated)
+                MapDrawerJNI.drawFrame();
         }
 
     };

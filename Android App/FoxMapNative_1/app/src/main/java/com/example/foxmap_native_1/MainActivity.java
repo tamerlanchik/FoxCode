@@ -78,24 +78,11 @@ public class MainActivity extends AppCompatActivity {
         mStorageMaster = new StorageMasterJNI(getApplicationContext(),
                 getString(R.string.DatabaseName), getString(R.string.ServerAddress),
                 getResources().getInteger(R.integer.ServerPort));
-        int res = mStorageMaster.updateDatabaseRequest();
-        switch(res){
-            case 1:
-                Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_SHORT)
-                        .show();
-                break;
-            case 2:
-                Toast.makeText(getApplicationContext(),
-                        "Database error! Shutting down...", Toast.LENGTH_SHORT).show();
-
-                finish();
-                break;
-        }
-
         mMapView = findViewById(R.id.map_view);
-        //mMapView = new GLMapView(getApplicationContext());
-        mMapView.init();
+        mProgressBar = findViewById(R.id.progressBar);
         mMapPlaceHolder = findViewById(R.id.wait_placeholder_image_view);
+
+        updateMap(false, true); //вызывать только после инициализации необх. вьюшек
 
         mMapGuide = new MapGuide(getApplicationContext());
 
@@ -147,13 +134,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
 
                 }
-                //handleFindRequest(mSourceSearchView.getQuery().toString(), mDestSearchView.getQuery().toString());
-                //mSourceSearchView.clearFocus();
-                //mDestSearchView.clearFocus();
             }
         });
-
-        mProgressBar = findViewById(R.id.progressBar);
 
         mFloorNumberTextView = findViewById(R.id.storey_number_text_view);
         mFloorNumberTextView.setText(
@@ -192,16 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        /*String path = "/data/data/com.example.foxmap_native_1/databases/MapDB.db";
-        SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, 0);
-        if(db.isOpen() == true) {
-            Log.d(TAG, "Database opened in Java");
-            db.close();
-        }else{
-            Log.e(TAG, "Cannot open database in Java");
-            return;
-        }*/
     }
 
     @Override
@@ -220,27 +192,7 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                class Updater extends AsyncTask<Void,Void,Void> {
-                    private int res;
-                    @Override
-                    protected void onPreExecute() {
-                        startDataUpdate();
-                    }
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        res = mStorageMaster.updateDatabaseRequest();
-                        return null;
-                    }
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
-                        endDataUpdate(res == 0);
-                    }
-                }
-                new Updater().execute();
-                /*startDataUpdate();
-                mStorageMaster.updateDatabaseRequest();
-                endDataUpdate(false);*/
+                updateMap(true, false);
                 return true;
             }
         });
@@ -268,23 +220,71 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.VISIBLE);
         mMapPlaceHolder.setVisibility(View.VISIBLE);
-        //mMapView.setVisibility(View.INVISIBLE);
         Log.d(TAG, "startDataUpdate()");
     }
 
+    private boolean updateMap(boolean isNetworkCrusial, boolean isInit){
+        class Updater extends AsyncTask<Boolean,Void,Integer> {
+            int result;
+            boolean isInitialUpdate;
+            @Override
+            protected void onPreExecute() {
+                startDataUpdate();
+            }
+            @Override
+            protected Integer doInBackground(Boolean... params) {
+                if(params.length >= 2){
+                    isInitialUpdate = params[1];
+                }else{
+                    isInitialUpdate = false;
+                }
+                return mStorageMaster.updateDatabaseRequest(params[0]);
+            }
+            @Override
+            protected void onPostExecute(Integer res) {
+                super.onPostExecute(res);
+                if(isInitialUpdate)
+                    initStorageChecker(res);
+                endDataUpdate(res);
+            }
+        }
+        Updater updater = new Updater();
+        updater.execute(isNetworkCrusial, isInit);
+        return true;
+    }
+
     //Графическая реакция на окончание обновления карты
-    private void endDataUpdate(boolean result){
+    private void endDataUpdate(int result){
         Log.d(TAG, "endDataUpdate()");
        mProgressBar.setVisibility(View.GONE);
         mMapPlaceHolder.setVisibility(View.GONE);
         mMapView.setVisibility(View.VISIBLE);
         String resultMessage;
-        if(result == true){
-            resultMessage = getResources().getString(R.string.toast_map_syncronized);
-        }else{
-            resultMessage = getResources().getString(R.string.toast_failed_map_update);
+        switch (result){
+            case 0:
+                resultMessage = getResources().getString(R.string.toast_map_syncronized);
+                break;
+            case 1:
+                resultMessage = "Сервер недоступен";
+                break;
+            case 2:
+                resultMessage = getResources().getString(R.string.toast_failed_map_update);
+            default:
+                resultMessage = "ACHTUNG!";
         }
         Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    void initStorageChecker(int result){
+        if(result == 2){
+            Toast.makeText(getApplicationContext(),
+                    "Database error! Shutting down...", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        Log.d(TAG, "Start settings of mapView");
+        mMapView.init();
+        mMapView.onPause();
+        mMapView.onResume();
 
     }
 

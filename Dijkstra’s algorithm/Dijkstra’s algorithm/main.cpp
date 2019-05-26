@@ -118,12 +118,14 @@ void InputDB(std::string ConnectionString) {
 				if (TempRoomVector[i].ID[0] == 'R') {
 					for (int j = 0; j < TempRoomVector[i].Input.size(); j++) {
 						if (TempRoomVector[i].Input[j].x == Xk1 || TempRoomVector[i].Input[j].x == Xk2) {
-							if ((TempRoomVector[i].Input[j].y <= Yk1 && TempRoomVector[i].Input[j].y >= Yk2) || (TempRoomVector[i].Input[j].y <= Yk2 && TempRoomVector[i].Input[j].y >= Yk1))
+							if ((TempRoomVector[i].Input[j].y <= Yk1 && TempRoomVector[i].Input[j].y >= Yk2) ||
+								(TempRoomVector[i].Input[j].y <= Yk2 && TempRoomVector[i].Input[j].y >= Yk1))
 								TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
 						}
 						else
 							if (TempRoomVector[i].Input[j].y == Yk1 || TempRoomVector[i].Input[j].y == Yk2)
-								if ((TempRoomVector[i].Input[j].x <= Xk1 && TempRoomVector[i].Input[j].x >= Xk2) || (TempRoomVector[i].Input[j].x <= Xk2 && TempRoomVector[i].Input[j].x >= Xk1)) {
+								if ((TempRoomVector[i].Input[j].x <= Xk1 && TempRoomVector[i].Input[j].x >= Xk2) ||
+									(TempRoomVector[i].Input[j].x <= Xk2 && TempRoomVector[i].Input[j].x >= Xk1)) {
 									TempRoomVector[i].HallID.push_back(TempHallVector[k].ID);
 								}
 					}
@@ -198,7 +200,7 @@ void BFS(const CMatrixGraph& graph, int vertex, void(*visit)(int, CMatrixGraph))
 
 int main() {
 	//InputDB("sqlite_lib/MapDB.db");
-	
+
 	DBMaster dbMaster("sqlite_lib/MapDB.db");
 	dbMaster.ReadAllData();
 	std::cout << dbMaster.GetInfo().Version << std::endl;
@@ -216,12 +218,12 @@ int main() {
 
 	CMatrixGraph MatrixGraph(dbMaster.GetHalls(), dbMaster.GetRooms());
 	MatrixGraph.ptintMatrix();
-	MatrixGraph.FindRoute("Room_420", "Room_420");
+	MatrixGraph.FindRoute("Room_409", "Room_402u");
 	std::vector<std::string> Root = MatrixGraph.GetLastRoute();
 	for (int i = 0; i < Root.size(); i++) {
 		std::cout << Root[i] << " ";
 	}
-	
+
 	return 0;
 	//(sqlite3_exec(db, _SQLquery, 0, 0, &err))
 	//for (int i = 0; i < MatrixGraph.Dijkstra(1).size(); i++) {

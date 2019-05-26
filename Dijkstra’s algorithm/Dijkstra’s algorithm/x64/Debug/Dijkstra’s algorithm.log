@@ -1,7 +1,15 @@
-﻿  main.cpp
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(21): warning C4101: TempRightBottomZ: неиспользованная локальная переменная
+﻿  CMatrixGraph.cpp
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(29): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(31): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(48): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(53): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(61): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(69): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(104): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(129): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(22): warning C4715: CMatrixGraph::GetHallIndex: значение возвращается не при всех путях выполнения
   Dijkstra’s algorithm.vcxproj -> C:\Users\Admin\source\repos\tamerlanchik\FoxCode\Dijkstra’s algorithm\x64\Debug\Dijkstra’s algorithm.exe
-c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(133): warning C6001: Использование неинициализированной памяти "index".
+c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\cmatrixgraph.cpp(138): warning C6001: Использование неинициализированной памяти "index".
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\entity.h(24): warning C26495: Variable 'Hall::RightBottom' is uninitialized. Always initialize a member variable (type.6).
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(11): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
 c:\users\admin\source\repos\tamerlanchik\foxcode\dijkstra’s algorithm\dijkstra’s algorithm\main.cpp(11): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).

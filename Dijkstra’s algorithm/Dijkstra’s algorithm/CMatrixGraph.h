@@ -19,7 +19,7 @@ public:
 
 	void ptintMatrix();
 	int FindRoute(std::string StartID, std::string EndID);
-	std::vector<std::string> GetLastRoute();
+	std::vector<std::string> GetLastRoute(); //днаюбхрэ бнгбпюр он яяшкйе
 
 private:
 	static int GetHallIndex(std::vector<Hall> Halls, std::string HallID);

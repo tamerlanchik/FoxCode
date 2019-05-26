@@ -223,6 +223,12 @@ int main() {
 	for (int i = 0; i < Root.size(); i++) {
 		std::cout << Root[i] << " ";
 	}
+	std::cout << std::endl << std::endl;
+	MatrixGraph.FindRoute("Room_427", "Room_402");
+	Root = MatrixGraph.GetLastRoute();
+	for (int i = 0; i < Root.size(); i++) {
+		std::cout << Root[i] << " ";
+	}
 
 	return 0;
 	//(sqlite3_exec(db, _SQLquery, 0, 0, &err))

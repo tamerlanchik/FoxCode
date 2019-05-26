@@ -59,7 +59,7 @@ int DBMaster::GetHallIndex(std::vector<Hall> Halls, std::string HallID) {
 int DBMaster::CallbackHallHall(void *data, int argc, char **argv, char **azColName) {
 	//HallID, HallId
 	std::vector<Hall> *Halls = static_cast<std::vector<Hall>*>(data);
-	//���������� ������� �������� (������� ������ � �������, ����� ������ �� �������)
+	//Çàïèñûâàåì ñìåæíûå êîðèäîðû (ñíà÷àëà âòîðîé ê ïåðâîìó, ïîòîì ïåðâûé êî âòîðîìó)
 	Halls[0][GetHallIndex(Halls[0], argv[0])].HallID.push_back(argv[1]);
 	Halls[0][GetHallIndex(Halls[0], argv[1])].HallID.push_back(argv[0]);
 	return 0;
@@ -97,7 +97,7 @@ int DBMaster::CallbackDoor(void *data, int argc, char **argv, char **azColName) 
 	TempCoordinate.x = atoi(argv[1]);
 	TempCoordinate.y = atoi(argv[2]);
 	TempCoordinate.z = atoi(argv[3]);
-	//������ ������ �������� ����� � ������ 
+	//Çàïèñü øèðèíû äâåðíîãî ïðî¸ìà â âåêòîð
 	Rooms[0][GetRoomIndex(Rooms[0], argv[0])].Wight.push_back(atoi(argv[4]));
 	Rooms[0][GetRoomIndex(Rooms[0], argv[0])].Input.push_back(TempCoordinate);
 	return 0;
@@ -106,7 +106,7 @@ int DBMaster::CallbackDoor(void *data, int argc, char **argv, char **azColName) 
 int DBMaster::CallbackRoomHall(void *data, int argc, char **argv, char **azColName) {
 	//RoomID, HallId
 	std::vector<Room> *Rooms = static_cast<std::vector<Room>*>(data);
-	//������ Id ���������, � ������� ��������� ���������
+	//Çàïèñü Id êîðèäîðîâ, â êîòîðûõ íàõîäÿòñÿ àóäèòîðèè
 	Rooms[0][GetRoomIndex(Rooms[0], argv[0])].HallID.push_back(argv[1]);
 	return 0;
 }
@@ -114,19 +114,19 @@ int DBMaster::CallbackRoomHall(void *data, int argc, char **argv, char **azColNa
 int DBMaster::CallbackInfo(void *data, int argc, char **argv, char **azColName) {
 	//HallID, HallId
 	Info *Information = static_cast<Info*>(data);
-	//������ Id ���������, � ������� ��������� ���������
+	//Çàïèñü Id êîðèäîðîâ, â êîòîðûõ íàõîäÿòñÿ àóäèòîðèè
 	Information->Version = argv[0];
 	Information->CreationDate = argv[1];
 	return 0;
 }
 
 int DBMaster::ReadHalls() {
-	sqlite3 *MapDB = 0; // ����� ������� ���������� � ��
+	sqlite3 *MapDB = 0; // õýíäë îáúåêòà ñîåäèíåíèå ê ÁÄ
 	char *err = 0;
-	// ��������� ����������
+	// îòêðûâàåì ñîåäèíåíèå
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;
-	// ��������� _SQLquery
+	// âûïîëíÿåì _SQLquery
 	if (sqlite3_exec(MapDB, ReadHallsSQLQuery.c_str(), CallbackHall, (void*)&Halls, &err)) {
 		return -2;
 		sqlite3_free(err);
@@ -143,15 +143,15 @@ int DBMaster::ReadHalls() {
 		}
 
 	}
-	// ��������� ����������
+	// çàêðûâàåì ñîåäèíåíèå
 	sqlite3_close(MapDB);
 	return 0;
 }
 
 int DBMaster::ReadRooms() {
-	sqlite3 *MapDB = 0; // ����� ������� ���������� � ��
+	sqlite3 *MapDB = 0; // õýíäë îáúåêòà ñîåäèíåíèå ê ÁÄ
 	char *err = 0;
-	// ��������� ����������
+	// îòêðûâàåì ñîåäèíåíèå
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;
 	if (sqlite3_exec(MapDB, ReadRoomsSQLQuery.c_str(), CallbackRoom, (void*)&Rooms, &err)) {
@@ -178,68 +178,68 @@ int DBMaster::ReadRooms() {
 		}
 
 	}
-	// ��������� ����������
+	// çàêðûâàåì ñîåäèíåíèå
 	sqlite3_close(MapDB);
 	return 0;
 }
 
 int DBMaster::ReadInfo() {
-	sqlite3 *MapDB = 0; // ����� ������� ���������� � ��
+	sqlite3 *MapDB = 0; // õýíäë îáúåêòà ñîåäèíåíèå ê ÁÄ
 	char *err = 0;
-	// ��������� ����������
+	// îòêðûâàåì ñîåäèíåíèå
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;
-	// ��������� _SQLquery
+	// âûïîëíÿåì _SQLquery
 	if (sqlite3_exec(MapDB, ReadInfoSQLQuery.c_str(), CallbackInfo, (void*)&Information, &err)) {
 		return -2;
 		sqlite3_free(err);
 	}
-	// ��������� ����������
+	// çàêðûâàåì ñîåäèíåíèå
 	sqlite3_close(MapDB);
 	return 0;
 }
 
 int DBMaster::ReadAllData() {
 	switch (ReadHalls()) {
-	case -1:
-		std::cout << "Connection Error" << std::endl;
-		break;
-	case -2:
-		std::cout << "SQLQuery Error" << std::endl;
-		break;
-	default:
-		std::cout << "Halls data has been read" << std::endl;
-		break;
+		case -1:
+			std::cout << "Connection Error" << std::endl;
+			break;
+		case -2:
+			std::cout << "SQLQuery Error" << std::endl;
+			break;
+		default:
+			std::cout << "Halls data has been read" << std::endl;
+			break;
 	}
 	switch (ReadRooms()) {
-	case -1:
-		std::cout << "Connection Error" << std::endl;
-		break;
-	case -2:
-		std::cout << "SQLQuery Error" << std::endl;
-		break;
-	default:
-		std::cout << "Rooms data has been read" << std::endl;
-		break;
+		case -1:
+			std::cout << "Connection Error" << std::endl;
+			break;
+		case -2:
+			std::cout << "SQLQuery Error" << std::endl;
+			break;
+		default:
+			std::cout << "Rooms data has been read" << std::endl;
+			break;
 	}
 	switch (ReadInfo()) {
-	case -1:
-		std::cout << "Connection Error" << std::endl;
-		break;
-	case -2:
-		std::cout << "SQLQuery Error" << std::endl;
-		break;
-	default:
-		std::cout << "Info data has been read" << std::endl;
-		break;
+		case -1:
+			std::cout << "Connection Error" << std::endl;
+			break;
+		case -2:
+			std::cout << "SQLQuery Error" << std::endl;
+			break;
+		default:
+			std::cout << "Info data has been read" << std::endl;
+			break;
 	}
 	return 0;
 }
 
 int DBMaster::WriteHalls(std::vector<Hall> halls) {
-	sqlite3 *MapDB = 0; // ����� ������� ���������� � ��
+	sqlite3 *MapDB = 0; // õýíäë îáúåêòà ñîåäèíåíèå ê ÁÄ
 	char *err = 0;
-	// ��������� ����������
+	// îòêðûâàåì ñîåäèíåíèå
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;
 	for (int i = 0; i < halls.size(); i++) {
@@ -270,7 +270,7 @@ int DBMaster::WriteRooms(std::vector<Room> rooms) {
 	if (sqlite3_open(ConnectionString.c_str(), &MapDB))
 		return -1;
 	for (int i = 0; i < rooms.size(); i++) {
-		//������ ������
+		//Çàïèñü êîìíàò
 		std::string WriteRoomsSQLQuery = "INSERT INTO Room VALUES (";
 		WriteRoomsSQLQuery += "'" + rooms[i].ID + "'," + "'" + rooms[i].Type + "'," + std::to_string(rooms[i].LeftTop.x) + "," + std::to_string(rooms[i].LeftTop.y);
 		WriteRoomsSQLQuery += "," + std::to_string(rooms[i].RightBottom.x) + "," + std::to_string(rooms[i].RightBottom.y) + "," + std::to_string(rooms[i].LeftTop.z);
@@ -291,12 +291,12 @@ int DBMaster::WriteRooms(std::vector<Room> rooms) {
 			DoorID[0] = 'D';
 			DoorID[3] = 'r';
 			for (int j = 0; j < rooms[i].Input.size(); j++) {
-				//�������� ID �����
+				//Ñîçäàíèå ID äâåðè
 				for (int k = 0; k < j; k++) {
 					if (k > 0)
 						DoorID += char('a' + k);
 				}
-				//������ �����
+				//Çàïèñü äâåðè
 				std::string WriteDoorsSQLQuery = "INSERT INTO Door VALUES (";
 				WriteDoorsSQLQuery += "'" + DoorID + "'," + std::to_string(rooms[i].Input[j].x) + "," + std::to_string(rooms[i].Input[j].y);
 				WriteDoorsSQLQuery += "," + std::to_string(rooms[i].Input[j].z) + "," + std::to_string(rooms[i].Wight[j]) + ")";
@@ -304,7 +304,7 @@ int DBMaster::WriteRooms(std::vector<Room> rooms) {
 				if (sqlite3_exec(MapDB, WriteDoorsSQLQuery.c_str(), 0, 0, &err))
 					return -2;
 				sqlite3_free(err);
-				//������ ������� ������ � ������
+				//Çàïèñü ñìåæíûõ äâåðåé è êîìíàò
 				std::string WriteRoomAndDoorSQLQuery = "INSERT INTO RoomAndDoor VALUES (";
 				WriteRoomAndDoorSQLQuery += "'" + rooms[i].ID + "'," + "'" + DoorID + "')";
 

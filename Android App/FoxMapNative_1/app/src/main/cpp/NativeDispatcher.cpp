@@ -229,8 +229,13 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
 
     const char* from = env->GetStringUTFChars(from_name, 0);
     const char* to = env->GetStringUTFChars(to_name, 0);
-    /*const char* from = "Room_404u";
-    const char* to = "Room_429u";*/
+    std::string from_s(from), to_s(to);
+    if(from_s.find("Room") == std::string::npos){
+        from_s = "Room_" + from_s;
+    }
+    if(to_s.find("Room") == std::string::npos){
+        to_s = "Room_" + to_s;
+    }
     try{
         size_t path_size = 1;
         if(conf::route_search_src == conf::MOCK_ROUTE_SEARCH) {
@@ -240,7 +245,7 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
         else{
             if(!route_search_2) throw(new std::exception);
             Log::debug(TAG, "Start finding route");
-            route_search_2->FindRoute(from, to);
+            route_search_2->FindRoute(from_s, to_s);
             Log::debug(TAG, "Finish finding route");
         }
         if(path_size <= 0) throw(new std::exception);
@@ -256,10 +261,13 @@ Java_com_example_foxmap_1native_11_MapGuide_buildRoute(
         Log::debug(TAG, "Set route");
         //map_drawer.Rebind();
         map_drawer.rebind_request = true;
+        env->ReleaseStringUTFChars(from_name, from);
+        env->ReleaseStringUTFChars(to_name, to);
         return true;
     }catch (...){
         env->ReleaseStringUTFChars(from_name, from);
         env->ReleaseStringUTFChars(to_name, to);
+        OpenGLStorage::Get()->NotifyStopWorking();
         return false;
     }
 }
@@ -270,8 +278,10 @@ Java_com_example_foxmap_1native_11_MapGuide_findOnMap(
 
     const char* str = env->GetStringUTFChars(obj_name, 0);
     std::string obj(str);
+    if(obj.find("Room") == std::string::npos){
+        obj = "Room_" + obj;
+    }
     bool res = OpenGLStorage::Get()->SetObjectMark(obj);
-    Log::debug(TAG, "SetMark");
     env->ReleaseStringUTFChars(obj_name, str);
     return res;
 }

@@ -8,10 +8,6 @@ MapItemStorage::MapItemStorage() : is_inflated_(false) {
 
 MapItemStorage* MapItemStorage::Get() {
 	static MapItemStorage instance_;
-	/*if (instance_ == NULL) {
-		cerr << "instance is NULL\n";
-		instance_ = new MapItemStorage();
-	}*/
 	return &instance_;
 }
 
@@ -126,6 +122,7 @@ bool MapItemStorage::GetObjectsByNames(const std::vector<std::string>& ids, std:
 }
 
 void MapItemStorage::SetRoute(std::vector<std::string> r) {
+	route_.clear();
     route_ = r;
 }
 bool MapItemStorage::IsInflated() const {
